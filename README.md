@@ -1,7 +1,7 @@
 # NVIM Configuration and MacOS Window Manager Configuration
 
 # MacOS WM
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->. ....
 
 **Table of Contents**
 
