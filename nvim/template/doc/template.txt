@@ -1,9 +1,0 @@
-*XXXXX.txt*							DESCRIPTION
-
-Author:  Alisue <lambdalisue@hashnote.net>
-License: MIT license
-
-<+CURSOR+>
-
-=============================================================================
-vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
