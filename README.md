@@ -13,11 +13,10 @@
 
 ## ScreenShots
 
-![Alt text](/screenshots/sc_1.png?raw=true "ScreenShot 1")
-![Alt text](/screenshots/sc_2.png?raw=true "ScreenShot 2")
-![Alt text](/screenshots/sc_3.png?raw=true "ScreenShot 3")
-![Alt text](/screenshots/sc4.png?raw=true "ScreenShot 4")
-![Alt text](/screenshots/sc-5.png?raw=true "ScreenShot 5")
+![Alt text](/screenshots/1.png?raw=true "ScreenShot 1")
+![Alt text](/screenshots/2.png?raw=true "ScreenShot 2")
+![Alt text](/screenshots/3.png?raw=true "ScreenShot 3")
+
 
 ## Requirements
 - [fish shell] (https://fishshell.com/)
@@ -35,15 +34,15 @@
 Clone into Ubersicht widgets.
 
 ```sh
-git clone https://github.com/amane312/nvim-config.git "$HOME/Library/Application Support/Übersicht/widgets/osiris"
+git clone https://github.com/amane312/nvim-config.git "$HOME/Library/Application Support/Übersicht/widgets/marin"
 ```
 
 Create symlinks.
 
 ```sh
- ln -s "${HOME}/Library/Application Support/Übersicht/widgets/osiris/.yabairc" "${HOME}/.yabairc"
- ln -s "${HOME}/Library/Application Support/Übersicht/widgets/osiris/.skhdrc" "${HOME}/.skhdrc"
- ln -s "${HOME}/Library/Application Support/Übersicht/widgets/osiris/kitty" "${HOME}/.config/kitty"
+ ln -s "$HOME/Library/Application Support/Übersicht/widgets/marin/.yabairc" "$HOME/.yabairc"
+ ln -s "$HOME/Library/Application Support/Übersicht/widgets/marin/.skhdrc" "$HOME/.skhdrc"
+ ln -s "$HOME/Library/Application Support/Übersicht/widgets/marin/kitty" "$HOME/.config/kitty"
 ```
 
 You will be need spotify oAuth token for [web
@@ -53,5 +52,5 @@ You can get one from
 by clicking **Get Token**. _THIS TOKEN WILL BE EXPIRED QUICK_
 
 ```sh
-echo -n "TOKEN_HERE" > "${HOME}/Library/Application Support/Übersicht/widgets/osiris/lib/spotify/token.sec"
+echo -n "TOKEN_HERE" > "$HOME/Library/Application Support/Übersicht/widgets/marin/lib/spotify/token.sec"
 ```
