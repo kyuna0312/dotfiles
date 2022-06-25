@@ -13,9 +13,9 @@
 
 ## ScreenShots
 
-![Alt text](/screenshots/1.png?raw=true "ScreenShot 1")
-![Alt text](/screenshots/2.png?raw=true "ScreenShot 2")
-![Alt text](/screenshots/3.png?raw=true "ScreenShot 3")
+![Alt text](/photos/1.png?raw=true "ScreenShot 1")
+![Alt text](/photos/2.png?raw=true "ScreenShot 2")
+![Alt text](/photos/3.png?raw=true "ScreenShot 3")
 
 
 ## Requirements
