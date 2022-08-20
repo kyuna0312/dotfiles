@@ -1,3 +1,4 @@
+# Marin NVIM Config
 # NVIM Configuration and MacOS Window Manager Configuration
 
 # MacOS WM
