@@ -61,16 +61,6 @@ echo -n "TOKEN_HERE" > "$HOME/Library/Application Support/Übersicht/widgets/mar
 
 ![nvim screenshot](./images/screenshot-neovim.png)
 
-# Takuya's dotfiles
-
-**Warning**: Don’t blindly use my settings unless you know what that entails. Use at your own risk!
-
-### Looking for a Markdown note-taking app?
-
-Check out my app called [Inkdrop](https://www.inkdrop.app/)
-
-[![Inkdrop](./images/screenshot-inkdrop.png)](https://www.inkdrop.app/)
-
 ## Contents
 
 - vim (NeoVim) config
