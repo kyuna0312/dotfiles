@@ -1,3 +1,5 @@
+# Marin0312 DotFiles
+
 ## 🚀 Installation
 
 _If you want to kick the tires, you can simply:_
@@ -66,9 +68,3 @@ A few of the _must-have_ tools I roll with:
   - [surfingkeys](https://github.com/brookhong/Surfingkeys)
   - [vimac](https://vimacapp.com)
   - [sketchyvim](https://github.com/FelixKratz/SketchyVim)
-
-<p align="center" style="margin-top: 20px;">
-  <a href="https://megalithic.io" target="_blank">
-    <img src="megadotfiles.png" alt="megadotfiles" height="150px"/>
-  </a>
-</p>
