@@ -1,0 +1,163 @@
+#!/usr/bin/env bash
+
+#
+# What in tarnation is this?
+#
+# CLI tool to create TIL posts for my blog.
+#
+# til [options] [title]
+#
+# Running `til` with no argument will let you fuzzy-find an existing til post.
+#
+# Passing an argument to `til` will create a new til post formatted for my blog
+# posts.
+#
+# Dependencies:
+#   Required: `fzf`
+#
+
+set -euo pipefail
+
+# -- set some useful vars for executable info:
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename "$__file" .sh)"
+__root="$(cd "$(dirname "$__dir")" && pwd)"
+# shellcheck disable=SC2034,SC2015
+__invocation="$(printf %q "$__file")$( (($#)) && printf ' %q' "$@" || true)"
+
+DEBUG="false"
+YEAR=""
+(command -v fzf &>/dev/null) && FZF_FOUND="installed" || FZF_FOUND="not installed"
+
+function __help() {
+  printf -- "Usage: %s [options] [title | FUZZY_PATTERN]\n" "$__base"
+  printf -- "   Options:\n"
+  printf -- "     -h                This help text you're presently reading. 😄\n"
+  printf -- "     -d                Set debugging to true\n"
+  printf -- "     -y <2022>         Set posts' year\n"
+  printf -- "\n"
+  printf -- "   Dependencies:\n"
+  printf -- "     fzf               (%s)\n" "$FZF_FOUND"
+  printf -- "\n"
+}
+
+# -- halt if we don't have FZF installed
+if [[ $FZF_FOUND == "not installed" ]]; then
+  printf -- "ERROR: %s requires FZF to be installed" "$__base"
+  __help
+  exit 1
+fi
+
+while getopts "hdy:" OPTION; do
+  case $OPTION in
+
+    h)
+      __help
+      exit 0
+      ;;
+    y)
+      YEAR="$OPTARG"
+      ;;
+
+    d)
+      DEBUG="true"
+      ;;
+
+    \?)
+      echo "Invalid Option: -$OPTARG" 1>&2
+      exit 1
+      ;;
+
+  esac
+done
+shift $((OPTIND - 1))
+
+title_param="${*:-}"
+
+# bits and pieces to build out the til/post path and markdown file
+current_year="$(date +"%Y")"
+echo "$current_year"
+month_day="$(date +"%m-%d")"
+slugged_title="$(echo "$title_param" | iconv -c -t ascii//TRANSLIT | sed -E 's/[~^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+|-+$//g' | tr "[:upper:]" "[:lower:]")"
+parent="$HOME/code/megalithic.io/priv"
+posts="$parent/posts"
+current_year_posts="$posts/$current_year"
+
+# TODO build up these debugging info items into an array
+function __info() {
+  printf -- "\n"
+  printf -- "%s executation details:\n" "$__base"
+  printf -- "---------------------------------------------------\n"
+  printf -- "cwd:          %s\n" "$__dir"
+  printf -- "filepath:     %s\n" "$__file"
+  printf -- "basename:     %s\n" "$__base"
+  printf -- "root:         %s\n" "$__root"
+  printf -- "invocation:   %s\n" "$__invocation"
+  printf -- "posts pwd:    %s\n" "$current_year_posts"
+  printf -- "posts year:   %s\n" "$YEAR"
+}
+
+template() {
+  title_cased=$(echo "$title_param" | sed 's/.*/\L&/; s/[a-z]*/\u&/g')
+  command cat <<EOF
+%{
+  title: "${title_cased}",
+  tags: ["til"],
+  description: """
+
+  """
+}
+---
+EOF
+}
+
+nvim_cmd() {
+  local post="${1:-}"
+  local nvim_start_opts="${*:-}"
+
+  if [[ $post ]]; then
+    nvim "$post" "+cd $parent" "$nvim_start_opts"
+  fi
+}
+
+create() {
+  if [[ ! -d "$current_year_posts" ]]; then
+    mkdir -p "$current_year_posts"
+  fi
+
+  post="$current_year_posts/$month_day-$slugged_title.md"
+
+  if [[ $DEBUG == "true" ]]; then
+    printf -- "title param:  %s\n" "$title_param"
+    printf -- "filename:\n   %s\n" "$(new_post)"
+    printf -- "template:\n   %s\n" "$(template)"
+  fi
+
+  template >"$post"
+  nvim_cmd "$post" "+5" "+startinsert"
+}
+
+edit() {
+  local post="${1:-}"
+
+  if [[ $DEBUG == "true" ]]; then
+    printf -- "title param:  %s\n" "$title_param"
+    printf -- "filename:\n   %s\n" "$(new_post)"
+    printf -- "template:\n   %s\n" "$(template)"
+  fi
+
+  template >"$post"
+  nvim_cmd "$post"
+}
+
+[[ $DEBUG == "true" ]] && __info "$title_param"
+
+if [[ $title_param ]]; then
+  create "$title_param"
+else
+  file=$(fd .md "$posts" | fzf --reverse --prompt=" select a post to edit  " --header="TIL posts" --bind="enter:replace-query+print-query" --preview="bat {}")
+  if [[ $file ]]; then
+    edit "$file"
+  fi
+fi

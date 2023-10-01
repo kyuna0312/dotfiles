@@ -1,0 +1,98 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+[[ -f "$ZDOTDIR/lib/helpers.zsh" ]] && source "$ZDOTDIR/lib/helpers.zsh"
+
+# clean_exit defined in helpers.zsh
+trap 'clean_exit $? $LINENO' EXIT
+
+# -- friendly help if -h option given
+function __help() {
+  printf -- "Usage: %s [options] [SESSION_NAME | FUZZY_PATTERN]\n" "tm"
+  printf -- "\n"
+  printf -- "Options:\n"
+  printf -- "  -h              This help text you're presently reading 😄\n"
+  printf -- "\n"
+
+  exit 0
+}
+
+while getopts "h" OPTION; do
+  case $OPTION in
+
+    h)
+      __help
+      ;;
+
+    \?)
+      # NOTE: this covers the case where an optarg may not be provided
+      # and will exit errored
+      echo "Invalid Option: -$OPTARG" 1>&2
+      exit 1
+      ;;
+  esac
+done
+shift "$((OPTIND - 1))"
+
+# -- this is our given session_name param, sans options
+session_name="${1:-}"
+shift
+
+cmd="${*:-}"
+
+# -- try to change to an existing session; otherwise, create a new one
+function try_session() {
+  local session="$1"
+
+  # no session given; bail out
+  if [[ -z "$session" ]]; then
+    exit 0
+  fi
+
+  if ! tmux has-session -t "$session" 2>/dev/null; then
+    tmux -2 new-session -d -s "$session"
+  else
+    tmux -2 attach-session -t "$session"
+  fi
+
+  # launch custom command when we attach or create new session
+  if [[ -n "$cmd" ]]; then
+    tmux -2 send-keys -t "$session" "$cmd" C-m
+  fi
+
+  tmux -2 select-window -t "$session:1"
+  tmux -2 select-pane -t "$session:1.1"
+  tmux -2 attach-session -t "$session_name"
+
+  tmux -2 set status off
+}
+
+function fuzzy_find() {
+  # -- prepare for fuzzy-finding!!
+  sessions_list=$(tmux list-sessions -F "#S")
+  sessions_count=$(echo "$sessions_list" | wc -l | sed -e 's/^[[:space:]]*//')
+  preview_cmd="echo {} | sed 's/:.*$//' | xargs -I{} tmux capture-pane -ep -t {}"
+
+  # -- do certain things based upon only one active session
+  if [[ $sessions_count == 1 ]]; then
+    fzf_prompt_text=" create new session  "
+  else
+    fzf_prompt_text=" new or existing session  "
+  fi
+
+  # -- get our session from fzf (grabs the the active pane from each session as preview, too!)
+  try_session "$(echo "$sessions_list" | fzf --reverse --border=none --padding="1" --preview-window="hidden" --prompt="$fzf_prompt_text" --bind="enter:replace-query+print-query" --preview="$preview_cmd")"
+}
+
+# -- if we pass in a session_name: attach/switch to it or, create new session
+if [[ -n "$session_name" ]]; then
+  try_session "$session_name"
+  exit 0
+fi
+
+if [[ -z "$session" && -z "$cmd" ]]; then
+  fuzzy_find
+fi
+
+fuzzy_find

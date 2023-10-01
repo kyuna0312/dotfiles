@@ -1,0 +1,102 @@
+#!/bin/zsh
+
+set -euo pipefail
+[[ -v DEBUG ]] && set -x
+
+[[ -f "$HOME/.config/zsh/lib/helpers.zsh" ]] && source "$HOME/.config/zsh/lib/helpers.zsh"
+
+trap 'clean_exit $? $LINENO' EXIT
+trap ctrl_c INT # trap ctrl-c and call ctrl_c()
+
+function clean_exit {
+  set +x
+  if [[ $1 != "0" ]]; then
+    printf -- "[ERROR] (%s) occurred on line %s" "$1" "$2"
+  fi
+}
+
+# clean_exit defined in helpers.zsh
+trap 'clean_exit $? $LINENO' EXIT
+
+function __help() {
+  printf -- "\n"
+  printf -- "${green}${bold}USAGE:${reset} %s [options | port_no]\n" "fwd"
+  printf -- "\n"
+  printf -- "${grey}${bold}OPTIONS:${reset}\n"
+  printf -- "  -h            view this help text\n"
+  printf -- "  -s            get ssh tunnel status\n"
+  printf -- "  -x            exit ssh tunnel\n"
+  printf -- "\n"
+  printf -- "${grey}${bold}EXAMPLES:${reset}\n"
+  printf -- "  fwd 4000\n"
+  printf -- "  fwd -s\n"
+  printf -- "  fwd -x\n"
+  printf -- "\n"
+  printf -- "${grey}${bold}REQUIRED ENV:${reset}\n"
+  printf -- "  control_file  (%s)\n" "${FWD_CONTROL_FILE}"
+  printf -- "  remote_host   (%s)\n" "$FWD_CONNECTION"
+  printf -- "\n"
+
+  exit 0
+}
+
+# __timestamp() {
+# date -j -f %s
+# }
+
+__status() {
+  # NOTE: JetBrains Mono Nerd Fonts is used for many of the glyphs..
+  command cat <<EOF
+
+${grey}░$([[ -e "${FWD_CONTROL_FILE}" ]] && echo "${blue} Forwarding traffic $FWD_REMOTE_HOST:8888 <-> localhost:$PORT" || echo "${white} fwd - an ngrok alternative${reset}")
+${grey}░${blue} 
+${grey}░${white} $(echo "Options:")
+${grey}░${grey}   $(echo "fwd -x -> exit")
+${grey}░${grey}   $(echo "fwd -s -> status")
+${grey}░${white} $(echo "Status:")
+${grey}░${grey}   $([[ -e "${FWD_CONTROL_FILE}" ]] && echo "${green}connected${reset}" || echo "${yellow}disconnected${reset}")
+EOF
+}
+
+while getopts "hsx" OPTION; do
+  case $OPTION in
+    h)
+      __help
+      ;;
+    s)
+      echo "${white}Checking status.."
+      ssh -S "${FWD_CONTROL_FILE}" -O check "$FWD_CONNECTION" 2>/dev/null
+      __status
+      exit 0
+      ;;
+    x)
+      echo "${white}Exiting.."
+      ssh -S "${FWD_CONTROL_FILE}" -O exit "$FWD_CONNECTION" 2>/dev/null
+      rm ${TIMESTAMP_FILE}
+      __status
+      exit 0
+      ;;
+    \?)
+      echo "Invalid Option: -$OPTARG" 1>&2
+      exit 1
+      ;;
+  esac
+done
+
+shift "$(($OPTIND - 1))"
+PORT="${1:-4000}"
+# TIMESTAMP_DISPLAY=""
+# TIMESTAMP=""
+# TIMESTAMP_FILE=""
+
+if [[ ! -e "${FWD_CONTROL_FILE}" ]]; then
+  echo "${white}Connecting.."
+  # TIMESTAMP=$([[ "$(uname)" == "Darwin" ]] && gdate +%s.%N || date +%s.%N)
+  # TIMESTAMP_FILE="${FWD_CONTROL_FILE}_${TIMESTAMP}"
+  # touch ${TIMESTAMP_FILE}
+
+  ssh -M -S "${FWD_CONTROL_FILE}" -fNT -R 8888:localhost:$PORT "$FWD_CONNECTION" 2>/dev/null &&
+fi
+command cat <<EOF
+$(__status)
+EOF

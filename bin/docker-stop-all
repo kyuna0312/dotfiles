@@ -1,0 +1,3 @@
+#!/bin/bash
+
+exec docker stop $(docker ps -a -q)
