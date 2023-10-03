@@ -1,9 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 #############################################################
-# Install and update go packages
-# Author: Vincent Zhang <seagle0128@gmail.com>
-# URL: https://github.com/seagle0128/dotfiles
+# Set development environment on Linux/macOS/Cygwin quickly.
+# Author: Maririn312 <khatanzorigb@gmail.com>
+# URL: https://github.com/maririn312/dotfiles
 #############################################################
+
 
 # Get OS name
 SYSTEM=`uname -s`

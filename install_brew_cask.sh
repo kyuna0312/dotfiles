@@ -41,7 +41,7 @@ apps=(
     # foobar2000               # Music player: vox
     squirrel                   # Pinyin Input: sogouinput
     handbrake                  # Video Transcoder: transcoder
-
+    warp
     # Audio
     # soundflower
     # soundflowerbed

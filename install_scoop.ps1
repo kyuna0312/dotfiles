@@ -1,8 +1,10 @@
+#!/bin/sh
 #############################################################
-# Install and update scoop packages on Windows
-# Author: Vincent Zhang <seagle0128@gmail.com>
-# URL: https://github.com/seagle0128/dotfiles
+# Set development environment on Linux/macOS/Cygwin quickly.
+# Author: Maririn312 <khatanzorigb@gmail.com>
+# URL: https://github.com/maririn312/dotfiles
 #############################################################
+
 
 # Packages
 $packages = (

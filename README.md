@@ -17,13 +17,14 @@ and Cygwin.
 ### Linux, macOS and Cygwin
 
 ``` shell
-sh -c "$(curl -fsSL https://github.com/maririn312/dotfiles/raw/master/install.sh)"
+sh -c "$(curl -fsSL https://github.com/maririn312/dotfiles/raw/main/install.sh)"
+
 ```
 
 or
 
 ``` shell
-sh -c "$(wget https://github.com/maririn312/dotfiles/raw/master/install.sh -O -)"
+sh -c "$(wget https://github.com/maririn312/dotfiles/raw/main/install.sh -O -)"
 ```
 
 or
@@ -37,7 +38,7 @@ cd ~/.dotfiles
 ### Windows (Powershell)
 
 ``` powershell
-git clone https://github.com/maririn312/dotfiles.git ~/.dotfiles  # or download the zip package
+git clone [https://github.com/maririn312/dotfiles.git ](https://github.com/maririn312/dotfiles.git)~/.dotfiles  # or download the zip package
 cd ~/.dotfiles
 install_scoop.ps1  # or install_choco.ps1
 ```
