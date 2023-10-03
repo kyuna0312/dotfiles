@@ -1,0 +1,136 @@
+# Local configurations -*- mode: sh -*-
+
+# Theme
+# Load the pure theme, with zsh-async library that's bundled with it.
+zinit ice depth"1" pick"async.zsh" src"pure.zsh"
+zinit light sindresorhus/pure
+
+# Load starship theme (requires nerd fonts)
+# zinit ice as"program" wait lucid from"gh-r"
+# zinit light starship/starship
+# (( $+commands[starship] )) && eval $(starship init zsh)
+
+# Plugins
+# zinit wait lucid for \
+    #       OMZP::python \
+    #       OMZP::golang \
+    #       OMZP::ruby \
+    #       OMZP::rbenv \
+    #       OMZP::rails \
+    #       OMZP::rust
+
+# zinit as"completion" wait lucid for \
+    #       OMZP::docker/_docker \
+    #       OMZP::rust/_rustc
+
+# Show system information
+# if (( $+commands[neofetch] )); then
+#     neofetch
+# fi
+
+# iTerm2 shell integration
+# if test -e "${HOME}/.iterm2_shell_integration.zsh"; then
+#     source "${HOME}/.iterm2_shell_integration.zsh"
+# fi
+
+# For Emacs vterm
+if [ -n "$INSIDE_EMACS" ]; then
+    DISABLE_AUTO_TITLE="true"
+    # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=gray,underline'
+
+    # VTerm
+    if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+        function vterm_printf(){
+            if [ -n "$TMUX" ]; then
+                # tell tmux to pass the escape sequences through
+                # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
+                printf "\ePtmux;\e\e]%s\007\e\\" "$1"
+            elif [ "${TERM%%-*}" = "screen" ]; then
+                # GNU screen (screen, screen-256color, screen-256color-bce)
+                printf "\eP\e]%s\007\e\\" "$1"
+            else
+                printf "\e]%s\e\\" "$1"
+            fi
+        }
+
+        function vterm_prompt_end() {
+            vterm_printf "51;A$(whoami)@$(hostname):$(pwd)";
+        }
+
+        setopt PROMPT_SUBST
+        PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+        alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+        alias reset='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+    fi
+fi
+
+# Env
+# export EDITOR=vim
+# PROXY=http://127.0.0.1:8001
+# PROXY2=http://127.0.0.1:8123
+
+# Aliases
+# alias flush_dns='sudo dscacheutil -flushcache;sudo killall -HUP mDNSResponder'
+
+# Homebrew
+if [[ $OSTYPE == darwin* ]]; then
+    function set_homebrew_env()
+    {
+        # https://mirrors.ustc.edu.cn/
+        # https://mirrors.tnua.tsinghua.edu.cn/
+        export HOMEBREW_API_DOMAIN="https://mirrors.bfsu.edu.cn/homebrew-bottles/api"
+        export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.bfsu.edu.cn/homebrew-bottles"
+        export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.bfsu.edu.cn/git/homebrew/brew.git"
+        export HOMEBREW_CORE_GIT_REMOTE="https://mirrors.bfsu.edu.cn/git/homebrew/homebrew-core.git"
+        export HOMEBREW_PIP_INDEX_URL="https://mirrors.bfsu.edu.cn/pypi/web/simple"
+    }
+
+    function set_homebrew_mirror() {
+        set_homebrew_env
+
+        for tap in core cask{,-fonts,-versions} command-not-found services; do
+            brew tap --custom-remote --force-auto-update "homebrew/${tap}" "https://mirrors.bfsu.edu.cn/git/homebrew/homebrew-${tap}.git"
+        done
+
+        brew update
+    }
+
+    function reset_homebrew_env {
+        unset HOMEBREW_API_DOMAIN
+        unset HOMEBREW_BOTTLE_DOMAIN
+        unset HOMEBREW_BREW_GIT_REMOTE
+        unset HOMEBREW_CORE_GIT_REMOTE
+        unset HOMEBREW_PIP_INDEX_URL
+    }
+
+    function reset_homebrew_mirror() {
+        reset_homebrew_env
+
+        git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew
+
+        BREW_TAPS="$(BREW_TAPS="$(brew tap 2>/dev/null)"; echo -n "${BREW_TAPS//$'\n'/:}")"
+        for tap in core cask{,-fonts,-versions} command-not-found services; do
+            if [[ ":${BREW_TAPS}:" == *":homebrew/${tap}:"* ]]; then
+                brew tap --custom-remote "homebrew/${tap}" "https://github.com/Homebrew/homebrew-${tap}"
+            fi
+        done
+
+        brew update
+    }
+
+    # Use mirror env by default
+    set_homebrew_env
+
+    # For Apple Silicon CPU
+    [[ $CPUTYPE == arm* ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Golang
+# Go Proxy
+export GOPROXY=https://proxy.golang.com.cn,direct
+# export GOPROXY=https://goproxy.cn,direct
+# export GOPROXY=https://goproxy.io,direct
+
+# Go Private
+# export GOPRIVATE=

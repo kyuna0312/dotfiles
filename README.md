@@ -1,70 +1,126 @@
-# Marin0312 DotFiles
+# Maririn312 Dotfiles
 
-## 🚀 Installation
+![Maririn312](logo.png)
 
-_If you want to kick the tires, you can simply:_
+Full and clean configurations for development environment on GNU Linux, macOS
+and Cygwin.
 
-```bash
-git clone https://github.com/maririn312/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && make install
+## Prerequisite
+
+- GNU Linux, macOS, Windows, Cygwin
+- Git, Zsh/Powershell, curl/wget
+- Recommend: GNU Emacs, tmux
+- Optional: Vim
+
+## Quickstart
+
+### Linux, macOS and Cygwin
+
+``` shell
+sh -c "$(curl -fsSL https://github.com/maririn312/dotfiles/raw/master/install.sh)"
 ```
 
-_If you want to update an existing installation:_
+or
 
-```bash
-make -C ~/.dotfiles up
+``` shell
+sh -c "$(wget https://github.com/maririn312/dotfiles/raw/master/install.sh -O -)"
 ```
 
-_For platform specific installations:_
+or
 
-```bash
-cd ~/.dotfiles && make macos # or, `linux`
-# or, for easier use:
-make -C ~/.dotfiles macos
+``` shell
+git clone https://github.com/maririn312/dotfiles.git ~/.dotfiles  # or download the zip package
+cd ~/.dotfiles
+./install.sh
 ```
 
-_Get some help:_
+### Windows (Powershell)
 
-```bash
-cd ~/.dotfiles && make help
-# or, for easier use:
-make -C ~/.dotfiles help
+``` powershell
+git clone https://github.com/maririn312/dotfiles.git ~/.dotfiles  # or download the zip package
+cd ~/.dotfiles
+install_scoop.ps1  # or install_choco.ps1
 ```
 
-> **_NOTE_**: to execute a `make` command from anywhere, say, specifically for your dotfiles: `make -C ~/.dotfiles <GOAL>`
+## Docker
 
----
+``` shell
+cd ~/.dotfiles
+docker build -t centaur/ubuntu .
+docker run -it centaur/ubuntu zsh
+```
 
-This dotfiles repo is managed by [dotbot](https://github.com/anishathalye/dotbot); not near as over-the-top configurable as _Ansible_, but way more advanced than just _GNU Stow_.
+## Shortcuts
 
-I have tried to be platform agnostic, but the majority of scripts that run here are for macOS (specifically macOS Ventura -- x86 and arm), with a handful of Debian/Ubuntu Linux specific platform scripts and provisions. This means that certain tools/binaries I rely on might or might not install/configure on Linux. Though, I have tested it reasonably well on Ubuntu-based Linode and DigitalOcean instances.
+- `Alt-c`: cd into the selected directory.
+- `Ctrl-r`: Paste the selected command from history into the command line.
+- `Ctrl-t`: Paste the selected file path(s) into the command line.
+- `TAB`: To completions.
 
-#### 🐉 Thar be dragons
+That's it. Enjoy!
 
-I am pushing updates _constantly_, so there are **NO** guarantees of stability with my config!
+## Customization
 
-> **Warning**
->
-> I highly recommend you dig into the scripts and configs to see what all is going on (because it does a lot more than what I'm describing in this README) before you -- all willy-nilly, throw caution to the wind -- install a stranger's shell scripts. 🤣
+### ZSH ENV
 
----
+Add your zsh environments in `~/.zshenv`. This is recommended by ZSH officially.
+For example:
 
-## ✨ Accoutrements
+``` shell
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/.rbenv/shims:$PATH
+export PYTHONPATH=/usr/local/lib/python2.7/site-packages
+```
 
-A few of the _must-have_ tools I roll with:
+### ZSH local config
 
-- [kitty](https://github.com/kovidgoyal/kitty)
-- [tmux](https://github.com/tmux/tmux/wiki)
-- [neovim](https://neovim.io/)
-- [zsh](https://www.zsh.org/)
-- [weechat](https://www.weechat.org/)
-- [asdf](https://asdf-vm.com/)
-- [homebrew](https://brew.sh/)
-- `megaforest` for all the colours/themes
-- [jetbrains mono](https://www.jetbrains.com/lp/mono/) font ([nerd-fonts](https://github.com/ryanoasis/nerd-fonts#font-patcher) patched)
-- [hammerspoon](https://github.com/megalithic/dotfiles/tree/master/hammerspoon)
-- [karabiner-elements](https://github.com/tekezo/Karabiner-Elements) ([leeloo ZMK](https://github.com/megalithic/zmk-config))
-- [gpg/yubikey/encryption](https://github.com/drduh/YubiKey-Guide)
-- system-wide `vim`-esque control
-  - [surfingkeys](https://github.com/brookhong/Surfingkeys)
-  - [vimac](https://vimacapp.com)
-  - [sketchyvim](https://github.com/FelixKratz/SketchyVim)
+Set your personal zsh configurations in `~/.zshrc.local`. For example:
+
+``` shell
+# Oh-my-zsh plugin
+zinit snippet OMZP::golang
+zinit snippet OMZP::python
+zinit snippet OMZP::ruby
+
+# Github plugin
+zinit light ptavares/zsh-direnv
+```
+
+See details on [zinit](https://github.com/zdharma-continuum/zinit).
+
+### Git local config
+
+Set your git configurations in `~/.gitconfig.local`, e.g. user credentials.
+
+``` shell
+[commit]
+    # Sign commits using GPG.
+    # https://help.github.com/articles/signing-commits-using-gpg/
+    gpgsign = true
+
+[user]
+    name = John Doe
+    email = john.doe@example.com
+    signingkey = XXXXXXXX
+```
+
+## Screenshots
+
+### Main (with Tmux)
+
+![main](https://user-images.githubusercontent.com/140797/51855591-9717c880-2368-11e9-9270-bbadc3640982.png
+"Main with tmux")
+
+### Git Log
+
+![git_log](https://user-images.githubusercontent.com/140797/51830877-cf4ce600-232b-11e9-9196-c35a59ebe491.png
+" Git Log")
+
+### [Centaur Emacs](https://github.com/seagle0128/.emacs.d)
+
+![centaur_emacs](https://user-images.githubusercontent.com/140797/56488858-4e5c4f80-6512-11e9-9637-b9395c46400f.png
+"Centaur Emacs")
+
+## Acknowledgements
+
+Related projects: [DevStrap](https://github.com/ray-g/devstrap)

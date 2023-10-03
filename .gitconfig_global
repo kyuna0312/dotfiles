@@ -1,0 +1,34 @@
+# -*- mode: gitconfig -*-
+[core]
+	excludesfile = ~/.gitignore_global
+	autocrlf = false
+	ignorecase = false
+	safecrlf = warn
+	editor = emacsclient -a=\\\"\\\"
+	quotepath = false
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+[pull]
+	rebase = false
+[push]
+	default = current
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+[diff]
+	tool = ediff
+	colorMoved = default
+[merge]
+	tool = ediff
+	conflictstyle = diff3
+[difftool "ediff"]
+	cmd = emacsclient -n -a \"\" --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+[mergetool "ediff"]
+	cmd = emacsclient -n -a \"\" --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"

@@ -1,0 +1,18 @@
+# -*- mode: gitconfig -*-
+[include]
+	path = ~/.gitconfig_global
+[credential]
+	helper = cache
+[user]
+	name =
+	email =
+[github]
+	user =
+	oauth-token =
+# [credential]
+# 	helper = cache --timeout=3600
+# 	# install libsecret-1-dev
+# 	# cd /usr/share/doc/git/contrib/credential/libsecret; sudo make
+# 	# helper = /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
+# [http "https://github.com"]
+	# proxy = http://127.0.0.1:7890

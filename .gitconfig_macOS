@@ -1,0 +1,15 @@
+# -*- mode: gitconfig -*-
+[include]
+	path = ~/.gitconfig_global
+[credential]
+	helper = osxkeychain
+[user]
+	name =
+	email =
+[github]
+	user =
+	oauth-token =
+# [credential]
+# 	helper = osxkeychain
+# [http "https://github.com"]
+	# proxy = http://127.0.0.1:7890
