@@ -121,7 +121,3 @@ Set your git configurations in `~/.gitconfig.local`, e.g. user credentials.
 
 ![centaur_emacs](https://user-images.githubusercontent.com/140797/56488858-4e5c4f80-6512-11e9-9637-b9395c46400f.png
 "Centaur Emacs")
-
-## Acknowledgements
-
-Related projects: [DevStrap](https://github.com/ray-g/devstrap)
