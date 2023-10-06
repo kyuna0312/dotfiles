@@ -1,36 +1,59 @@
-# default layout (can be bsp, stack or float)
-yabai -m config layout bsp
+#!/usr/bin/env sh
 
-# new window spawns to the right if vertical split, or bottom if horizontal split
-yabai -m config window_placement second_child
+source "$HOME/.config/colors.sh"
 
-# padding set to 12px
-yabai -m config top_padding 12
-yabai -m config bottom_padding 12
-yabai -m config left_padding 12
-yabai -m config right_padding 12
-yabai -m config window_gap 12
+#
+# for this to work you must configure sudo such that
+# it will be able to run the command without password
+#
+# see this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
+#
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+# sudo yabai --load-sa
+#
 
-yabai -m window --toggle zoom-fullscreen
+# global settings
+yabai -m config \
+	mouse_follows_focus off \
+	focus_follows_mouse off \
+	window_origin_display default \
+	window_placement second_child \
+	window_zoom_persist on \
+	window_topmost on \
+	window_shadow on \
+	window_animation_duration 0 \
+	window_animation_frame_rate 60 \
+	window_opacity_duration 0 \
+	active_window_opacity 1.0 \
+	normal_window_opacity 1.0 \
+	window_opacity off \
+	insert_feedback_color 0xffd75f5f \
+	active_window_border_color $COLOR_ACCENT_BRIGHT \
+	normal_window_border_color $COLOR_BACKGROUND \
+	window_border_width 4 \
+	window_border_radius 12 \
+	window_border_blur off \
+	window_border_hidpi off \
+	window_border on \
+	split_ratio 0.50 \
+	split_type auto \
+	auto_balance off \
+	top_padding 8 \
+	bottom_padding 8 \
+	left_padding 8 \
+	right_padding 8 \
+	window_gap 8 \
+	layout bsp \
+	mouse_modifier fn \
+	mouse_action1 move \
+	mouse_action2 resize \
+	mouse_drop_action swap \
+	external_bar all:48:0
 
-# -- mouse settings --
+yabai -m rule --add app="^(System Settings|System Information|Activity Monitor|FaceTime|Screen Sharing|Calculator|Stickies|TinkerTool|Progressive Downloader|Transmission|Airflow)$" manage=off
 
-# center mouse on window with focus
-yabai -m config mouse_follows_focus on
+yabai -m signal --add event=window_created action="sketchybar -m --trigger window_change &> /dev/null"
+yabai -m signal --add event=window_destroyed action="sketchybar -m --trigger window_change &> /dev/null"
 
-# modifier for clicking and dragging with mouse
-yabai -m config mouse_modifier alt
-# set modifier + left-click drag to move window
-yabai -m config mouse_action1 move
-# set modifier + right-click drag to resize window
-yabai -m config mouse_action2 resize
-
-# when window is dropped in center of another window, swap them (on edges it will split it)
-yabai -m mouse_drop_action swap
-
-
-# disable specific apps
-yabai -m rule --add app="^System Settings$" manage=off
-yabai -m rule --add app="^Calculator$" manage=off
-yabai -m rule --add app="^Karabiner-Elements$" manage=off
-yabai -m rule --add app="^QuickTime Player$" manage=off
+echo "yabai configuration loaded.."
