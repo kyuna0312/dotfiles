@@ -1,59 +1,58 @@
 #!/usr/bin/env sh
 
-source "$HOME/.config/colors.sh"
+# Unload the macOS WindowManager process
+launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist > /dev/null 2>&1 &
 
-#
-# for this to work you must configure sudo such that
-# it will be able to run the command without password
-#
-# see this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki/Installing-yabai-(latest-release)#configure-scripting-addition
-#
-# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-# sudo yabai --load-sa
-#
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
+yabai -m signal --add event=display_added action="sleep 2 && $HOME/.config/yabai/create_spaces.sh"
+yabai -m signal --add event=display_removed action="sleep 1 && $HOME/.config/yabai/create_spaces.sh"
+yabai -m signal --add event=window_created action="sketchybar --trigger windows_on_spaces"
+yabai -m signal --add event=window_destroyed action="sketchybar --trigger windows_on_spaces"
 
-# global settings
-yabai -m config \
-	mouse_follows_focus off \
-	focus_follows_mouse off \
-	window_origin_display default \
-	window_placement second_child \
-	window_zoom_persist on \
-	window_topmost on \
-	window_shadow on \
-	window_animation_duration 0 \
-	window_animation_frame_rate 60 \
-	window_opacity_duration 0 \
-	active_window_opacity 1.0 \
-	normal_window_opacity 1.0 \
-	window_opacity off \
-	insert_feedback_color 0xffd75f5f \
-	active_window_border_color $COLOR_ACCENT_BRIGHT \
-	normal_window_border_color $COLOR_BACKGROUND \
-	window_border_width 4 \
-	window_border_radius 12 \
-	window_border_blur off \
-	window_border_hidpi off \
-	window_border on \
-	split_ratio 0.50 \
-	split_type auto \
-	auto_balance off \
-	top_padding 8 \
-	bottom_padding 8 \
-	left_padding 8 \
-	right_padding 8 \
-	window_gap 8 \
-	layout bsp \
-	mouse_modifier fn \
-	mouse_action1 move \
-	mouse_action2 resize \
-	mouse_drop_action swap \
-	external_bar all:48:0
+$HOME/.config/yabai/create_spaces.sh
 
-yabai -m rule --add app="^(System Settings|System Information|Activity Monitor|FaceTime|Screen Sharing|Calculator|Stickies|TinkerTool|Progressive Downloader|Transmission|Airflow)$" manage=off
+yabai -m config external_bar               all:35:0     \
+                window_border              on           \
+                mouse_follows_focus        off          \
+                focus_follows_mouse        off          \
+                window_zoom_persist        off          \
+                window_placement           second_child \
+                window_topmost             off          \
+                window_shadow              float        \
+                window_opacity             off          \
+                window_opacity_duration    0.0          \
+                active_window_opacity      1.0          \
+                normal_window_opacity      0.0          \
+                window_border_width        2            \
+                window_border_hidpi        off          \
+                window_border_radius       11           \
+                window_border_blur         off          \
+                window_animation_duration  0.3          \
+                active_window_border_color 0xffe1e3e4   \
+                normal_window_border_color 0xff494d64   \
+                insert_feedback_color      0xff9dd274   \
+                split_ratio                0.50         \
+                auto_balance               off          \
+                mouse_modifier             fn           \
+                mouse_action1              move         \
+                mouse_action2              resize       \
+                mouse_drop_action          swap         \
+                                                        \
+                top_padding                10           \
+                bottom_padding             4            \
+                left_padding               4            \
+                right_padding              4            \
+                window_gap                 6
 
-yabai -m signal --add event=window_created action="sketchybar -m --trigger window_change &> /dev/null"
-yabai -m signal --add event=window_destroyed action="sketchybar -m --trigger window_change &> /dev/null"
+# Exclude problematic apps from being managed:
+yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
+
+yabai -m config layout bsp
 
 echo "yabai configuration loaded.."
