@@ -324,8 +324,3 @@ Requires [Neovim](https://neovim.io/) (>= 0.8)
 
 ![git_log](https://user-images.githubusercontent.com/140797/51830877-cf4ce600-232b-11e9-9196-c35a59ebe491.png
 " Git Log")
-
-### [Centaur Emacs](https://github.com/seagle0128/.emacs.d)
-
-![centaur_emacs](https://user-images.githubusercontent.com/140797/56488858-4e5c4f80-6512-11e9-9637-b9395c46400f.png
-"Centaur Emacs")
