@@ -1,4 +1,4 @@
-# My Private Dotfiles config Maririn312 DotConfig files 
+# Maririn312 DotConfig files 
 
 ![Maririn312](logo.png)
 
