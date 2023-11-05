@@ -1,5 +1,6 @@
 # My Private Dotfiles config Maririn312 DotConfig files 
 
+
 ![Maririn312](logo.png)
 
 Full and clean configurations for development environment on GNU Linux, macOS
