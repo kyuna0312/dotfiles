@@ -1,8 +1,8 @@
 # Maririn312 DotConfig files 
 
-
+<div align="center">
 ![Maririn312](logo.png)
-
+</div>
 Full and clean configurations for development environment on GNU Linux, macOS
 and Cygwin.
 
