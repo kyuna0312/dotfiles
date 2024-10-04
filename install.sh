@@ -1,13 +1,12 @@
 #!/bin/sh
 #############################################################
 # Set development environment on Linux/macOS/Cygwin quickly.
-# Author: Maririn312 <khatanzorigb@gmail.com>
-# URL: https://github.com/maririn312/dotfiles
+# Author: Kyuna312 <khatanzorigb@gmail.com>
+# URL: https://github.com/KYuna312/dotfiles
 #############################################################
 
 # Variables
 DOTFILES=$HOME/.dotfiles
-EMACSD=$HOME/.emacs.d
 TMUX=$HOME/.tmux
 ZSH=$HOME/.zinit
 
@@ -121,8 +120,6 @@ clean_dotfiles() {
     for c in ${confs}; do
         [ -f $HOME/${c} ] && mv $HOME/${c} $HOME/${c}.bak
     done
-
-    [ -d $EMACSD ] && mv $EMACSD $EMACSD.bak
 
     rm -rf $ZSH $TMUX $DOTFILES
 
@@ -241,14 +238,6 @@ if is_cygwin; then
     ln -sf $DOTFILES/.minttyrc $HOME/.minttyrc
 fi
 
-# Emacs Configurations
-printf "${GREEN}▓▒░ Installing Centaur Emacs...${NORMAL}\n"
-sync_repo seagle0128/.emacs.d $EMACSD
-
-# Oh My Tmux
-printf "${GREEN}▓▒░ Installing Oh My Tmux...${NORMAL}\n"
-sync_repo gpakosz/.tmux $TMUX
-ln -sf $TMUX/.tmux.conf $HOME/.tmux.conf
 
 # Entering zsh
 printf "Done. Enjoy!\n"
