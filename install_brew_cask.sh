@@ -17,9 +17,8 @@ apps=(
     docker
     netspot                    # Wifi signal analysis and scanner
     macfuse                    # File system
-    warp
+    kitty
     docker                     # optional
-    visual-studio-code
     motrix                     # Downloader: ariang
     macgesture
 )
