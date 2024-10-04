@@ -14,7 +14,6 @@ packages=(
     unzip
 
     # sudo add-apt-repository -y ppa:kelleyk/emacs
-    emacs                       # emacs-snapshot
 
     aspell                      # hunspell
     parcellite                  # clipit
