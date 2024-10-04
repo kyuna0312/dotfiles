@@ -1,7 +1,7 @@
-# Maririn312 DotConfig files 
+# Kyuna312 DotConfig files 
 
 
-![Maririn312](logo.png)
+![Kyuna312](logo.png)
 
 Full and clean configurations for development environment on GNU Linux, macOS
 and Cygwin.
@@ -10,28 +10,27 @@ and Cygwin.
 
 - GNU Linux, macOS, Windows, Cygwin
 - Git, Zsh/Powershell, curl/wget
-- Recommend: GNU Emacs, tmux
-- Optional: Vim
+- Recommend: Vim, tmux
 
 ## Quickstart
 
 ### Linux, macOS and Cygwin
 
 ``` shell
-sh -c "$(curl -fsSL https://github.com/maririn312/dotfiles/raw/main/install.sh)"
+sh -c "$(curl -fsSL https://github.com/kyuna312/dotfiles/raw/main/install.sh)"
 
 ```
 
 or
 
 ``` shell
-sh -c "$(wget https://github.com/maririn312/dotfiles/raw/main/install.sh -O -)"
+sh -c "$(wget https://github.com/kyuna312/dotfiles/raw/main/install.sh -O -)"
 ```
 
 or
 
 ``` shell
-git clone https://github.com/maririn312/dotfiles.git ~/.dotfiles  # or download the zip package
+git clone https://github.com/kyuna312/dotfiles.git ~/.dotfiles  # or download the zip package
 cd ~/.dotfiles
 ./install.sh
 ```
@@ -39,17 +38,9 @@ cd ~/.dotfiles
 ### Windows (Powershell)
 
 ``` powershell
-git clone [https://github.com/maririn312/dotfiles.git ](https://github.com/maririn312/dotfiles.git)~/.dotfiles  # or download the zip package
+git clone [https://github.com/kyuna312/dotfiles.git ](https://github.com/kyuna312/dotfiles.git)~/.dotfiles  # or download the zip package
 cd ~/.dotfiles
 install_scoop.ps1  # or install_choco.ps1
-```
-
-## Docker
-
-``` shell
-cd ~/.dotfiles
-docker build -t centaur/ubuntu .
-docker run -it centaur/ubuntu zsh
 ```
 
 ## Shortcuts
