@@ -1,8 +1,8 @@
 #!/bin/sh
 #############################################################
 # Set development environment on Linux/macOS/Cygwin quickly.
-# Author: Maririn312 <khatanzorigb@gmail.com>
-# URL: https://github.com/maririn312/dotfiles
+# Author: kyuna312 <khatanzorigb@gmail.com>
+# URL: https://github.com/kyuna312/dotfiles
 #############################################################
 
 
@@ -10,7 +10,6 @@
 packages=(
     # git
     # zsh
-    emacs
     neofetch                    # screenfetch
     bat
     fd
