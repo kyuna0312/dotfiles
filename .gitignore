@@ -1,4 +1,5 @@
 .DS_Store
-*.bak
-*.log
-.markdown-preview.html
+tmux/plugins/
+raycast
+fzf
+history.txt
