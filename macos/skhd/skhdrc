@@ -27,5 +27,5 @@ alt - q : run-external "open" "-a" `/System/Applications/QuickTime Player.app/Co
 # FinalCut
 alt - f : run-external "open" "-a" `/Applications/Final Cut Pro.app/Contents/MacOS/Final Cut Pro`
 
-# Ghostty
-alt - g : run-external "open" "-a" "/Applications/Ghostty.app"
+# Terminal (default to WezTerm)
+alt - g : run-external "open" "-a" "/Applications/WezTerm.app"

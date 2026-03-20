@@ -24,7 +24,7 @@
     # ".config/nix".source = ~/dotfiles/nix;
     # ".config/nix-darwin".source = ~/dotfiles/nix-darwin;
     # ".config/tmux".source = ~/dotfiles/tmux;
-    # ".config/ghostty".source = ~/dotfiles/ghostty;
+    # (terminal emulator removed)
     # ".config/aerospace".source = ~/dotfiles/aerospace;
     # ".config/sketchybar".source = ~/dotfiles/sketchybar;
     # ".config/nushell".source = ~/dotfiles/nushell;
