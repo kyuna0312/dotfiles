@@ -16,11 +16,17 @@ end)
 hs.hotkey.bind({"alt"}, "R", function()
 	hs.reload()
 end)
-hs.alert.show("Config loaded")
+
+-- Avoid extra UI spam on every restart (set HAMMERSPOON_DEBUG=1 to enable)
+if os.getenv("HAMMERSPOON_DEBUG") == "1" then
+	hs.alert.show("Config loaded")
+end
 
 local calendar = hs.loadSpoon("GoMaCal")
 if calendar then
-    calendar:setCalendarPath('/Users/omerxx/dotfiles/hammerspoon/calendar-app/calapp')
+    local home = os.getenv("HOME") or ""
+    local calpath = os.getenv("DOTFILES_CALENDAR_PATH") or (home .. "/.hammerspoon/calendar-app/calapp")
+    calendar:setCalendarPath(calpath)
     calendar:start()
 end
 
@@ -78,6 +84,6 @@ end
 --
 -- local calendar = hs.loadSpoon("GoMaCal")
 -- if calendar then
---     calendar:setCalendarPath('/Users/omerxx/dotfiles/hammerspoon/calendar-app/calapp')
+--     calendar:setCalendarPath('/Users/omerxx/dotfiles/macos/hammerspoon/calendar-app/calapp')
 --     calendar:start()
 -- end

@@ -1,7 +1,7 @@
-# Kyuna312 DotConfig files 
+# Kyuna0312 DotConfig files 
 
 
-![Kyuna312](logo.png)
+![Kyuna0312](logo.png)
 
 Full and clean configurations for development environment on GNU Linux, macOS
 and Cygwin.
@@ -17,30 +17,22 @@ and Cygwin.
 ### Linux, macOS and Cygwin
 
 ``` shell
-sh -c "$(curl -fsSL https://github.com/kyuna312/dotfiles/raw/main/install.sh)"
+sh -c "$(curl -fsSL https://github.com/kyuna0312/dotfiles/raw/main/install.sh)"
 
 ```
 
 or
 
 ``` shell
-sh -c "$(wget https://github.com/kyuna312/dotfiles/raw/main/install.sh -O -)"
+sh -c "$(wget https://github.com/kyuna0312/dotfiles/raw/main/install.sh -O -)"
 ```
 
 or
 
 ``` shell
-git clone https://github.com/kyuna312/dotfiles.git ~/.dotfiles  # or download the zip package
+git clone https://github.com/kyuna0312/dotfiles.git ~/.dotfiles  # or download the zip package
 cd ~/.dotfiles
 ./install.sh
-```
-
-### Windows (Powershell)
-
-``` powershell
-git clone [https://github.com/kyuna312/dotfiles.git ](https://github.com/kyuna312/dotfiles.git)~/.dotfiles  # or download the zip package
-cd ~/.dotfiles
-install_scoop.ps1  # or install_choco.ps1
 ```
 
 ## Shortcuts
@@ -64,6 +56,8 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=$HOME/.rbenv/shims:$PATH
 export PYTHONPATH=/usr/local/lib/python2.7/site-packages
 ```
+
+Note: if you run `./install.sh`, this repo will symlink `~/.zshrc`, `~/.bashrc`, Starship config, tmux config, and (if present) Ghostty config for you.
 
 ### ZSH local config
 
@@ -99,11 +93,13 @@ Set your git configurations in `~/.gitconfig.local`, e.g. user credentials.
 
 ## Contents
 
-- vim (NeoVim) config
-- tmux config
+- zsh config (Starship prompt + modular OS layers)
+- bash config
+- nvim (NeoVim) config
+- tmux config (TPM + plugins)
+- starship prompt
 - git config
-- fish config
-- PowerShell config
+- nushell config
 
 ## Desktop
 
@@ -285,25 +281,12 @@ Requires [Neovim](https://neovim.io/) (>= 0.8)
 
 ## Shell setup (macOS & Linux)
 
-- [Fish shell](https://fishshell.com/)
-- [Fisher](https://github.com/jorgebucaran/fisher) - Plugin manager
-- [Tide](https://github.com/IlanCosman/tide) - Shell theme. Use version 5: `fisher install ilancosman/tide@v5`
-- [Nerd fonts](https://github.com/ryanoasis/nerd-fonts) - Powerline-patched fonts. I use Hack.
-- [z for fish](https://github.com/jethrokuan/z) - Directory jumping
-- [Exa](https://the.exa.website/) - `ls` replacement
-- [ghq](https://github.com/x-motemen/ghq) - Local Git repository organizer
-- [fzf](https://github.com/PatrickF1/fzf.fish) - Interactive filtering
+- `zsh` + `starship` prompt (neon/Lucy style) via `~/.config/starship/starship.toml`
+- fast search helpers: `fd` + `fzf`
+- directory jumping: `zoxide` (lazy-loaded)
+- tmux (TPM + plugins)
 
-## PowerShell setup (Windows)
-
-- [Scoop](https://scoop.sh/) - A command-line installer
-- [Git for Windows](https://gitforwindows.org/)
-- [Oh My Posh](https://ohmyposh.dev/) - Prompt theme engine
-- [Terminal Icons](https://github.com/devblackops/Terminal-Icons) - Folder and file icons
-- [PSReadLine](https://docs.microsoft.com/en-us/powershell/module/psreadline/) - Cmdlets for customizing the editing environment, used for autocompletion
-- [z](https://www.powershellgallery.com/packages/z) - Directory jumper
-- [PSFzf](https://github.com/kelleyma49/PSFzf) - Fuzzy finder
-
+Optional: `nushell` + Atuin integration (history) if you use Nushell
 
 ## Screenshots
 

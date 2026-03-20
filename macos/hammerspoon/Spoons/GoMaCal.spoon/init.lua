@@ -15,7 +15,11 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 
 -- Internal variables
 obj.timer = nil
-obj.calendarPath = '/Users/omerxx/dotfiles/hammerspoon/calendar-app/calapp'
+
+-- Portable calendar binary path.
+-- Prefer ~/.hammerspoon after install (we symlink the whole folder).
+local home = os.getenv("HOME") or ""
+obj.calendarPath = os.getenv("DOTFILES_CALENDAR_PATH") or (home .. "/.hammerspoon/calendar-app/calapp")
 
 function obj:parse_event(event_string)
     if not event_string then return nil end

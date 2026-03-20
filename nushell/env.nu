@@ -9,20 +9,21 @@ def create_left_prompt [] {
         $relative_pwd => ([~ $relative_pwd] | path join)
     }
 
-    let path_color = (if (is-admin) { ansi red_bold } else { ansi green_bold })
-    let separator_color = (if (is-admin) { ansi light_red_bold } else { ansi light_green_bold })
+    # Lucy/cyberpunk neon: cyan path + magenta separators (admin highlighted more aggressively)
+    let path_color = (if (is-admin) { ansi magenta_bold } else { ansi cyan_bold })
+    let separator_color = (if (is-admin) { ansi magenta_bold } else { ansi blue_bold })
     let path_segment = $"($path_color)($dir)"
 
     $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
 }
 
 def create_right_prompt [] {
-    # create a right prompt in magenta with green separators and am/pm underlined
+    # create a right prompt in magenta with cyan separators and am/pm underlined
     let time_segment = ([
         (ansi reset)
         (ansi magenta)
         (date now | format date '%x %X') # try to respect user's locale
-    ] | str join | str replace --regex --all "([/:])" $"(ansi green)${1}(ansi magenta)" |
+    ] | str join | str replace --regex --all "([/:])" $"(ansi cyan)${1}(ansi magenta)" |
         str replace --regex --all "([AP]M)" $"(ansi magenta_underline)${1}")
 
     let last_exit_code = if ($env.LAST_EXIT_CODE != 0) {([
@@ -94,22 +95,44 @@ use std "path add"
 # $env.PATH = ($env.PATH | split row (char esep))
 # path add /some/path
 # path add ($env.CARGO_HOME | path join "bin")
-# path add ($env.HOME | path join ".local" "bin")
 # $env.PATH = ($env.PATH | uniq)
-path add /opt/homebrew/bin
-path add /run/current-system/sw/bin
-path add /Users/omerxx/.local/bin
+
+if (path exists /opt/homebrew/bin) {
+    path add /opt/homebrew/bin
+}
+
+if (path exists /run/current-system/sw/bin) {
+    path add /run/current-system/sw/bin
+}
+
+let local_bin = ($env.HOME | path join ".local" "bin")
+if (path exists $local_bin) {
+    path add $local_bin
+}
 
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
-zoxide init nushell | save -f ~/.zoxide.nu
+let starship_cache_dir = ($env.HOME | path join ".cache" "starship")
+let starship_cache_file = ($starship_cache_dir | path join "init.nu")
+if (not ($starship_cache_file | path exists)) {
+    mkdir $starship_cache_dir
+    starship init nu | save -f $starship_cache_file
+}
 
-$env.STARSHIP_CONFIG = /Users/omerxx/.config/starship/starship.toml
-$env.NIX_CONF_DIR = /Users/omerxx/.config/nix
+let zoxide_cache_file = ($env.HOME | path join ".zoxide.nu")
+if (not ($zoxide_cache_file | path exists)) {
+    zoxide init nushell | save -f $zoxide_cache_file
+}
+
+$env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "starship" "starship.toml")
+$env.NIX_CONF_DIR = ($env.HOME | path join ".config" "nix")
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
-mkdir ~/.cache/carapace
-carapace _carapace nushell | save --force ~/.cache/carapace/init.nu
+
+let carapace_cache_dir = ($env.HOME | path join ".cache" "carapace")
+let carapace_cache_file = ($carapace_cache_dir | path join "init.nu")
+if (not ($carapace_cache_file | path exists)) {
+    mkdir $carapace_cache_dir
+    carapace _carapace nushell | save --force $carapace_cache_file
+}
 
