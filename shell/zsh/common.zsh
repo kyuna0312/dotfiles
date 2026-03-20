@@ -220,22 +220,6 @@ cpp_build() {
 
 alias cbuild='cpp_build'
 
-# ---------- SSH quick picker ----------
-sshquick() {
-  # Pick a host from ~/.ssh/config (or fallback to 'ssh <host>').
-  local cfg="${SSH_CONFIG_FILE:-$HOME/.ssh/config}"
-  if command -v fzf >/dev/null 2>&1 && [[ -f "$cfg" ]]; then
-    local hosts
-    hosts="$(awk 'BEGIN{IGNORECASE=1} $1=="Host"{for(i=2;i<=NF;i++) if($i !~ /[*?]/) print $i}' "$cfg" | sort -u)"
-    [[ -n "$hosts" ]] || return 0
-    local choice
-    choice="$(printf "%s\n" "$hosts" | fzf --prompt="SSH> ")"
-    [[ -n "$choice" ]] && command ssh "$choice"
-  else
-    echo "fzf or $cfg not found; run: ssh <host>"
-  fi
-}
-
 # ---------- Lazy integration for zoxide ----------
 __dp_zoxide_loaded=0
 __dp_load_zoxide() {

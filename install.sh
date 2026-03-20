@@ -34,7 +34,7 @@ install_linux_packages() {
     sudo pacman -Syu --noconfirm --needed \
       zsh tmux git curl wget \
       starship fzf fd bat eza zoxide direnv \
-      openssh cmake make gcc gdb \
+      cmake make gcc gdb \
       nodejs npm \
       docker docker-compose \
       util-linux
@@ -56,7 +56,7 @@ install_macos_packages() {
   brew install \
     zsh tmux git curl wget \
     starship fzf fd bat eza zoxide direnv \
-    openssh cmake make gcc \
+    cmake make gcc \
     node docker-compose
 }
 
@@ -114,16 +114,12 @@ main() {
     git clone https://github.com/tmux-plugins/tpm "$tpm_dir"
   fi
 
-  # Ghostty (terminal emulator)
-  if [[ -d "${REPO_ROOT}/ghostty" ]]; then
-    mkdir -p "$HOME/.config/ghostty"
-    if [[ "$uname_s" == Darwin* ]] && [[ -f "${REPO_ROOT}/ghostty/config.macos" ]]; then
-      link_force "${REPO_ROOT}/ghostty/config.macos" "$HOME/.config/ghostty/config"
-    elif [[ -f "${REPO_ROOT}/ghostty/config.linux" ]]; then
-      link_force "${REPO_ROOT}/ghostty/config.linux" "$HOME/.config/ghostty/config"
-    elif [[ -f "${REPO_ROOT}/ghostty/config" ]]; then
-      link_force "${REPO_ROOT}/ghostty/config" "$HOME/.config/ghostty/config"
-    fi
+  # WezTerm (terminal emulator)
+  if [[ -d "${REPO_ROOT}/wezterm" ]] && [[ -f "${REPO_ROOT}/wezterm/wezterm.lua" ]]; then
+    mkdir -p "$HOME/.config/wezterm"
+    link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
+    # WezTerm also supports ~/.wezterm.lua
+    link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
   fi
 
   echo "Done. Open a new shell. For tmux plugins: start tmux and press Ctrl+I."
