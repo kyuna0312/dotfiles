@@ -14,7 +14,7 @@ PADDINGS=3 # All paddings use this value (icon, label, background)
 POPUP_BORDER_WIDTH=2
 POPUP_CORNER_RADIUS=11
 
-SHADOW=on
+SHADOW=off
 
 # Setting up the general bar appearance and default values
 sketchybar --bar     height=50                                         \
@@ -27,7 +27,7 @@ sketchybar --bar     height=50                                         \
                      corner_radius=9                                   \
                      y_offset=10                                       \
                      margin=10                                         \
-                     blur_radius=20                                    \
+                     blur_radius=10                                    \
                                                                        \
            --default updates=when_shown                                \
                      icon.font="$FONT:Bold:14.0"                       \

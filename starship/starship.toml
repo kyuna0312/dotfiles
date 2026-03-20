@@ -1,29 +1,48 @@
 add_newline = false
-# A minimal left prompt
+palette = "neon_cyberpunk"
+
+# Left side: fast + minimal.
 format = """$directory$character"""
-palette = "catppuccin_mocha"
-# move the rest of the prompt to the right
-right_format = """$all"""
-command_timeout = 1000
+
+# Right side: developer context only (kept intentionally small for speed).
+right_format = """$git_branch$git_status$nodejs$docker_context"""
+
+command_timeout = 800
 
 [character]
 vicmd_symbol = "[N] >>>"
-success_symbol = '[➜](bold green)'
+success_symbol = '[➜](bold fg:cyan)'
+error_symbol = '[✖](bold fg:pink)'
+
+[directory]
+style = "fg:cyan"
+format = "[$path]($style) "
+truncation_length = 4
 
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
 
 [git_branch]
-format =  '[$symbol$branch(:$remote_branch)]($style)'
+symbol = " "
+style = "fg:purple"
+format = "[$symbol$branch(:$remote_branch)]($style)"
+
+[git_status]
+style = "fg:pink"
+format = "([$all_status$ahead_behind]($style))"
+
+[nodejs]
+symbol = " "
+style = "fg:green"
+format = "[$symbol$version]($style) "
 
 [aws]
 format = '[$symbol(profile: "$profile" )(\(region: $region\) )]($style)'
-disabled = false
-style = 'bold blue'
-symbol = " "
+disabled = true
 
 [golang]
 format = '[ ](bold cyan)'
+disabled = true
 
 [kubernetes]
 symbol = '☸ '
@@ -35,32 +54,17 @@ contexts = [
 ]
 
 [docker_context]
-disabled = true
+disabled = false
+symbol = " "
+style = "fg:blue"
+format = "[$symbol$context]($style) "
 
-[palettes.catppuccin_mocha]
-rosewater = "#f5e0dc"
-flamingo = "#f2cdcd"
-pink = "#f5c2e7"
-mauve = "#cba6f7"
-red = "#f38ba8"
-maroon = "#eba0ac"
-peach = "#fab387"
-yellow = "#f9e2af"
-green = "#a6e3a1"
-teal = "#94e2d5"
-sky = "#89dceb"
-sapphire = "#74c7ec"
-blue = "#89b4fa"
-lavender = "#b4befe"
-text = "#cdd6f4"
-subtext1 = "#bac2de"
-subtext0 = "#a6adc8"
-overlay2 = "#9399b2"
-overlay1 = "#7f849c"
-overlay0 = "#6c7086"
-surface2 = "#585b70"
-surface1 = "#45475a"
-surface0 = "#313244"
-base = "#1e1e2e"
-mantle = "#181825"
-crust = "#11111b"
+[palettes.neon_cyberpunk]
+purple = "#a78bfa"
+cyan = "#22d3ee"
+pink = "#fb7185"
+blue = "#60a5fa"
+green = "#34d399"
+yellow = "#fbbf24"
+text = "#e9d5ff"
+background = "#070612"
