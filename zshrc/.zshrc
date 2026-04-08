@@ -3,6 +3,7 @@
 # This file intentionally short-circuits after sourcing the modular configs.
 __dp_entry="${${(%):-%N}:A}"
 __dp_repo="${__dp_entry:h:h}"
+export CYBERPUNK_DOTFILES_DIR="${__dp_repo}"
 
 __dp_os="${CYBERPUNK_SHELL_OS:-}"
 if [[ -z "$__dp_os" ]]; then
