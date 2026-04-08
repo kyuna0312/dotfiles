@@ -136,3 +136,4 @@ if (not ($carapace_cache_file | path exists)) {
     carapace _carapace nushell | save --force $carapace_cache_file
 }
 
+
