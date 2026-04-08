@@ -1,7 +1,16 @@
 # Cyberpunk (Lucy-inspired) zsh layer - common utilities
+# Style goals:
+# - Minimal and readable by default
+# - Soft visual polish without noisy output
+# - Fast startup with lazy loading where possible
 
+# ---------- Shell behavior ----------
 setopt NO_BEEP
 setopt prompt_subst
+setopt auto_cd
+setopt interactive_comments
+setopt hist_ignore_all_dups
+setopt share_history
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 __dp_is_interactive=0
@@ -11,6 +20,7 @@ __dp_is_interactive=0
 # Use Starship as the primary prompt renderer.
 export STARSHIP_CONFIG="${STARSHIP_CONFIG:-$HOME/.config/starship/starship.toml}"
 if [[ "$__dp_is_interactive" == "1" ]] && command -v starship >/dev/null 2>&1; then
+  # Keep prompt rendering in one place (starship) for a clean look.
   eval "$(starship init zsh)"
 fi
 
@@ -30,6 +40,11 @@ _dp_add_path() {
 _dp_add_path "$HOME/.local/bin"
 _dp_add_path "$HOME/.cargo/bin"
 _dp_add_path "$HOME/go/bin"
+
+# ---------- UX feedback ----------
+_dp_info()  { printf "\033[0;36m[info]\033[0m %s\n" "$*"; }
+_dp_warn()  { printf "\033[0;33m[warn]\033[0m %s\n" "$*"; }
+_dp_error() { printf "\033[0;31m[error]\033[0m %s\n" "$*" >&2; }
 
 # ---------- Clipboard ----------
 _dp_copy_to_clipboard() {
@@ -88,6 +103,10 @@ _dp_init_kubectl_completion() {
 
 # ---------- zsh basics + completion ----------
 if [[ "$__dp_is_interactive" == "1" ]]; then
+  # Completion cache in XDG cache keeps startup snappy.
+  zstyle ':completion:*' use-cache on
+  zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
+  zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
   autoload -Uz compinit && compinit
 fi
 
@@ -133,24 +152,51 @@ export STARSHIP_DIRTRIM='true'
 
 # ---------- UI helpers ----------
 alias cls='clear'
+alias ..='cd ..'
+alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
-  alias ls='eza -al --icons --git -a'
+  # Soft sakura accents for eza output.
+  export EZA_COLORS="${EZA_COLORS:-da=38;5;111:uu=38;5;182:un=38;5;182:sn=38;5;151:sb=38;5;144:xa=38;5;223:gm=38;5;246}"
+  alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
   alias ltree='eza --tree --level=2 --icons --git'
+elif command -v ls >/dev/null 2>&1; then
+  alias ls='ls --color=auto'
 fi
 
 if command -v bat >/dev/null 2>&1; then
-  alias cat='bat'
-  export BAT_THEME="${BAT_THEME:-TwoDark}"
+  # Prefer repo-managed bat config when available.
+  if [[ -z "${BAT_CONFIG_PATH:-}" && -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/bat/config" ]]; then
+    export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/bat/config"
+  fi
+  alias cat='bat --paging=never --style=plain'
+  # Prefer Catppuccin variants when available; otherwise keep a safe default.
+  if [[ -z "${BAT_THEME:-}" ]]; then
+    if bat --list-themes 2>/dev/null | sed 's/^[[:space:]]*//' | grep -qx 'Catppuccin Mocha'; then
+      export BAT_THEME='Catppuccin Mocha'
+    elif bat --list-themes 2>/dev/null | sed 's/^[[:space:]]*//' | grep -qx 'Catppuccin-mocha'; then
+      export BAT_THEME='Catppuccin-mocha'
+    else
+      export BAT_THEME='TwoDark'
+    fi
+  fi
 fi
 
 alias la='tree'
+alias ll='ls -l'
 
 # ---------- Git (developer-focused) ----------
 alias gst='git status -sb'
-alias glog='git log --graph --topo-order --decorate --pretty="%C(auto)%h %d %s"'
-alias gdiff='git diff'
+if command -v delta >/dev/null 2>&1 && [[ -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig" ]]; then
+  alias glog="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig log --graph --topo-order --decorate --pretty='%C(auto)%h %d %s'"
+  alias gdiff="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig diff"
+  alias gshow="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig show"
+else
+  alias glog='git log --graph --topo-order --decorate --pretty="%C(auto)%h %d %s"'
+  alias gdiff='git diff'
+  alias gshow='git show'
+fi
 alias gco='git checkout'
 alias gb='git branch'
 alias gba='git branch -a'
@@ -167,6 +213,7 @@ alias gpu='git pull --ff-only'
 # Safe-ish "quick reset" helpers.
 alias gre='git reset'
 alias gremote='git remote'
+alias gundo='git reset --soft HEAD~1'
 
 # ---------- Docker ----------
 if command -v docker >/dev/null 2>&1; then
@@ -177,21 +224,28 @@ if command -v docker >/dev/null 2>&1; then
   alias dx='docker exec -it'
 fi
 
-# ---------- Node (lazy nvm) ----------
-__dp_nvm_loaded=0
-__dp_load_nvm() {
-  [[ "$__dp_nvm_loaded" == "1" ]] && return 0
-  local nvm_dir="$HOME/.nvm"
-  [[ -s "$nvm_dir/nvm.sh" ]] && . "$nvm_dir/nvm.sh"
-  __dp_nvm_loaded=1
-}
+# ---------- Optional fzf defaults ----------
+if command -v fzf >/dev/null 2>&1; then
+  # Soft sakura palette aligned with starship colors.
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='❯' --marker='●' --prompt='  ' --color=fg:#d9e0ee,bg:-1,hl:#89dceb,fg+:#d9e0ee,bg+:-1,hl+:#b4befe,info:#a6adc8,prompt:#cba6f7,pointer:#cba6f7,marker:#f38ba8,spinner:#89dceb,header:#a6e3a1,border:#6c7086}"
+  if command -v bat >/dev/null 2>&1; then
+    export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"
+  fi
+fi
 
-if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
-  nvm() {
-    __dp_load_nvm
-    unfunction nvm 2>/dev/null || true
-    nvm "$@"
-  }
+# ---------- Node (nvm) ----------
+# Prefer XDG location used by the official installer when XDG_CONFIG_HOME is set.
+if [[ -z "${NVM_DIR:-}" ]]; then
+  if [[ -s "$HOME/.config/nvm/nvm.sh" ]]; then
+    export NVM_DIR="$HOME/.config/nvm"
+  else
+    export NVM_DIR="$HOME/.nvm"
+  fi
+fi
+
+if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+  . "$NVM_DIR/nvm.sh"
+  [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
 fi
 
 # ---------- C++ helpers ----------
@@ -240,24 +294,41 @@ fi
 # ---------- Fast directory/file pickers ----------
 fcd() {
   # fd is usually much faster than find; keep hidden paths off by default.
-  command -v fd >/dev/null 2>&1 || { echo "fd not installed"; return 127; }
-  command -v fzf >/dev/null 2>&1 || { echo "fzf not installed"; return 127; }
+  command -v fd >/dev/null 2>&1 || { _dp_error "fd not installed"; return 127; }
+  command -v fzf >/dev/null 2>&1 || { _dp_error "fzf not installed"; return 127; }
   cd "$(fd -t d --exclude '*/.*' . . | fzf)" || return
 }
 
 f() {
-  command -v fd >/dev/null 2>&1 || { echo "fd not installed"; return 127; }
-  command -v fzf >/dev/null 2>&1 || { echo "fzf not installed"; return 127; }
+  command -v fd >/dev/null 2>&1 || { _dp_error "fd not installed"; return 127; }
+  command -v fzf >/dev/null 2>&1 || { _dp_error "fzf not installed"; return 127; }
   local picked
   picked="$(fd -t f --exclude '*/.*' . . | fzf)" || return
   printf "%s" "$picked" | _dp_copy_to_clipboard
+  _dp_info "copied path: ${picked}"
 }
 
 fv() {
-  command -v fd >/dev/null 2>&1 || { echo "fd not installed"; return 127; }
-  command -v fzf >/dev/null 2>&1 || { echo "fzf not installed"; return 127; }
+  command -v fd >/dev/null 2>&1 || { _dp_error "fd not installed"; return 127; }
+  command -v fzf >/dev/null 2>&1 || { _dp_error "fzf not installed"; return 127; }
   local picked
   picked="$(fd -t f --exclude '*/.*' . . | fzf)" || return
   ${EDITOR:-vi} "$picked"
+}
+
+# ---------- Quick quality-of-life helpers ----------
+mkcd() {
+  [[ -n "$1" ]] || { _dp_warn "usage: mkcd <directory>"; return 2; }
+  mkdir -p "$1" && cd "$1" || return
+}
+
+dp-tools() {
+  cat <<'EOF'
+Recommended CLI stack (Manjaro):
+  sudo pacman -S --needed starship bat eza fzf fd ripgrep zoxide tree
+
+Optional extras:
+  sudo pacman -S --needed lazygit git-delta
+EOF
 }
 
