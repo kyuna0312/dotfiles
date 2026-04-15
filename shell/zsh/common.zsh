@@ -359,4 +359,3 @@ _dp_source_first_found \
   "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
   "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
   "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-

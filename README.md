@@ -1,4 +1,4 @@
-# Kyuna0312 DotConfig files
+# Kyuna0312 DotConfig file
 
 
 ![Kyuna0312](logo.png)
