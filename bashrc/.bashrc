@@ -24,3 +24,7 @@ fi
 # shellcheck source=/dev/null
 source "${__dp_repo}/shell/bash/common.sh"
 
+. "$HOME/.cargo/env"
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"

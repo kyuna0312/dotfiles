@@ -11,10 +11,27 @@ setopt auto_cd
 setopt interactive_comments
 setopt hist_ignore_all_dups
 setopt share_history
+setopt hist_reduce_blanks
+setopt extended_history        # save timestamp + duration
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 __dp_is_interactive=0
 [[ $- == *i* ]] && __dp_is_interactive=1
+
+# ---------- Locale ----------
+export LANG="${LANG:-en_US.UTF-8}"
+
+# ---------- XDG base dirs (must come before HISTFILE and other XDG consumers) ----------
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+# ---------- History persistence ----------
+export HISTFILE="${XDG_STATE_HOME}/zsh/history"
+export HISTSIZE=100000
+export SAVEHIST=100000
+mkdir -p "${HISTFILE:h}" 2>/dev/null || true
 
 # ---------- Prompt ----------
 # Use Starship as the primary prompt renderer.
@@ -23,13 +40,6 @@ if [[ "$__dp_is_interactive" == "1" ]] && command -v starship >/dev/null 2>&1; t
   # Keep prompt rendering in one place (starship) for a clean look.
   eval "$(starship init zsh)"
 fi
-
-# ---------- Locale ----------
-export LANG="${LANG:-en_US.UTF-8}"
-
-# ---------- Paths ----------
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 
 _dp_add_path() {
   local p="${1:-}"
@@ -107,7 +117,15 @@ if [[ "$__dp_is_interactive" == "1" ]]; then
   zstyle ':completion:*' use-cache on
   zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
   zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
-  autoload -Uz compinit && compinit
+  autoload -Uz compinit
+  # Only regenerate dump if it's older than 24h; -C skips security check on cache hit.
+  local _zcd="${XDG_CACHE_HOME}/zsh/zcompdump"
+  if [[ -n ${_zcd}(#qN.mh+24) ]]; then
+    compinit -d "$_zcd"
+  else
+    compinit -C -d "$_zcd"
+  fi
+  unset _zcd
 fi
 
 if [[ "$__dp_is_interactive" == "1" ]] && command -v kubectl >/dev/null 2>&1 && [[ "${CYBERPUNK_KUBECTL_COMPLETION:-1}" == "1" ]]; then
@@ -120,24 +138,16 @@ if command -v aws_completer >/dev/null 2>&1; then
 fi
 
 # ---------- Autosuggestions (optional) ----------
-autosug_candidates=(
+_dp_source_first_found() {
+  local f; for f in "$@"; do [[ -f "$f" ]] && { source "$f"; return 0; }; done; return 1
+}
+
+# Autosuggestions: Manjaro pacman path first, then common fallbacks.
+_dp_source_first_found \
+  "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+  "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
+  "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
   "$HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  "$HOME/.oh-my-zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-  "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
-)
-
-if command -v brew >/dev/null 2>&1; then
-  autosug_candidates+=("$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh")
-fi
-
-for autosug_path in "${autosug_candidates[@]}"; do
-  if [[ -f "$autosug_path" ]]; then
-    source "$autosug_path"
-    break
-  fi
-done
 
 if (( ${+functions[autosuggest-execute]} )); then
   bindkey '^w' autosuggest-execute
@@ -171,20 +181,12 @@ if command -v bat >/dev/null 2>&1; then
     export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/bat/config"
   fi
   alias cat='bat --paging=never --style=plain'
-  # Prefer Catppuccin variants when available; otherwise keep a safe default.
-  if [[ -z "${BAT_THEME:-}" ]]; then
-    if bat --list-themes 2>/dev/null | sed 's/^[[:space:]]*//' | grep -qx 'Catppuccin Mocha'; then
-      export BAT_THEME='Catppuccin Mocha'
-    elif bat --list-themes 2>/dev/null | sed 's/^[[:space:]]*//' | grep -qx 'Catppuccin-mocha'; then
-      export BAT_THEME='Catppuccin-mocha'
-    else
-      export BAT_THEME='TwoDark'
-    fi
-  fi
+  # Static theme — avoids forking `bat --list-themes` on every shell start.
+  export BAT_THEME="${BAT_THEME:-Catppuccin Mocha}"
 fi
 
-alias la='tree'
-alias ll='ls -l'
+alias la='eza -a --icons --git 2>/dev/null || ls -A'
+alias ll='eza -l --icons --git 2>/dev/null || ls -lh'
 
 # ---------- Git (developer-focused) ----------
 alias gst='git status -sb'
@@ -233,19 +235,27 @@ if command -v fzf >/dev/null 2>&1; then
   fi
 fi
 
-# ---------- Node (nvm) ----------
-# Prefer XDG location used by the official installer when XDG_CONFIG_HOME is set.
+# ---------- Node (nvm) — lazy loaded ----------
+# NVM sourcing costs ~200-400ms; defer until first use of nvm/node/npm/npx.
 if [[ -z "${NVM_DIR:-}" ]]; then
-  if [[ -s "$HOME/.config/nvm/nvm.sh" ]]; then
+  if [[ -d "$HOME/.config/nvm" ]]; then
     export NVM_DIR="$HOME/.config/nvm"
   else
     export NVM_DIR="$HOME/.nvm"
   fi
 fi
 
-if [[ -s "$NVM_DIR/nvm.sh" ]]; then
+_dp_load_nvm() {
+  [[ -s "$NVM_DIR/nvm.sh" ]] || return 1
   . "$NVM_DIR/nvm.sh"
   [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
+}
+
+if [[ -d "$NVM_DIR" ]]; then
+  nvm()  { unfunction nvm  2>/dev/null; _dp_load_nvm && nvm  "$@"; }
+  node() { unfunction node 2>/dev/null; _dp_load_nvm && node "$@"; }
+  npm()  { unfunction npm  2>/dev/null; _dp_load_nvm && npm  "$@"; }
+  npx()  { unfunction npx  2>/dev/null; _dp_load_nvm && npx  "$@"; }
 fi
 
 # ---------- C++ helpers ----------
@@ -292,27 +302,36 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 # ---------- Fast directory/file pickers ----------
-fcd() {
-  # fd is usually much faster than find; keep hidden paths off by default.
-  command -v fd >/dev/null 2>&1 || { _dp_error "fd not installed"; return 127; }
+_dp_require_fd_fzf() {
+  command -v fd  >/dev/null 2>&1 || { _dp_error "fd not installed";  return 127; }
   command -v fzf >/dev/null 2>&1 || { _dp_error "fzf not installed"; return 127; }
-  cd "$(fd -t d --exclude '*/.*' . . | fzf)" || return
+}
+
+fcd() {
+  # Jump to a directory under $HOME (pass arg to override root).
+  _dp_require_fd_fzf || return $?
+  local root="${1:-$HOME}"
+  local picked
+  picked="$(fd -t d --hidden --exclude '.git' --exclude 'node_modules' . "$root" | fzf)" || return
+  cd "$picked" || return
 }
 
 f() {
-  command -v fd >/dev/null 2>&1 || { _dp_error "fd not installed"; return 127; }
-  command -v fzf >/dev/null 2>&1 || { _dp_error "fzf not installed"; return 127; }
+  # Pick a file under $HOME, copy its path to clipboard.
+  _dp_require_fd_fzf || return $?
+  local root="${1:-$HOME}"
   local picked
-  picked="$(fd -t f --exclude '*/.*' . . | fzf)" || return
+  picked="$(fd -t f --hidden --exclude '.git' --exclude 'node_modules' . "$root" | fzf)" || return
   printf "%s" "$picked" | _dp_copy_to_clipboard
   _dp_info "copied path: ${picked}"
 }
 
 fv() {
-  command -v fd >/dev/null 2>&1 || { _dp_error "fd not installed"; return 127; }
-  command -v fzf >/dev/null 2>&1 || { _dp_error "fzf not installed"; return 127; }
+  # Pick a file under $HOME and open in $EDITOR.
+  _dp_require_fd_fzf || return $?
+  local root="${1:-$HOME}"
   local picked
-  picked="$(fd -t f --exclude '*/.*' . . | fzf)" || return
+  picked="$(fd -t f --hidden --exclude '.git' --exclude 'node_modules' . "$root" | fzf)" || return
   ${EDITOR:-vi} "$picked"
 }
 
@@ -326,9 +345,18 @@ dp-tools() {
   cat <<'EOF'
 Recommended CLI stack (Manjaro):
   sudo pacman -S --needed starship bat eza fzf fd ripgrep zoxide tree
+  sudo pacman -S --needed zsh-autosuggestions zsh-syntax-highlighting
 
 Optional extras:
-  sudo pacman -S --needed lazygit git-delta
+  sudo pacman -S --needed lazygit git-delta atuin
 EOF
 }
+
+# ---------- Syntax highlighting ----------
+# Must be sourced LAST — after all other zsh config.
+_dp_source_first_found \
+  "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+  "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+  "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
+  "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 

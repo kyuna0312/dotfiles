@@ -1,0 +1,12 @@
+{
+  "inari": {
+    "command": "uv",
+    "args": [
+      "run",
+      "--project",
+      "/home/kyuna/dotfiles/claude/mcp-servers/inari",
+      "python",
+      "/home/kyuna/dotfiles/claude/mcp-servers/inari/server.py"
+    ]
+  }
+}
