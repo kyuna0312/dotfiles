@@ -23,3 +23,6 @@ fi
 
 source "${__dp_repo}/shell/zsh/common.zsh"
 return 0
+export PATH="$HOME/.npm-global/bin:$PATH"
+
+. "$HOME/.local/share/../bin/env"

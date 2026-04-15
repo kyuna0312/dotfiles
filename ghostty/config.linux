@@ -1,0 +1,38 @@
+# Ghostty config — Linux (tmux + neovim vibe coding)
+
+# ---- Font ----
+font-family = "JetBrainsMono Nerd Font"
+font-size = 13
+font-thicken = true
+
+# ---- Theme ----
+theme = catppuccin-mocha
+
+# ---- Cursor ----
+cursor-style = block
+cursor-style-blink = false
+
+# ---- Window ----
+window-decoration = false
+window-padding-x = 4
+window-padding-y = 4
+
+# ---- Shell integration ----
+# Let tmux own the prompt/title; disable ghostty's own shell integration features
+# that conflict with tmux (title injection, cursor reporting).
+shell-integration = detect
+shell-integration-features = no-cursor,no-title
+
+# ---- Performance ----
+# Reduce input latency for coding.
+gtk-single-instance = false
+
+# ---- Keyboard ----
+# Pass ctrl+shift keys through to tmux/nvim.
+keybind = ctrl+shift+h=ignore
+keybind = ctrl+shift+l=ignore
+
+# ---- Copy / paste ----
+copy-on-select = false
+clipboard-read = allow
+clipboard-write = allow

@@ -122,6 +122,27 @@ main() {
     link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
   fi
 
+  # Claude Code (plugins, MCP config, skills)
+  if [[ -d "${REPO_ROOT}/claude" ]]; then
+    mkdir -p "$HOME/.claude/skills"
+    [[ -f "${REPO_ROOT}/claude/settings.json" ]] && \
+      link_force "${REPO_ROOT}/claude/settings.json" "$HOME/.claude/settings.json"
+    [[ -f "${REPO_ROOT}/claude/.caveman-active" ]] && \
+      link_force "${REPO_ROOT}/claude/.caveman-active" "$HOME/.claude/.caveman-active"
+    [[ -d "${REPO_ROOT}/claude/skills/code-reviewer" ]] && \
+      link_dir_force "${REPO_ROOT}/claude/skills/code-reviewer" "$HOME/.claude/skills/code-reviewer"
+    # Install MCP server dependencies
+    if command -v uv >/dev/null 2>&1 && [[ -d "${REPO_ROOT}/claude/mcp-servers/inari" ]]; then
+      uv sync --project "${REPO_ROOT}/claude/mcp-servers/inari" --quiet
+    fi
+  fi
+
+  # Ollama local models (pull if ollama is installed)
+  if command -v ollama >/dev/null 2>&1; then
+    ollama pull llama4:scout  || true
+    ollama pull qwen3:8b      || true
+  fi
+
   echo "Done. Open a new shell. For tmux plugins: start tmux and press Ctrl+I."
 }
 

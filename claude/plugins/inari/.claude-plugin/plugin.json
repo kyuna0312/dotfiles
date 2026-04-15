@@ -1,0 +1,10 @@
+{
+  "name": "inari",
+  "version": "0.1.0",
+  "description": "Local AI routing layer for Claude Code. Auto-routes coding tasks to Qwen3 8B and reasoning tasks to Llama 4 Scout via Ollama.",
+  "author": {
+    "name": "kyuna",
+    "email": "khatanzorigb@gmail.com"
+  },
+  "keywords": ["local-ai", "ollama", "qwen", "llama", "routing"]
+}

@@ -1,5 +1,5 @@
 add_newline = false
-command_timeout = 800
+command_timeout = 500
 palette = "soft_sakura_dev"
 
 # Two-line prompt:
