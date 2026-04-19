@@ -1,0 +1,28 @@
+# packages/arch-security.txt
+# Penetration testing and security research tools (Arch)
+nmap
+wireshark-qt
+tcpdump
+netcat
+masscan
+gobuster
+ffuf
+hashcat
+john
+hydra
+sqlmap
+nikto
+gdb
+pwndbg
+ghidra
+radare2
+binwalk
+foremost
+steghide
+exiftool
+metasploit
+burpsuite
+proxychains-ng
+openvpn
+wireguard-tools
+aircrack-ng
