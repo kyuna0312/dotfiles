@@ -88,19 +88,9 @@
     "supabase@claude-plugins-official": true,
     "sonatype-guide@claude-plugins-official": true,
     "aws-serverless@claude-plugins-official": true,
-    "ai-plugins@claude-plugins-official": true
-  },
-  "mcpServers": {
-    "serena": {
-      "command": "/home/kyuna/.local/bin/serena",
-      "args": [
-        "start-mcp-server",
-        "--project-from-cwd",
-        "--enable-web-dashboard", "false",
-        "--open-web-dashboard", "false",
-        "--log-level", "WARNING"
-      ]
-    }
+    "ai-plugins@claude-plugins-official": true,
+    "andrej-karpathy-skills@karpathy-skills": true,
+    "find-cve-agent@find-cve-agent": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -108,6 +98,33 @@
         "source": "github",
         "repo": "JuliusBrussee/caveman"
       }
+    },
+    "karpathy-skills": {
+      "source": {
+        "source": "github",
+        "repo": "forrestchang/andrej-karpathy-skills"
+      }
+    },
+    "find-cve-agent": {
+      "source": {
+        "source": "directory",
+        "path": "/home/kyuna/Desktop/find-cve-agent"
+      }
+    }
+  },
+  "mcpServers": {
+    "serena": {
+      "command": "/home/kyuna/.local/bin/serena",
+      "args": [
+        "start-mcp-server",
+        "--project-from-cwd",
+        "--enable-web-dashboard",
+        "false",
+        "--open-web-dashboard",
+        "false",
+        "--log-level",
+        "WARNING"
+      ]
     }
   }
 }
