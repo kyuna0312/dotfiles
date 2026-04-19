@@ -1,0 +1,23 @@
+# packages/debian-security.txt
+# Pentest tools for Debian/Ubuntu
+nmap
+wireshark
+tcpdump
+netcat-openbsd
+masscan
+gobuster
+hashcat
+john
+hydra
+sqlmap
+nikto
+binwalk
+foremost
+steghide
+exiftool
+proxychains4
+openvpn
+wireguard
+aircrack-ng
+gdb
+radare2

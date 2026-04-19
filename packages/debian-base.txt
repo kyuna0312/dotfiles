@@ -1,0 +1,23 @@
+# packages/debian-base.txt
+# Base developer tools for Debian/Ubuntu
+# NOTE: bat is 'batcat' on Debian, fd is 'fdfind' — installer handles aliasing
+zsh
+tmux
+git
+curl
+wget
+fzf
+fd-find
+bat
+zoxide
+direnv
+cmake
+make
+gcc
+gdb
+nodejs
+npm
+docker.io
+docker-compose
+ripgrep
+neovim

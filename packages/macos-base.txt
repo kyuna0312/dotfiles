@@ -1,0 +1,23 @@
+# packages/macos-base.txt
+# Homebrew formulae for macOS
+zsh
+tmux
+git
+curl
+wget
+starship
+fzf
+fd
+bat
+eza
+zoxide
+direnv
+cmake
+make
+node
+docker-compose
+ripgrep
+lazygit
+git-delta
+atuin
+neovim

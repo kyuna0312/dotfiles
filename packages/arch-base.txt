@@ -1,0 +1,30 @@
+# packages/arch-base.txt
+# Base developer tools for Arch/Manjaro
+zsh
+tmux
+git
+curl
+wget
+starship
+fzf
+fd
+bat
+eza
+zoxide
+direnv
+cmake
+make
+gcc
+gdb
+nodejs
+npm
+docker
+docker-compose
+util-linux
+ripgrep
+lazygit
+git-delta
+atuin
+neovim
+wezterm
+ghostty
