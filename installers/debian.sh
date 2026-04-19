@@ -65,16 +65,14 @@ install_security() {
   else
     # Filter to only packages available in standard Debian/Ubuntu
     # shellcheck disable=SC2086
-    sudo apt-get install -y --ignore-missing $pkgs || true
+    sudo apt-get install -y --fix-missing $pkgs || true
   fi
 
-  # Install pwndbg (GDB enhancement)
-  if ! python3 -c "import pwndbg" 2>/dev/null; then
-    local pwndbg_dir="$HOME/.local/share/pwndbg"
-    if [[ ! -d "$pwndbg_dir" ]]; then
-      git clone https://github.com/pwndbg/pwndbg "$pwndbg_dir" --depth=1
-      cd "$pwndbg_dir" && ./setup.sh
-    fi
+  # Install pwndbg (GDB enhancement for exploit development)
+  local pwndbg_dir="$HOME/.local/share/pwndbg"
+  if [[ ! -d "$pwndbg_dir" ]]; then
+    git clone https://github.com/pwndbg/pwndbg "$pwndbg_dir" --depth=1
+    (cd "$pwndbg_dir" && ./setup.sh)
   fi
 }
 

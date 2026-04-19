@@ -109,15 +109,13 @@ main() {
 
   # Starship
   mkdir -p "$HOME/.config/starship"
-  backup_if_exists "$HOME/.config/starship/starship.toml"
-  ln -s "${REPO_ROOT}/starship/starship.toml" "$HOME/.config/starship/starship.toml"
+  link_force "${REPO_ROOT}/starship/starship.toml" "$HOME/.config/starship/starship.toml"
 
   # Tmux
   mkdir -p "$HOME/.config/tmux"
   link_force "${REPO_ROOT}/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
   link_force "${REPO_ROOT}/tmux/tmux.conf" "$HOME/.config/tmux/tmux.conf"
-  backup_if_exists "$HOME/.tmux.conf"
-  ln -s "$HOME/.config/tmux/tmux.conf" "$HOME/.tmux.conf"
+  link_force "$HOME/.config/tmux/tmux.conf" "$HOME/.tmux.conf"
 
   # TPM (tmux plugin manager)
   local tpm_dir="$HOME/.tmux/plugins/tpm"

@@ -16,7 +16,7 @@ install_aur_helper() {
     local tmp
     tmp="$(mktemp -d)"
     git clone --depth=1 https://aur.archlinux.org/paru-bin.git "$tmp/paru"
-    (cd "$tmp/paru" && makepkg -si --noconfirm)
+    (cd "$tmp/paru" && makepkg -si --noconfirm) || { echo "[arch] paru install failed, continuing without AUR helper"; rm -rf "$tmp"; return 0; }
     rm -rf "$tmp"
   fi
   AUR_CMD="$(command -v paru 2>/dev/null || command -v yay 2>/dev/null)"
