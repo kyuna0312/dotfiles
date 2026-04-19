@@ -1,22 +1,41 @@
 add_newline = false
 command_timeout = 500
-palette = "soft_sakura_dev"
+palette = "lucy_edgerunner"
 
-# Two-line prompt:
-# - line 1: context (path + git + runtime)
-# - line 2: minimal input marker
+# Lucy Kushinada · Cyberpunk Edgerunners prompt
+# Line 1: os · path · git · langs  ──────  runtimes · duration · time
+# Line 2: ❥ (input marker)
 format = """
-$directory$git_branch$git_status$fill$nodejs$docker_context
+$os$directory$git_branch$git_status$python$golang$rust$fill$nodejs$docker_context$cmd_duration$time
 $character
 """
 
+# ── Core ──────────────────────────────────────────────────────────────────────
+
 [fill]
-symbol = " "
+symbol = "·"
+style = "muted"
 
 [character]
-success_symbol = "[❯](bold mauve)"
-error_symbol = "[❯](bold rose)"
-vicmd_symbol = "[❮](bold lavender)"
+success_symbol = "[λ](bold sakura)"
+error_symbol   = "[λ](bold rose)"
+vicmd_symbol   = "[❮](bold cyan)"
+
+# ── OS badge ─────────────────────────────────────────────────────────────────
+
+[os]
+disabled = false
+style = "lavender"
+format = "[$symbol]($style)"
+
+[os.symbols]
+Linux   = "󰌽 "
+Manjaro = "󱘊 "
+Arch    = "󰣇 "
+Macos   = "󰀵 "
+Windows = "󰍲 "
+
+# ── Directory ─────────────────────────────────────────────────────────────────
 
 [directory]
 style = "bold text"
@@ -27,12 +46,15 @@ read_only = " 󰌾"
 read_only_style = "rose"
 
 [directory.substitutions]
-"~/.config" = "󱁿 cfg"
+"~/.config"  = "󱁿 cfg"
 "~/dotfiles" = "󰚩 dot"
 "~/projects" = "󰲋 proj"
+"~/Desktop"  = "󰇄 desk"
+
+# ── Git ───────────────────────────────────────────────────────────────────────
 
 [git_branch]
-symbol = " "
+symbol = " "
 style = "lavender"
 format = "[$symbol$branch]($style) "
 
@@ -40,42 +62,76 @@ format = "[$symbol$branch]($style) "
 style = "peach"
 format = "[$all_status$ahead_behind]($style) "
 conflicted = "!"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-untracked = "?${count}"
-stashed = "*${count}"
-modified = "~${count}"
-staged = "+${count}"
-renamed = "»${count}"
-deleted = "x${count}"
+ahead      = "⇡${count}"
+behind     = "⇣${count}"
+diverged   = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked  = "?${count}"
+stashed    = "*${count}"
+modified   = "~${count}"
+staged     = "+${count}"
+renamed    = "»${count}"
+deleted    = "✗${count}"
+
+# ── Languages (right side of fill) ───────────────────────────────────────────
 
 [nodejs]
-symbol = " "
+symbol = " "
 style = "mint"
 format = "[$symbol$version]($style) "
 detect_extensions = ["js", "mjs", "cjs", "ts", "tsx", "json"]
 detect_files = ["package.json", ".node-version", ".nvmrc"]
 
+[python]
+symbol = " "
+style = "gold"
+format = "[$symbol$version]($style) "
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "setup.py", ".python-version"]
+
+[golang]
+symbol = " "
+style = "cyan"
+format = "[$symbol$version]($style) "
+detect_extensions = ["go"]
+detect_files = ["go.mod", "go.sum"]
+
+[rust]
+symbol = "󱘗 "
+style = "rose"
+format = "[$symbol$version]($style) "
+detect_extensions = ["rs"]
+detect_files = ["Cargo.toml"]
+
 [docker_context]
-symbol = " "
-style = "sky"
+symbol = " "
+style = "cyan"
 format = "[$symbol$context]($style) "
 only_with_files = true
 detect_files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml"]
 
+# ── Meta ──────────────────────────────────────────────────────────────────────
+
 [cmd_duration]
 disabled = false
-min_time = 1500
+min_time = 1000
 style = "muted"
-format = "[took $duration]($style) "
+format = "[⧖ $duration]($style) "
 
-[palettes.soft_sakura_dev]
-text = "#d9e0ee"
-muted = "#a6adc8"
-rose = "#f38ba8"
-mauve = "#cba6f7"
-lavender = "#b4befe"
-sky = "#89dceb"
-mint = "#a6e3a1"
-peach = "#fab387"
+[time]
+disabled = false
+style = "gold"
+format = "[$time]($style)"
+time_format = "%H:%M"
+
+# ── Palette — Lucy Edgerunner+ ────────────────────────────────────────────────
+
+[palettes.lucy_edgerunner]
+text     = "#f0e6ff"
+muted    = "#c4b0d8"
+sakura   = "#ff6bba"
+rose     = "#ff4d8d"
+lavender = "#c8a5ff"
+cyan     = "#00e5ff"
+mint     = "#9dffcc"
+gold     = "#ffd97d"
+peach    = "#ffb3a0"

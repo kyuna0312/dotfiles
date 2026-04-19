@@ -42,10 +42,10 @@ $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
 
 # The prompt indicators are environmental variables that represent
 # the state of the prompt
-$env.PROMPT_INDICATOR = {|| "> " }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| ": " }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "> " }
-$env.PROMPT_MULTILINE_INDICATOR = {|| "::: " }
+$env.PROMPT_INDICATOR = {|| "❥ " }
+$env.PROMPT_INDICATOR_VI_INSERT = {|| "❥ " }
+$env.PROMPT_INDICATOR_VI_NORMAL = {|| "❮ " }
+$env.PROMPT_MULTILINE_INDICATOR = {|| "··· " }
 
 # If you want previously entered commands to have a different prompt from the usual one,
 # you can uncomment one or more of the following lines.
