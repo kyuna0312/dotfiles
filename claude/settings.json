@@ -1,6 +1,5 @@
 {
   "enabledPlugins": {
-    "inari@local": true,
     "caveman@caveman": true,
     "frontend-design@claude-plugins-official": true,
     "code-review@claude-plugins-official": true,
@@ -10,15 +9,12 @@
     "skill-creator@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
-    "typescript-lsp@claude-plugins-official": false,
     "security-guidance@claude-plugins-official": true,
     "commit-commands@claude-plugins-official": true,
-    "figma@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
     "serena@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": false,
-    "atlassian@claude-plugins-official": true,
     "telegram@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
     "slack@claude-plugins-official": true,
@@ -35,19 +31,17 @@
     "jdtls-lsp@claude-plugins-official": false,
     "php-lsp@claude-plugins-official": false,
     "huggingface-skills@claude-plugins-official": true,
-    "clangd-lsp@claude-plugins-official": false,
+    "clangd-lsp@claude-plugins-official": true,
     "firecrawl@claude-plugins-official": true,
     "coderabbit@claude-plugins-official": true,
     "firebase@claude-plugins-official": true,
     "discord@claude-plugins-official": true,
-    "laravel-boost@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": false,
     "semgrep@claude-plugins-official": true,
     "remember@claude-plugins-official": true,
     "circleback@claude-plugins-official": true,
     "qodo-skills@claude-plugins-official": true,
     "postman@claude-plugins-official": true,
-    "asana@claude-plugins-official": true,
     "imessage@claude-plugins-official": true,
     "atomic-agents@claude-plugins-official": true,
     "mcp-server-dev@claude-plugins-official": true,
@@ -66,10 +60,8 @@
     "pagerduty@claude-plugins-official": true,
     "prisma@claude-plugins-official": true,
     "terraform@claude-plugins-official": true,
-    "goodmem@claude-plugins-official": true,
     "optibot@claude-plugins-official": true,
     "migration-to-aws@claude-plugins-official": true,
-    "aikido@claude-plugins-official": true,
     "mongodb@claude-plugins-official": true,
     "elixir-ls-lsp@claude-plugins-official": true,
     "fastly-agent-toolkit@claude-plugins-official": true,
@@ -81,7 +73,6 @@
     "nightvision@claude-plugins-official": true,
     "session-report@claude-plugins-official": false,
     "box@claude-plugins-official": true,
-    "cloudflare@claude-plugins-official": true,
     "notion@claude-plugins-official": true,
     "sonarqube@claude-plugins-official": true,
     "sanity@claude-plugins-official": true,
@@ -111,6 +102,10 @@
         "path": "/home/kyuna/Desktop/find-cve-agent"
       }
     }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/kyuna/.claude/statusline-command.sh"
   },
   "mcpServers": {
     "serena": {

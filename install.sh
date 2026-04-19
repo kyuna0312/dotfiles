@@ -138,6 +138,8 @@ link_configs() {
       link_force "${REPO_ROOT}/hyprland/hyprland.conf"  "$HOME/.config/hypr/hyprland.conf"
       link_force "${REPO_ROOT}/hyprland/keybinds.conf"  "$HOME/.config/hypr/keybinds.conf"
       link_force "${REPO_ROOT}/hyprland/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf"
+      link_if_exists "${REPO_ROOT}/hyprland/hypridle.conf" "$HOME/.config/hypr/hypridle.conf"
+      link_if_exists "${REPO_ROOT}/hyprland/hyprlock.conf"  "$HOME/.config/hypr/hyprlock.conf"
     fi
     if [[ -d "${REPO_ROOT}/waybar" ]]; then
       mkdir -p "$HOME/.config/waybar"
