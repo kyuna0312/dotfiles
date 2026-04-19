@@ -24,11 +24,24 @@ sudo pacman -S --noconfirm --needed \
     cliphist \
     grim \
     slurp \
+    thunar \
+    gvfs \
     brightnessctl \
     playerctl \
     network-manager-applet \
     nwg-look
 ok "Core packages installed"
+
+# ── 1b. AUR packages ──────────────────────────────────────────────────────────
+info "Installing AUR packages (grimblast, ghostty)..."
+AUR_HELPER=$(command -v yay 2>/dev/null || command -v paru 2>/dev/null || echo "")
+if [[ -n "$AUR_HELPER" ]]; then
+    "$AUR_HELPER" -S --noconfirm --needed grimblast ghostty
+    ok "AUR packages installed"
+else
+    printf "\033[38;5;214m[warn]\033[0m No AUR helper found. Install manually: grimblast ghostty\n"
+    printf "      (yay: https://github.com/Jguer/yay)\n"
+fi
 
 # ── 2. NVIDIA modeset kernel param ───────────────────────────────────────────
 info "Enabling nvidia-drm.modeset=1 in GRUB..."
