@@ -28,45 +28,45 @@ link_dir_force() {
   ln -s "$src" "$dst"
 }
 
-install_linux_packages() {
-  # Manjaro/Arch (pacman) first.
-  if command -v pacman >/dev/null 2>&1; then
-    sudo pacman -Syu --noconfirm --needed \
-      zsh tmux git curl wget \
-      starship fzf fd bat eza zoxide direnv \
-      cmake make gcc gdb \
-      nodejs npm \
-      docker docker-compose \
-      util-linux
-
-    sudo systemctl enable --now docker >/dev/null 2>&1 || true
-    return 0
+detect_distro() {
+  if [[ "$(uname -s)" == Darwin* ]]; then
+    echo "macos"
+  elif command -v pacman >/dev/null 2>&1; then
+    echo "arch"
+  elif command -v apt-get >/dev/null 2>&1; then
+    echo "debian"
+  else
+    echo "unknown"
   fi
-
-  echo "No supported Linux package manager found (install packages manually)."
-  return 0
 }
 
-install_macos_packages() {
-  if ! command -v brew >/dev/null 2>&1; then
-    echo "Homebrew not found. Install it first, then re-run."
-    return 1
+install_packages() {
+  local distro="$1"
+  local security="${2:-0}"
+  local installer="${REPO_ROOT}/installers/${distro}.sh"
+  if [[ -f "$installer" ]]; then
+    bash "$installer" "$security"
+  else
+    echo "[warn] No installer found for distro: $distro"
   fi
-
-  brew install \
-    zsh tmux git curl wget \
-    starship fzf fd bat eza zoxide direnv \
-    cmake make gcc \
-    node docker-compose
 }
 
 main() {
+  local security_flag="0"
+  for arg in "$@"; do
+    [[ "$arg" == "--security" ]] && security_flag="1"
+  done
+
+  local distro
+  distro="$(detect_distro)"
+  echo "[install] Detected: $distro"
+
+  install_packages "$distro" "$security_flag"
+
   local uname_s
   uname_s="$(uname -s 2>/dev/null || echo unknown)"
 
   if [[ "$uname_s" == Darwin* ]]; then
-    install_macos_packages || true
-
     # macOS-only configs
     if [[ -d "${REPO_ROOT}/macos/hammerspoon" ]]; then
       link_dir_force "${REPO_ROOT}/macos/hammerspoon" "$HOME/.hammerspoon"
@@ -88,7 +88,8 @@ main() {
       link_force "${REPO_ROOT}/macos/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
     fi
   else
-    install_linux_packages || true
+    # linux only - no additional symlinks needed here
+    : # placeholder, keep any existing linux symlinks
   fi
 
   # Shells (entrypoints)
