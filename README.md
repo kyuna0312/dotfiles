@@ -5,6 +5,36 @@
 
 Full and clean configurations for a development environment on GNU/Linux and macOS.
 
+## Installation
+
+```bash
+# Clone
+git clone https://github.com/kyuna0312/dotfiles ~/dotfiles
+cd ~/dotfiles
+
+# Base install (auto-detects Arch/Debian/macOS)
+bash install.sh
+
+# With cybersecurity tools
+bash install.sh --security
+```
+
+### OS Support
+
+| OS | Package manager | Notes |
+|----|----------------|-------|
+| Arch / Manjaro | pacman + paru (AUR) | Full support incl. Hyprland |
+| Debian / Ubuntu | apt | bat→batcat, fd→fdfind aliased automatically |
+| macOS | Homebrew | macOS-only apps (Aerospace, Sketchybar, Hammerspoon) |
+
+### Security Module
+
+`--security` installs: nmap, wireshark, burpsuite, hashcat, john, hydra, sqlmap, ghidra, radare2, pwndbg, and more. Run `sectools` in shell for a quick reference.
+
+### Hyprland (Arch only)
+
+Configs land at `~/.config/hypr/` and `~/.config/waybar/`. Requires `hyprland`, `waybar`, `wofi`, `dunst`, `hyprpaper`, `grimblast` installed.
+
 ## Prerequisite
 
 - GNU Linux and macOS
