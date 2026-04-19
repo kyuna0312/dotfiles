@@ -27,9 +27,10 @@ install_base() {
 
 install_security() {
   echo "[macos] Installing security tools..."
-  brew install nmap wireshark hashcat john-jumbo hydra sqlmap nikto radare2 \
-    binwalk exiftool proxychains-ng openvpn wireguard-tools aircrack-ng \
-    gobuster ffuf masscan || true
+  local pkgs
+  pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-security.txt")
+  # shellcheck disable=SC2086
+  brew install $pkgs || true
 
   # Brew cask for GUI tools
   brew install --cask burp-suite ghidra || true

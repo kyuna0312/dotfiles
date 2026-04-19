@@ -1,0 +1,19 @@
+# packages/macos-security.txt
+# Security/pentest tools for macOS via Homebrew
+nmap
+wireshark
+hashcat
+john-jumbo
+hydra
+sqlmap
+nikto
+radare2
+binwalk
+exiftool
+proxychains-ng
+openvpn
+wireguard-tools
+aircrack-ng
+gobuster
+ffuf
+masscan
