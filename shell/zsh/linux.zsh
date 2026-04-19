@@ -23,3 +23,8 @@ __dp_file_mtime_epoch() {
   stat -c %Y "$f"
 }
 
+# Security aliases — only load when at least nmap or burpsuite is installed
+if command -v nmap >/dev/null 2>&1 || command -v burpsuite >/dev/null 2>&1; then
+  [[ -f "${CYBERPUNK_DOTFILES_DIR}/security/aliases.zsh" ]] && \
+    source "${CYBERPUNK_DOTFILES_DIR}/security/aliases.zsh"
+fi
