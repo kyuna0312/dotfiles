@@ -88,8 +88,19 @@ main() {
       link_force "${REPO_ROOT}/macos/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
     fi
   else
-    # linux only - no additional symlinks needed here
-    : # placeholder, keep any existing linux symlinks
+    # Hyprland (Arch/Linux only)
+    if [[ -d "${REPO_ROOT}/hyprland" ]]; then
+      mkdir -p "$HOME/.config/hypr"
+      link_force "${REPO_ROOT}/hyprland/hyprland.conf"  "$HOME/.config/hypr/hyprland.conf"
+      link_force "${REPO_ROOT}/hyprland/keybinds.conf"  "$HOME/.config/hypr/keybinds.conf"
+      link_force "${REPO_ROOT}/hyprland/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf"
+    fi
+
+    if [[ -d "${REPO_ROOT}/waybar" ]]; then
+      mkdir -p "$HOME/.config/waybar"
+      link_force "${REPO_ROOT}/waybar/config.jsonc" "$HOME/.config/waybar/config"
+      link_force "${REPO_ROOT}/waybar/style.css"    "$HOME/.config/waybar/style.css"
+    fi
   fi
 
   # Shells (entrypoints)
