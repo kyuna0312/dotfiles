@@ -1,0 +1,54 @@
+/* waybar/style.css — Catppuccin Mocha */
+* {
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.92);
+    border-bottom: 2px solid rgba(203, 166, 247, 0.4);
+    color: #cdd6f4;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    color: #6c7086;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+}
+
+#workspaces button.active {
+    color: #cba6f7;
+    background-color: rgba(203, 166, 247, 0.15);
+}
+
+#workspaces button:hover {
+    background-color: rgba(203, 166, 247, 0.1);
+}
+
+#workspaces button.urgent {
+    color: #f38ba8;
+    background-color: rgba(243, 139, 168, 0.15);
+}
+
+#clock {
+    color: #89dceb;
+    font-weight: bold;
+}
+
+#cpu { color: #a6e3a1; }
+#memory { color: #fab387; }
+#temperature { color: #f38ba8; }
+#temperature.critical { color: #f38ba8; background: rgba(243,139,168,0.2); }
+#network { color: #89dceb; }
+#pulseaudio { color: #cba6f7; }
+#battery { color: #a6e3a1; }
+#battery.warning { color: #fab387; }
+#battery.critical { color: #f38ba8; }
+#tray { padding: 0 4px; }
+
+.modules-left, .modules-center, .modules-right {
+    padding: 2px 8px;
+}
