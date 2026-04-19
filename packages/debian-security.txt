@@ -19,5 +19,4 @@ proxychains4
 openvpn
 wireguard
 aircrack-ng
-gdb
 radare2

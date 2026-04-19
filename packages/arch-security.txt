@@ -12,7 +12,6 @@ john
 hydra
 sqlmap
 nikto
-gdb
 pwndbg
 ghidra
 radare2
