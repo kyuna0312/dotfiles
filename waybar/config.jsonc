@@ -1,4 +1,4 @@
-// waybar/config.jsonc — Catppuccin Mocha themed Waybar
+// waybar/config.jsonc — Lucy Edgerunner+ themed Waybar
 {
     "layer": "top",
     "position": "top",
@@ -26,7 +26,7 @@
         "on-click": "activate"
     },
     "clock": {
-        "format": " {:%H:%M}  {:%a %d %b}",
+        "format": "♡ {:%H:%M}  {:%a %d %b}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
@@ -34,7 +34,7 @@
         "tooltip": true
     },
     "memory": {
-        "format": "󰍛 {}%"
+        "format": "✦ {}%"
     },
     "temperature": {
         "critical-threshold": 80,
@@ -49,8 +49,8 @@
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "󰸈",
-        "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
+        "format-muted": "♩",
+        "format-icons": { "default": ["♩", "♪", "♫"] },
         "on-click": "pavucontrol"
     },
     "battery": {

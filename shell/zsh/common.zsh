@@ -166,8 +166,8 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
-  # Soft sakura accents for eza output.
-  export EZA_COLORS="${EZA_COLORS:-da=38;5;111:uu=38;5;182:un=38;5;182:sn=38;5;151:sb=38;5;144:xa=38;5;223:gm=38;5;246}"
+  # Lucy Edgerunner+: lavender dates, sakura user, mint sizes, gold units.
+  export EZA_COLORS="${EZA_COLORS:-da=38;5;183:uu=38;5;218:un=38;5;218:sn=38;5;158:sb=38;5;221:xa=38;5;223:gm=38;5;246}"
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
   alias ltree='eza --tree --level=2 --icons --git'
@@ -182,7 +182,7 @@ if command -v bat >/dev/null 2>&1; then
   fi
   alias cat='bat --paging=never --style=plain'
   # Static theme — avoids forking `bat --list-themes` on every shell start.
-  export BAT_THEME="${BAT_THEME:-Catppuccin Mocha}"
+  export BAT_THEME="${BAT_THEME:-Catppuccin Mocha}"   # closest available; swap to custom theme if installed
 fi
 
 alias la='eza -a --icons --git 2>/dev/null || ls -A'
@@ -228,8 +228,8 @@ fi
 
 # ---------- Optional fzf defaults ----------
 if command -v fzf >/dev/null 2>&1; then
-  # Soft sakura palette aligned with starship colors.
-  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='❯' --marker='●' --prompt='  ' --color=fg:#d9e0ee,bg:-1,hl:#89dceb,fg+:#d9e0ee,bg+:-1,hl+:#b4befe,info:#a6adc8,prompt:#cba6f7,pointer:#cba6f7,marker:#f38ba8,spinner:#89dceb,header:#a6e3a1,border:#6c7086}"
+  # Lucy Edgerunner+ — sakura pink prompt, neon cyan highlights.
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#f0e6ff,bg:-1,hl:#00e5ff,fg+:#f0e6ff,bg+:-1,hl+:#67e8f9,info:#c4b0d8,prompt:#ff6bba,pointer:#ff6bba,marker:#ff4d8d,spinner:#00e5ff,header:#9dffcc,border:#c8a5ff}"
   if command -v bat >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"
   fi
@@ -342,15 +342,17 @@ mkcd() {
 }
 
 dp-tools() {
-  cat <<'EOF'
-Recommended CLI stack (Manjaro):
-  sudo pacman -S --needed starship bat eza fzf fd ripgrep zoxide tree
-  sudo pacman -S --needed zsh-autosuggestions zsh-syntax-highlighting
-
-Optional extras:
-  sudo pacman -S --needed lazygit git-delta atuin
-EOF
+  # Lucy-styled CLI stack reference
+  printf "\n\033[38;5;212m\033[1m  ✦  netrunner CLI stack\033[0m\n"
+  printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n"
+  printf "\033[38;5;51m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
+  printf "\033[38;5;183m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
+  printf "\033[38;5;158m     git     \033[0m lazygit git-delta\n"
+  printf "\033[38;5;221m     history \033[0m atuin\n"
+  printf "\033[38;5;239m     install \033[0m sudo pacman -S --needed <packages>\033[0m\n"
+  printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n\n"
 }
+alias netrunner-tools='dp-tools'
 
 # ---------- Syntax highlighting ----------
 # Must be sourced LAST — after all other zsh config.
@@ -359,3 +361,8 @@ _dp_source_first_found \
   "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
   "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
   "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# ---------- Lucy Kushinada layer ----------
+# Greeting, themed helpers, syntax highlight colors, Lucy functions.
+[[ -f "${CYBERPUNK_DOTFILES_DIR}/shell/zsh/lucy.zsh" ]] && \
+  source "${CYBERPUNK_DOTFILES_DIR}/shell/zsh/lucy.zsh"

@@ -9,10 +9,10 @@
     line-numbers = true
     side-by-side = true
     syntax-theme = Catppuccin-mocha
-    plus-style = syntax "#a6e3a1"
-    minus-style = syntax "#f38ba8"
-    hunk-header-style = file line-number syntax "#b4befe"
-    file-style = bold "#89dceb"
+    plus-style = syntax "#9dffcc"
+    minus-style = syntax "#ff4d8d"
+    hunk-header-style = file line-number syntax "#c8a5ff"
+    file-style = bold "#00e5ff"
 
 [merge]
     conflictstyle = diff3
