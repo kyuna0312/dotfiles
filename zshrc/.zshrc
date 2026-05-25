@@ -22,4 +22,8 @@ else
 fi
 
 source "${__dp_repo}/shell/zsh/common.zsh"
+
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
 return 0

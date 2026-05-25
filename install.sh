@@ -29,15 +29,7 @@ link_force() {
   local src="$1" dst="$2"
   mkdir -p "$(dirname "$dst")"
   backup_if_exists "$dst"
-  ln -s "$src" "$dst"
-  _ok "  $dst"
-}
-
-link_dir_force() {
-  local src="$1" dst="$2"
-  mkdir -p "$(dirname "$dst")"
-  backup_if_exists "$dst"
-  ln -s "$src" "$dst"
+  ln -sf "$src" "$dst"
   _ok "  $dst"
 }
 
@@ -79,14 +71,12 @@ link_configs() {
   link_force "${REPO_ROOT}/bashrc/.bashrc" "$HOME/.bashrc"
 
   _info "Linking Starship..."
-  mkdir -p "$HOME/.config/starship"
   link_force "${REPO_ROOT}/starship/starship.toml" "$HOME/.config/starship/starship.toml"
 
   _info "Linking Neovim..."
-  link_dir_force "${REPO_ROOT}/nvim" "$HOME/.config/nvim"
+  link_force "${REPO_ROOT}/nvim" "$HOME/.config/nvim"
 
   _info "Linking Tmux..."
-  mkdir -p "$HOME/.config/tmux"
   link_force "${REPO_ROOT}/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
   link_force "${REPO_ROOT}/tmux/tmux.conf"       "$HOME/.config/tmux/tmux.conf"
   link_force "$HOME/.config/tmux/tmux.conf"      "$HOME/.tmux.conf"
@@ -100,22 +90,18 @@ link_configs() {
   fi
 
   _info "Linking Git..."
-  mkdir -p "$HOME/.config/git"
   link_if_exists "${REPO_ROOT}/git/delta.gitconfig" "$HOME/.config/git/delta.gitconfig"
 
   _info "Linking Atuin..."
-  mkdir -p "$HOME/.config/atuin"
   link_if_exists "${REPO_ROOT}/atuin/config.toml" "$HOME/.config/atuin/config.toml"
 
   _info "Linking Nushell..."
-  mkdir -p "$HOME/.config/nushell"
   link_if_exists "${REPO_ROOT}/nushell/env.nu"    "$HOME/.config/nushell/env.nu"
   link_if_exists "${REPO_ROOT}/nushell/config.nu" "$HOME/.config/nushell/config.nu"
 
   # WezTerm
   if [[ -f "${REPO_ROOT}/wezterm/wezterm.lua" ]]; then
     _info "Linking WezTerm..."
-    mkdir -p "$HOME/.config/wezterm"
     link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
     link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
   fi
@@ -123,18 +109,16 @@ link_configs() {
   if [[ "$uname_s" == Darwin* ]]; then
     _info "Linking macOS-specific configs..."
     link_if_exists "${REPO_ROOT}/macos/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
-    [[ -d "${REPO_ROOT}/macos/hammerspoon" ]] && link_dir_force "${REPO_ROOT}/macos/hammerspoon" "$HOME/.hammerspoon"
-    [[ -d "${REPO_ROOT}/macos/sketchybar"  ]] && link_dir_force "${REPO_ROOT}/macos/sketchybar"  "$HOME/.config/sketchybar"
-    [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_dir_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
-    [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_dir_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
+    [[ -d "${REPO_ROOT}/macos/hammerspoon" ]] && link_force "${REPO_ROOT}/macos/hammerspoon" "$HOME/.hammerspoon"
+    [[ -d "${REPO_ROOT}/macos/sketchybar"  ]] && link_force "${REPO_ROOT}/macos/sketchybar"  "$HOME/.config/sketchybar"
+    [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
+    [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
     # Ghostty (macOS)
     _info "Linking Ghostty (macOS)..."
-    mkdir -p "$HOME/.config/ghostty"
     link_if_exists "${REPO_ROOT}/ghostty/config.macos" "$HOME/.config/ghostty/config"
   else
     _info "Linking Hyprland / Waybar..."
     if [[ -d "${REPO_ROOT}/hyprland" ]]; then
-      mkdir -p "$HOME/.config/hypr"
       link_force "${REPO_ROOT}/hyprland/hyprland.conf"  "$HOME/.config/hypr/hyprland.conf"
       link_force "${REPO_ROOT}/hyprland/keybinds.conf"  "$HOME/.config/hypr/keybinds.conf"
       link_force "${REPO_ROOT}/hyprland/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf"
@@ -142,24 +126,22 @@ link_configs() {
       link_if_exists "${REPO_ROOT}/hyprland/hyprlock.conf"  "$HOME/.config/hypr/hyprlock.conf"
     fi
     if [[ -d "${REPO_ROOT}/waybar" ]]; then
-      mkdir -p "$HOME/.config/waybar"
       link_force "${REPO_ROOT}/waybar/config.jsonc" "$HOME/.config/waybar/config"
       link_force "${REPO_ROOT}/waybar/style.css"    "$HOME/.config/waybar/style.css"
     fi
     # Ghostty (Linux)
     _info "Linking Ghostty (Linux)..."
-    mkdir -p "$HOME/.config/ghostty"
     link_if_exists "${REPO_ROOT}/ghostty/config.linux" "$HOME/.config/ghostty/config"
   fi
 
   # Claude Code
   if [[ -d "${REPO_ROOT}/claude" ]]; then
     _info "Linking Claude Code config..."
-    mkdir -p "$HOME/.claude/skills"
+    [[ -d "$HOME/.claude" ]] || mkdir -p "$HOME/.claude/skills"
     link_if_exists "${REPO_ROOT}/claude/settings.json"        "$HOME/.claude/settings.json"
     link_if_exists "${REPO_ROOT}/claude/.caveman-active"      "$HOME/.claude/.caveman-active"
     [[ -d "${REPO_ROOT}/claude/skills/code-reviewer" ]] && \
-      link_dir_force "${REPO_ROOT}/claude/skills/code-reviewer" "$HOME/.claude/skills/code-reviewer"
+      link_force "${REPO_ROOT}/claude/skills/code-reviewer" "$HOME/.claude/skills/code-reviewer"
     if command -v uv >/dev/null 2>&1 && [[ -d "${REPO_ROOT}/claude/mcp-servers/inari" ]]; then
       _info "Syncing Inari MCP deps..."
       uv sync --project "${REPO_ROOT}/claude/mcp-servers/inari" --quiet

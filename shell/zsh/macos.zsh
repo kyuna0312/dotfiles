@@ -8,12 +8,5 @@ export CYBERPUNK_OS="macos"
 
 export EDITOR="${EDITOR:-$(command -v nvim 2>/dev/null || command -v vim 2>/dev/null || echo vi)}"
 
-__dp_file_mtime_epoch() {
-  local f="$1"
-  [[ -e "$f" ]] || return 0
-  # BSD stat: %m = mtime as epoch seconds
-  stat -f %m "$f"
-}
-
 # macOS often has pbcopy/pbpaste; clipboard helper in common handles it.
 

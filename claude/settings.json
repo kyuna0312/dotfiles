@@ -1,115 +1,145 @@
 {
   "enabledPlugins": {
-    "caveman@caveman": true,
-    "frontend-design@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true,
-    "github@claude-plugins-official": true,
-    "feature-dev@claude-plugins-official": true,
-    "playwright@claude-plugins-official": true,
-    "skill-creator@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
-    "security-guidance@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true,
-    "pr-review-toolkit@claude-plugins-official": true,
-    "serena@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": false,
-    "telegram@claude-plugins-official": true,
-    "vercel@claude-plugins-official": true,
-    "slack@claude-plugins-official": true,
-    "plugin-dev@claude-plugins-official": true,
-    "greptile@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true,
-    "playground@claude-plugins-official": true,
-    "linear@claude-plugins-official": true,
-    "learning-output-style@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": false,
-    "csharp-lsp@claude-plugins-official": false,
-    "sentry@claude-plugins-official": true,
-    "rust-analyzer-lsp@claude-plugins-official": false,
-    "jdtls-lsp@claude-plugins-official": false,
-    "php-lsp@claude-plugins-official": false,
-    "huggingface-skills@claude-plugins-official": true,
-    "clangd-lsp@claude-plugins-official": true,
-    "firecrawl@claude-plugins-official": true,
-    "coderabbit@claude-plugins-official": true,
-    "firebase@claude-plugins-official": true,
-    "discord@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": false,
-    "semgrep@claude-plugins-official": true,
-    "remember@claude-plugins-official": true,
-    "circleback@claude-plugins-official": true,
-    "qodo-skills@claude-plugins-official": true,
-    "postman@claude-plugins-official": true,
-    "imessage@claude-plugins-official": true,
-    "atomic-agents@claude-plugins-official": true,
-    "mcp-server-dev@claude-plugins-official": true,
-    "sourcegraph@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "ruby-lsp@claude-plugins-official": false,
-    "fakechat@claude-plugins-official": true,
-    "deploy-on-aws@claude-plugins-official": true,
-    "code-simplifier@claude-plugins-official": true,
     "agent-sdk-dev@claude-plugins-official": true,
-    "data-engineering@claude-plugins-official": true,
-    "data@claude-plugins-official": true,
-    "mintlify@claude-plugins-official": true,
-    "searchfit-seo@claude-plugins-official": true,
-    "product-tracking-skills@claude-plugins-official": true,
-    "pagerduty@claude-plugins-official": true,
-    "prisma@claude-plugins-official": true,
-    "terraform@claude-plugins-official": true,
-    "optibot@claude-plugins-official": true,
-    "migration-to-aws@claude-plugins-official": true,
-    "mongodb@claude-plugins-official": true,
-    "elixir-ls-lsp@claude-plugins-official": true,
-    "fastly-agent-toolkit@claude-plugins-official": true,
-    "nimble@claude-plugins-official": true,
-    "fiftyone@claude-plugins-official": true,
-    "cloudinary@claude-plugins-official": true,
-    "astronomer-data-agents@claude-plugins-official": true,
-    "followrabbit@claude-plugins-official": true,
-    "nightvision@claude-plugins-official": true,
-    "session-report@claude-plugins-official": false,
-    "box@claude-plugins-official": true,
-    "notion@claude-plugins-official": true,
-    "sonarqube@claude-plugins-official": true,
-    "sanity@claude-plugins-official": true,
-    "supabase@claude-plugins-official": true,
-    "sonatype-guide@claude-plugins-official": true,
-    "aws-serverless@claude-plugins-official": true,
     "ai-plugins@claude-plugins-official": true,
     "andrej-karpathy-skills@karpathy-skills": true,
-    "find-cve-agent@find-cve-agent": true
+    "astronomer-data-agents@claude-plugins-official": true,
+    "atomic-agents@claude-plugins-official": true,
+    "aws-serverless@claude-plugins-official": true,
+    "box@claude-plugins-official": true,
+    "caveman@caveman": true,
+    "circleback@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "cloudinary@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "coderabbit@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
+    "csharp-lsp@claude-plugins-official": false,
+    "data-engineering@claude-plugins-official": true,
+    "data@claude-plugins-official": true,
+    "deploy-on-aws@claude-plugins-official": true,
+    "discord@claude-plugins-official": true,
+    "elixir-ls-lsp@claude-plugins-official": true,
+    "fakechat@claude-plugins-official": true,
+    "fastly-agent-toolkit@claude-plugins-official": true,
+    "feature-dev@claude-plugins-official": true,
+    "fiftyone@claude-plugins-official": true,
+    "find-cve-agent@find-cve-agent": true,
+    "firebase@claude-plugins-official": true,
+    "firecrawl@claude-plugins-official": true,
+    "followrabbit@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": false,
+    "greptile@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true,
+    "huggingface-skills@claude-plugins-official": true,
+    "imessage@claude-plugins-official": true,
+    "jdtls-lsp@claude-plugins-official": false,
+    "learning-output-style@claude-plugins-official": true,
+    "linear@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": false,
+    "mcp-server-dev@claude-plugins-official": true,
+    "migration-to-aws@claude-plugins-official": true,
+    "mintlify@claude-plugins-official": true,
+    "mongodb@claude-plugins-official": true,
+    "nightvision@claude-plugins-official": true,
+    "nimble@claude-plugins-official": true,
+    "notion@claude-plugins-official": true,
+    "optibot@claude-plugins-official": true,
+    "pagerduty@claude-plugins-official": true,
+    "php-lsp@claude-plugins-official": false,
+    "playground@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true,
+    "postman@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "prisma@claude-plugins-official": true,
+    "product-tracking-skills@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": false,
+    "qodo-skills@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "remember@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": false,
+    "rust-analyzer-lsp@claude-plugins-official": false,
+    "sanity@claude-plugins-official": true,
+    "searchfit-seo@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "semgrep@claude-plugins-official": true,
+    "sentry@claude-plugins-official": true,
+    "serena@claude-plugins-official": true,
+    "session-report@claude-plugins-official": false,
+    "skill-creator@claude-plugins-official": true,
+    "slack@claude-plugins-official": true,
+    "sonarqube@claude-plugins-official": true,
+    "sonatype-guide@claude-plugins-official": true,
+    "sourcegraph@claude-plugins-official": true,
+    "supabase@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "telegram@claude-plugins-official": true,
+    "terraform@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "caveman": {
       "source": {
-        "source": "github",
-        "repo": "JuliusBrussee/caveman"
-      }
-    },
-    "karpathy-skills": {
-      "source": {
-        "source": "github",
-        "repo": "forrestchang/andrej-karpathy-skills"
+        "repo": "JuliusBrussee/caveman",
+        "source": "github"
       }
     },
     "find-cve-agent": {
       "source": {
-        "source": "directory",
-        "path": "/home/kyuna/Desktop/find-cve-agent"
+        "path": "/home/kyuna/Desktop/find-cve-agent",
+        "source": "directory"
+      }
+    },
+    "karpathy-skills": {
+      "source": {
+        "repo": "forrestchang/andrej-karpathy-skills",
+        "source": "github"
       }
     }
   },
-  "statusLine": {
-    "type": "command",
-    "command": "bash /home/kyuna/.claude/statusline-command.sh"
+  "hooks": {
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "atuin hook claude-code",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "hooks": [
+          {
+            "command": "atuin hook claude-code",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "command": "atuin hook claude-code",
+            "type": "command"
+          }
+        ],
+        "matcher": "Bash"
+      }
+    ]
   },
   "mcpServers": {
     "serena": {
-      "command": "/home/kyuna/.local/bin/serena",
       "args": [
         "start-mcp-server",
         "--project-from-cwd",
@@ -119,7 +149,12 @@
         "false",
         "--log-level",
         "WARNING"
-      ]
+      ],
+      "command": "/home/kyuna/.local/bin/serena"
     }
+  },
+  "statusLine": {
+    "command": "bash /home/kyuna/.claude/statusline-command.sh",
+    "type": "command"
   }
 }

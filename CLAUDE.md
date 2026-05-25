@@ -1,6 +1,6 @@
 # dotfiles
 
-GNU Stow dotfiles. Linux (Manjaro/Arch) + macOS.
+Linux (Manjaro/Arch) + macOS dotfiles. Managed by `install.sh`.
 
 ## Structure
 

@@ -21,13 +21,13 @@ install_base() {
   # shellcheck disable=SC2086
   sudo apt-get install -y --no-install-recommends $pkgs
 
-  # bat ships as 'batcat' on Debian/Ubuntu — alias to bat
+  # bat ships as 'batcat' on some Debian/Ubuntu — alias to bat
   if command -v batcat >/dev/null 2>&1 && ! command -v bat >/dev/null 2>&1; then
     mkdir -p "$HOME/.local/bin"
     ln -sf "$(command -v batcat)" "$HOME/.local/bin/bat"
   fi
 
-  # fd ships as 'fdfind' on Debian/Ubuntu
+  # fd ships as 'fdfind' from fd-find package on Debian/Ubuntu
   if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
     mkdir -p "$HOME/.local/bin"
     ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"

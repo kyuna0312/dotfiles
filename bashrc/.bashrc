@@ -24,7 +24,13 @@ fi
 # shellcheck source=/dev/null
 source "${__dp_repo}/shell/bash/common.sh"
 
-. "$HOME/.cargo/env"
+[[ -f "$HOME/.cargo/env" ]] && . "$HOME/.cargo/env"
 export PATH="$HOME/.npm-global/bin:$PATH"
 
-. "$HOME/.local/share/../bin/env"
+. "$HOME/.atuin/bin/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+# opencode
+export PATH=/home/hana/.opencode/bin:$PATH
