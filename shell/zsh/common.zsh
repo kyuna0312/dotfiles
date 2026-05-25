@@ -21,6 +21,17 @@ __dp_is_interactive=0
 # ---------- Locale ----------
 export LANG="${LANG:-en_US.UTF-8}"
 
+# File mtime epoch (cross-platform: GNU stat vs BSD stat)
+__dp_file_mtime_epoch() {
+  local f="$1"
+  [[ -e "$f" ]] || return 0
+  if stat -c %Y "$f" >/dev/null 2>&1; then
+    stat -c %Y "$f"       # GNU
+  else
+    stat -f %m "$f"       # BSD (macOS)
+  fi
+}
+
 # ---------- XDG base dirs (must come before HISTFILE and other XDG consumers) ----------
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
