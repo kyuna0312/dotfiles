@@ -10,7 +10,7 @@ setopt prompt_subst
 setopt auto_cd
 setopt interactive_comments
 setopt hist_ignore_all_dups
-setopt share_history
+setopt inc_append_history     # write immediately per-session, don't share across terminals
 setopt hist_reduce_blanks
 setopt extended_history        # save timestamp + duration
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'

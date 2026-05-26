@@ -7,7 +7,7 @@ export CYBERPUNK_OS="linux"
 # Skip: already inside tmux, Zellij, VS Code/Cursor integrated terminal, non-interactive.
 if [[ -z "$TMUX" && -z "$ZELLIJ" && -z "$VSCODE_INJECTION" && -z "$CURSOR_TRACE" ]] \
    && [[ $- == *i* ]] && command -v tmux >/dev/null 2>&1; then
-  exec tmux new-session -A -s main
+  exec tmux new-session
 fi
 
 export EDITOR="${EDITOR:-$(command -v nvim 2>/dev/null || command -v vim 2>/dev/null || echo vi)}"
