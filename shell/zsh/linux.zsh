@@ -7,8 +7,7 @@ export CYBERPUNK_OS="linux"
 # Skip: already inside tmux, Zellij, VS Code/Cursor integrated terminal, non-interactive.
 if [[ -z "$TMUX" && -z "$ZELLIJ" && -z "$VSCODE_INJECTION" && -z "$CURSOR_TRACE" ]] \
    && [[ $- == *i* ]] && command -v tmux >/dev/null 2>&1; then
-  # -A: attach if session exists, else create. -s main: default session name.
-  exec tmux new-session -A -s main
+  exec tmux new-session
 fi
 
 export PATH="$HOME/.local/bin:$PATH"
