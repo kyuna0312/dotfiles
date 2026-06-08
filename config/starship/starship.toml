@@ -2,13 +2,24 @@ add_newline = false
 command_timeout = 500
 palette = "lucy_edgerunner"
 
-# Lucy Kushinada · Cyberpunk Edgerunners prompt
-# Line 1: os · path · git · langs  ──────  runtimes · duration · time
-# Line 2: ❥ (input marker)
+# Lucy Kushinada · Tide-style powerline prompt
+# Line 1: ribbon[ os · dir · git ] ────── runtimes · duration · time
+# Line 2: λ input marker
 format = """
-$os$directory$git_branch$git_status$python$golang$rust$fill$nodejs$docker_context$cmd_duration$time
-$character
-"""
+[](fg:lavender)\
+$os\
+[](fg:lavender bg:surface)\
+$directory\
+[](fg:surface bg:overlay)\
+$git_branch\
+$git_status\
+[](fg:overlay)\
+$fill\
+$nodejs$python$golang$rust$docker_context\
+$cmd_duration\
+$time\
+$line_break\
+$character"""
 
 # ── Core ──────────────────────────────────────────────────────────────────────
 
@@ -21,29 +32,27 @@ success_symbol = "[λ](bold sakura)"
 error_symbol   = "[λ](bold rose)"
 vicmd_symbol   = "[❮](bold cyan)"
 
-# ── OS badge ─────────────────────────────────────────────────────────────────
+# ── Left ribbon (background segments) ────────────────────────────────────────
 
 [os]
 disabled = false
-style = "lavender"
-format = "[$symbol]($style)"
+style = "fg:base bg:lavender"
+format = "[ $symbol]($style)"
 
 [os.symbols]
-Linux   = "󰌽 "
-Manjaro = "󱘊 "
-Arch    = "󰣇 "
-Macos   = "󰀵 "
-Windows = "󰍲 "
-
-# ── Directory ─────────────────────────────────────────────────────────────────
+Linux   = "󰌽"
+Manjaro = "󱘊"
+Arch    = "󰣇"
+Macos   = "󰀵"
+Windows = "󰍲"
 
 [directory]
-style = "bold text"
-format = "[$path]($style) "
+style = "fg:text bg:surface"
+format = "[ $path ]($style)"
 truncation_length = 4
 truncate_to_repo = true
 read_only = " 󰌾"
-read_only_style = "rose"
+read_only_style = "fg:rose bg:surface"
 
 [directory.substitutions]
 "~/.config"  = "󱁿 cfg"
@@ -51,16 +60,14 @@ read_only_style = "rose"
 "~/projects" = "󰲋 proj"
 "~/Desktop"  = "󰇄 desk"
 
-# ── Git ───────────────────────────────────────────────────────────────────────
-
 [git_branch]
 symbol = " "
-style = "lavender"
-format = "[$symbol$branch]($style) "
+style = "fg:base bg:overlay"
+format = "[ $symbol$branch]($style)"
 
 [git_status]
-style = "peach"
-format = "[$all_status$ahead_behind]($style) "
+style = "fg:base bg:overlay"
+format = "[$all_status$ahead_behind ]($style)"
 conflicted = "!"
 ahead      = "⇡${count}"
 behind     = "⇣${count}"
@@ -72,7 +79,7 @@ staged     = "+${count}"
 renamed    = "»${count}"
 deleted    = "✗${count}"
 
-# ── Languages (right side of fill) ───────────────────────────────────────────
+# ── Right side (fg segments after the fill) ──────────────────────────────────
 
 [nodejs]
 symbol = " "
@@ -109,8 +116,6 @@ format = "[$symbol$context]($style) "
 only_with_files = true
 detect_files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml"]
 
-# ── Meta ──────────────────────────────────────────────────────────────────────
-
 [cmd_duration]
 disabled = false
 min_time = 1000
@@ -135,3 +140,6 @@ cyan     = "#00e5ff"
 mint     = "#9dffcc"
 gold     = "#ffd97d"
 peach    = "#ffb3a0"
+base     = "#1a1426"
+surface  = "#2a2140"
+overlay  = "#3a2f55"
