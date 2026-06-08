@@ -2,7 +2,7 @@
 #
 # This file intentionally short-circuits after sourcing the modular configs.
 __dp_entry="${${(%):-%N}:A}"
-__dp_repo="${__dp_entry:h:h}"
+__dp_repo="${__dp_entry:h:h:h}"
 export CYBERPUNK_DOTFILES_DIR="${__dp_repo}"
 
 __dp_os="${CYBERPUNK_SHELL_OS:-}"
@@ -16,12 +16,12 @@ if [[ -z "$__dp_os" ]]; then
 fi
 
 if [[ "$__dp_os" == "macos" ]]; then
-  source "${__dp_repo}/shell/zsh/macos.zsh"
+  source "${__dp_repo}/config/zsh/lib/macos.zsh"
 else
-  source "${__dp_repo}/shell/zsh/linux.zsh"
+  source "${__dp_repo}/config/zsh/lib/linux.zsh"
 fi
 
-source "${__dp_repo}/shell/zsh/common.zsh"
+source "${__dp_repo}/config/zsh/lib/common.zsh"
 
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
