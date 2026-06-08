@@ -10,12 +10,6 @@ _ok()    { printf "${_C_PINK}[✓]${_C_RST} %s\n" "$*"; }
 _error() { printf "${_C_ROSE}[✗]${_C_RST} %s\n" "$*" >&2; }
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
-_in_list() {
-  local needle="$1"; shift
-  local x; for x in "$@"; do [[ "$x" == "$needle" ]] && return 0; done
-  return 1
-}
-
 backup_if_exists() {
   local dst="$1"
   if [[ -e "$dst" || -L "$dst" ]]; then

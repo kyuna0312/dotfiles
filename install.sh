@@ -9,11 +9,6 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${REPO_ROOT}/lib/link.sh"
 
-# Config dirs handled specially (per-OS filename), excluded from the generic loop.
-CONFIG_SKIP_ALWAYS=( ghostty )
-# Linux-only window-manager configs, skipped on macOS.
-CONFIG_SKIP_MACOS=( waybar )
-
 # ── Distro detection ──────────────────────────────────────────────────────────
 detect_distro() {
   if [[ "$(uname -s)" == Darwin* ]]; then echo "macos"
@@ -68,24 +63,12 @@ link_home() {
 }
 
 link_config() {
-  local uname_s; uname_s="$(uname -s 2>/dev/null || echo unknown)"
   _info "Linking ~/.config entries..."
   local dir name
   for dir in "${REPO_ROOT}/config/"*/; do
     name="$(basename "$dir")"
-    _in_list "$name" "${CONFIG_SKIP_ALWAYS[@]}" && continue
-    if [[ "$uname_s" == Darwin* ]] && _in_list "$name" "${CONFIG_SKIP_MACOS[@]}"; then
-      continue
-    fi
     link_force "${dir%/}" "$HOME/.config/${name}"
   done
-
-  # ghostty: pick per-OS config file → ~/.config/ghostty/config
-  if [[ "$uname_s" == Darwin* ]]; then
-    link_if_exists "${REPO_ROOT}/config/ghostty/config.macos" "$HOME/.config/ghostty/config"
-  else
-    link_if_exists "${REPO_ROOT}/config/ghostty/config.linux" "$HOME/.config/ghostty/config"
-  fi
 
   # Compat symlinks for tools that also read $HOME paths.
   link_if_exists "$HOME/.config/tmux/tmux.conf" "$HOME/.tmux.conf"
@@ -110,16 +93,6 @@ link_extras() {
     [[ -d "${REPO_ROOT}/macos/sketchybar"  ]] && link_force "${REPO_ROOT}/macos/sketchybar"  "$HOME/.config/sketchybar"
     [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
     [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
-  fi
-
-  # Claude Code
-  if [[ -d "${REPO_ROOT}/claude" ]]; then
-    _info "Linking Claude Code config..."
-    [[ -d "$HOME/.claude" ]] || mkdir -p "$HOME/.claude/skills"
-    link_if_exists "${REPO_ROOT}/claude/settings.json"   "$HOME/.claude/settings.json"
-    link_if_exists "${REPO_ROOT}/claude/.caveman-active" "$HOME/.claude/.caveman-active"
-    [[ -d "${REPO_ROOT}/claude/skills/code-reviewer" ]] && \
-      link_force "${REPO_ROOT}/claude/skills/code-reviewer" "$HOME/.claude/skills/code-reviewer"
   fi
 }
 
