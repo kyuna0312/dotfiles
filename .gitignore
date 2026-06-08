@@ -6,3 +6,5 @@ history.txt
 .remember/
 docs/
 config/sheldon/plugins.lock
+CLAUDE.md
+config/git/ignore
