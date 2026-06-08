@@ -6,14 +6,6 @@ info()  { printf "\033[38;5;219m[theme]\033[0m %s\n" "$*"; }
 ok()    { printf "\033[38;5;158m[  ok]\033[0m %s\n" "$*"; }
 skip()  { printf "\033[38;5;246m[skip]\033[0m %s\n" "$*"; }
 
-# ── Hyprland ──────────────────────────────────────────────────────────────────
-if command -v hyprctl >/dev/null 2>&1 && [[ -n "${HYPRLAND_INSTANCE_SIGNATURE:-}" ]]; then
-    hyprctl reload
-    ok "Hyprland reloaded (borders, blur, shadow, rounding)"
-else
-    skip "Hyprland not running"
-fi
-
 # ── Waybar ────────────────────────────────────────────────────────────────────
 if command -v waybar >/dev/null 2>&1; then
     pkill waybar 2>/dev/null || true

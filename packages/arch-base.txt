@@ -26,5 +26,4 @@ lazygit
 git-delta
 atuin
 neovim
-wezterm
 ghostty
