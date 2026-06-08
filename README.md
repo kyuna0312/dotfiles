@@ -8,7 +8,7 @@
 Neovim · Zsh · Tmux · Starship
 
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=ff6bba&labelColor=0a0a14)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Arch%20%7C%20Debian%20%7C%20macOS-00e5ff?labelColor=0a0a14)](install.sh)
+[![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-00e5ff?labelColor=0a0a14)](install.sh)
 [![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=ffd97d&labelColor=0a0a14)](https://github.com/kyuna0312/dotfiles)
 
 </div>
