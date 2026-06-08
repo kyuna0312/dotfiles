@@ -5,7 +5,7 @@
 # ✦ Lucy Edgerunner+ Dotfiles
 
 **Cyberpunk Edgerunners-themed development environment**  
-Neovim · Zsh · Tmux · Starship · Ghostty
+Neovim · Zsh · Tmux · Starship
 
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=ff6bba&labelColor=0a0a14)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Arch%20%7C%20Debian%20%7C%20macOS-00e5ff?labelColor=0a0a14)](install.sh)
@@ -45,13 +45,10 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, Lucy Edgerunner+ palette, OS badge, git status |
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Personal Neovim config (git submodule) |
 | **Tmux** | `config/tmux/tmux.conf` | TPM, vim pane nav, sakura/cyan status bar, session restore |
-| **Ghostty** | `config/ghostty/config.linux` | Void-black bg, neon 16-color ANSI palette |
-| **Waybar** | `config/waybar/` | Void-dark bar, pill modules, Lucy-themed module colors |
 | **Git** | `config/git/delta.gitconfig` | Delta pager with Lucy syntax colors |
 | **Nushell** | `config/nushell/` | `λ` and `❮` prompt indicators, custom env |
 | **Atuin** | `config/atuin/config.toml` | Encrypted shell history sync |
 | **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
-| **Claude Code** | `claude/` | settings.json, Inari MCP server, caveman mode, code-review skill |
 
 ---
 
@@ -59,7 +56,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 | OS | Package manager | Notes |
 |----|----------------|-------|
-| **Arch / Manjaro** | pacman + paru (AUR) | Full support: Waybar, Ghostty |
+| **Arch / Manjaro** | pacman + paru (AUR) | Full support |
 | **Debian / Ubuntu** | apt | `bat`→`batcat`, `fd`→`fdfind` aliased automatically |
 | **macOS** | Homebrew | Aerospace, Sketchybar, Hammerspoon, Karabiner |
 
@@ -154,29 +151,6 @@ On first launch, sync all plugins:
 nvim → :Lazy sync
 ```
 
-### Inari MCP Server (local AI for Claude Code)
-
-Inari routes Claude Code prompts to local Ollama models:
-
-| Task | Model |
-|------|-------|
-| write / fix / complete / test code | Qwen3 8B |
-| explain / design / analyze / plan | Llama 4 Scout |
-
-```bash
-# Enable Ollama
-sudo systemctl enable --now ollama
-
-# Add to dotfiles/claude/settings.json under "mcpServers":
-{
-  "inari": {
-    "command": "uv",
-    "args": ["run", "--project", "/home/kyuna/dotfiles/claude/mcp-servers/inari",
-             "python", "server.py"]
-  }
-}
-```
-
 ---
 
 ## Directory Structure
@@ -201,10 +175,6 @@ dotfiles/
 │   ├── starship/starship.toml
 │   ├── nvim/               # NyanVim (git submodule)
 │   ├── tmux/tmux.conf
-│   ├── ghostty/
-│   │   ├── config.linux
-│   │   └── config.macos
-│   ├── waybar/             # Status bar (Arch/Linux only)
 │   ├── git/delta.gitconfig
 │   ├── nushell/
 │   └── atuin/
@@ -217,12 +187,8 @@ dotfiles/
 │   ├── arch-security.txt
 │   └── ...
 ├── macos/                  # special link target (~/)
-├── scripts/
-│   └── apply-theme.sh      # hot-reload all running apps
-└── claude/                 # special link target (~/.claude)
-    ├── settings.json
-    ├── mcp-servers/inari/  # local Ollama AI layer
-    └── skills/code-reviewer/
+└── scripts/
+    └── apply-theme.sh      # hot-reload all running apps
 ```
 
 ---
@@ -231,7 +197,6 @@ dotfiles/
 
 - `git`, `zsh`, `curl`
 - Recommended: `neovim`, `tmux`, `starship`, `fzf`, `eza`
-- Inari AI: `ollama`, `uv`
 
 ---
 

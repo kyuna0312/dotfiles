@@ -6,16 +6,6 @@ info()  { printf "\033[38;5;219m[theme]\033[0m %s\n" "$*"; }
 ok()    { printf "\033[38;5;158m[  ok]\033[0m %s\n" "$*"; }
 skip()  { printf "\033[38;5;246m[skip]\033[0m %s\n" "$*"; }
 
-# ── Waybar ────────────────────────────────────────────────────────────────────
-if command -v waybar >/dev/null 2>&1; then
-    pkill waybar 2>/dev/null || true
-    sleep 0.3
-    waybar &disown
-    ok "Waybar restarted"
-else
-    skip "waybar not found"
-fi
-
 # ── GNOME (if running) ────────────────────────────────────────────────────────
 if [[ "${XDG_CURRENT_DESKTOP:-}" == "GNOME" ]]; then
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
