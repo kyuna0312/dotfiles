@@ -11,9 +11,17 @@ Neovim · Zsh · Tmux · Starship
 [![Platform](https://img.shields.io/badge/platform-Arch%20%7C%20Debian%20%7C%20macOS-00e5ff?labelColor=0a0a14)](install.sh)
 [![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=ffd97d&labelColor=0a0a14)](https://github.com/kyuna0312/dotfiles)
 
-<br/>
+</div>
+
+---
+
+## Preview
+
+<div align="center">
 
 <img src="assets/preview.png" width="820" alt="Lucy Edgerunner+ terminal — Starship prompt, Zsh, neon palette" />
+
+<sub>Lucy greeting · `lucy` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
 
 </div>
 
