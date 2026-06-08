@@ -41,17 +41,17 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 | Component | Config path | Description |
 |-----------|-------------|-------------|
-| **Zsh** | `zshrc/.zshrc` → `shell/zsh/` | Modular OS-split shell; Lucy greeting, fzf, zoxide, lazy NVM |
+| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; Lucy greeting, fzf, zoxide, lazy NVM |
 | **Starship** | `starship/starship.toml` | `λ` prompt, Lucy Edgerunner+ palette, OS badge, git status |
 | **Neovim** | `nvim/` | LazyVim base + Lucy catppuccin overrides, custom dashboard |
 | **Tmux** | `tmux/tmux.conf` | TPM, vim pane nav, sakura/cyan status bar, session restore |
 | **Ghostty** | `ghostty/config.linux` | Void-black bg, neon 16-color ANSI palette |
-| **Hyprland** | `hyprland/` | Sakura→cyan window borders, blur, pink shadow glow |
+| **Hyprland** | `config/hypr/` | Sakura→cyan window borders, blur, pink shadow glow |
 | **Waybar** | `waybar/` | Void-dark bar, pill modules, Lucy-themed module colors |
 | **Git** | `git/delta.gitconfig` | Delta pager with Lucy syntax colors |
 | **Nushell** | `nushell/` | `λ` and `❮` prompt indicators, custom env |
 | **Atuin** | `atuin/config.toml` | Encrypted shell history sync |
-| **Security** | `security/aliases.zsh` | Pentest alias layer (`sectools` for reference) |
+| **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
 | **Claude Code** | `claude/` | settings.json, Inari MCP server, caveman mode, code-review skill |
 
 ---
@@ -84,7 +84,9 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 ## Shell Features
 
-### Lucy Zsh Layer (`shell/zsh/lucy.zsh`)
+Zsh uses `ZDOTDIR=~/.config/zsh` (set by `home/.zshenv`), so all zsh config lives under `config/zsh/`. Plugins are managed by [Sheldon](https://sheldon.cli.rs/) (`config/sheldon/plugins.toml`).
+
+### Lucy Zsh Layer (`config/zsh/lib/lucy.zsh`)
 
 Sourced last, after syntax highlighting. Provides:
 
@@ -99,7 +101,7 @@ Sourced last, after syntax highlighting. Provides:
 | `dp-tools` | CLI stack reference card |
 | `netrunner-tools` | Alias for `dp-tools` |
 
-### Security Layer (`security/aliases.zsh`)
+### Security Layer (`config/zsh/lib/security.zsh`)
 
 Auto-loaded when `nmap` or `burpsuite` is detected. Run `sectools` for a quick reference.
 
@@ -194,7 +196,32 @@ sudo systemctl enable --now ollama
 
 ```
 dotfiles/
-├── install.sh              # bootstrap (packages + symlinks)
+├── install.sh              # thin linker (packages + symlinks)
+├── lib/link.sh             # symlink + logging helpers
+├── home/                   # files linked to $HOME
+│   ├── .zshenv             # sets ZDOTDIR=~/.config/zsh
+│   └── .bashrc             # minimal bash fallback
+├── config/                 # mirrors ~/.config, linked dir-by-dir
+│   ├── zsh/
+│   │   ├── .zshrc          # zsh entrypoint
+│   │   └── lib/
+│   │       ├── common.zsh  # shared: aliases, fzf, nvm, zoxide
+│   │       ├── linux.zsh   # Linux: tmux auto-attach, EDITOR, security
+│   │       ├── macos.zsh   # macOS specifics
+│   │       ├── lucy.zsh    # Lucy layer: greeting, themed helpers
+│   │       └── security.zsh # pentest alias layer
+│   ├── sheldon/plugins.toml # zsh plugin manifest (Sheldon)
+│   ├── starship/starship.toml
+│   ├── nvim/               # LazyVim config
+│   ├── tmux/tmux.conf
+│   ├── ghostty/
+│   │   ├── config.linux
+│   │   └── config.macos
+│   ├── hypr/               # Wayland WM (Arch/Linux only)
+│   ├── waybar/             # Status bar (Arch/Linux only)
+│   ├── git/delta.gitconfig
+│   ├── nushell/
+│   └── atuin/
 ├── installers/             # per-distro package installers
 │   ├── arch.sh
 │   ├── debian.sh
@@ -203,28 +230,11 @@ dotfiles/
 │   ├── arch-base.txt
 │   ├── arch-security.txt
 │   └── ...
-├── zshrc/                  # .zshrc OS-detection entrypoint
-├── shell/zsh/
-│   ├── common.zsh          # shared: aliases, fzf, nvm, zoxide
-│   ├── linux.zsh           # Linux: tmux auto-attach, EDITOR, security
-│   ├── macos.zsh           # macOS specifics
-│   └── lucy.zsh            # Lucy layer: greeting, themed helpers
-├── starship/starship.toml
-├── nvim/                   # LazyVim config
-├── tmux/tmux.conf
-├── ghostty/
-│   ├── config.linux
-│   └── config.macos
-├── hyprland/               # Wayland WM (Arch/Linux only)
-├── waybar/                 # Status bar (Arch/Linux only)
-├── git/delta.gitconfig
-├── nushell/
-├── atuin/
-├── security/aliases.zsh
+├── macos/                  # special link target (~/)
 ├── scripts/
 │   ├── apply-theme.sh      # hot-reload all running apps
 │   └── install-hyprland.sh # first-time Hyprland setup
-└── claude/
+└── claude/                 # special link target (~/.claude)
     ├── settings.json
     ├── mcp-servers/inari/  # local Ollama AI layer
     └── skills/code-reviewer/
