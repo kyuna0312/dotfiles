@@ -148,12 +148,6 @@ if command -v aws_completer >/dev/null 2>&1; then
   complete -C "$(command -v aws_completer)" aws 2>/dev/null || true
 fi
 
-# ---------- Autosuggestions (optional) ----------
-_dp_source_first_found() {
-  local f; for f in "$@"; do [[ -f "$f" ]] && { source "$f"; return 0; }; done; return 1
-}
-
-
 # ---------- Prompt accent ----------
 # Neon "pulse" divider at the end of the command line.
 # (Starship handles most visuals; this only affects a small character.)
@@ -176,8 +170,8 @@ fi
 
 if command -v bat >/dev/null 2>&1; then
   # Prefer repo-managed bat config when available.
-  if [[ -z "${BAT_CONFIG_PATH:-}" && -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/bat/config" ]]; then
-    export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/bat/config"
+  if [[ -z "${BAT_CONFIG_PATH:-}" && -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/config/bat/config" ]]; then
+    export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/config/bat/config"
   fi
   alias cat='bat --paging=never --style=plain'
   # Static theme — avoids forking `bat --list-themes` on every shell start.
@@ -189,10 +183,10 @@ alias ll='eza -l --icons --git 2>/dev/null || ls -lh'
 
 # ---------- Git (developer-focused) ----------
 alias gst='git status -sb'
-if command -v delta >/dev/null 2>&1 && [[ -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig" ]]; then
-  alias glog="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig log --graph --topo-order --decorate --pretty='%C(auto)%h %d %s'"
-  alias gdiff="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig diff"
-  alias gshow="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/git/delta.gitconfig show"
+if command -v delta >/dev/null 2>&1 && [[ -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/config/git/delta.gitconfig" ]]; then
+  alias glog="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/config/git/delta.gitconfig log --graph --topo-order --decorate --pretty='%C(auto)%h %d %s'"
+  alias gdiff="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/config/git/delta.gitconfig diff"
+  alias gshow="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/config/git/delta.gitconfig show"
 else
   alias glog='git log --graph --topo-order --decorate --pretty="%C(auto)%h %d %s"'
   alias gdiff='git diff'

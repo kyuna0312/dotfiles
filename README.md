@@ -42,15 +42,15 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | Component | Config path | Description |
 |-----------|-------------|-------------|
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; Lucy greeting, fzf, zoxide, lazy NVM |
-| **Starship** | `starship/starship.toml` | `λ` prompt, Lucy Edgerunner+ palette, OS badge, git status |
-| **Neovim** | `nvim/` | LazyVim base + Lucy catppuccin overrides, custom dashboard |
-| **Tmux** | `tmux/tmux.conf` | TPM, vim pane nav, sakura/cyan status bar, session restore |
-| **Ghostty** | `ghostty/config.linux` | Void-black bg, neon 16-color ANSI palette |
+| **Starship** | `config/starship/starship.toml` | `λ` prompt, Lucy Edgerunner+ palette, OS badge, git status |
+| **Neovim** | `config/nvim/` | LazyVim base + Lucy catppuccin overrides, custom dashboard |
+| **Tmux** | `config/tmux/tmux.conf` | TPM, vim pane nav, sakura/cyan status bar, session restore |
+| **Ghostty** | `config/ghostty/config.linux` | Void-black bg, neon 16-color ANSI palette |
 | **Hyprland** | `config/hypr/` | Sakura→cyan window borders, blur, pink shadow glow |
-| **Waybar** | `waybar/` | Void-dark bar, pill modules, Lucy-themed module colors |
-| **Git** | `git/delta.gitconfig` | Delta pager with Lucy syntax colors |
-| **Nushell** | `nushell/` | `λ` and `❮` prompt indicators, custom env |
-| **Atuin** | `atuin/config.toml` | Encrypted shell history sync |
+| **Waybar** | `config/waybar/` | Void-dark bar, pill modules, Lucy-themed module colors |
+| **Git** | `config/git/delta.gitconfig` | Delta pager with Lucy syntax colors |
+| **Nushell** | `config/nushell/` | `λ` and `❮` prompt indicators, custom env |
+| **Atuin** | `config/atuin/config.toml` | Encrypted shell history sync |
 | **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
 | **Claude Code** | `claude/` | settings.json, Inari MCP server, caveman mode, code-review skill |
 
