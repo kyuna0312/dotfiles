@@ -375,5 +375,5 @@ _dp_source_first_found \
 
 # ---------- Lucy Kushinada layer ----------
 # Greeting, themed helpers, syntax highlight colors, Lucy functions.
-[[ -f "${CYBERPUNK_DOTFILES_DIR}/shell/zsh/lucy.zsh" ]] && \
-  source "${CYBERPUNK_DOTFILES_DIR}/shell/zsh/lucy.zsh"
+[[ -f "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/lucy.zsh" ]] && \
+  source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/lucy.zsh"
