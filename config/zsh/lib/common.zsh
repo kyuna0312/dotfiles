@@ -153,18 +153,6 @@ _dp_source_first_found() {
   local f; for f in "$@"; do [[ -f "$f" ]] && { source "$f"; return 0; }; done; return 1
 }
 
-# Autosuggestions: Manjaro pacman path first, then common fallbacks.
-_dp_source_first_found \
-  "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" \
-  "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
-  "/usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" \
-  "$HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
-
-if (( ${+functions[autosuggest-execute]} )); then
-  bindkey '^w' autosuggest-execute
-  bindkey '^e' autosuggest-accept
-  bindkey '^u' autosuggest-toggle
-fi
 
 # ---------- Prompt accent ----------
 # Neon "pulse" divider at the end of the command line.
@@ -365,13 +353,17 @@ dp-tools() {
 }
 alias netrunner-tools='dp-tools'
 
-# ---------- Syntax highlighting ----------
-# Must be sourced LAST — after all other zsh config.
-_dp_source_first_found \
-  "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
-  "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
-  "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" \
-  "$HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# ---------- Plugins (Sheldon) ----------
+# Loads zsh-autosuggestions then zsh-syntax-highlighting (last).
+if command -v sheldon >/dev/null 2>&1; then
+  eval "$(sheldon source)"
+fi
+
+if (( ${+functions[autosuggest-execute]} )); then
+  bindkey '^w' autosuggest-execute
+  bindkey '^e' autosuggest-accept
+  bindkey '^u' autosuggest-toggle
+fi
 
 # ---------- Lucy Kushinada layer ----------
 # Greeting, themed helpers, syntax highlight colors, Lucy functions.
