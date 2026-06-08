@@ -2,11 +2,11 @@ return {
   "zbirenbaum/copilot.lua",
   opts = {
     suggestion = {
-      enabled = not vim.g.ai_cmp,
+      enabled = true,
       auto_trigger = true,
-      hide_during_completion = vim.g.ai_cmp,
+      hide_during_completion = true,
       keymap = {
-        accept = false, -- handled by nvim-cmp / blink.cmp
+        accept = false, -- handled by nvim-cmp
         next = "<M-]>",
         prev = "<M-[>",
       },
