@@ -55,7 +55,7 @@ else
 fi
 
 # ── 3. NVIDIA env vars in hyprland.conf ──────────────────────────────────────
-HYPR_CONF="$HOME/dotfiles/hyprland/hyprland.conf"
+HYPR_CONF="$HOME/dotfiles/config/hypr/hyprland.conf"
 info "Adding NVIDIA env vars to hyprland.conf..."
 
 if grep -q "LIBVA_DRIVER_NAME" "$HYPR_CONF"; then
