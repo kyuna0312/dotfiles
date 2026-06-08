@@ -18,7 +18,7 @@ Neovim · Zsh · Tmux · Starship · Ghostty
 ## Quick Install
 
 ```bash
-git clone https://github.com/kyuna0312/dotfiles ~/dotfiles
+git clone --recurse-submodules https://github.com/kyuna0312/dotfiles ~/dotfiles
 cd ~/dotfiles && bash install.sh
 ```
 
@@ -43,7 +43,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 |-----------|-------------|-------------|
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; Lucy greeting, fzf, zoxide, lazy NVM |
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, Lucy Edgerunner+ palette, OS badge, git status |
-| **Neovim** | `config/nvim/` | LazyVim base + Lucy catppuccin overrides, custom dashboard |
+| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Personal Neovim config (git submodule) |
 | **Tmux** | `config/tmux/tmux.conf` | TPM, vim pane nav, sakura/cyan status bar, session restore |
 | **Ghostty** | `config/ghostty/config.linux` | Void-black bg, neon 16-color ANSI palette |
 | **Waybar** | `config/waybar/` | Void-dark bar, pill modules, Lucy-themed module colors |
@@ -199,7 +199,7 @@ dotfiles/
 │   │       └── security.zsh # pentest alias layer
 │   ├── sheldon/plugins.toml # zsh plugin manifest (Sheldon)
 │   ├── starship/starship.toml
-│   ├── nvim/               # LazyVim config
+│   ├── nvim/               # NyanVim (git submodule)
 │   ├── tmux/tmux.conf
 │   ├── ghostty/
 │   │   ├── config.linux

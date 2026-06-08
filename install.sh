@@ -49,6 +49,17 @@ setup_sheldon() {
   fi
 }
 
+# ── Submodules ────────────────────────────────────────────────────────────────
+setup_submodules() {
+  # NyanVim (config/nvim) and any other submodules ship as git submodules.
+  if git -C "${REPO_ROOT}" rev-parse --git-dir >/dev/null 2>&1 \
+     && [[ -f "${REPO_ROOT}/.gitmodules" ]]; then
+    _info "Syncing submodules (nvim → NyanVim)..."
+    git -C "${REPO_ROOT}" submodule update --init --recursive || \
+      _warn "submodule sync failed; nvim config may be empty."
+  fi
+}
+
 # ── Linking ───────────────────────────────────────────────────────────────────
 link_home() {
   _info "Linking \$HOME dotfiles..."
@@ -133,6 +144,7 @@ main() {
     _warn "Skipping package installation (--skip-packages)"
   fi
 
+  setup_submodules
   setup_sheldon
   link_home
   link_config
