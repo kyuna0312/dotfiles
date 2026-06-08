@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — Lucy Edgerunner+ dotfiles bootstrap
+# install.sh — Lucy Edgerunner+ dotfiles bootstrap (config-mirror layout)
 # Usage:
 #   bash install.sh                  # detect OS, install packages + symlinks
 #   bash install.sh --security       # also install pentest tools
@@ -7,49 +7,19 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source "${REPO_ROOT}/lib/link.sh"
 
-# ── Colors ────────────────────────────────────────────────────────────────────
-_C_PINK='\033[38;5;212m'; _C_CYAN='\033[38;5;51m'; _C_GOLD='\033[38;5;221m'
-_C_ROSE='\033[38;5;204m'; _C_DIM='\033[38;5;239m';  _C_RST='\033[0m'
-_info()  { printf "${_C_CYAN}[✦]${_C_RST} %s\n" "$*"; }
-_warn()  { printf "${_C_GOLD}[!]${_C_RST} %s\n" "$*"; }
-_ok()    { printf "${_C_PINK}[✓]${_C_RST} %s\n" "$*"; }
-_error() { printf "${_C_ROSE}[✗]${_C_RST} %s\n" "$*" >&2; }
-
-# ── Symlink helpers ───────────────────────────────────────────────────────────
-backup_if_exists() {
-  local dst="$1"
-  if [[ -e "$dst" || -L "$dst" ]]; then
-    local ts; ts="$(date +%Y%m%d-%H%M%S)"
-    mv -f "$dst" "${dst}.bak.${ts}"
-  fi
-}
-
-link_force() {
-  local src="$1" dst="$2"
-  mkdir -p "$(dirname "$dst")"
-  backup_if_exists "$dst"
-  ln -sf "$src" "$dst"
-  _ok "  $dst"
-}
-
-# Link a file only when the source exists
-link_if_exists() {
-  local src="$1" dst="$2"
-  [[ -e "$src" ]] && link_force "$src" "$dst" || true
-}
+# Config dirs handled specially (per-OS filename), excluded from the generic loop.
+CONFIG_SKIP_ALWAYS=( ghostty )
+# Linux-only window-manager configs, skipped on macOS.
+CONFIG_SKIP_MACOS=( hypr waybar )
 
 # ── Distro detection ──────────────────────────────────────────────────────────
 detect_distro() {
-  if [[ "$(uname -s)" == Darwin* ]]; then
-    echo "macos"
-  elif command -v pacman >/dev/null 2>&1; then
-    echo "arch"
-  elif command -v apt-get >/dev/null 2>&1; then
-    echo "debian"
-  else
-    echo "unknown"
-  fi
+  if [[ "$(uname -s)" == Darwin* ]]; then echo "macos"
+  elif command -v pacman >/dev/null 2>&1; then echo "arch"
+  elif command -v apt-get >/dev/null 2>&1; then echo "debian"
+  else echo "unknown"; fi
 }
 
 install_packages() {
@@ -62,49 +32,66 @@ install_packages() {
   fi
 }
 
-# ── Symlink all configs ───────────────────────────────────────────────────────
-link_configs() {
+# ── Sheldon ───────────────────────────────────────────────────────────────────
+setup_sheldon() {
+  if command -v sheldon >/dev/null 2>&1; then
+    _ok "  sheldon present"
+  else
+    _info "Installing sheldon..."
+    mkdir -p "$HOME/.local/bin"
+    curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
+      | bash -s -- --repo rossmacarthur/sheldon --to "$HOME/.local/bin" 2>/dev/null \
+      || { _warn "sheldon auto-install failed; install it manually."; return 0; }
+  fi
+  if command -v sheldon >/dev/null 2>&1; then
+    _info "Locking sheldon plugins..."
+    sheldon --config-dir "${REPO_ROOT}/config/sheldon" lock 2>/dev/null || true
+  fi
+}
+
+# ── Linking ───────────────────────────────────────────────────────────────────
+link_home() {
+  _info "Linking \$HOME dotfiles..."
+  link_force "${REPO_ROOT}/home/.zshenv" "$HOME/.zshenv"
+  link_force "${REPO_ROOT}/home/.bashrc" "$HOME/.bashrc"
+}
+
+link_config() {
   local uname_s; uname_s="$(uname -s 2>/dev/null || echo unknown)"
+  _info "Linking ~/.config entries..."
+  local dir name
+  for dir in "${REPO_ROOT}/config/"*/; do
+    name="$(basename "$dir")"
+    _in_list "$name" "${CONFIG_SKIP_ALWAYS[@]}" && continue
+    if [[ "$uname_s" == Darwin* ]] && _in_list "$name" "${CONFIG_SKIP_MACOS[@]}"; then
+      continue
+    fi
+    link_force "${dir%/}" "$HOME/.config/${name}"
+  done
 
-  _info "Linking shell configs..."
-  link_force "${REPO_ROOT}/zshrc/.zshrc"   "$HOME/.zshrc"
-  link_force "${REPO_ROOT}/bashrc/.bashrc" "$HOME/.bashrc"
+  # ghostty: pick per-OS config file → ~/.config/ghostty/config
+  if [[ "$uname_s" == Darwin* ]]; then
+    link_if_exists "${REPO_ROOT}/config/ghostty/config.macos" "$HOME/.config/ghostty/config"
+  else
+    link_if_exists "${REPO_ROOT}/config/ghostty/config.linux" "$HOME/.config/ghostty/config"
+  fi
 
-  _info "Linking Starship..."
-  link_force "${REPO_ROOT}/starship/starship.toml" "$HOME/.config/starship/starship.toml"
+  # Compat symlinks for tools that also read $HOME paths.
+  link_if_exists "$HOME/.config/tmux/tmux.conf"      "$HOME/.tmux.conf"
+  link_if_exists "$HOME/.config/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
+}
 
-  _info "Linking Neovim..."
-  link_force "${REPO_ROOT}/nvim" "$HOME/.config/nvim"
-
-  _info "Linking Tmux..."
-  link_force "${REPO_ROOT}/tmux/tmux.reset.conf" "$HOME/.config/tmux/tmux.reset.conf"
-  link_force "${REPO_ROOT}/tmux/tmux.conf"       "$HOME/.config/tmux/tmux.conf"
-  link_force "$HOME/.config/tmux/tmux.conf"      "$HOME/.tmux.conf"
-
-  # TPM (tmux plugin manager)
+setup_tmux_tpm() {
   local tpm_dir="$HOME/.tmux/plugins/tpm"
   if [[ ! -d "$tpm_dir" ]]; then
     _info "Cloning TPM..."
     mkdir -p "$HOME/.tmux/plugins"
     git clone --depth=1 https://github.com/tmux-plugins/tpm "$tpm_dir"
   fi
+}
 
-  _info "Linking Git..."
-  link_if_exists "${REPO_ROOT}/git/delta.gitconfig" "$HOME/.config/git/delta.gitconfig"
-
-  _info "Linking Atuin..."
-  link_if_exists "${REPO_ROOT}/atuin/config.toml" "$HOME/.config/atuin/config.toml"
-
-  _info "Linking Nushell..."
-  link_if_exists "${REPO_ROOT}/nushell/env.nu"    "$HOME/.config/nushell/env.nu"
-  link_if_exists "${REPO_ROOT}/nushell/config.nu" "$HOME/.config/nushell/config.nu"
-
-  # WezTerm
-  if [[ -f "${REPO_ROOT}/wezterm/wezterm.lua" ]]; then
-    _info "Linking WezTerm..."
-    link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.config/wezterm/wezterm.lua"
-    link_force "${REPO_ROOT}/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
-  fi
+link_extras() {
+  local uname_s; uname_s="$(uname -s 2>/dev/null || echo unknown)"
 
   if [[ "$uname_s" == Darwin* ]]; then
     _info "Linking macOS-specific configs..."
@@ -113,39 +100,16 @@ link_configs() {
     [[ -d "${REPO_ROOT}/macos/sketchybar"  ]] && link_force "${REPO_ROOT}/macos/sketchybar"  "$HOME/.config/sketchybar"
     [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
     [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
-    # Ghostty (macOS)
-    _info "Linking Ghostty (macOS)..."
-    link_if_exists "${REPO_ROOT}/ghostty/config.macos" "$HOME/.config/ghostty/config"
-  else
-    _info "Linking Hyprland / Waybar..."
-    if [[ -d "${REPO_ROOT}/hyprland" ]]; then
-      link_force "${REPO_ROOT}/hyprland/hyprland.conf"  "$HOME/.config/hypr/hyprland.conf"
-      link_force "${REPO_ROOT}/hyprland/keybinds.conf"  "$HOME/.config/hypr/keybinds.conf"
-      link_force "${REPO_ROOT}/hyprland/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf"
-      link_if_exists "${REPO_ROOT}/hyprland/hypridle.conf" "$HOME/.config/hypr/hypridle.conf"
-      link_if_exists "${REPO_ROOT}/hyprland/hyprlock.conf"  "$HOME/.config/hypr/hyprlock.conf"
-    fi
-    if [[ -d "${REPO_ROOT}/waybar" ]]; then
-      link_force "${REPO_ROOT}/waybar/config.jsonc" "$HOME/.config/waybar/config"
-      link_force "${REPO_ROOT}/waybar/style.css"    "$HOME/.config/waybar/style.css"
-    fi
-    # Ghostty (Linux)
-    _info "Linking Ghostty (Linux)..."
-    link_if_exists "${REPO_ROOT}/ghostty/config.linux" "$HOME/.config/ghostty/config"
   fi
 
   # Claude Code
   if [[ -d "${REPO_ROOT}/claude" ]]; then
     _info "Linking Claude Code config..."
     [[ -d "$HOME/.claude" ]] || mkdir -p "$HOME/.claude/skills"
-    link_if_exists "${REPO_ROOT}/claude/settings.json"        "$HOME/.claude/settings.json"
-    link_if_exists "${REPO_ROOT}/claude/.caveman-active"      "$HOME/.claude/.caveman-active"
+    link_if_exists "${REPO_ROOT}/claude/settings.json"   "$HOME/.claude/settings.json"
+    link_if_exists "${REPO_ROOT}/claude/.caveman-active" "$HOME/.claude/.caveman-active"
     [[ -d "${REPO_ROOT}/claude/skills/code-reviewer" ]] && \
       link_force "${REPO_ROOT}/claude/skills/code-reviewer" "$HOME/.claude/skills/code-reviewer"
-    if command -v uv >/dev/null 2>&1 && [[ -d "${REPO_ROOT}/claude/mcp-servers/inari" ]]; then
-      _info "Syncing Inari MCP deps..."
-      uv sync --project "${REPO_ROOT}/claude/mcp-servers/inari" --quiet
-    fi
   fi
 }
 
@@ -166,18 +130,15 @@ main() {
   if [[ "$skip_packages" == "0" ]]; then
     _info "Installing packages..."
     install_packages "$distro" "$security_flag"
-
-    # Pull local AI models if Ollama is present
-    if command -v ollama >/dev/null 2>&1; then
-      _info "Pulling Ollama models (background)..."
-      ollama pull llama4:scout &>/dev/null &
-      ollama pull qwen3:8b    &>/dev/null &
-    fi
   else
     _warn "Skipping package installation (--skip-packages)"
   fi
 
-  link_configs
+  setup_sheldon
+  link_home
+  link_config
+  setup_tmux_tpm
+  link_extras
 
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   printf "${_C_PINK}  ✓  Done.${_C_RST}\n"
