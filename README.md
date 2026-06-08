@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="logo.png" width="120" alt="Lucy Edgerunner+" />
+<img src="assets/logo.png" width="120" alt="Lucy Edgerunner+" />
 
 # ✦ Lucy Edgerunner+ Dotfiles
 
@@ -10,6 +10,10 @@ Neovim · Zsh · Tmux · Starship
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=ff6bba&labelColor=0a0a14)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Arch%20%7C%20Debian%20%7C%20macOS-00e5ff?labelColor=0a0a14)](install.sh)
 [![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=ffd97d&labelColor=0a0a14)](https://github.com/kyuna0312/dotfiles)
+
+<br/>
+
+<img src="assets/preview.png" width="820" alt="Lucy Edgerunner+ terminal — Starship prompt, Zsh, neon palette" />
 
 </div>
 
@@ -94,8 +98,8 @@ Sourced last, after syntax highlighting. Provides:
 | `breach [dir]` | `cd` into directory then open `$EDITOR` |
 | `ghost` | Browse history with fzf and re-run |
 | `ports` | Open listening ports (`ss -tulnp`) |
-| `dp-tools` | CLI stack reference card |
-| `netrunner-tools` | Alias for `dp-tools` |
+
+> `dp-tools` (alias `netrunner-tools`) prints the CLI stack reference card — defined in `config/zsh/lib/common.zsh`.
 
 ### Security Layer (`config/zsh/lib/security.zsh`)
 
@@ -176,6 +180,7 @@ dotfiles/
 │   ├── nvim/               # NyanVim (git submodule)
 │   ├── tmux/tmux.conf
 │   ├── git/delta.gitconfig
+│   ├── bat/config
 │   ├── nushell/
 │   └── atuin/
 ├── installers/             # per-distro package installers
@@ -187,8 +192,9 @@ dotfiles/
 │   ├── arch-security.txt
 │   └── ...
 ├── macos/                  # special link target (~/)
-└── scripts/
-    └── apply-theme.sh      # hot-reload all running apps
+├── scripts/
+│   └── apply-theme.sh      # hot-reload all running apps
+└── assets/                 # README images (preview.png, logo.png)
 ```
 
 ---
