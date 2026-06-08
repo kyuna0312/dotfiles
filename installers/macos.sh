@@ -2,43 +2,43 @@
 # installers/macos.sh — macOS package installation via Homebrew
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/link.sh
+source "${_DIR}/../lib/link.sh"
 SECURITY="${1:-0}"
-
-_parse_pkg_list() {
-  grep -v '^\s*#' "$1" | grep -v '^\s*$'
-}
 
 ensure_homebrew() {
   if ! command -v brew >/dev/null 2>&1; then
-    echo "[macos] Installing Homebrew..."
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    _info "[macos] Installing Homebrew..."
+    if [[ "$DRY_RUN" == "1" ]]; then
+      _info "[dry-run] would install Homebrew"
+    else
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    fi
   fi
 }
 
 install_base() {
   ensure_homebrew
-  echo "[macos] Installing base packages..."
-  local pkgs
-  pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-base.txt")
+  _info "[macos] Installing base packages..."
+  local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-base.txt")
   # shellcheck disable=SC2086
-  brew install $pkgs || true
+  run brew install $pkgs || true
 }
 
 install_security() {
-  echo "[macos] Installing security tools..."
-  local pkgs
-  pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-security.txt")
+  _info "[macos] Installing security tools..."
+  local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-security.txt")
   # shellcheck disable=SC2086
-  brew install $pkgs || true
+  run brew install $pkgs || true
 
-  # Brew cask for GUI tools
-  brew install --cask burp-suite ghidra || true
+  # GUI tools via cask
+  run brew install --cask burp-suite ghidra || true
 }
 
 main() {
   install_base
-  [[ "$SECURITY" == "1" ]] && install_security
+  if [[ "$SECURITY" == "1" ]]; then install_security; fi
 }
 
 main "$@"
