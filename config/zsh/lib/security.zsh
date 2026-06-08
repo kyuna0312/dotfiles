@@ -1,4 +1,4 @@
-# security/aliases.zsh — Lucy Kushinada · netrunner security toolkit
+# security.zsh — Lucy Kushinada · netrunner security toolkit
 # Sourced only when security tools (nmap/burpsuite) are detected
 
 # ── Colors (Lucy Edgerunner+) ─────────────────────────────────────────────────
