@@ -1,13 +1,24 @@
 #!/usr/bin/env bash
 # install.sh — Lucy Edgerunner+ dotfiles bootstrap (config-mirror layout)
-# Usage:
-#   bash install.sh                  # detect OS, install packages + symlinks
-#   bash install.sh --security       # also install pentest tools
-#   bash install.sh --skip-packages  # symlinks only (re-link after editing)
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "${REPO_ROOT}/lib/link.sh"
+
+usage() {
+  cat <<'EOF'
+install.sh — Lucy Edgerunner+ dotfiles bootstrap
+
+Usage:
+  bash install.sh [options]
+
+Options:
+  --security        Also install pentest tools
+  --skip-packages   Symlinks only (re-link after editing configs)
+  --dry-run         Print actions without making any changes
+  -h, --help        Show this help and exit
+EOF
+}
 
 # ── Distro detection ──────────────────────────────────────────────────────────
 detect_distro() {
@@ -31,6 +42,9 @@ install_packages() {
 setup_sheldon() {
   if command -v sheldon >/dev/null 2>&1; then
     _ok "  sheldon present"
+  elif [[ "$DRY_RUN" == "1" ]]; then
+    _info "[dry-run] would install sheldon → $HOME/.local/bin"
+    return 0
   else
     _info "Installing sheldon..."
     mkdir -p "$HOME/.local/bin"
@@ -39,8 +53,12 @@ setup_sheldon() {
       || { _warn "sheldon auto-install failed; install it manually."; return 0; }
   fi
   if command -v sheldon >/dev/null 2>&1; then
-    _info "Locking sheldon plugins..."
-    sheldon --config-dir "${REPO_ROOT}/config/sheldon" lock 2>/dev/null || true
+    if [[ "$DRY_RUN" == "1" ]]; then
+      _info "[dry-run] would lock sheldon plugins"
+    else
+      _info "Locking sheldon plugins..."
+      sheldon --config-dir "${REPO_ROOT}/config/sheldon" lock 2>/dev/null || true
+    fi
   fi
 }
 
@@ -50,7 +68,7 @@ setup_submodules() {
   if git -C "${REPO_ROOT}" rev-parse --git-dir >/dev/null 2>&1 \
      && [[ -f "${REPO_ROOT}/.gitmodules" ]]; then
     _info "Syncing submodules (nvim → NyanVim)..."
-    git -C "${REPO_ROOT}" submodule update --init --recursive || \
+    run git -C "${REPO_ROOT}" submodule update --init --recursive || \
       _warn "submodule sync failed; nvim config may be empty."
   fi
 }
@@ -76,7 +94,11 @@ link_config() {
 
 setup_tmux_tpm() {
   local tpm_dir="$HOME/.tmux/plugins/tpm"
-  if [[ ! -d "$tpm_dir" ]]; then
+  if [[ -d "$tpm_dir" ]]; then
+    return 0
+  elif [[ "$DRY_RUN" == "1" ]]; then
+    _info "[dry-run] would clone TPM → $tpm_dir"
+  else
     _info "Cloning TPM..."
     mkdir -p "$HOME/.tmux/plugins"
     git clone --depth=1 https://github.com/tmux-plugins/tpm "$tpm_dir"
@@ -100,9 +122,17 @@ link_extras() {
 main() {
   local security_flag="0" skip_packages="0"
   for arg in "$@"; do
-    [[ "$arg" == "--security"      ]] && security_flag="1"
-    [[ "$arg" == "--skip-packages" ]] && skip_packages="1"
+    case "$arg" in
+      --security)      security_flag="1" ;;
+      --skip-packages) skip_packages="1" ;;
+      --dry-run)       DRY_RUN="1" ;;
+      -h|--help)       usage; exit 0 ;;
+      *)               _warn "Unknown option: $arg"; usage; exit 2 ;;
+    esac
   done
+  export DRY_RUN REPO_ROOT
+
+  [[ "$DRY_RUN" == "1" ]] && _warn "Dry run — no changes will be made."
 
   local distro; distro="$(detect_distro)"
 

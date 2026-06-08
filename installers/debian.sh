@@ -2,83 +2,86 @@
 # installers/debian.sh — Debian/Ubuntu package installation
 set -euo pipefail
 
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=lib/link.sh
+source "${_DIR}/../lib/link.sh"
 SECURITY="${1:-0}"
 
-_parse_pkg_list() {
-  # Strip comments and blank lines from a package list file
-  grep -v '^\s*#' "$1" | grep -v '^\s*$'
-}
-
 install_base() {
-  echo "[debian] Updating package index..."
-  sudo apt-get update -qq
+  _info "[debian] Updating package index..."
+  run sudo apt-get update -qq
 
-  local pkgs
-  pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/debian-base.txt")
-
-  echo "[debian] Installing base packages..."
+  local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/debian-base.txt")
+  _info "[debian] Installing base packages..."
   # shellcheck disable=SC2086
-  sudo apt-get install -y --no-install-recommends $pkgs
+  run sudo apt-get install -y --no-install-recommends $pkgs
 
-  # bat ships as 'batcat' on some Debian/Ubuntu — alias to bat
+  # bat ships as 'batcat' on some Debian/Ubuntu — alias to bat.
   if command -v batcat >/dev/null 2>&1 && ! command -v bat >/dev/null 2>&1; then
     mkdir -p "$HOME/.local/bin"
-    ln -sf "$(command -v batcat)" "$HOME/.local/bin/bat"
+    run ln -sf "$(command -v batcat)" "$HOME/.local/bin/bat"
   fi
 
-  # fd ships as 'fdfind' from fd-find package on Debian/Ubuntu
+  # fd ships as 'fdfind' from fd-find package on Debian/Ubuntu.
   if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
     mkdir -p "$HOME/.local/bin"
-    ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
+    run ln -sf "$(command -v fdfind)" "$HOME/.local/bin/fd"
   fi
 
-  # Install starship (not in apt repos)
+  # starship (not in apt repos)
   if ! command -v starship >/dev/null 2>&1; then
-    echo "[debian] Installing starship via official script..."
-    curl -sS https://starship.rs/install.sh | sh -s -- --yes
+    _info "[debian] Installing starship via official script..."
+    if [[ "$DRY_RUN" == "1" ]]; then
+      _info "[dry-run] would install starship via starship.rs script"
+    else
+      curl -sS https://starship.rs/install.sh | sh -s -- --yes
+    fi
   fi
 
-  # Install eza (not in apt repos pre-Ubuntu 24.04)
+  # eza (not in apt repos pre-Ubuntu 24.04)
   if ! command -v eza >/dev/null 2>&1; then
-    echo "[debian] Installing eza via cargo or direct binary..."
-    if command -v cargo >/dev/null 2>&1; then
+    _info "[debian] Installing eza..."
+    if [[ "$DRY_RUN" == "1" ]]; then
+      _info "[dry-run] would install eza (cargo or release tarball)"
+    elif command -v cargo >/dev/null 2>&1; then
       cargo install eza
     else
-      local arch
-      arch="$(dpkg --print-architecture)"
+      local arch; arch="$(dpkg --print-architecture)"
       local eza_url="https://github.com/eza-community/eza/releases/latest/download/eza_${arch}-unknown-linux-gnu.tar.gz"
+      mkdir -p "$HOME/.local/bin"
       curl -sL "$eza_url" | tar xz -C "$HOME/.local/bin/"
     fi
   fi
 }
 
 install_security() {
-  echo "[debian] Installing security tools..."
-  local pkgs
-  pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/debian-security.txt")
+  _info "[debian] Installing security tools..."
+  local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/debian-security.txt")
 
-  # Try Kali repo if available, otherwise fall back to standard apt
+  # Kali repo if present, else standard apt with --fix-missing fallback.
   if grep -q "kali" /etc/apt/sources.list 2>/dev/null; then
     # shellcheck disable=SC2086
-    sudo apt-get install -y $pkgs
+    run sudo apt-get install -y $pkgs
   else
-    # Filter to only packages available in standard Debian/Ubuntu
     # shellcheck disable=SC2086
-    sudo apt-get install -y --fix-missing $pkgs || true
+    run sudo apt-get install -y --fix-missing $pkgs || true
   fi
 
-  # Install pwndbg (GDB enhancement for exploit development)
+  # pwndbg (GDB enhancement for exploit development)
   local pwndbg_dir="$HOME/.local/share/pwndbg"
   if [[ ! -d "$pwndbg_dir" ]]; then
-    git clone https://github.com/pwndbg/pwndbg "$pwndbg_dir" --depth=1
-    (cd "$pwndbg_dir" && ./setup.sh)
+    if [[ "$DRY_RUN" == "1" ]]; then
+      _info "[dry-run] would clone + setup pwndbg → $pwndbg_dir"
+    else
+      git clone https://github.com/pwndbg/pwndbg "$pwndbg_dir" --depth=1
+      (cd "$pwndbg_dir" && ./setup.sh)
+    fi
   fi
 }
 
 main() {
   install_base
-  [[ "$SECURITY" == "1" ]] && install_security
+  if [[ "$SECURITY" == "1" ]]; then install_security; fi
 }
 
 main "$@"
