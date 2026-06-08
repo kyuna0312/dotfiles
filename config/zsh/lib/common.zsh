@@ -353,7 +353,8 @@ if command -v sheldon >/dev/null 2>&1; then
   eval "$(sheldon source)"
 fi
 
-if (( ${+functions[autosuggest-execute]} )); then
+# autosuggest-* are ZLE widgets (created by `zle -N` at plugin load), not functions.
+if (( ${+widgets[autosuggest-execute]} )); then
   bindkey '^w' autosuggest-execute
   bindkey '^e' autosuggest-accept
   bindkey '^u' autosuggest-toggle
