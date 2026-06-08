@@ -12,7 +12,7 @@ source "${REPO_ROOT}/lib/link.sh"
 # Config dirs handled specially (per-OS filename), excluded from the generic loop.
 CONFIG_SKIP_ALWAYS=( ghostty )
 # Linux-only window-manager configs, skipped on macOS.
-CONFIG_SKIP_MACOS=( hypr waybar )
+CONFIG_SKIP_MACOS=( waybar )
 
 # ── Distro detection ──────────────────────────────────────────────────────────
 detect_distro() {
@@ -77,8 +77,7 @@ link_config() {
   fi
 
   # Compat symlinks for tools that also read $HOME paths.
-  link_if_exists "$HOME/.config/tmux/tmux.conf"      "$HOME/.tmux.conf"
-  link_if_exists "$HOME/.config/wezterm/wezterm.lua" "$HOME/.wezterm.lua"
+  link_if_exists "$HOME/.config/tmux/tmux.conf" "$HOME/.tmux.conf"
 }
 
 setup_tmux_tpm() {
