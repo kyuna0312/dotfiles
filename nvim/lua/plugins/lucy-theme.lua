@@ -16,8 +16,7 @@ return {
       integrations = {
         cmp = true,
         gitsigns = true,
-        nvimtree = true,
-        telescope = { enabled = true },
+        neo_tree = true,
         treesitter = true,
         which_key = true,
         mini = { enabled = true },
@@ -154,9 +153,9 @@ return {
           "",
         },
         center = {
-          { icon = "  ", icon_hl = "DashboardIcon", key = "f", desc = "Find file",    action = "Telescope find_files" },
-          { icon = "  ", icon_hl = "DashboardIcon", key = "r", desc = "Recent files", action = "Telescope oldfiles" },
-          { icon = "  ", icon_hl = "DashboardIcon", key = "g", desc = "Live grep",    action = "Telescope live_grep" },
+          { icon = "  ", icon_hl = "DashboardIcon", key = "f", desc = "Find file",    action = "FzfLua files" },
+          { icon = "  ", icon_hl = "DashboardIcon", key = "r", desc = "Recent files", action = "FzfLua oldfiles" },
+          { icon = "  ", icon_hl = "DashboardIcon", key = "g", desc = "Live grep",    action = "FzfLua live_grep" },
           { icon = "  ", icon_hl = "DashboardIcon", key = "d", desc = "Dotfiles",     action = "e ~/dotfiles" },
           { icon = "󰒲  ", icon_hl = "DashboardIcon", key = "l", desc = "Lazy",         action = "Lazy" },
           { icon = "  ", icon_hl = "DashboardIcon", key = "q", desc = "Quit",          action = "qa" },

@@ -1,4 +1,43 @@
 {
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "atuin hook claude-code"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "atuin hook claude-code"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "atuin hook claude-code"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/kyuna/.claude/statusline-command.sh"
+  },
   "enabledPlugins": {
     "agent-sdk-dev@claude-plugins-official": true,
     "ai-plugins@claude-plugins-official": true,
@@ -86,58 +125,24 @@
   "extraKnownMarketplaces": {
     "caveman": {
       "source": {
-        "repo": "JuliusBrussee/caveman",
-        "source": "github"
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
       }
     },
     "find-cve-agent": {
       "source": {
-        "path": "/home/kyuna/Desktop/find-cve-agent",
-        "source": "directory"
+        "source": "directory",
+        "path": "/home/kyuna/Desktop/find-cve-agent"
       }
     },
     "karpathy-skills": {
       "source": {
-        "repo": "forrestchang/andrej-karpathy-skills",
-        "source": "github"
+        "source": "github",
+        "repo": "forrestchang/andrej-karpathy-skills"
       }
     }
   },
-  "hooks": {
-    "PostToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "atuin hook claude-code",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ],
-    "PostToolUseFailure": [
-      {
-        "hooks": [
-          {
-            "command": "atuin hook claude-code",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ],
-    "PreToolUse": [
-      {
-        "hooks": [
-          {
-            "command": "atuin hook claude-code",
-            "type": "command"
-          }
-        ],
-        "matcher": "Bash"
-      }
-    ]
-  },
+  "theme": "dark",
   "mcpServers": {
     "serena": {
       "args": [
@@ -153,8 +158,6 @@
       "command": "/home/kyuna/.local/bin/serena"
     }
   },
-  "statusLine": {
-    "command": "bash /home/kyuna/.claude/statusline-command.sh",
-    "type": "command"
-  }
+  "skipWorkflowUsageWarning": true,
+  "includeCoAuthoredBy": false
 }
