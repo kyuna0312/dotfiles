@@ -23,6 +23,9 @@ Neovim · Zsh · Tmux · Starship
 
 <sub>Lucy greeting · `lucy` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
 
+**[✦ H4CK3R // LUCY — the rig page ✦](https://claude.ai/code/artifact/3ae67697-c775-4b3d-9beb-fd885a15a4e0)**  
+<sub>palette tokens · coverage across all 10 tools · keymap</sub>
+
 </div>
 
 ---
