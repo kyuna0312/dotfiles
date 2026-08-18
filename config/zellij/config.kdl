@@ -1,0 +1,26 @@
+// Zellij — H4CK3R // LUCY (Cyberpunk: Edgerunners, Lucy Kushinada)
+// Same night-city palette as tmux/ghostty/kitty/wezterm/starship/nvim.
+
+theme "lucy"
+
+themes {
+    lucy {
+        fg "#c4d0e0"
+        bg "#0a0a1a"
+        black "#0d0d1a"
+        red "#ff2a7a"
+        green "#00ff41"
+        yellow "#ffa600"
+        blue "#45c2f0"
+        magenta "#b967ff"
+        cyan "#00e5ff"
+        white "#c4d0e0"
+        orange "#ffc266"
+    }
+}
+
+// Behavior consistent with the tmux setup
+mouse_mode true
+copy_on_select true
+pane_frames true
+default_layout "compact"
