@@ -8,3 +8,4 @@ docs/
 config/sheldon/plugins.lock
 CLAUDE.md
 config/git/ignore
+config/zsh/.zcompdump*
