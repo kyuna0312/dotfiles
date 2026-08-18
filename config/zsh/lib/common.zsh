@@ -174,8 +174,9 @@ if command -v bat >/dev/null 2>&1; then
     export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/config/bat/config"
   fi
   alias cat='bat --paging=never --style=plain'
-  # Static theme — avoids forking `bat --list-themes` on every shell start.
-  export BAT_THEME="${BAT_THEME:-Catppuccin Mocha}"   # closest available; swap to custom theme if installed
+  # Custom H4CK3R//LUCY theme — config/bat/themes/lucy.tmTheme
+  # (needs `bat cache --build` once after linking).
+  export BAT_THEME="${BAT_THEME:-lucy}"
 fi
 
 alias la='eza -a --icons --git 2>/dev/null || ls -A'
