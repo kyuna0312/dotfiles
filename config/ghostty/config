@@ -1,0 +1,50 @@
+# Ghostty — H4CK3R // LUCY (Cyberpunk: Edgerunners, Lucy Kushinada)
+# Structure after craftzdog/dotfiles ghostty config, re-themed for Night City.
+
+# ---- Lucy palette ----
+# Deep night-city navy ground, silver-blue fg, neon cyan cursor,
+# magenta/violet/matrix-green accents matching tmux + zsh + fzf theming.
+background = #0a0a1a
+foreground = #c4d0e0
+
+cursor-color = #00e5ff
+cursor-text = #0a0a1a
+
+selection-background = #2a2444
+selection-foreground = #f0e6ff
+
+# normal
+palette = 0=#0d0d1a
+palette = 1=#ff2a7a
+palette = 2=#00ff41
+palette = 3=#ffa600
+palette = 4=#45c2f0
+palette = 5=#b967ff
+palette = 6=#00e5ff
+palette = 7=#c4d0e0
+
+# bright
+palette = 8=#5a6a7a
+palette = 9=#ff6bba
+palette = 10=#7dff9e
+palette = 11=#ffc266
+palette = 12=#7dd3ff
+palette = 13=#d0a5ff
+palette = 14=#67e8f9
+palette = 15=#f0e6ff
+
+# ---- Window ----
+background-opacity = 0.9
+background-blur-radius = 20
+
+# ---- Font ----
+font-family = "Hack Nerd Font"
+
+# ---- Cursor ----
+cursor-style = block
+cursor-style-blink = true
+
+# ---- macOS keys ----
+macos-option-as-alt = left
+keybind = alt+left=unbind
+keybind = alt+right=unbind
