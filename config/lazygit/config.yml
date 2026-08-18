@@ -1,0 +1,33 @@
+# lazygit — H4CK3R // LUCY (Cyberpunk: Edgerunners, Lucy Kushinada)
+# Same night-city palette as the rest of the stack.
+gui:
+  nerdFontsVersion: "3"
+  theme:
+    activeBorderColor:
+      - "#00e5ff"
+      - bold
+    inactiveBorderColor:
+      - "#5a6a7a"
+    searchingActiveBorderColor:
+      - "#ff2a7a"
+      - bold
+    optionsTextColor:
+      - "#45c2f0"
+    selectedLineBgColor:
+      - "#2a2444"
+    inactiveViewSelectedLineBgColor:
+      - "#1a1a2e"
+    cherryPickedCommitFgColor:
+      - "#0a0a1a"
+    cherryPickedCommitBgColor:
+      - "#b967ff"
+    markedBaseCommitFgColor:
+      - "#0a0a1a"
+    markedBaseCommitBgColor:
+      - "#ffa600"
+    unstagedChangesColor:
+      - "#ff2a7a"
+    defaultFgColor:
+      - "#c4d0e0"
+  authorColors:
+    "*": "#b967ff"
