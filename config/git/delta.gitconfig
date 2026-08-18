@@ -4,15 +4,28 @@
 [interactive]
     diffFilter = delta --color-only
 
+# H4CK3R // LUCY — same night-city palette as the rest of the stack.
+# syntax-theme "lucy" comes from config/bat/themes/lucy.tmTheme via bat's
+# theme cache (`bat cache --build` once after linking).
 [delta]
     navigate = true
     line-numbers = true
     side-by-side = true
-    syntax-theme = Catppuccin-mocha
-    plus-style = syntax "#9dffcc"
-    minus-style = syntax "#ff4d8d"
-    hunk-header-style = file line-number syntax "#c8a5ff"
+    syntax-theme = lucy
+    plus-style = syntax "#0f2617"
+    plus-emph-style = syntax "#1c4526"
+    minus-style = syntax "#2a0f1d"
+    minus-emph-style = syntax "#4d1c33"
+    hunk-header-style = file line-number syntax
+    hunk-header-decoration-style = "#b967ff" box
     file-style = bold "#00e5ff"
+    file-decoration-style = "#45c2f0" ul
+    line-numbers-plus-style = "#00ff41"
+    line-numbers-minus-style = "#ff2a7a"
+    line-numbers-zero-style = "#5a6a7a"
+    line-numbers-left-style = "#5a6a7a"
+    line-numbers-right-style = "#5a6a7a"
+    blame-palette = "#0a0a1a #0d0d1a #1a1a2e #2a2444"
 
 [merge]
     conflictstyle = diff3
