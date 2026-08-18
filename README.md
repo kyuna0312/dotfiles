@@ -4,8 +4,8 @@
 
 # ✦ Lucy Edgerunner+ Dotfiles
 
-**Cyberpunk Edgerunners-themed development environment**  
-Neovim · Zsh · Tmux · Starship
+**Cyberpunk Edgerunners-themed development environment — one palette, ten tools**  
+Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · Sketchybar · AeroSpace · Zellij
 
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=ff6bba&labelColor=0a0a14)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-00e5ff?labelColor=0a0a14)](install.sh)
@@ -22,9 +22,6 @@ Neovim · Zsh · Tmux · Starship
 <img src="assets/preview.png" width="820" alt="Lucy Edgerunner+ terminal — Starship prompt, Zsh, neon palette" />
 
 <sub>Lucy greeting · `lucy` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
-
-**[✦ H4CK3R // LUCY — the rig page ✦](https://claude.ai/code/artifact/3ae67697-c775-4b3d-9beb-fd885a15a4e0)**  
-<sub>palette tokens · coverage across all 10 tools · keymap</sub>
 
 </div>
 
@@ -57,11 +54,17 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | Component | Config path | Description |
 |-----------|-------------|-------------|
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; Lucy greeting, fzf, zoxide, lazy NVM |
-| **Starship** | `config/starship/starship.toml` | `λ` prompt, Lucy Edgerunner+ palette, OS badge, git status |
-| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Personal Neovim config (git submodule) |
-| **Tmux** | `config/tmux/tmux.conf` | TPM, vim pane nav, sakura/cyan status bar, session restore |
+| **Starship** | `config/starship/starship.toml` | `λ` prompt, Lucy ribbon on stack tokens, OS badge, git status |
+| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | tokyonight-moon re-grounded on the Lucy palette (git submodule) |
+| **Tmux** | `config/tmux/tmux.conf` | Magenta window tabs, undercurl passthrough, [NyanVim session manager](https://github.com/kyuna0312/nyan_tmux_session_manager) popups |
+| **Ghostty** | `config/ghostty/config` | Full 16-color Lucy palette, cyan cursor, 0.9 opacity + blur |
+| **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; magenta active tab bar |
+| **Kitty** | `config/kitty/kitty.conf` | Same palette; ready the day it's installed |
+| **Sketchybar** | `macos/sketchybar/` | Translucent navy bar, cyan calendar pill, magenta workspace highlight |
+| **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders cyan focus ring |
+| **Zellij** | `config/zellij/config.kdl` | Custom `lucy` theme |
+| **Nushell** | `config/nushell/` | Explicit-hex `lucy_theme` color_config |
 | **Git** | `config/git/delta.gitconfig` | Delta pager with Lucy syntax colors |
-| **Nushell** | `config/nushell/` | `λ` and `❮` prompt indicators, custom env |
 | **Atuin** | `config/atuin/config.toml` | Encrypted shell history sync |
 | **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
 
@@ -77,19 +80,36 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 ---
 
-## Color Palette — Lucy Edgerunner+
+## Color Palette — H4CK3R // LUCY
+
+One token set across every tool — terminal, editor, prompt, bar, window borders.
 
 | Name | Hex | Role |
 |------|-----|------|
-| **Void** | `#0a0a14` | background |
-| **Surface** | `#11111e` | panels, tmux bg |
-| **Sakura** | `#ff6bba` | primary accent, active borders |
-| **Neon Cyan** | `#00e5ff` | secondary accent, clock, links |
-| **Lavender** | `#c8a5ff` | git, builtins, audio |
-| **Mint** | `#9dffcc` | paths, CPU, success |
-| **Gold** | `#ffd97d` | time, memory, warnings |
-| **Rose** | `#ff4d8d` | errors, critical, temp high |
-| **Text** | `#f0e6ff` | foreground |
+| **Night Navy** | `#0a0a1a` | the ground everywhere — terminal, editor, bar |
+| **Surface** | `#0d0d1a` / `#1a1a2e` | panels, floats, inactive tabs |
+| **Magenta** | `#ff2a7a` | active only: current tab, selected row, keywords |
+| **Neon Cyan** | `#00e5ff` | where attention goes: cursor, focus ring, links |
+| **Lucy Blue** | `#45c2f0` | structure: pane borders, functions, flags |
+| **Violet** | `#b967ff` | secondary accent: picker frame, dates, numbers |
+| **Matrix** | `#00ff41` | one badge, one accent — never body text |
+| **Gold** | `#ffa600` | time, warnings, operators |
+| **Silver Blue** | `#c4d0e0` | running text on the navy ground |
+
+---
+
+## Keymap
+
+| Key | Action | Scope |
+|-----|--------|-------|
+| `C-a i` | NyanVim session for this directory | tmux |
+| `C-a u` | ⚡ NyanVim picker — jump / kill | tmux |
+| `C-a y` | Claude Code popup for this directory | tmux |
+| `C-a g` | lazygit popup | tmux |
+| `C-a F` | Open this directory in Finder | tmux |
+| `C-S-←/→` | Reorder windows | tmux |
+| `alt-hjkl` | Focus window left/down/up/right | AeroSpace |
+| `alt-1…4` | Jump to workspace | AeroSpace |
 
 ---
 
@@ -190,6 +210,10 @@ dotfiles/
 │   ├── starship/starship.toml
 │   ├── nvim/               # NyanVim (git submodule)
 │   ├── tmux/tmux.conf
+│   ├── ghostty/config
+│   ├── kitty/kitty.conf
+│   ├── wezterm/wezterm.lua
+│   ├── zellij/config.kdl
 │   ├── git/delta.gitconfig
 │   ├── bat/config
 │   ├── nushell/
@@ -202,7 +226,7 @@ dotfiles/
 │   ├── arch-base.txt
 │   ├── arch-security.txt
 │   └── ...
-├── macos/                  # special link target (~/)
+├── macos/                  # aerospace, sketchybar, skhd, karabiner, hammerspoon
 ├── scripts/
 │   └── apply-theme.sh      # hot-reload all running apps
 └── assets/                 # README images (preview.png, logo.png)
