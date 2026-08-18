@@ -182,6 +182,7 @@ alias la='eza -a --icons --git 2>/dev/null || ls -A'
 alias ll='eza -l --icons --git 2>/dev/null || ls -lh'
 
 # ---------- Git (developer-focused) ----------
+alias g='git'
 alias gst='git status -sb'
 if command -v delta >/dev/null 2>&1 && [[ -n "${CYBERPUNK_DOTFILES_DIR:-}" && -f "${CYBERPUNK_DOTFILES_DIR}/config/git/delta.gitconfig" ]]; then
   alias glog="git -c include.path=${CYBERPUNK_DOTFILES_DIR}/config/git/delta.gitconfig log --graph --topo-order --decorate --pretty='%C(auto)%h %d %s'"
@@ -327,6 +328,10 @@ fv() {
   picked="$(fd -t f --hidden --exclude '.git' --exclude 'node_modules' . "$root" | fzf)" || return
   ${EDITOR:-vi} "$picked"
 }
+
+# ---------- Editor / AI CLI shortcuts ----------
+command -v nvim >/dev/null 2>&1 && alias vim='nvim'
+command -v claude >/dev/null 2>&1 && alias c='claude'
 
 # ---------- Quick quality-of-life helpers ----------
 mkcd() {
