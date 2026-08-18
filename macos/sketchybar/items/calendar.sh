@@ -10,6 +10,6 @@ sketchybar --add item     calendar right               \
                           label.color=$BLACK           \
                           label.padding_left=5         \
                           label.padding_right=5        \
-                          background.color=0xffb8c0e0  \
+                          background.color=$CYAN       \
                           background.height=26         \
                           background.corner_radius=11
