@@ -3,7 +3,7 @@
 # version = "0.95.0"
 
 def create_left_prompt [] {
-    let dir = match (do --ignore-shell-errors { $env.PWD | path relative-to $nu.home-path }) {
+    let dir = match (do --ignore-errors { $env.PWD | path relative-to $nu.home-path }) {
         null => $env.PWD
         '' => '~'
         $relative_pwd => ([~ $relative_pwd] | path join)
@@ -97,16 +97,16 @@ use std "path add"
 # path add ($env.CARGO_HOME | path join "bin")
 # $env.PATH = ($env.PATH | uniq)
 
-if (path exists /opt/homebrew/bin) {
+if ("/opt/homebrew/bin" | path exists) {
     path add /opt/homebrew/bin
 }
 
-if (path exists /run/current-system/sw/bin) {
+if ("/run/current-system/sw/bin" | path exists) {
     path add /run/current-system/sw/bin
 }
 
 let local_bin = ($env.HOME | path join ".local" "bin")
-if (path exists $local_bin) {
+if ($local_bin | path exists) {
     path add $local_bin
 }
 
@@ -115,13 +115,13 @@ if (path exists $local_bin) {
 
 let starship_cache_dir = ($env.HOME | path join ".cache" "starship")
 let starship_cache_file = ($starship_cache_dir | path join "init.nu")
-if (not ($starship_cache_file | path exists)) {
+if (which starship | is-not-empty) and (not ($starship_cache_file | path exists)) {
     mkdir $starship_cache_dir
     starship init nu | save -f $starship_cache_file
 }
 
 let zoxide_cache_file = ($env.HOME | path join ".zoxide.nu")
-if (not ($zoxide_cache_file | path exists)) {
+if (which zoxide | is-not-empty) and (not ($zoxide_cache_file | path exists)) {
     zoxide init nushell | save -f $zoxide_cache_file
 }
 
@@ -131,9 +131,20 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 
 let carapace_cache_dir = ($env.HOME | path join ".cache" "carapace")
 let carapace_cache_file = ($carapace_cache_dir | path join "init.nu")
-if (not ($carapace_cache_file | path exists)) {
+if (which carapace | is-not-empty) and (not ($carapace_cache_file | path exists)) {
     mkdir $carapace_cache_dir
     carapace _carapace nushell | save --force $carapace_cache_file
+}
+
+# config.nu sources these at parse time; leave empty stubs for any tool that
+# isn't installed so a missing binary never breaks startup (real init replaces
+# the stub on the first launch after the tool is installed).
+for f in [~/.zoxide.nu ~/.cache/carapace/init.nu ~/.local/share/atuin/init.nu ~/.cache/starship/init.nu] {
+    let f = ($f | path expand)
+    if not ($f | path exists) {
+        mkdir ($f | path dirname)
+        "" | save $f
+    }
 }
 
 
