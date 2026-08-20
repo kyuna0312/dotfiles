@@ -23,7 +23,7 @@ fi
 
 source "${__dp_repo}/config/zsh/lib/common.zsh"
 
-. "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
+command -v atuin >/dev/null && eval "$(atuin init zsh)"
 
 return 0
