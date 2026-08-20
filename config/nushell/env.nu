@@ -113,16 +113,28 @@ if ($local_bin | path exists) {
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
+# True when an init cache is missing or is still an empty stub, so installing
+# a tool later regenerates the real init on the next launch.
+def cache-stale [f: string] {
+    (not ($f | path exists)) or ((open --raw $f | str trim) == "")
+}
+
 let starship_cache_dir = ($env.HOME | path join ".cache" "starship")
 let starship_cache_file = ($starship_cache_dir | path join "init.nu")
-if (which starship | is-not-empty) and (not ($starship_cache_file | path exists)) {
+if (which starship | is-not-empty) and (cache-stale $starship_cache_file) {
     mkdir $starship_cache_dir
     starship init nu | save -f $starship_cache_file
 }
 
 let zoxide_cache_file = ($env.HOME | path join ".zoxide.nu")
-if (which zoxide | is-not-empty) and (not ($zoxide_cache_file | path exists)) {
+if (which zoxide | is-not-empty) and (cache-stale $zoxide_cache_file) {
     zoxide init nushell | save -f $zoxide_cache_file
+}
+
+let atuin_cache_file = ($env.HOME | path join ".local" "share" "atuin" "init.nu")
+if (which atuin | is-not-empty) and (cache-stale $atuin_cache_file) {
+    mkdir ($atuin_cache_file | path dirname)
+    atuin init nu | save -f $atuin_cache_file
 }
 
 $env.STARSHIP_CONFIG = ($env.HOME | path join ".config" "starship" "starship.toml")
@@ -131,7 +143,7 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 
 let carapace_cache_dir = ($env.HOME | path join ".cache" "carapace")
 let carapace_cache_file = ($carapace_cache_dir | path join "init.nu")
-if (which carapace | is-not-empty) and (not ($carapace_cache_file | path exists)) {
+if (which carapace | is-not-empty) and (cache-stale $carapace_cache_file) {
     mkdir $carapace_cache_dir
     carapace _carapace nushell | save --force $carapace_cache_file
 }
