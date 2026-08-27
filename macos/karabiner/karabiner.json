@@ -116,9 +116,19 @@
                             "to": [{ "key_code": "left_control" }]
                         }
                     ]
+                },
+                {
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 817,
+                        "vendor_id": 13364
+                    },
+                    "ignore": false,
+                    "treat_as_built_in_keyboard": true
                 }
             ],
-            "name": "Default profile",
+            "name": "ARASAKA",
             "selected": true,
             "simple_modifications": [
                 {
