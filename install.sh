@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — Lucy Edgerunner+ dotfiles bootstrap (config-mirror layout)
+# install.sh — ARASAKA // CyberMac dotfiles bootstrap (config-mirror layout)
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,7 +7,7 @@ source "${REPO_ROOT}/lib/link.sh"
 
 usage() {
   cat <<'EOF'
-install.sh — Lucy Edgerunner+ dotfiles bootstrap
+install.sh — ARASAKA // CyberMac dotfiles bootstrap
 
 Usage:
   bash install.sh [options]
@@ -110,11 +110,12 @@ link_extras() {
 
   if [[ "$uname_s" == Darwin* ]]; then
     _info "Linking macOS-specific configs..."
-    link_if_exists "${REPO_ROOT}/macos/aerospace/aerospace.toml" "$HOME/.config/aerospace/aerospace.toml"
+    [[ -d "${REPO_ROOT}/macos/aerospace"   ]] && link_force "${REPO_ROOT}/macos/aerospace"   "$HOME/.config/aerospace"
     [[ -d "${REPO_ROOT}/macos/hammerspoon" ]] && link_force "${REPO_ROOT}/macos/hammerspoon" "$HOME/.hammerspoon"
     [[ -d "${REPO_ROOT}/macos/sketchybar"  ]] && link_force "${REPO_ROOT}/macos/sketchybar"  "$HOME/.config/sketchybar"
     [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
     [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
+    [[ -d "${REPO_ROOT}/macos/alfred"      ]] && link_force "${REPO_ROOT}/macos/alfred"      "$HOME/.config/alfred"
   fi
 }
 
@@ -136,7 +137,7 @@ main() {
 
   local distro; distro="$(detect_distro)"
 
-  printf "${_C_PINK}\n  ✦  Lucy Edgerunner+ Dotfiles${_C_RST}\n"
+  printf "${_C_PINK}\n  ✦  ARASAKA // CyberMac Dotfiles${_C_RST}\n"
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   _info "Distro: ${distro}"
 
