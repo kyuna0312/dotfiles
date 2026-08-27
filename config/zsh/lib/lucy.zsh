@@ -3,12 +3,12 @@
 # Sourced last in common.zsh (after zsh-syntax-highlighting).
 
 # ── Palette (ANSI 256 ≈ Lucy Edgerunner+ hex) ────────────────────────────────
-_L_PINK='\033[38;5;212m'    # #ff6bba sakura
-_L_CYAN='\033[38;5;51m'     # #00e5ff neon cyan
-_L_LAV='\033[38;5;183m'     # #c8a5ff lavender
-_L_MINT='\033[38;5;158m'    # #9dffcc mint
-_L_GOLD='\033[38;5;221m'    # #ffd97d gold
-_L_ROSE='\033[38;5;204m'    # #ff4d8d rose
+_L_PINK='\033[38;5;197m'    # #ff6bba sakura
+_L_CYAN='\033[38;5;50m'     # #00e5ff neon cyan
+_L_LAV='\033[38;5;200m'     # #c8a5ff lavender
+_L_MINT='\033[38;5;84m'    # #9dffcc mint
+_L_GOLD='\033[38;5;220m'    # #ffd97d gold
+_L_ROSE='\033[38;5;197m'    # #ff4d8d rose
 _L_DIM='\033[38;5;239m'     # muted surface
 _L_BOLD='\033[1m'
 _L_RST='\033[0m'

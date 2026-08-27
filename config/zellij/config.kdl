@@ -5,17 +5,17 @@ theme "lucy"
 
 themes {
     lucy {
-        fg "#c4d0e0"
-        bg "#0a0a1a"
-        black "#0d0d1a"
-        red "#ff2a7a"
-        green "#00ff41"
-        yellow "#ffa600"
-        blue "#45c2f0"
-        magenta "#b967ff"
-        cyan "#00e5ff"
-        white "#c4d0e0"
-        orange "#ffc266"
+        fg "#ff4d5e"
+        bg "#080002"
+        black "#0e0304"
+        red "#ff1e3c"
+        green "#39ff88"
+        yellow "#fce300"
+        blue "#00b4ff"
+        magenta "#ff29d4"
+        cyan "#00ffc8"
+        white "#ff4d5e"
+        orange "#ffe66b"
     }
 }
 

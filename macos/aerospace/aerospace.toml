@@ -1,8 +1,8 @@
-# Lucy window glow: neon cyan focus ring, night-city surface when inactive
+# CyberArch 2077 glow: neon red gradient focus ring (from CyberArch-Dotfiles theme.lua)
 # (needs JankyBorders: brew install FelixKratz/formulae/borders)
 after-startup-command = [
   'exec-and-forget sketchybar',
-  'exec-and-forget borders active_color=0xff00e5ff inactive_color=0xff1a1a2e width=5.0'
+  'exec-and-forget borders active_color=gradient(top_left=0xffff1e3c,bottom_right=0xffff6b7d) inactive_color=0x443a0f16 width=5.0'
 ]
 
 # Notify Sketchybar about workspace change
@@ -103,11 +103,12 @@ preset = 'qwerty'
 #                 In this example, 24 is a default value when there is no match.
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+# CyberArch: gaps_in=12, gaps_out=24 (right stays 80 for the vertical sketchybar)
 [gaps]
-inner.horizontal = 20
-inner.vertical =   20
-outer.left =       20
-outer.bottom =     20
+inner.horizontal = 12
+inner.vertical =   12
+outer.left =       24
+outer.bottom =     24
 outer.top =        10
 outer.right =      80
 
@@ -141,45 +142,62 @@ outer.right =      80
 # end tell'
 # '''
 
-alt-ctrl-shift-f = 'fullscreen'
-alt-ctrl-f = 'layout floating tiling'
-
-alt-shift-left = 'join-with left'
-alt-shift-down = 'join-with down'
-alt-shift-up = 'join-with up'
-alt-shift-right = 'join-with right'
+# CyberArch: SUPER+SHIFT+F fullscreen, SUPER+F float toggle, SUPER+Q close (SUPER→alt)
+alt-shift-f = 'fullscreen'
+alt-f = 'layout floating tiling'
+alt-q = 'close'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#focus
+# CyberArch: SUPER+arrows focus, SUPER+SHIFT+arrows move (hjkl kept)
 alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
+alt-left = 'focus left'
+alt-down = 'focus down'
+alt-up = 'focus up'
+alt-right = 'focus right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
+alt-shift-left = 'move left'
+alt-shift-down = 'move down'
+alt-shift-up = 'move up'
+alt-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
 alt-shift-minus = 'resize smart -50'
 alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+# CyberArch: workspaces 1-9
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
 alt-4 = 'workspace 4'
+alt-5 = 'workspace 5'
+alt-6 = 'workspace 6'
+alt-7 = 'workspace 7'
+alt-8 = 'workspace 8'
+alt-9 = 'workspace 9'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
 alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
 alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
+alt-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
+alt-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
+alt-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
+alt-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
+alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
 
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
@@ -193,7 +211,6 @@ alt-a = 'exec-and-forget open -a /Applications/Arc.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-g = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-s = 'exec-and-forget open -a /Applications/Safari.app'
-alt-q = 'exec-and-forget open -a /System/Applications/QuickTime Player.app'
 alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 
 
@@ -204,6 +221,11 @@ esc = ['reload-config', 'mode main']
 r = ['flatten-workspace-tree', 'mode main'] # reset layout
 f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
 backspace = ['close-all-windows-but-current', 'mode main']
+# join-with moved here (alt-shift-arrows now move windows, CyberArch style)
+left = ['join-with left', 'mode main']
+down = ['join-with down', 'mode main']
+up = ['join-with up', 'mode main']
+right = ['join-with right', 'mode main']
 
 [mode.apps.binding]
 alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']

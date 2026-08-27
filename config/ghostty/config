@@ -1,47 +1,48 @@
-# Ghostty — H4CK3R // LUCY (Cyberpunk: Edgerunners, Lucy Kushinada)
-# Structure after craftzdog/dotfiles ghostty config, re-themed for Night City.
+# Ghostty — ARASAKA UI (CyberArch-Dotfiles, Cyberpunk 2077)
+# Red-dominant surface (#ff1e3c) with cyan/yellow/magenta/green neon pops.
 
-# ---- Lucy palette ----
-# Deep night-city navy ground, silver-blue fg, neon cyan cursor,
-# magenta/violet/matrix-green accents matching tmux + zsh + fzf theming.
-background = #0a0a1a
-foreground = #c4d0e0
+# ---- ARASAKA palette ----
+background = #080002
+foreground = #ff4d5e
 
-cursor-color = #00e5ff
-cursor-text = #0a0a1a
+cursor-color = #ff1e3c
+cursor-text = #080002
 
-selection-background = #2a2444
-selection-foreground = #f0e6ff
+selection-background = #ff1e3c
+selection-foreground = #080002
 
 # normal
-palette = 0=#0d0d1a
-palette = 1=#ff2a7a
-palette = 2=#00ff41
-palette = 3=#ffa600
-palette = 4=#45c2f0
-palette = 5=#b967ff
-palette = 6=#00e5ff
-palette = 7=#c4d0e0
+palette = 0=#0e0304
+palette = 1=#ff1e3c
+palette = 2=#39ff88
+palette = 3=#fce300
+palette = 4=#00b4ff
+palette = 5=#ff29d4
+palette = 6=#00ffc8
+palette = 7=#ff4d5e
 
 # bright
-palette = 8=#5a6a7a
-palette = 9=#ff6bba
-palette = 10=#7dff9e
-palette = 11=#ffc266
-palette = 12=#7dd3ff
-palette = 13=#d0a5ff
-palette = 14=#67e8f9
-palette = 15=#f0e6ff
+palette = 8=#5a1a24
+palette = 9=#ff6b7d
+palette = 10=#7dffb5
+palette = 11=#ffe66b
+palette = 12=#4dd2ff
+palette = 13=#ff7de8
+palette = 14=#5fffe0
+palette = 15=#ff8f9c
 
 # ---- Window ----
-background-opacity = 0.9
-background-blur-radius = 20
+background-opacity = 0.8
+background-blur-radius = 32
+window-padding-x = 16
+window-padding-y = 16
+window-padding-balance = true
 
 # ---- Font ----
 font-family = "Hack Nerd Font"
 
 # ---- Cursor ----
-cursor-style = block
+cursor-style = bar
 cursor-style-blink = true
 
 # ---- macOS keys ----

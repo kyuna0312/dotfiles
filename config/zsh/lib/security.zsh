@@ -2,12 +2,12 @@
 # Sourced only when security tools (nmap/burpsuite) are detected
 
 # ── Colors (Lucy Edgerunner+) ─────────────────────────────────────────────────
-_S_PINK='\033[38;5;212m'
-_S_CYAN='\033[38;5;51m'
-_S_LAV='\033[38;5;183m'
-_S_MINT='\033[38;5;158m'
-_S_GOLD='\033[38;5;221m'
-_S_ROSE='\033[38;5;204m'
+_S_PINK='\033[38;5;197m'
+_S_CYAN='\033[38;5;50m'
+_S_LAV='\033[38;5;200m'
+_S_MINT='\033[38;5;84m'
+_S_GOLD='\033[38;5;220m'
+_S_ROSE='\033[38;5;197m'
 _S_DIM='\033[38;5;239m'
 _S_BOLD='\033[1m'
 _S_RST='\033[0m'

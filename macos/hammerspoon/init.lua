@@ -7,6 +7,10 @@ end)
 
 
 -- hammerspoon can be your next app launcher!!!!
+-- ARASAKA launcher (CyberArch-Dotfiles style) — alt+space
+local launcher = require("arasaka_launcher")
+hs.hotkey.bind({"alt"}, "space", launcher.toggle)
+
 hs.hotkey.bind({"cmd", "alt"}, "A", function()
 	hs.application.launchOrFocus("Arc")
 	-- local arc = hs.appfinder.appFromName("Arc")

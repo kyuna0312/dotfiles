@@ -1,8 +1,8 @@
 add_newline = false
 command_timeout = 500
-palette = "lucy_edgerunner"
+palette = "arasaka"
 
-# Lucy Kushinada · Tide-style powerline prompt
+# ARASAKA UI · Tide-style powerline prompt
 # Line 1: ribbon[ os · dir · git ] ────── runtimes · duration · time
 # Line 2: λ input marker
 format = """
@@ -128,20 +128,21 @@ style = "gold"
 format = "[$time]($style)"
 time_format = "%H:%M"
 
-# ── Palette — Lucy Edgerunner+ ────────────────────────────────────────────────
+# ── Palette — ARASAKA UI ──────────────────────────────────────────────────────
 
-# Aligned with the H4CK3R//LUCY stack palette (tmux/ghostty/kitty/wezterm):
-# navy #0a0a1a ground, magenta #ff2a7a, violet #b967ff, cyan #00e5ff.
-[palettes.lucy_edgerunner]
-text     = "#f0e6ff"
-muted    = "#5a6a7a"
-sakura   = "#ff6bba"
-rose     = "#ff2a7a"
-lavender = "#b967ff"
-cyan     = "#00e5ff"
-mint     = "#7dff9e"
-gold     = "#ffa600"
-peach    = "#ffb3a0"
-base     = "#0a0a1a"
-surface  = "#1a1a2e"
-overlay  = "#2a2444"
+# Aligned with the ARASAKA stack palette (tmux/ghostty/kitty/wezterm/sketchybar):
+# black-red #080002 ground, red #ff1e3c, yellow #fce300, cyan #00ffc8.
+# Key names kept from the Lucy layout; values are ARASAKA now.
+[palettes.arasaka]
+text     = "#ff8f9c"
+muted    = "#c25c6e"
+sakura   = "#fce300"
+rose     = "#ff1e3c"
+lavender = "#ff1e3c"
+cyan     = "#00ffc8"
+mint     = "#7dffb5"
+gold     = "#fce300"
+peach    = "#ff6b7d"
+base     = "#080002"
+surface  = "#1a060a"
+overlay  = "#3a0f16"

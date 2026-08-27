@@ -1,0 +1,62 @@
+{
+  "alfredtheme": {
+    "name": "ARASAKA",
+    "credit": "CyberArch-Dotfiles (Cyberpunk 2077) — red-dominant neon, no white anywhere",
+    "window": {
+      "color": "#080002F2",
+      "blur": 25,
+      "roundness": 0,
+      "borderWidth": 2,
+      "borderColor": "#FF1E3CFF",
+      "borderPadding": 0,
+      "paddingHorizontal": 12,
+      "paddingVertical": 12,
+      "width": 620
+    },
+    "search": {
+      "background": "#1A060AFF",
+      "backgroundSelected": "#3A0F16FF",
+      "paddingVertical": 10,
+      "spacing": 12,
+      "text": {
+        "size": 30,
+        "font": "System",
+        "color": "#FF4D5EFF",
+        "colorSelected": "#FF8F9CFF"
+      }
+    },
+    "result": {
+      "backgroundSelected": "#FF1E3CFF",
+      "iconSize": 36,
+      "iconPaddingHorizontal": 8,
+      "paddingVertical": 8,
+      "textSpacing": 6,
+      "text": {
+        "size": 17,
+        "font": "System",
+        "color": "#FF4D5EFF",
+        "colorSelected": "#080002FF"
+      },
+      "subtext": {
+        "size": 11,
+        "font": "System Light",
+        "color": "#C25C6EFF",
+        "colorSelected": "#3A0F16FF"
+      },
+      "shortcut": {
+        "size": 15,
+        "font": "System",
+        "color": "#00FFC8FF",
+        "colorSelected": "#080002FF"
+      }
+    },
+    "separator": {
+      "color": "#3A0F16FF",
+      "thickness": 1
+    },
+    "scrollbar": {
+      "color": "#FF1E3CFF",
+      "thickness": 2
+    }
+  }
+}

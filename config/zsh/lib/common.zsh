@@ -160,7 +160,7 @@ alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
   # Lucy Edgerunner+: lavender dates, sakura user, mint sizes, gold units.
-  export EZA_COLORS="${EZA_COLORS:-da=38;5;183:uu=38;5;218:un=38;5;218:sn=38;5;158:sb=38;5;221:xa=38;5;223:gm=38;5;246}"
+  export EZA_COLORS="${EZA_COLORS:-da=38;5;200:uu=38;5;210:un=38;5;210:sn=38;5;84:sb=38;5;220:xa=38;5;217:gm=38;5;246}"
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
   alias ltree='eza --tree --level=2 --icons --git'
@@ -176,7 +176,7 @@ if command -v bat >/dev/null 2>&1; then
   alias cat='bat --paging=never --style=plain'
   # Custom H4CK3R//LUCY theme — config/bat/themes/lucy.tmTheme
   # (needs `bat cache --build` once after linking).
-  export BAT_THEME="${BAT_THEME:-lucy}"
+  export BAT_THEME="${BAT_THEME:-arasaka}"
 fi
 
 alias la='eza -a --icons --git 2>/dev/null || ls -A'
@@ -224,7 +224,7 @@ fi
 # ---------- Optional fzf defaults ----------
 if command -v fzf >/dev/null 2>&1; then
   # Lucy Edgerunner+ — sakura pink prompt, neon cyan highlights.
-  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#f0e6ff,bg:-1,hl:#00e5ff,fg+:#f0e6ff,bg+:-1,hl+:#67e8f9,info:#c4b0d8,prompt:#ff6bba,pointer:#ff6bba,marker:#ff4d8d,spinner:#00e5ff,header:#9dffcc,border:#c8a5ff}"
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#ff8f9c,bg:-1,hl:#00ffc8,fg+:#ff8f9c,bg+:-1,hl+:#5fffe0,info:#c25c6e,prompt:#ff6b7d,pointer:#ff6b7d,marker:#ff1e3c,spinner:#00ffc8,header:#7dffb5,border:#ff1e3c}"
   if command -v bat >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"
   fi
@@ -342,12 +342,12 @@ mkcd() {
 
 dp-tools() {
   # Lucy-styled CLI stack reference
-  printf "\n\033[38;5;212m\033[1m  ✦  netrunner CLI stack\033[0m\n"
+  printf "\n\033[38;5;197m\033[1m  ✦  netrunner CLI stack\033[0m\n"
   printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n"
-  printf "\033[38;5;51m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
-  printf "\033[38;5;183m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
-  printf "\033[38;5;158m     git     \033[0m lazygit git-delta\n"
-  printf "\033[38;5;221m     history \033[0m atuin\n"
+  printf "\033[38;5;50m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
+  printf "\033[38;5;200m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
+  printf "\033[38;5;84m     git     \033[0m lazygit git-delta\n"
+  printf "\033[38;5;220m     history \033[0m atuin\n"
   printf "\033[38;5;239m     install \033[0m sudo pacman -S --needed <packages>\033[0m\n"
   printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n\n"
 }

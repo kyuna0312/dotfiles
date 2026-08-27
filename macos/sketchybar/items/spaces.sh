@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 sketchybar --add event aerospace_workspace_change
-RED=0xffff2a7a
+RED=0xffff1e3c
 for sid in $(aerospace list-workspaces --all); do
     sketchybar --add item "space.$sid" left \
         --subscribe "space.$sid" aerospace_workspace_change \
@@ -11,14 +11,14 @@ for sid in $(aerospace list-workspaces --all); do
                               icon.padding_right=22                         \
                               label.padding_right=33                        \
                               icon.highlight_color=$RED                     \
-                              background.color=0x3300e5ff \
+                              background.color=0x33ff1e3c \
                               background.corner_radius=5 \
                               background.height=30 \
                               background.drawing=off                         \
                               label.font="sketchybar-app-font:Regular:16.0" \
                               label.background.height=30                    \
                               label.background.drawing=on                   \
-                              label.background.color=0xff1a1a2e             \
+                              label.background.color=0xff1a060a             \
                               label.background.corner_radius=9              \
                               label.drawing=off                             \
         click_script="aerospace workspace $sid" \
