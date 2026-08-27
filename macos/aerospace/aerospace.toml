@@ -199,6 +199,9 @@ alt-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
 alt-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
 alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
 
+# CyberArch: SUPER+SHIFT+Z toggle-hud → hide/show sketchybar
+alt-shift-z = 'exec-and-forget sketchybar --bar hidden=toggle'
+
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
