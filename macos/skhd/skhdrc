@@ -1,15 +1,9 @@
-# skhd — only bindings that aerospace does NOT already own.
-# App launches for s/t/o/g and window ops for q/f live in aerospace.toml;
-# binding them here too made two hotkey daemons fight over the same chord.
+# skhd — just the AppleScript popups. Window management and app launches
+# all live in aerospace.toml (binding them here too made two hotkey
+# daemons fight over the same chords).
 
 # Show date popup
 alt - d : osascript ~/.config/skhd/applescripts/pop.scpt
 
 # Close notifications
 ralt - n : osascript ~/.config/skhd/applescripts/notifications.scpt
-
-# Notion (left alt only — distinct from ralt-n above)
-lalt - n : open -a "Notion"
-
-# Min browser
-ralt - m : open -a "Min"
