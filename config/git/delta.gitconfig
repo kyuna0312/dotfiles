@@ -4,7 +4,7 @@
 [interactive]
     diffFilter = delta --color-only
 
-# BOX UK UI — same night-city palette as the rest of the stack.
+# BOX UK Contrast — same palette as the rest of the stack.
 # syntax-theme "boxuk" comes from config/bat/themes/boxuk.tmTheme via
 # bat's theme cache (`bat cache --build` once after linking).
 [delta]
@@ -12,20 +12,20 @@
     line-numbers = true
     side-by-side = true
     syntax-theme = boxuk
-    plus-style = syntax "#0f2617"
-    plus-emph-style = syntax "#1c4526"
-    minus-style = syntax "#2a0f1d"
-    minus-emph-style = syntax "#4d1c33"
+    plus-style = syntax "#12271f"
+    plus-emph-style = syntax "#1a3a2c"
+    minus-style = syntax "#2a1417"
+    minus-emph-style = syntax "#3d1f22"
     hunk-header-style = file line-number syntax
-    hunk-header-decoration-style = "#b967ff" box
-    file-style = bold "#00e5ff"
-    file-decoration-style = "#45c2f0" ul
-    line-numbers-plus-style = "#00ff41"
-    line-numbers-minus-style = "#ff2a7a"
-    line-numbers-zero-style = "#5a6a7a"
-    line-numbers-left-style = "#5a6a7a"
-    line-numbers-right-style = "#5a6a7a"
-    blame-palette = "#0a0a1a #0d0d1a #1a1a2e #2a2444"
+    hunk-header-decoration-style = "#b750ae" box
+    file-style = bold "#017c9d"
+    file-decoration-style = "#15b8ae" ul
+    line-numbers-plus-style = "#019d76"
+    line-numbers-minus-style = "#f77669"
+    line-numbers-zero-style = "#60778c"
+    line-numbers-left-style = "#60778c"
+    line-numbers-right-style = "#60778c"
+    blame-palette = "#161e22 #1b2228 #222c31 #2a3a40"
 
 [merge]
     conflictstyle = diff3

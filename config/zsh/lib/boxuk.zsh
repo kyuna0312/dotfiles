@@ -1,15 +1,15 @@
-# ── BOX UK · Cyberpunk 2077 zsh layer ─────────────────────────
+# ── BOX UK · zsh layer ─────────────────────────────────────────
 # Greeting, syntax highlight colors, themed helpers.
 # Sourced last in common.zsh (after zsh-syntax-highlighting).
 
 # ── Palette (ANSI 256 ≈ BOX UK hex) ────────────────────────────────
-_B_PINK='\033[38;5;197m'    # #ff6bba sakura
-_B_CYAN='\033[38;5;50m'     # #00e5ff neon cyan
-_B_LAV='\033[38;5;200m'     # #c8a5ff lavender
-_B_MINT='\033[38;5;84m'    # #9dffcc mint
-_B_GOLD='\033[38;5;220m'    # #ffd97d gold
-_B_ROSE='\033[38;5;197m'    # #ff4d8d rose
-_B_DIM='\033[38;5;239m'     # muted surface
+_B_PINK='\033[38;5;209m'    # #ff8a80 coral
+_B_CYAN='\033[38;5;37m'     # #15b8ae teal
+_B_LAV='\033[38;5;133m'     # #b750ae purple
+_B_MINT='\033[38;5;36m'     # #019d76 green
+_B_GOLD='\033[38;5;179m'    # #ffcb6e yellow
+_B_ROSE='\033[38;5;209m'    # #f77669 coral
+_B_DIM='\033[38;5;243m'     # muted surface
 _B_BOLD='\033[1m'
 _B_RST='\033[0m'
 
@@ -45,24 +45,26 @@ _dp_error() { printf "${_B_ROSE}[✗]${_B_RST} %s\n"    "$*" >&2; }
 
 # ── Zsh syntax highlighting colors ───────────────────────────────────────────
 if (( ${+ZSH_HIGHLIGHT_STYLES} )); then
-  ZSH_HIGHLIGHT_STYLES[command]='fg=212,bold'           # sakura   — commands
-  ZSH_HIGHLIGHT_STYLES[builtin]='fg=183,bold'           # lavender — builtins
-  ZSH_HIGHLIGHT_STYLES[alias]='fg=212'                  # sakura   — aliases
-  ZSH_HIGHLIGHT_STYLES[function]='fg=183'               # lavender — functions
-  ZSH_HIGHLIGHT_STYLES[path]='fg=158,underline'         # mint     — paths
-  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=221' # gold     — strings
-  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=221' # gold     — strings
-  ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=221' # gold
-  ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=158'   # mint
-  ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=51,bold'      # cyan     — if/for/do
-  ZSH_HIGHLIGHT_STYLES[globbing]='fg=51'                # cyan     — * ? **
-  ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=51'       # cyan     — !foo
-  ZSH_HIGHLIGHT_STYLES[redirection]='fg=204'            # rose     — > < >>
-  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=204'       # rose     — ; && ||
-  ZSH_HIGHLIGHT_STYLES[assign]='fg=183'                 # lavender — VAR=val
-  ZSH_HIGHLIGHT_STYLES[named-fd]='fg=51'
-  ZSH_HIGHLIGHT_STYLES[comment]='fg=239'                # dim      — # comments
-  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=204,bold'     # rose     — bad cmd
+  ZSH_HIGHLIGHT_STYLES[command]='fg=36,bold'            # green    — commands
+  ZSH_HIGHLIGHT_STYLES[builtin]='fg=31,bold'            # cyan     — builtins
+  ZSH_HIGHLIGHT_STYLES[alias]='fg=36'                   # green    — aliases
+  ZSH_HIGHLIGHT_STYLES[precommand]='fg=36'              # green    — sudo/env
+  ZSH_HIGHLIGHT_STYLES[function]='fg=31'                # cyan     — functions
+  ZSH_HIGHLIGHT_STYLES[path]='fg=110,underline'         # blue-grey — paths
+  ZSH_HIGHLIGHT_STYLES[path_prefix]='fg=110,underline'  # blue-grey — path prefix
+  ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=37'  # teal     — strings
+  ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=37'  # teal     — strings
+  ZSH_HIGHLIGHT_STYLES[dollar-quoted-argument]='fg=37'  # teal
+  ZSH_HIGHLIGHT_STYLES[back-quoted-argument]='fg=37'    # teal
+  ZSH_HIGHLIGHT_STYLES[reserved-word]='fg=37,bold'      # teal     — if/for/do
+  ZSH_HIGHLIGHT_STYLES[globbing]='fg=37'                # teal     — * ? **
+  ZSH_HIGHLIGHT_STYLES[history-expansion]='fg=37'       # teal     — !foo
+  ZSH_HIGHLIGHT_STYLES[redirection]='fg=209'            # coral    — > < >>
+  ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=209'       # coral    — ; && ||
+  ZSH_HIGHLIGHT_STYLES[assign]='fg=133'                 # purple   — VAR=val
+  ZSH_HIGHLIGHT_STYLES[named-fd]='fg=37'                # teal
+  ZSH_HIGHLIGHT_STYLES[comment]='fg=243'                # dim      — # comments
+  ZSH_HIGHLIGHT_STYLES[unknown-token]='fg=209,bold'     # coral    — bad cmd
 fi
 
 # ── Autosuggestion color ──────────────────────────────────────────────────────

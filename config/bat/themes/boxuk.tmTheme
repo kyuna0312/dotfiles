@@ -134,7 +134,7 @@
       <key>name</key><string>Diff deleted</string>
       <key>scope</key><string>markup.deleted, punctuation.definition.deleted</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#017c9d</string></dict>
+      <dict><key>foreground</key><string>#f77669</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Diff changed</string>
@@ -147,8 +147,8 @@
       <key>scope</key><string>invalid, invalid.illegal</string>
       <key>settings</key>
       <dict>
-        <key>foreground</key><string>#15b8ae</string>
-        <key>background</key><string>#017c9d</string>
+        <key>foreground</key><string>#161e22</string>
+        <key>background</key><string>#f77669</string>
       </dict>
     </dict>
   </array>

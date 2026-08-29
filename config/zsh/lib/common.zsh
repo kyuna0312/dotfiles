@@ -159,7 +159,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
-  # BOX UK: lavender dates, sakura user, mint sizes, gold units.
+  # BOX UK eza: purple dates, coral user, green sizes, yellow units.
   export EZA_COLORS="${EZA_COLORS:-da=38;5;200:uu=38;5;210:un=38;5;210:sn=38;5;84:sb=38;5;220:xa=38;5;217:gm=38;5;246}"
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
@@ -223,7 +223,7 @@ fi
 
 # ---------- Optional fzf defaults ----------
 if command -v fzf >/dev/null 2>&1; then
-  # BOX UK — sakura pink prompt, neon cyan highlights.
+  # BOX UK — teal prompt, cyan highlights.
   export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#b8c7cc,bg:-1,hl:#15b8ae,fg+:#b8c7cc,bg+:-1,hl+:#4fd8ce,info:#60778c,prompt:#017c9d,pointer:#017c9d,marker:#019d76,spinner:#15b8ae,header:#019d76,border:#017c9d}"
   if command -v bat >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"

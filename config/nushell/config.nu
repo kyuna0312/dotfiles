@@ -15,14 +15,14 @@ let boxuk_theme = {
     leading_trailing_space_bg: { attr: n }
     header: { fg: "#ffcb6e" attr: b }
     empty: "#017c9d"
-    bool: "#15b8ae"
+    bool: "#ffcb6e"
     int: "#15b8ae"
     filesize: "#15b8ae"
     duration: "#15b8ae"
     date: "#b750ae"
     range: "#15b8ae"
     float: "#15b8ae"
-    string: "#15b8ae"
+    string: "#019d76"
     nothing: "#15b8ae"
     binary: "#15b8ae"
     cell-path: "#15b8ae"

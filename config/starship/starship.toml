@@ -6,9 +6,9 @@ palette = "boxuk"
 # Line 1: ribbon[ os · dir · git ] ────── runtimes · duration · time
 # Line 2: λ input marker
 format = """
-[](fg:lavender)\
+[](fg:cyan)\
 $os\
-[](fg:lavender bg:surface)\
+[](fg:cyan bg:surface)\
 $directory\
 [](fg:surface bg:overlay)\
 $git_branch\
@@ -28,15 +28,15 @@ symbol = "·"
 style = "muted"
 
 [character]
-success_symbol = "[λ](bold sakura)"
-error_symbol   = "[λ](bold rose)"
-vicmd_symbol   = "[❮](bold cyan)"
+success_symbol = "[λ](bold green)"
+error_symbol   = "[λ](bold coral)"
+vicmd_symbol   = "[❮](bold teal)"
 
 # ── Left ribbon (background segments) ────────────────────────────────────────
 
 [os]
 disabled = false
-style = "fg:base bg:lavender"
+style = "fg:base bg:cyan"
 format = "[ $symbol]($style)"
 
 [os.symbols]
@@ -52,7 +52,7 @@ format = "[ $path ]($style)"
 truncation_length = 4
 truncate_to_repo = true
 read_only = " 󰌾"
-read_only_style = "fg:rose bg:surface"
+read_only_style = "fg:cyan bg:surface"
 
 [directory.substitutions]
 # Full-path forms (used outside a git repo) and the repo-root basenames
@@ -88,35 +88,35 @@ deleted    = "✗${count}"
 
 [nodejs]
 symbol = " "
-style = "mint"
+style = "green"
 format = "[$symbol$version]($style) "
 detect_extensions = ["js", "mjs", "cjs", "ts", "tsx", "json"]
 detect_files = ["package.json", ".node-version", ".nvmrc"]
 
 [python]
 symbol = " "
-style = "gold"
+style = "yellow"
 format = "[$symbol$version]($style) "
 detect_extensions = ["py"]
 detect_files = ["requirements.txt", "pyproject.toml", "setup.py", ".python-version"]
 
 [golang]
 symbol = " "
-style = "cyan"
+style = "teal"
 format = "[$symbol$version]($style) "
 detect_extensions = ["go"]
 detect_files = ["go.mod", "go.sum"]
 
 [rust]
 symbol = "󱘗 "
-style = "rose"
+style = "coral"
 format = "[$symbol$version]($style) "
 detect_extensions = ["rs"]
 detect_files = ["Cargo.toml"]
 
 [docker_context]
 symbol = " "
-style = "cyan"
+style = "teal"
 format = "[$symbol$context]($style) "
 only_with_files = true
 detect_files = ["Dockerfile", "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml"]
@@ -129,7 +129,7 @@ format = "[⧖ $duration]($style) "
 
 [time]
 disabled = false
-style = "gold"
+style = "yellow"
 format = "[$time]($style)"
 time_format = "%H:%M"
 
@@ -139,15 +139,14 @@ time_format = "%H:%M"
 # deep blue-grey #161e22 ground, cyan #017c9d, yellow #ffcb6e, teal #15b8ae.
 # Palette values are the BOX UK Contrast (rainglow) set.
 [palettes.boxuk]
-text     = "#b8c7cc"
+cyan     = "#017c9d"
+teal     = "#15b8ae"
+green    = "#019d76"
+yellow   = "#ffcb6e"
+coral    = "#f77669"
+purple   = "#b750ae"
 muted    = "#60778c"
-sakura   = "#ffcb6e"
-rose     = "#017c9d"
-lavender = "#017c9d"
-cyan     = "#15b8ae"
-mint     = "#019d76"
-gold     = "#ffcb6e"
-peach    = "#15b8ae"
+text     = "#b8c7cc"
 base     = "#161e22"
 surface  = "#1b2228"
 overlay  = "#222c31"

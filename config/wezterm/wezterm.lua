@@ -77,11 +77,11 @@ config.colors = {
 	},
 	brights = {
 		"#303b47",
-		"#ff5370",
+		"#ff8a80", -- bright red (lighter coral)
 		"#15b8ae",
 		"#ffd68a",
 		"#2f9dc0",
-		"#ff5370",
+		"#c77dbf", -- bright magenta (lighter purple)
 		"#4fd8ce",
 		"#e6e6e6",
 	},
