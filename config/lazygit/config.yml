@@ -1,5 +1,13 @@
-# lazygit — H4CK3R // LUCY (Cyberpunk: Edgerunners, Lucy Kushinada)
+# lazygit — ARASAKA UI (Cyberpunk 2077)
 # Same night-city palette as the rest of the stack.
+
+# Route diffs through delta so they match the arasaka theme used everywhere
+# else (git delta.gitconfig, bat). --paging=never lets lazygit own scrolling.
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+
 gui:
   nerdFontsVersion: "3"
   theme:
