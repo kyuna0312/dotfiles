@@ -224,8 +224,56 @@ down = ['join-with down', 'mode main']
 up = ['join-with up', 'mode main']
 right = ['join-with right', 'mode main']
 
+# 'apps' launcher mode. Enter with alt-shift-enter, then press one key to
+# open an app (and drop back to main). esc leaves without launching.
+# Every installed app on this Mac is reachable here, so the main-mode
+# alt-<letter> binds stay free for window management.
 [mode.apps.binding]
-alt-w = ['exec-and-forget open -a /Applications/WezTerm.app', 'mode main']
+esc = 'mode main'
+
+# --- Browsers ---
+b = ['exec-and-forget open -a "Brave Browser"', 'mode main']
+f = ['exec-and-forget open -a "Firefox"', 'mode main']
+s = ['exec-and-forget open -a "Safari"', 'mode main']
+z = ['exec-and-forget open -a "Zen"', 'mode main']
+
+# --- Terminals ---
+g = ['exec-and-forget open -a "Ghostty"', 'mode main']
+w = ['exec-and-forget open -a "WezTerm"', 'mode main']
+shift-w = ['exec-and-forget open -a "Warp"', 'mode main']
+
+# --- Editors / dev ---
+c = ['exec-and-forget open -a "Cursor"', 'mode main']
+v = ['exec-and-forget open -a "Visual Studio Code"', 'mode main']
+x = ['exec-and-forget open -a "Xcode"', 'mode main']
+d = ['exec-and-forget open -a "Docker"', 'mode main']
+shift-d = ['exec-and-forget open -a "DBeaver"', 'mode main']
+p = ['exec-and-forget open -a "Postman"', 'mode main']
+shift-f = ['exec-and-forget open -a "FileZilla"', 'mode main']
+
+# --- AI ---
+a = ['exec-and-forget open -a "Claude"', 'mode main']
+shift-a = ['exec-and-forget open -a "ChatGPT"', 'mode main']
+
+# --- Notes ---
+o = ['exec-and-forget open -a "Obsidian"', 'mode main']
+
+# --- Chat / social ---
+t = ['exec-and-forget open -a "Telegram"', 'mode main']
+shift-t = ['exec-and-forget open -a "TeamViewer"', 'mode main']
+i = ['exec-and-forget open -a "Discord"', 'mode main']   # dIscord (d is Docker)
+l = ['exec-and-forget open -a "LINE"', 'mode main']
+shift-v = ['exec-and-forget open -a "Viber"', 'mode main']
+
+# --- Media / misc ---
+m = ['exec-and-forget open -a "Spotify"', 'mode main']    # Music
+shift-s = ['exec-and-forget open -a "Steam"', 'mode main']
+shift-b = ['exec-and-forget open -a "Blender"', 'mode main']
+shift-u = ['exec-and-forget open -a "Audacity"', 'mode main']  # aUdacity
+
+# --- Security ---
+shift-p = ['exec-and-forget open -a "Burp Suite"', 'mode main']  # Pentest
+h = ['exec-and-forget open -a "Hydra"', 'mode main']
 
 # [workspace-to-monitor-force-assignment]
 #     1 = '^dell$'
