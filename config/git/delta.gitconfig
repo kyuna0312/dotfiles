@@ -5,13 +5,13 @@
     diffFilter = delta --color-only
 
 # BOX UK UI — same night-city palette as the rest of the stack.
-# syntax-theme "arasaka" comes from config/bat/themes/arasaka.tmTheme via
+# syntax-theme "boxuk" comes from config/bat/themes/boxuk.tmTheme via
 # bat's theme cache (`bat cache --build` once after linking).
 [delta]
     navigate = true
     line-numbers = true
     side-by-side = true
-    syntax-theme = arasaka
+    syntax-theme = boxuk
     plus-style = syntax "#0f2617"
     plus-emph-style = syntax "#1c4526"
     minus-style = syntax "#2a0f1d"

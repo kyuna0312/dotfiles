@@ -174,9 +174,9 @@ if command -v bat >/dev/null 2>&1; then
     export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/config/bat/config"
   fi
   alias cat='bat --paging=never --style=plain'
-  # Custom BOX UK theme — config/bat/themes/arasaka.tmTheme
+  # Custom BOX UK theme — config/bat/themes/boxuk.tmTheme
   # (needs `bat cache --build` once after linking).
-  export BAT_THEME="${BAT_THEME:-arasaka}"
+  export BAT_THEME="${BAT_THEME:-boxuk}"
 fi
 
 alias la='eza -a --icons --git 2>/dev/null || ls -A'
