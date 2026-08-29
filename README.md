@@ -86,9 +86,11 @@ One token set across every tool — terminal, editor, prompt, bar, window border
 Based on **[Box UK Contrast](https://github.com/kyuna0312/boxuk-contrast)**
 (rainglow, Material-Ocean family) — a calm deep blue-grey + teal palette that's
 easy on the eyes. Ported from the [vonqo](https://github.com/vonqo/vonqo)
-IntelliJ theme; the standalone palette (with drop-in themes for kitty, Ghostty,
-WezTerm, Alacritty and CSS) lives at
-[kyuna0312/boxuk-contrast](https://github.com/kyuna0312/boxuk-contrast).
+IntelliJ theme. The standalone [kyuna0312/boxuk-contrast](https://github.com/kyuna0312/boxuk-contrast)
+repo carries the whole design kit: drop-in themes (kitty, Ghostty, WezTerm,
+Alacritty, CSS), a matching [desktop wallpaper](https://github.com/kyuna0312/boxuk-contrast/tree/main/wallpapers),
+and a [teal folder icon](https://github.com/kyuna0312/boxuk-contrast/tree/main/extras)
+with an apply script.
 
 | Name | Hex | Role |
 |------|-----|------|
