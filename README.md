@@ -278,6 +278,16 @@ dotfiles/
 
 ---
 
+## Related projects
+
+Split out of this repo so they're reusable on their own:
+
+- **[boxuk-contrast](https://github.com/kyuna0312/boxuk-contrast)** — the Box UK Contrast palette as a portable design kit: drop-in themes (kitty, Ghostty, WezTerm, Alacritty, CSS), a matching desktop wallpaper, and a teal folder icon.
+- **[aeroline](https://github.com/kyuna0312/aeroline)** — the vertical Übersicht + AeroSpace status bar (right-edge workspaces + clock), one-block themeable.
+- **[NyanVim](https://github.com/kyuna0312/NyanVim)** — the Neovim distribution linked in as `config/nvim` (git submodule).
+
+---
+
 ## Prerequisites
 
 - `git`, `zsh`, `curl`
@@ -288,6 +298,6 @@ dotfiles/
 <div align="center">
 
 **BOX UK — Netrunner Online**  
-<sub>built with ✦ and neon red</sub>
+<sub>built with ✦ and calm teal</sub>
 
 </div>
