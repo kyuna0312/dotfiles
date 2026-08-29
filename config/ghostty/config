@@ -33,7 +33,7 @@ palette = 15=#ff8f9c
 
 # ---- Window ----
 background-opacity = 0.8
-background-blur-radius = 32
+background-blur = 32
 window-padding-x = 16
 window-padding-y = 16
 window-padding-balance = true
