@@ -117,10 +117,10 @@ link_extras() {
     [[ -d "${REPO_ROOT}/macos/alfred"      ]] && link_force "${REPO_ROOT}/macos/alfred"      "$HOME/.config/alfred"
 
     # Übersicht widgets live under Application Support, not ~/.config
-    if [[ -d "${REPO_ROOT}/macos/ubersicht/arasaka-bar.widget" ]]; then
+    if [[ -d "${REPO_ROOT}/macos/ubersicht/boxuk-bar.widget" ]]; then
       local uber_dir="$HOME/Library/Application Support/Übersicht/widgets"
       mkdir -p "$uber_dir"
-      link_force "${REPO_ROOT}/macos/ubersicht/arasaka-bar.widget" "$uber_dir/arasaka-bar.widget"
+      link_force "${REPO_ROOT}/macos/ubersicht/boxuk-bar.widget" "$uber_dir/boxuk-bar.widget"
     fi
   fi
 }

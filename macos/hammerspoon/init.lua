@@ -5,7 +5,7 @@ hs.hotkey.bind({"cmd", "alt"}, "C", function()
 end)
 
 -- BOX UK app launcher (fuzzy chooser over all apps) — alt+space
-local launcher = require("arasaka_launcher")
+local launcher = require("boxuk_launcher")
 hs.hotkey.bind({"alt"}, "space", launcher.toggle)
 
 -- Reload this config
