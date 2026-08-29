@@ -192,7 +192,7 @@ alt-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
 alt-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
 alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
 
-# CyberArch: SUPER+SHIFT+Z toggle-hud → hide/show sketchybar + collapse right gap
+# SUPER+SHIFT+Z toggle-hud → hide/show the Aeroline bar + collapse right gap
 alt-shift-z = 'exec-and-forget ~/.config/aerospace/toggle-hud.sh'
 
 alt-tab = 'workspace-back-and-forth'
