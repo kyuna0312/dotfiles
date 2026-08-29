@@ -72,10 +72,6 @@ if.app-name-regex-substring = 'elgato'
 run = 'layout floating'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'dicord'
-run = 'layout floating'
-
-[[on-window-detected]]
 if.app-name-regex-substring = 'mail'
 run = 'layout floating'
 
@@ -214,7 +210,6 @@ alt-a = 'exec-and-forget open -a /Applications/Arc.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
 alt-g = 'exec-and-forget open -a /Applications/WezTerm.app'
 alt-s = 'exec-and-forget open -a /Applications/Safari.app'
-alt-w = 'exec-and-forget open -a /Applications/WezTerm.app'
 
 
 # 'service' binding mode declaration.
