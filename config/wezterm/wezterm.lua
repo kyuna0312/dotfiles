@@ -22,6 +22,34 @@ config.default_cursor_style = "BlinkingBlock"
 config.send_composed_key_when_left_alt_is_pressed = false
 config.send_composed_key_when_right_alt_is_pressed = true
 
+-- ---- Keybindings (mirror the Ghostty/kitty cmd-based scheme) ----
+-- SUPER = cmd on macOS. Splits/tabs/font-size on the same chords as kitty.
+local act = wezterm.action
+config.keys = {
+	-- Tabs
+	{ key = "t", mods = "SUPER", action = act.SpawnTab("CurrentPaneDomain") },
+	{ key = "w", mods = "SUPER", action = act.CloseCurrentTab({ confirm = false }) },
+	{ key = "LeftArrow", mods = "SUPER|SHIFT", action = act.ActivateTabRelative(-1) },
+	{ key = "RightArrow", mods = "SUPER|SHIFT", action = act.ActivateTabRelative(1) },
+
+	-- Splits
+	{ key = "d", mods = "SUPER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
+	{ key = "d", mods = "SUPER|SHIFT", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
+	{ key = "LeftArrow", mods = "SUPER|ALT", action = act.ActivatePaneDirection("Left") },
+	{ key = "RightArrow", mods = "SUPER|ALT", action = act.ActivatePaneDirection("Right") },
+	{ key = "UpArrow", mods = "SUPER|ALT", action = act.ActivatePaneDirection("Up") },
+	{ key = "DownArrow", mods = "SUPER|ALT", action = act.ActivatePaneDirection("Down") },
+
+	-- Font size
+	{ key = "=", mods = "SUPER", action = act.IncreaseFontSize },
+	{ key = "-", mods = "SUPER", action = act.DecreaseFontSize },
+	{ key = "0", mods = "SUPER", action = act.ResetFontSize },
+
+	-- Window / misc
+	{ key = "Enter", mods = "SUPER", action = act.ToggleFullScreen },
+	{ key = "r", mods = "SUPER|SHIFT", action = act.ReloadConfiguration },
+}
+
 -- ---- ARASAKA palette ----
 config.colors = {
 	foreground = "#ff4d5e",
