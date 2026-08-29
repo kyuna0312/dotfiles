@@ -19,9 +19,9 @@ Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace ·
 
 <div align="center">
 
-<img src="assets/preview.png" width="820" alt="BOX UK terminal — Starship prompt, Zsh, teal palette" />
+<img src="assets/preview.png" width="820" alt="BOX UK desktop — Neovim in tmux, teal palette, Aeroline bar on the right" />
 
-<sub>BOX UK greeting · `boxuk` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
+<sub>Neovim + tmux in the teal Box UK palette · Aeroline vertical bar (right edge) with AeroSpace workspaces + clock · Starship `λ` prompt with git status</sub>
 
 </div>
 
