@@ -83,9 +83,12 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 ## Color Palette — BOX UK
 
 One token set across every tool — terminal, editor, prompt, bar, window borders.
-Based on **Box UK Contrast** (rainglow, Material-Ocean family) — a calm deep
-blue-grey + teal palette that's easy on the eyes. Ported from the
-[vonqo](https://github.com/vonqo/vonqo) IntelliJ theme.
+Based on **[Box UK Contrast](https://github.com/kyuna0312/boxuk-contrast)**
+(rainglow, Material-Ocean family) — a calm deep blue-grey + teal palette that's
+easy on the eyes. Ported from the [vonqo](https://github.com/vonqo/vonqo)
+IntelliJ theme; the standalone palette (with drop-in themes for kitty, Ghostty,
+WezTerm, Alacritty and CSS) lives at
+[kyuna0312/boxuk-contrast](https://github.com/kyuna0312/boxuk-contrast).
 
 | Name | Hex | Role |
 |------|-----|------|
