@@ -7,10 +7,10 @@ TOML="$HOME/.config/aerospace/aerospace.toml"
 
 if pgrep -f "Übersicht.app/Contents/MacOS" >/dev/null; then
   osascript -e 'quit app "Übersicht"' 2>/dev/null
-  sed -i '' 's/^outer.right =[ ]*80/outer.right =      24/' "$TOML"
+  sed -i '' 's/^outer.right =[ ]*64/outer.right =      24/' "$TOML"
 else
   open -a "Übersicht"
-  sed -i '' 's/^outer.right =[ ]*24/outer.right =      80/' "$TOML"
+  sed -i '' 's/^outer.right =[ ]*24/outer.right =      64/' "$TOML"
 fi
 
 aerospace reload-config

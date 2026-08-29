@@ -37,7 +37,7 @@ const C = {
 export const className = `
   top: 0;
   right: 0;
-  width: 62px;
+  width: 46px;
   height: 100%;
   box-sizing: border-box;
   background: ${C.panel};
@@ -75,20 +75,14 @@ export const className = `
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
     z-index: 1;
   }
-  .brand .mark {
-    color: ${C.red};
-    font-size: 22px;
-    font-weight: bold;
-    text-shadow: 0 0 12px ${C.redDim};
-  }
   .brand .tag {
-    font-size: 8px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: ${C.ice};
+    letter-spacing: 3px;
+    color: ${C.red};
+    text-shadow: 0 0 12px ${C.redDim};
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
@@ -103,9 +97,9 @@ export const className = `
   }
   .ws {
     position: relative;
-    width: 34px;
-    height: 32px;
-    line-height: 32px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
     font-size: 13px;
     font-weight: 700;
@@ -138,7 +132,7 @@ export const className = `
     z-index: 1;
     padding: 8px 0 2px 0;
     border-top: 1px solid ${C.redLine};
-    width: 44px;
+    width: 40px;
   }
   .clock .wday {
     font-size: 8px;
@@ -176,8 +170,7 @@ export const render = ({ output }) => {
   return (
     <div>
       <div className="brand">
-        <div className="mark">⌁</div>
-        <div className="tag">ARASAKA</div>
+        <div className="tag">KYUNA</div>
       </div>
 
       <div className="spaces">
