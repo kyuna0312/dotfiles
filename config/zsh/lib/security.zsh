@@ -1,14 +1,14 @@
-# security.zsh — BOX UK · netrunner security toolkit
+# security.zsh — BOX UK security toolkit
 # Sourced only when security tools (nmap/burpsuite) are detected
 
 # ── Colors (BOX UK) ─────────────────────────────────────────────────
-_S_PINK='\033[38;5;197m'
-_S_CYAN='\033[38;5;50m'
-_S_LAV='\033[38;5;200m'
-_S_MINT='\033[38;5;84m'
-_S_GOLD='\033[38;5;220m'
-_S_ROSE='\033[38;5;197m'
-_S_DIM='\033[38;5;239m'
+_S_PINK='\033[38;5;209m'
+_S_CYAN='\033[38;5;31m'
+_S_LAV='\033[38;5;133m'
+_S_MINT='\033[38;5;36m'
+_S_GOLD='\033[38;5;179m'
+_S_ROSE='\033[38;5;209m'
+_S_DIM='\033[38;5;243m'
 _S_BOLD='\033[1m'
 _S_RST='\033[0m'
 
@@ -43,7 +43,7 @@ rot13()         { echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'; }
 
 # ── sectools: BOX UK reference card ─────────────────────────────────────
 sectools() {
-  printf "\n${_S_PINK}${_S_BOLD}  ✦  BOX UK · netrunner toolkit${_S_RST}\n"
+  printf "\n${_S_PINK}${_S_BOLD}  ✦  BOX UK · security toolkit${_S_RST}\n"
   printf "${_S_DIM}     ──────────────────────────────────────${_S_RST}\n"
   printf "${_S_CYAN}     network   ${_S_RST}nmap, nse, nnmap, sniff, sniffport\n"
   printf "${_S_MINT}     recon     ${_S_RST}listen, myip, masscan\n"

@@ -1,4 +1,4 @@
-# Cyberpunk dotfiles (BOX UK) - OS-split zsh entrypoint
+# BOX UK dotfiles - OS-split zsh entrypoint
 #
 # This file intentionally short-circuits after sourcing the modular configs.
 __dp_entry="${${(%):-%N}:A}"

@@ -1,4 +1,4 @@
-# macOS-specific cyberpunk zsh layer
+# macOS-specific BOX UK zsh layer
 
 export CYBERPUNK_OS="macos"
 

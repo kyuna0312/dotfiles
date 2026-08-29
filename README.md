@@ -177,7 +177,7 @@ Sourced last, after syntax highlighting. Provides:
 | `ghost` | Browse history with fzf and re-run |
 | `ports` | Open listening ports (`ss -tulnp`) |
 
-> `dp-tools` (alias `netrunner-tools`) prints the CLI stack reference card — defined in `config/zsh/lib/common.zsh`.
+> `dp-tools` (alias `boxuk-tools`) prints the CLI stack reference card — defined in `config/zsh/lib/common.zsh`.
 
 ### Security Layer (`config/zsh/lib/security.zsh`)
 

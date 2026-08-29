@@ -26,9 +26,9 @@ _boxuk_greet() {
   _dir="$(pwd | sed "s|$HOME|~|")"
 
   printf "\n"
-  printf "${_B_PINK}${_B_BOLD}  ✦  N E T R U N N E R  O N L I N E${_B_RST}\n"
+  printf "${_B_PINK}${_B_BOLD}  ✦  B O X   U K   O N L I N E${_B_RST}\n"
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
-  printf "${_B_CYAN}     operator  netrunner\n"
+  printf "${_B_CYAN}     operator  kyuna\n"
   printf "${_B_LAV}     system    ${_B_RST}${_sys}\n"
   printf "${_B_MINT}     shell     ${_B_RST}${_shell}\n"
   printf "${_B_GOLD}     uptime    ${_B_RST}${_up}\n"
@@ -126,7 +126,7 @@ boxuk() {
     _branch="$(git branch --show-current 2>/dev/null)"
   fi
 
-  printf "\n${_B_PINK}${_B_BOLD}  ✦  BOX UK · netrunner id${_B_RST}\n"
+  printf "\n${_B_PINK}${_B_BOLD}  ✦  BOX UK · system id${_B_RST}\n"
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
   printf "${_B_CYAN}     host      ${_B_RST}$(hostname)\n"
   printf "${_B_LAV}     os        ${_B_RST}${_os}\n"

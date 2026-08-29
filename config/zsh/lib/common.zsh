@@ -1,4 +1,4 @@
-# Cyberpunk (BOX UK) zsh layer - common utilities
+# BOX UK zsh layer - common utilities
 # Style goals:
 # - Minimal and readable by default
 # - Soft visual polish without noisy output
@@ -160,7 +160,7 @@ alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
   # BOX UK eza: purple dates, coral user, green sizes, yellow units.
-  export EZA_COLORS="${EZA_COLORS:-da=38;5;200:uu=38;5;210:un=38;5;210:sn=38;5;84:sb=38;5;220:xa=38;5;217:gm=38;5;246}"
+  export EZA_COLORS="${EZA_COLORS:-da=38;5;133:uu=38;5;210:un=38;5;210:sn=38;5;36:sb=38;5;179:xa=38;5;217:gm=38;5;246}"
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
   alias ltree='eza --tree --level=2 --icons --git'
@@ -342,16 +342,17 @@ mkcd() {
 
 dp-tools() {
   # BOX UK-styled CLI stack reference
-  printf "\n\033[38;5;197m\033[1m  ✦  netrunner CLI stack\033[0m\n"
-  printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n"
-  printf "\033[38;5;50m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
-  printf "\033[38;5;200m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
-  printf "\033[38;5;84m     git     \033[0m lazygit git-delta\n"
-  printf "\033[38;5;220m     history \033[0m atuin\n"
-  printf "\033[38;5;239m     install \033[0m sudo pacman -S --needed <packages>\033[0m\n"
-  printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n\n"
+  printf "\n\033[38;5;209m\033[1m  ✦  BOX UK CLI stack\033[0m\n"
+  printf "\033[38;5;243m     ──────────────────────────────────\033[0m\n"
+  printf "\033[38;5;31m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
+  printf "\033[38;5;133m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
+  printf "\033[38;5;36m     git     \033[0m lazygit git-delta\n"
+  printf "\033[38;5;179m     history \033[0m atuin\n"
+  printf "\033[38;5;243m     install \033[0m sudo pacman -S --needed <packages>\033[0m\n"
+  printf "\033[38;5;243m     ──────────────────────────────────\033[0m\n\n"
 }
-alias netrunner-tools='dp-tools'
+alias boxuk-tools='dp-tools'
+alias netrunner-tools='dp-tools'   # back-compat
 
 # ---------- Plugins (Sheldon) ----------
 # Loads zsh-autosuggestions then zsh-syntax-highlighting (last).

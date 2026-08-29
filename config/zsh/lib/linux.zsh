@@ -1,4 +1,4 @@
-# Linux-specific cyberpunk zsh layer
+# Linux-specific BOX UK zsh layer
 
 export CYBERPUNK_OS="linux"
 
