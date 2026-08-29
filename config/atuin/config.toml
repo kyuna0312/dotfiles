@@ -1,9 +1,9 @@
+# atuin — shell history. Search UI stays compact; Enter runs the picked
+# command (Tab drops it back to the prompt to edit).
 style = "compact"
 enter_accept = true
+show_preview = true
 
-[stats]
-
-[keys]
-
+# Sync v2 record store. Inert until `atuin login`, then it takes effect.
 [sync]
 records = true
