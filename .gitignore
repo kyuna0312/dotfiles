@@ -7,7 +7,6 @@ history.txt
 docs/
 config/sheldon/plugins.lock
 CLAUDE.md
-config/git/ignore
 config/zsh/.zcompdump*
 config/tmux/plugins/
 macos/karabiner/automatic_backups/

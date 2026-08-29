@@ -1,0 +1,21 @@
+# Global gitignore — git reads this natively from ~/.config/git/ignore.
+# Only OS/editor/tooling noise that should NEVER be committed to any repo.
+# Project-specific ignores belong in each repo's own .gitignore.
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Editor / IDE swap & workspace files
+*.swp
+*.swo
+*~
+.idea/
+*.sublime-workspace
+
+# Tooling / local secrets
+**/.claude/settings.local.json
+.direnv/
