@@ -116,6 +116,13 @@ link_extras() {
     [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
     [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
     [[ -d "${REPO_ROOT}/macos/alfred"      ]] && link_force "${REPO_ROOT}/macos/alfred"      "$HOME/.config/alfred"
+
+    # Übersicht widgets live under Application Support, not ~/.config
+    if [[ -d "${REPO_ROOT}/macos/ubersicht/arasaka-bar.widget" ]]; then
+      local uber_dir="$HOME/Library/Application Support/Übersicht/widgets"
+      mkdir -p "$uber_dir"
+      link_force "${REPO_ROOT}/macos/ubersicht/arasaka-bar.widget" "$uber_dir/arasaka-bar.widget"
+    fi
   fi
 }
 

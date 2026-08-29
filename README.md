@@ -5,7 +5,7 @@
 # ✦ ARASAKA Dotfiles
 
 **Cyberpunk 2077-themed development environment — one palette, ten tools**  
-Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · Sketchybar · AeroSpace · Zellij
+Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace · Übersicht · Zellij
 
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=ff1e3c&labelColor=080002)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-00ffc8?labelColor=080002)](install.sh)
@@ -60,7 +60,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **Ghostty** | `config/ghostty/config` | Full 16-color ARASAKA palette, red cursor, 0.8 opacity + blur |
 | **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |
 | **Kitty** | `config/kitty/kitty.conf` | Same palette + cmd-based keybindings mirroring Ghostty |
-| **Sketchybar** | `macos/sketchybar/` | Translucent black-red bar, cyan calendar pill, red workspace highlight |
+| **Übersicht** | `macos/ubersicht/` | Right-edge vertical ARASAKA bar — AeroSpace workspaces + clock (sketchybar is horizontal-only) |
 | **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders red focus ring |
 | **Zellij** | `config/zellij/config.kdl` | Custom `arasaka` theme |
 | **Nushell** | `config/nushell/` | Explicit-hex `arasaka_theme` color_config |
@@ -76,7 +76,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 |----|----------------|-------|
 | **Arch / Manjaro** | pacman + paru (AUR) | Full support |
 | **Debian / Ubuntu** | apt | `bat`→`batcat`, `fd`→`fdfind` aliased automatically |
-| **macOS** | Homebrew | Aerospace, Sketchybar, Hammerspoon, Karabiner |
+| **macOS** | Homebrew | Aerospace, Übersicht, Hammerspoon, Karabiner |
 
 ---
 
@@ -122,7 +122,7 @@ tmux prefix is **`C-Space`** (`C-b` unbound). Press the prefix, then the key.
 | `alt-f` / `alt-q` | Toggle float-tiling / close window | AeroSpace |
 | `alt-s/t/o/g` | Quick-launch Safari / Telegram / Obsidian / WezTerm | AeroSpace |
 | `alt-shift-enter` | Enter the app launcher (`apps` mode) | AeroSpace |
-| `alt-shift-z` | Toggle sketchybar HUD | AeroSpace |
+| `alt-shift-z` | Toggle the Übersicht bar (HUD) | AeroSpace |
 
 ---
 
@@ -262,7 +262,7 @@ dotfiles/
 │   ├── arch-base.txt
 │   ├── arch-security.txt
 │   └── ...
-├── macos/                  # aerospace, sketchybar, skhd, karabiner, hammerspoon
+├── macos/                  # aerospace, ubersicht, skhd, karabiner, hammerspoon
 ├── scripts/
 │   └── apply-theme.sh      # hot-reload running apps
 └── assets/                 # README images (preview.png, logo.png)

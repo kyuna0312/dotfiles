@@ -1,13 +1,10 @@
-# CyberArch 2077 glow: neon red gradient focus ring (from CyberArch-Dotfiles theme.lua)
-# (needs JankyBorders: brew install FelixKratz/formulae/borders)
+# ARASAKA glow: neon red gradient focus ring (JankyBorders).
+# The right-edge status bar is an Übersicht widget (macos/ubersicht/
+# arasaka-bar.widget), which self-refreshes — no workspace-change hook
+# needed. sketchybar is horizontal-only, so it can't do the vertical bar.
 after-startup-command = [
-  'exec-and-forget sketchybar',
+  'exec-and-forget open -a Übersicht',
   'exec-and-forget borders active_color=gradient(top_left=0xffff1e3c,bottom_right=0xffff6b7d) inactive_color=0x443a0f16 width=5.0'
-]
-
-# Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-  'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
 ]
 
 # Start AeroSpace at login
@@ -99,7 +96,7 @@ preset = 'qwerty'
 #                 In this example, 24 is a default value when there is no match.
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-# CyberArch: gaps_in=12, gaps_out=24 (right stays 80 for the vertical sketchybar)
+# gaps_in=12, gaps_out=24 (right stays 80 for the vertical Übersicht bar)
 [gaps]
 inner.horizontal = 12
 inner.vertical =   12
