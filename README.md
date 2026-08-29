@@ -116,8 +116,38 @@ tmux prefix is **`C-Space`** (`C-b` unbound). Press the prefix, then the key.
 | `prefix c` | New window in cwd | tmux |
 | `C-S-←/→` | Reorder windows | tmux |
 | `alt-hjkl` | Focus window left/down/up/right | AeroSpace |
+| `alt-shift-hjkl` | Move window left/down/up/right | AeroSpace |
 | `alt-1…9` | Jump to workspace | AeroSpace |
-| `alt-s/t/o/g` | Launch Safari / Telegram / Obsidian / WezTerm | AeroSpace |
+| `alt-shift-1…9` | Move window to workspace | AeroSpace |
+| `alt-f` / `alt-q` | Toggle float-tiling / close window | AeroSpace |
+| `alt-s/t/o/g` | Quick-launch Safari / Telegram / Obsidian / WezTerm | AeroSpace |
+| `alt-shift-enter` | Enter the app launcher (`apps` mode) | AeroSpace |
+| `alt-shift-z` | Toggle sketchybar HUD | AeroSpace |
+
+---
+
+## App Launcher
+
+Press **`alt-shift-enter`** to enter `apps` mode, then one key to open an app
+(it drops back to the main mode afterwards). **`esc`** leaves without launching.
+A `shift-` variant is the second app sharing a letter.
+
+| Key | App | | Key | App |
+|-----|-----|-|-----|-----|
+| `b` | Brave Browser | | `a` | Claude |
+| `f` | Firefox | | `shift-a` | ChatGPT |
+| `s` | Safari | | `o` | Obsidian |
+| `z` | Zen | | `t` | Telegram |
+| `g` | Ghostty | | `shift-t` | TeamViewer |
+| `w` | WezTerm | | `i` | Discord |
+| `shift-w` | Warp | | `l` | LINE |
+| `c` | Cursor | | `shift-v` | Viber |
+| `v` | Visual Studio Code | | `m` | Spotify |
+| `x` | Xcode | | `shift-s` | Steam |
+| `d` | Docker | | `shift-b` | Blender |
+| `shift-d` | DBeaver | | `shift-u` | Audacity |
+| `p` | Postman | | `shift-p` | Burp Suite |
+| `shift-f` | FileZilla | | `h` | Hydra |
 
 ---
 
