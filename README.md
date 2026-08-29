@@ -83,13 +83,14 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 ## Color Palette — BOX UK
 
 One token set across every tool — terminal, editor, prompt, bar, window borders.
-Based on **[Box UK Contrast](https://github.com/kyuna0312/boxuk-contrast)**
+Based on **[Box UK Contrast](https://github.com/kyuna0312/night-city-palettes)**
 (rainglow, Material-Ocean family) — a calm deep blue-grey + teal palette that's
 easy on the eyes. Ported from the [vonqo](https://github.com/vonqo/vonqo)
-IntelliJ theme. The standalone [kyuna0312/boxuk-contrast](https://github.com/kyuna0312/boxuk-contrast)
-repo carries the whole design kit: drop-in themes (kitty, Ghostty, WezTerm,
-Alacritty, CSS), a matching [desktop wallpaper](https://github.com/kyuna0312/boxuk-contrast/tree/main/wallpapers),
-and a [teal folder icon](https://github.com/kyuna0312/boxuk-contrast/tree/main/extras)
+IntelliJ theme. It's the flagship of [kyuna0312/night-city-palettes](https://github.com/kyuna0312/night-city-palettes)
+— a four-palette collection (also Solarized Osaka, Cyberpunk Lucy, Night City
+Mix) that carries the whole design kit: drop-in terminal themes, a matching
+[desktop wallpaper](https://github.com/kyuna0312/night-city-palettes/tree/main/wallpapers),
+and a [teal folder icon](https://github.com/kyuna0312/night-city-palettes/tree/main/extras)
 with an apply script.
 
 | Name | Hex | Role |
@@ -282,7 +283,7 @@ dotfiles/
 
 Split out of this repo so they're reusable on their own:
 
-- **[boxuk-contrast](https://github.com/kyuna0312/boxuk-contrast)** — the Box UK Contrast palette as a portable design kit: drop-in themes (kitty, Ghostty, WezTerm, Alacritty, CSS), a matching desktop wallpaper, and a teal folder icon.
+- **[night-city-palettes](https://github.com/kyuna0312/night-city-palettes)** — a four-palette collection (Box UK Contrast, Solarized Osaka, Cyberpunk Lucy, Night City Mix) as a portable design kit: drop-in terminal themes, a matching desktop wallpaper, and a teal folder icon.
 - **[aeroline](https://github.com/kyuna0312/aeroline)** — the vertical Übersicht + AeroSpace status bar (right-edge workspaces + clock), one-block themeable.
 - **[NyanVim](https://github.com/kyuna0312/NyanVim)** — the Neovim distribution linked in as `config/nvim` (git submodule).
 
