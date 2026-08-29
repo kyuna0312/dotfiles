@@ -4,14 +4,14 @@
 [interactive]
     diffFilter = delta --color-only
 
-# H4CK3R // LUCY — same night-city palette as the rest of the stack.
-# syntax-theme "lucy" comes from config/bat/themes/lucy.tmTheme via bat's
-# theme cache (`bat cache --build` once after linking).
+# ARASAKA UI — same night-city palette as the rest of the stack.
+# syntax-theme "arasaka" comes from config/bat/themes/arasaka.tmTheme via
+# bat's theme cache (`bat cache --build` once after linking).
 [delta]
     navigate = true
     line-numbers = true
     side-by-side = true
-    syntax-theme = lucy
+    syntax-theme = arasaka
     plus-style = syntax "#0f2617"
     plus-emph-style = syntax "#1c4526"
     minus-style = syntax "#2a0f1d"

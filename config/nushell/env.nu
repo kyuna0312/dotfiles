@@ -9,7 +9,7 @@ def create_left_prompt [] {
         $relative_pwd => ([~ $relative_pwd] | path join)
     }
 
-    # Lucy/cyberpunk neon: cyan path + magenta separators (admin highlighted more aggressively)
+    # ARASAKA neon: cyan path + magenta separators (admin highlighted more aggressively)
     let path_color = (if (is-admin) { ansi magenta_bold } else { ansi cyan_bold })
     let separator_color = (if (is-admin) { ansi magenta_bold } else { ansi blue_bold })
     let path_segment = $"($path_color)($dir)"

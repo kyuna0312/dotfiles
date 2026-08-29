@@ -137,7 +137,7 @@ time_format = "%H:%M"
 
 # Aligned with the ARASAKA stack palette (tmux/ghostty/kitty/wezterm/sketchybar):
 # black-red #080002 ground, red #ff1e3c, yellow #fce300, cyan #00ffc8.
-# Key names kept from the Lucy layout; values are ARASAKA now.
+# Palette values are the ARASAKA night-city set.
 [palettes.arasaka]
 text     = "#ff8f9c"
 muted    = "#c25c6e"

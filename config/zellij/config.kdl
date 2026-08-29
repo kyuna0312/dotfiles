@@ -1,10 +1,10 @@
-// Zellij — H4CK3R // LUCY (Cyberpunk: Edgerunners, Lucy Kushinada)
+// Zellij — ARASAKA UI (Cyberpunk 2077)
 // Same night-city palette as tmux/ghostty/kitty/wezterm/starship/nvim.
 
-theme "lucy"
+theme "arasaka"
 
 themes {
-    lucy {
+    arasaka {
         fg "#ff4d5e"
         bg "#080002"
         black "#0e0304"
