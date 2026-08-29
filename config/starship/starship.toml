@@ -135,7 +135,7 @@ time_format = "%H:%M"
 
 # ── Palette — ARASAKA UI ──────────────────────────────────────────────────────
 
-# Aligned with the ARASAKA stack palette (tmux/ghostty/kitty/wezterm/sketchybar):
+# Aligned with the ARASAKA stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
 # black-red #080002 ground, red #ff1e3c, yellow #fce300, cyan #00ffc8.
 # Palette values are the ARASAKA night-city set.
 [palettes.arasaka]

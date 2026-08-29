@@ -112,7 +112,6 @@ link_extras() {
     _info "Linking macOS-specific configs..."
     [[ -d "${REPO_ROOT}/macos/aerospace"   ]] && link_force "${REPO_ROOT}/macos/aerospace"   "$HOME/.config/aerospace"
     [[ -d "${REPO_ROOT}/macos/hammerspoon" ]] && link_force "${REPO_ROOT}/macos/hammerspoon" "$HOME/.hammerspoon"
-    [[ -d "${REPO_ROOT}/macos/sketchybar"  ]] && link_force "${REPO_ROOT}/macos/sketchybar"  "$HOME/.config/sketchybar"
     [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
     [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
     [[ -d "${REPO_ROOT}/macos/alfred"      ]] && link_force "${REPO_ROOT}/macos/alfred"      "$HOME/.config/alfred"

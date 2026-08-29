@@ -1,29 +1,35 @@
 // ARASAKA vertical bar — Übersicht widget (Cyberpunk 2077)
-// A right-edge vertical bar: AeroSpace workspaces + clock, ARASAKA palette.
-// sketchybar is horizontal-only, so the right-side bar lives here instead.
+// Right-edge vertical HUD: brand, AeroSpace workspaces, clock.
+// Design language lifted from arcangel0/cyberarch (cyber.scss): red glass
+// panels, uppercase micro-labels with wide tracking, layered glow + inset
+// shadow, cyan glowing readouts. sketchybar is horizontal-only, so the
+// right-side bar lives here instead.
 
-// One shell call: focused workspace, all workspaces, and the time.
+// One shell call: focused workspace, all workspaces, time, date.
 // Tab-separated so the parser stays trivial.
 export const command =
   `/bin/sh -c '` +
   `F=$(/opt/homebrew/bin/aerospace list-workspaces --focused 2>/dev/null); ` +
   `A=$(/opt/homebrew/bin/aerospace list-workspaces --all 2>/dev/null | tr "\\n" " "); ` +
   `T=$(date "+%H:%M"); ` +
-  `D=$(date "+%d %b"); ` +
-  `printf "%s\\t%s\\t%s\\t%s" "$F" "$A" "$T" "$D"` +
+  `S=$(date "+%S"); ` +
+  `D=$(date "+%d %b" | tr "[:lower:]" "[:upper:]"); ` +
+  `W=$(date "+%a" | tr "[:lower:]" "[:upper:]"); ` +
+  `printf "%s\\t%s\\t%s\\t%s\\t%s\\t%s" "$F" "$A" "$T" "$S" "$D" "$W"` +
   `'`;
 
-export const refreshFrequency = 1000; // 1s — cheap, aerospace query is instant
+export const refreshFrequency = 1000; // 1s — aerospace query is instant
 
 // --- ARASAKA palette (same hex as the terminal/tmux/nvim stack) ---
 const C = {
-  bg: "rgba(8, 0, 2, 0.95)",   // #080002 translucent black-red
-  surface: "#1a060a",
-  overlay: "#3a0f16",
+  panel: "rgba(4, 3, 6, 0.55)", // cyberarch glass ground
   red: "#ff1e3c",
+  redDim: "rgba(255, 30, 60, 0.45)",
+  redFill: "rgba(255, 30, 60, 0.12)",
+  redLine: "rgba(255, 30, 60, 0.28)",
   yellow: "#fce300",
   cyan: "#00ffc8",
-  fg: "#ff4d5e",
+  ice: "rgba(228, 240, 255, 0.58)", // cyberarch faint text
   muted: "#c25c6e",
 };
 
@@ -31,71 +37,148 @@ const C = {
 export const className = `
   top: 0;
   right: 0;
-  width: 56px;
+  width: 62px;
   height: 100%;
   box-sizing: border-box;
-  background: ${C.bg};
-  border-left: 2px solid ${C.red};
-  backdrop-filter: blur(20px);
+  background: ${C.panel};
+  border-left: 1px solid ${C.red};
+  box-shadow: -14px 0 26px rgba(255, 30, 60, 0.10),
+              inset 0 0 28px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(22px) saturate(1.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 18px 0;
-  font-family: "Hack Nerd Font", "SF Mono", monospace;
-  color: ${C.fg};
+  padding: 16px 0 18px 0;
+  font-family: "Rajdhani", "Hack Nerd Font", "SF Mono", monospace;
+  color: ${C.muted};
   z-index: 1;
 
-  .brand {
-    color: ${C.red};
-    font-size: 20px;
-    font-weight: bold;
+  /* scanline overlay — subtle CRT texture */
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(255, 30, 60, 0.03) 0px,
+      rgba(255, 30, 60, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    z-index: 0;
   }
+
+  /* --- brand --- */
+  .brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    z-index: 1;
+  }
+  .brand .mark {
+    color: ${C.red};
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 12px ${C.redDim};
+  }
+  .brand .tag {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: ${C.ice};
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+
+  /* --- workspaces --- */
   .spaces {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
+    z-index: 1;
   }
   .ws {
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    position: relative;
+    width: 34px;
+    height: 32px;
+    line-height: 32px;
     text-align: center;
-    font-size: 14px;
-    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
     color: ${C.muted};
-    background: ${C.surface};
-    transition: all 120ms ease;
+    background: rgba(255, 30, 60, 0.04);
+    border: 1px solid transparent;
+    border-radius: 2px;
+    transition: all 130ms ease;
+  }
+  .ws:hover {
+    color: ${C.red};
+    border-color: ${C.redLine};
   }
   .ws.active {
-    color: #080002;
-    background: ${C.red};
-    font-weight: bold;
-    box-shadow: 0 0 10px ${C.red};
+    color: ${C.red};
+    background: ${C.redFill};
+    border: 1px solid ${C.redDim};
+    border-left: 2px solid ${C.red};
+    box-shadow: 0 0 14px rgba(255, 30, 60, 0.28),
+                inset 0 0 10px rgba(255, 30, 60, 0.08);
   }
+
+  /* --- clock --- */
   .clock {
-    text-align: center;
-    line-height: 1.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    z-index: 1;
+    padding: 8px 0 2px 0;
+    border-top: 1px solid ${C.redLine};
+    width: 44px;
+  }
+  .clock .wday {
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: ${C.red};
   }
   .clock .time {
-    color: ${C.yellow};
+    font-family: "Tektur", "Hack Nerd Font", monospace;
+    color: ${C.cyan};
     font-size: 15px;
-    font-weight: bold;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(0, 255, 200, 0.45);
+  }
+  .clock .sec {
+    font-family: "Tektur", monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(0, 255, 200, 0.55);
   }
   .clock .date {
-    color: ${C.cyan};
-    font-size: 10px;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: ${C.ice};
   }
 `;
 
 export const render = ({ output }) => {
-  const [focused = "", all = "", time = "", date = ""] = (output || "").split("\t");
+  const [focused = "", all = "", time = "", sec = "", date = "", wday = ""] =
+    (output || "").split("\t");
   const workspaces = all.trim().split(/\s+/).filter(Boolean);
 
   return (
     <div>
-      <div className="brand">⌁</div>
+      <div className="brand">
+        <div className="mark">⌁</div>
+        <div className="tag">ARASAKA</div>
+      </div>
 
       <div className="spaces">
         {workspaces.map((ws) => (
@@ -112,7 +195,9 @@ export const render = ({ output }) => {
       </div>
 
       <div className="clock">
+        <div className="wday">{wday}</div>
         <div className="time">{time}</div>
+        <div className="sec">:{sec}</div>
         <div className="date">{date}</div>
       </div>
     </div>
