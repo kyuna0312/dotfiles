@@ -1,7 +1,7 @@
-# lazygit — ARASAKA UI (Cyberpunk 2077)
+# lazygit — LUCY UI (Cyberpunk: Edgerunners)
 # Same night-city palette as the rest of the stack.
 
-# Route diffs through delta so they match the arasaka theme used everywhere
+# Route diffs through delta so they match the lucy theme used everywhere
 # else (git delta.gitconfig, bat). --paging=never lets lazygit own scrolling.
 git:
   paging:
@@ -12,30 +12,30 @@ gui:
   nerdFontsVersion: "3"
   theme:
     activeBorderColor:
-      - "#00ffc8"
+      - "#4fd1c5"
       - bold
     inactiveBorderColor:
-      - "#c25c6e"
+      - "#52727a"
     searchingActiveBorderColor:
-      - "#ff1e3c"
+      - "#2aa298"
       - bold
     optionsTextColor:
-      - "#00b4ff"
+      - "#2f879d"
     selectedLineBgColor:
-      - "#3a0f16"
+      - "#0e3139"
     inactiveViewSelectedLineBgColor:
-      - "#1a060a"
+      - "#002d38"
     cherryPickedCommitFgColor:
-      - "#080002"
+      - "#00141a"
     cherryPickedCommitBgColor:
-      - "#ff29d4"
+      - "#d33682"
     markedBaseCommitFgColor:
-      - "#080002"
+      - "#00141a"
     markedBaseCommitBgColor:
-      - "#fce300"
+      - "#b28600"
     unstagedChangesColor:
-      - "#ff1e3c"
+      - "#2aa298"
     defaultFgColor:
-      - "#ff4d5e"
+      - "#839495"
   authorColors:
-    "*": "#ff29d4"
+    "*": "#d33682"

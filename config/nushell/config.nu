@@ -6,70 +6,70 @@
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
-# ARASAKA UI (Cyberpunk 2077) — explicit hex variant of dark_theme,
+# LUCY UI (Cyberpunk: Edgerunners) — explicit hex variant of dark_theme,
 # matching the tmux/ghostty/kitty/wezterm/starship stack.
-# Palette: bg #080002, fg #ff4d5e, red #ff1e3c, yellow #fce300,
-# cyan #00ffc8, mint #7dffb5, magenta #ff29d4, muted #c25c6e.
-let arasaka_theme = {
-    separator: "#c25c6e"
+# Palette: bg #00141a, fg #839495, teal #2aa298, yellow #b28600,
+# cyan #4fd1c5, green #859900, magenta #d33682, muted #52727a.
+let lucy_theme = {
+    separator: "#52727a"
     leading_trailing_space_bg: { attr: n }
-    header: { fg: "#fce300" attr: b }
-    empty: "#00b4ff"
-    bool: "#00ffc8"
-    int: "#ff8f9c"
-    filesize: "#00ffc8"
-    duration: "#ff8f9c"
-    date: "#ff29d4"
-    range: "#ff8f9c"
-    float: "#ff8f9c"
-    string: "#ff8f9c"
-    nothing: "#ff8f9c"
-    binary: "#ff8f9c"
-    cell-path: "#ff8f9c"
-    row_index: { fg: "#fce300" attr: b }
-    record: "#ff8f9c"
-    list: "#ff8f9c"
-    block: "#ff8f9c"
-    hints: "#c25c6e"
-    search_result: { bg: "#ff1e3c" fg: "#080002" }
-    shape_and: { fg: "#ff29d4" attr: b }
-    shape_binary: { fg: "#ff29d4" attr: b }
-    shape_block: { fg: "#00b4ff" attr: b }
-    shape_bool: "#00ffc8"
-    shape_closure: { fg: "#7dffb5" attr: b }
-    shape_custom: "#7dffb5"
-    shape_datetime: { fg: "#00ffc8" attr: b }
-    shape_directory: "#00ffc8"
-    shape_external: "#00ffc8"
-    shape_externalarg: { fg: "#7dffb5" attr: b }
-    shape_external_resolved: { fg: "#fce300" attr: b }
-    shape_filepath: "#00ffc8"
-    shape_flag: { fg: "#00b4ff" attr: b }
-    shape_float: { fg: "#ff29d4" attr: b }
-    shape_garbage: { fg: "#ff8f9c" bg: "#ff1e3c" attr: b }
-    shape_glob_interpolation: { fg: "#00ffc8" attr: b }
-    shape_globpattern: { fg: "#00ffc8" attr: b }
-    shape_int: { fg: "#ff29d4" attr: b }
-    shape_internalcall: { fg: "#00ffc8" attr: b }
-    shape_keyword: { fg: "#ff1e3c" attr: b }
-    shape_list: { fg: "#00ffc8" attr: b }
-    shape_literal: "#00b4ff"
-    shape_match_pattern: "#7dffb5"
+    header: { fg: "#b28600" attr: b }
+    empty: "#2f879d"
+    bool: "#4fd1c5"
+    int: "#4fd1c5"
+    filesize: "#4fd1c5"
+    duration: "#4fd1c5"
+    date: "#d33682"
+    range: "#4fd1c5"
+    float: "#4fd1c5"
+    string: "#4fd1c5"
+    nothing: "#4fd1c5"
+    binary: "#4fd1c5"
+    cell-path: "#4fd1c5"
+    row_index: { fg: "#b28600" attr: b }
+    record: "#4fd1c5"
+    list: "#4fd1c5"
+    block: "#4fd1c5"
+    hints: "#52727a"
+    search_result: { bg: "#2aa298" fg: "#00141a" }
+    shape_and: { fg: "#d33682" attr: b }
+    shape_binary: { fg: "#d33682" attr: b }
+    shape_block: { fg: "#2f879d" attr: b }
+    shape_bool: "#4fd1c5"
+    shape_closure: { fg: "#859900" attr: b }
+    shape_custom: "#859900"
+    shape_datetime: { fg: "#4fd1c5" attr: b }
+    shape_directory: "#4fd1c5"
+    shape_external: "#4fd1c5"
+    shape_externalarg: { fg: "#859900" attr: b }
+    shape_external_resolved: { fg: "#b28600" attr: b }
+    shape_filepath: "#4fd1c5"
+    shape_flag: { fg: "#2f879d" attr: b }
+    shape_float: { fg: "#d33682" attr: b }
+    shape_garbage: { fg: "#4fd1c5" bg: "#2aa298" attr: b }
+    shape_glob_interpolation: { fg: "#4fd1c5" attr: b }
+    shape_globpattern: { fg: "#4fd1c5" attr: b }
+    shape_int: { fg: "#d33682" attr: b }
+    shape_internalcall: { fg: "#4fd1c5" attr: b }
+    shape_keyword: { fg: "#2aa298" attr: b }
+    shape_list: { fg: "#4fd1c5" attr: b }
+    shape_literal: "#2f879d"
+    shape_match_pattern: "#859900"
     shape_matching_brackets: { attr: u }
-    shape_nothing: "#00ffc8"
-    shape_operator: "#fce300"
-    shape_or: { fg: "#ff29d4" attr: b }
-    shape_pipe: { fg: "#ff1e3c" attr: b }
-    shape_range: { fg: "#fce300" attr: b }
-    shape_record: { fg: "#00ffc8" attr: b }
-    shape_redirection: { fg: "#ff29d4" attr: b }
-    shape_signature: { fg: "#7dffb5" attr: b }
-    shape_string: "#7dffb5"
-    shape_string_interpolation: { fg: "#00ffc8" attr: b }
-    shape_table: { fg: "#00b4ff" attr: b }
-    shape_variable: "#ff29d4"
-    shape_vardecl: "#ff29d4"
-    shape_raw_string: "#ff7de8"
+    shape_nothing: "#4fd1c5"
+    shape_operator: "#b28600"
+    shape_or: { fg: "#d33682" attr: b }
+    shape_pipe: { fg: "#2aa298" attr: b }
+    shape_range: { fg: "#b28600" attr: b }
+    shape_record: { fg: "#4fd1c5" attr: b }
+    shape_redirection: { fg: "#d33682" attr: b }
+    shape_signature: { fg: "#859900" attr: b }
+    shape_string: "#859900"
+    shape_string_interpolation: { fg: "#4fd1c5" attr: b }
+    shape_table: { fg: "#2f879d" attr: b }
+    shape_variable: "#d33682"
+    shape_vardecl: "#d33682"
+    shape_raw_string: "#d33682"
 }
 
 let dark_theme = {
@@ -283,7 +283,7 @@ $env.config = {
         vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
     }
 
-    color_config: $arasaka_theme # ARASAKA UI; `$dark_theme` / `$light_theme` are the stock fallbacks
+    color_config: $lucy_theme # LUCY UI; `$dark_theme` / `$light_theme` are the stock fallbacks
     footer_mode: 25 # always, never, auto, or a row-count threshold
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL

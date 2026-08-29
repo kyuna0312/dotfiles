@@ -1,10 +1,10 @@
-# ARASAKA glow: neon red gradient focus ring (JankyBorders).
+# LUCY glow: teal/cyan gradient focus ring (JankyBorders), solarized-osaka.
 # The right-edge status bar is an Übersicht widget (macos/ubersicht/
 # arasaka-bar.widget), which self-refreshes — no workspace-change hook
 # needed. sketchybar is horizontal-only, so it can't do the vertical bar.
 after-startup-command = [
   'exec-and-forget open -a Übersicht',
-  'exec-and-forget borders active_color=gradient(top_left=0xffff1e3c,bottom_right=0xffff6b7d) inactive_color=0x443a0f16 width=5.0'
+  'exec-and-forget borders active_color=gradient(top_left=0xff2aa298,bottom_right=0xff4fd1c5) inactive_color=0x44002d38 width=5.0'
 ]
 
 # Start AeroSpace at login

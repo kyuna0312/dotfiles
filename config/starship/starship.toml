@@ -1,8 +1,8 @@
 add_newline = false
 command_timeout = 500
-palette = "arasaka"
+palette = "lucy"
 
-# ARASAKA UI · Tide-style powerline prompt
+# LUCY UI · Tide-style powerline prompt
 # Line 1: ribbon[ os · dir · git ] ────── runtimes · duration · time
 # Line 2: λ input marker
 format = """
@@ -133,21 +133,21 @@ style = "gold"
 format = "[$time]($style)"
 time_format = "%H:%M"
 
-# ── Palette — ARASAKA UI ──────────────────────────────────────────────────────
+# ── Palette — LUCY UI ──────────────────────────────────────────────────────
 
-# Aligned with the ARASAKA stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
-# black-red #080002 ground, red #ff1e3c, yellow #fce300, cyan #00ffc8.
-# Palette values are the ARASAKA night-city set.
-[palettes.arasaka]
-text     = "#ff8f9c"
-muted    = "#c25c6e"
-sakura   = "#fce300"
-rose     = "#ff1e3c"
-lavender = "#ff1e3c"
-cyan     = "#00ffc8"
-mint     = "#7dffb5"
-gold     = "#fce300"
-peach    = "#ff6b7d"
-base     = "#080002"
-surface  = "#1a060a"
-overlay  = "#3a0f16"
+# Aligned with the LUCY stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
+# black-red #00141a ground, red #2aa298, yellow #b28600, cyan #4fd1c5.
+# Palette values are the LUCY night-city set.
+[palettes.lucy]
+text     = "#839495"
+muted    = "#52727a"
+sakura   = "#b28600"
+rose     = "#2aa298"
+lavender = "#2aa298"
+cyan     = "#4fd1c5"
+mint     = "#859900"
+gold     = "#b28600"
+peach    = "#4fd1c5"
+base     = "#00141a"
+surface  = "#002d38"
+overlay  = "#0e3139"

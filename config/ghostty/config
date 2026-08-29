@@ -1,35 +1,35 @@
-# Ghostty — ARASAKA UI (CyberArch-Dotfiles, Cyberpunk 2077)
-# Red-dominant surface (#ff1e3c) with cyan/yellow/magenta/green neon pops.
+# Ghostty — LUCY UI (Cyberpunk: Edgerunners, solarized-osaka)
+# Teal/cyan surface (#2aa298) with cyan/yellow/magenta/green neon pops.
 
-# ---- ARASAKA palette ----
-background = #080002
-foreground = #ff4d5e
+# ---- LUCY palette ----
+background = #00141a
+foreground = #839495
 
-cursor-color = #ff1e3c
-cursor-text = #080002
+cursor-color = #2aa298
+cursor-text = #00141a
 
-selection-background = #ff1e3c
-selection-foreground = #080002
+selection-background = #2aa298
+selection-foreground = #00141a
 
 # normal
-palette = 0=#0e0304
-palette = 1=#ff1e3c
-palette = 2=#39ff88
-palette = 3=#fce300
-palette = 4=#00b4ff
-palette = 5=#ff29d4
-palette = 6=#00ffc8
-palette = 7=#ff4d5e
+palette = 0=#00141a
+palette = 1=#2aa298
+palette = 2=#859900
+palette = 3=#b28600
+palette = 4=#2f879d
+palette = 5=#d33682
+palette = 6=#4fd1c5
+palette = 7=#839495
 
 # bright
-palette = 8=#5a1a24
-palette = 9=#ff6b7d
-palette = 10=#7dffb5
-palette = 11=#ffe66b
-palette = 12=#4dd2ff
-palette = 13=#ff7de8
-palette = 14=#5fffe0
-palette = 15=#ff8f9c
+palette = 8=#0e3139
+palette = 9=#4fd1c5
+palette = 10=#859900
+palette = 11=#b28600
+palette = 12=#2f879d
+palette = 13=#d33682
+palette = 14=#4fd1c5
+palette = 15=#839495
 
 # ---- Window ----
 background-opacity = 0.8

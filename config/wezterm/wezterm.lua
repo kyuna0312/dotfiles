@@ -1,5 +1,5 @@
--- WezTerm — ARASAKA UI (CyberArch-Dotfiles, Cyberpunk 2077)
--- Same palette as the ghostty/kitty/tmux ARASAKA theming.
+-- WezTerm — LUCY UI (Cyberpunk: Edgerunners, solarized-osaka)
+-- Same palette as the ghostty/kitty/tmux LUCY theming.
 
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
@@ -50,49 +50,49 @@ config.keys = {
 	{ key = "r", mods = "SUPER|SHIFT", action = act.ReloadConfiguration },
 }
 
--- ---- ARASAKA palette ----
+-- ---- LUCY palette ----
 config.colors = {
-	foreground = "#ff4d5e",
-	background = "#080002",
+	foreground = "#839495",
+	background = "#00141a",
 
-	cursor_bg = "#ff1e3c",
-	cursor_fg = "#080002",
-	cursor_border = "#ff1e3c",
+	cursor_bg = "#2aa298",
+	cursor_fg = "#00141a",
+	cursor_border = "#2aa298",
 
-	selection_bg = "#ff1e3c",
-	selection_fg = "#080002",
+	selection_bg = "#2aa298",
+	selection_fg = "#00141a",
 
-	split = "#ff1e3c",
-	scrollbar_thumb = "#3a0f16",
+	split = "#2aa298",
+	scrollbar_thumb = "#0e3139",
 
 	ansi = {
-		"#0e0304", -- black
-		"#ff1e3c", -- red (arasaka)
-		"#39ff88", -- green
-		"#fce300", -- yellow (arasaka accent)
-		"#00b4ff", -- blue
-		"#ff29d4", -- magenta
-		"#00ffc8", -- cyan
-		"#ff4d5e", -- white (red-tinted, no white anywhere)
+		"#00141a", -- black
+		"#2aa298", -- cyan/teal (lucy)
+		"#859900", -- green
+		"#b28600", -- yellow (solarized accent)
+		"#2f879d", -- blue
+		"#d33682", -- magenta
+		"#4fd1c5", -- cyan bright
+		"#839495", -- white (grey-blue fg)
 	},
 	brights = {
-		"#5a1a24",
-		"#ff6b7d",
-		"#7dffb5",
-		"#ffe66b",
-		"#4dd2ff",
-		"#ff7de8",
-		"#5fffe0",
-		"#ff8f9c",
+		"#0e3139",
+		"#4fd1c5",
+		"#859900",
+		"#b28600",
+		"#2f879d",
+		"#d33682",
+		"#4fd1c5",
+		"#839495",
 	},
 
 	tab_bar = {
-		background = "#050102",
-		active_tab = { bg_color = "#fce300", fg_color = "#080002", intensity = "Bold" },
-		inactive_tab = { bg_color = "#1a060a", fg_color = "#c25c6e" },
-		inactive_tab_hover = { bg_color = "#3a0f16", fg_color = "#ff4d5e" },
-		new_tab = { bg_color = "#050102", fg_color = "#c25c6e" },
-		new_tab_hover = { bg_color = "#3a0f16", fg_color = "#ff1e3c" },
+		background = "#00141a",
+		active_tab = { bg_color = "#b28600", fg_color = "#00141a", intensity = "Bold" },
+		inactive_tab = { bg_color = "#002d38", fg_color = "#52727a" },
+		inactive_tab_hover = { bg_color = "#0e3139", fg_color = "#839495" },
+		new_tab = { bg_color = "#00141a", fg_color = "#52727a" },
+		new_tab_hover = { bg_color = "#0e3139", fg_color = "#2aa298" },
 	},
 }
 

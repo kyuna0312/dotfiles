@@ -1,9 +1,10 @@
-// ARASAKA vertical bar — Übersicht widget (Cyberpunk 2077)
+// LUCY vertical bar — Übersicht widget (Cyberpunk: Edgerunners)
 // Right-edge vertical HUD: brand, AeroSpace workspaces, clock.
-// Design language lifted from arcangel0/cyberarch (cyber.scss): red glass
-// panels, uppercase micro-labels with wide tracking, layered glow + inset
-// shadow, cyan glowing readouts. sketchybar is horizontal-only, so the
-// right-side bar lives here instead.
+// Palette: solarized-osaka (craftzdog/solarized-osaka.nvim) — a cool
+// teal/cyan cyberpunk that's calm on the eyes. Layout language from
+// arcangel0/cyberarch: glass panels, uppercase micro-labels with wide
+// tracking, layered glow + inset shadow, glowing readouts.
+// sketchybar is horizontal-only, so the right-side bar lives here instead.
 
 // One shell call: focused workspace, all workspaces, time, date.
 // Tab-separated so the parser stays trivial.
@@ -20,17 +21,22 @@ export const command =
 
 export const refreshFrequency = 1000; // 1s — aerospace query is instant
 
-// --- ARASAKA palette (same hex as the terminal/tmux/nvim stack) ---
+// --- solarized-osaka palette (LUCY / Edgerunners), exact hex ---
+// bg #00141a · fg #839495 · cyan #2aa298 · magenta #d33682
+// green #859900 · yellow #b28600 · orange #ca4c16 · red #dc312e
 const C = {
-  panel: "rgba(4, 3, 6, 0.55)", // cyberarch glass ground
-  red: "#ff1e3c",
-  redDim: "rgba(255, 30, 60, 0.45)",
-  redFill: "rgba(255, 30, 60, 0.12)",
-  redLine: "rgba(255, 30, 60, 0.28)",
-  yellow: "#fce300",
-  cyan: "#00ffc8",
-  ice: "rgba(228, 240, 255, 0.58)", // cyberarch faint text
-  muted: "#c25c6e",
+  panel: "rgba(0, 20, 26, 0.62)", // #00141a teal-black glass
+  cyan: "#2aa298", // primary accent (calm teal)
+  cyanBright: "#4fd1c5",
+  cyanDim: "rgba(42, 162, 152, 0.45)",
+  cyanFill: "rgba(42, 162, 152, 0.12)",
+  cyanLine: "rgba(42, 162, 152, 0.28)",
+  magenta: "#d33682", // workspace-active secondary
+  magentaDim: "rgba(211, 54, 130, 0.45)",
+  magentaFill: "rgba(211, 54, 130, 0.14)",
+  yellow: "#b28600",
+  fg: "rgba(131, 148, 149, 0.62)", // #839495 muted grey-blue
+  muted: "#5a7375",
 };
 
 // Fixed to the right edge, full height, narrow vertical column.
@@ -41,8 +47,8 @@ export const className = `
   height: 100%;
   box-sizing: border-box;
   background: ${C.panel};
-  border-left: 1px solid ${C.red};
-  box-shadow: -14px 0 26px rgba(255, 30, 60, 0.10),
+  border-left: 1px solid ${C.cyan};
+  box-shadow: -14px 0 26px rgba(42, 162, 152, 0.10),
               inset 0 0 28px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(22px) saturate(1.2);
   display: flex;
@@ -62,8 +68,8 @@ export const className = `
     pointer-events: none;
     background: repeating-linear-gradient(
       0deg,
-      rgba(255, 30, 60, 0.03) 0px,
-      rgba(255, 30, 60, 0.03) 1px,
+      rgba(42, 162, 152, 0.03) 0px,
+      rgba(42, 162, 152, 0.03) 1px,
       transparent 1px,
       transparent 3px
     );
@@ -81,8 +87,8 @@ export const className = `
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
-    color: ${C.red};
-    text-shadow: 0 0 12px ${C.redDim};
+    color: ${C.cyan};
+    text-shadow: 0 0 12px ${C.cyanDim};
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
@@ -105,22 +111,22 @@ export const className = `
     font-weight: 700;
     letter-spacing: 1px;
     color: ${C.muted};
-    background: rgba(255, 30, 60, 0.04);
+    background: rgba(42, 162, 152, 0.04);
     border: 1px solid transparent;
     border-radius: 2px;
     transition: all 130ms ease;
   }
   .ws:hover {
-    color: ${C.red};
-    border-color: ${C.redLine};
+    color: ${C.cyanBright};
+    border-color: ${C.cyanLine};
   }
   .ws.active {
-    color: ${C.red};
-    background: ${C.redFill};
-    border: 1px solid ${C.redDim};
-    border-left: 2px solid ${C.red};
-    box-shadow: 0 0 14px rgba(255, 30, 60, 0.28),
-                inset 0 0 10px rgba(255, 30, 60, 0.08);
+    color: ${C.magenta};
+    background: ${C.magentaFill};
+    border: 1px solid ${C.magentaDim};
+    border-left: 2px solid ${C.magenta};
+    box-shadow: 0 0 14px rgba(211, 54, 130, 0.28),
+                inset 0 0 10px rgba(211, 54, 130, 0.08);
   }
 
   /* --- clock --- */
@@ -131,34 +137,34 @@ export const className = `
     gap: 3px;
     z-index: 1;
     padding: 8px 0 2px 0;
-    border-top: 1px solid ${C.redLine};
+    border-top: 1px solid ${C.cyanLine};
     width: 40px;
   }
   .clock .wday {
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 2px;
-    color: ${C.red};
+    color: ${C.magenta};
   }
   .clock .time {
     font-family: "Tektur", "Hack Nerd Font", monospace;
-    color: ${C.cyan};
+    color: ${C.cyanBright};
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px rgba(0, 255, 200, 0.45);
+    text-shadow: 0 0 8px rgba(79, 209, 197, 0.40);
   }
   .clock .sec {
     font-family: "Tektur", monospace;
     font-size: 9px;
     letter-spacing: 2px;
-    color: rgba(0, 255, 200, 0.55);
+    color: rgba(42, 162, 152, 0.60);
   }
   .clock .date {
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: ${C.ice};
+    color: ${C.fg};
   }
 `;
 

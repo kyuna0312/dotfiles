@@ -5,18 +5,18 @@
   <key>name</key>
   <string>arasaka</string>
   <key>comment</key>
-  <string>ARASAKA UI — Cyberpunk 2077 red-dominant night-city palette</string>
+  <string>LUCY UI — Cyberpunk: Edgerunners teal/cyan night-city palette</string>
   <key>settings</key>
   <array>
     <dict>
       <key>settings</key>
       <dict>
-        <key>background</key><string>#080002</string>
-        <key>foreground</key><string>#ff4d5e</string>
-        <key>caret</key><string>#00ffc8</string>
-        <key>lineHighlight</key><string>#1a060a</string>
-        <key>selection</key><string>#3a0f16</string>
-        <key>gutterForeground</key><string>#c25c6e</string>
+        <key>background</key><string>#00141a</string>
+        <key>foreground</key><string>#839495</string>
+        <key>caret</key><string>#4fd1c5</string>
+        <key>lineHighlight</key><string>#002d38</string>
+        <key>selection</key><string>#0e3139</string>
+        <key>gutterForeground</key><string>#52727a</string>
       </dict>
     </dict>
     <dict>
@@ -24,7 +24,7 @@
       <key>scope</key><string>comment, punctuation.definition.comment</string>
       <key>settings</key>
       <dict>
-        <key>foreground</key><string>#c25c6e</string>
+        <key>foreground</key><string>#52727a</string>
         <key>fontStyle</key><string>italic</string>
       </dict>
     </dict>
@@ -32,74 +32,74 @@
       <key>name</key><string>String</string>
       <key>scope</key><string>string, punctuation.definition.string</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#7dffb5</string></dict>
+      <dict><key>foreground</key><string>#859900</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Regexp</string>
       <key>scope</key><string>string.regexp</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#5fffe0</string></dict>
+      <dict><key>foreground</key><string>#4fd1c5</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Number, constant</string>
       <key>scope</key><string>constant.numeric, constant.character, constant.other</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff29d4</string></dict>
+      <dict><key>foreground</key><string>#d33682</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Language constant</string>
       <key>scope</key><string>constant.language</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#00ffc8</string></dict>
+      <dict><key>foreground</key><string>#4fd1c5</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Keyword, storage</string>
       <key>scope</key><string>keyword, storage, storage.type, keyword.operator.new</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff1e3c</string></dict>
+      <dict><key>foreground</key><string>#2aa298</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Operator</string>
       <key>scope</key><string>keyword.operator</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#fce300</string></dict>
+      <dict><key>foreground</key><string>#b28600</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Function</string>
       <key>scope</key><string>entity.name.function, support.function, meta.function-call.generic</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#00b4ff</string></dict>
+      <dict><key>foreground</key><string>#2f879d</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Class, type</string>
       <key>scope</key><string>entity.name.type, entity.name.class, support.type, support.class, entity.other.inherited-class</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#00ffc8</string></dict>
+      <dict><key>foreground</key><string>#4fd1c5</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Variable, parameter</string>
       <key>scope</key><string>variable, variable.parameter</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff4d5e</string></dict>
+      <dict><key>foreground</key><string>#839495</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Tag</string>
       <key>scope</key><string>entity.name.tag, punctuation.definition.tag</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff1e3c</string></dict>
+      <dict><key>foreground</key><string>#2aa298</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Attribute</string>
       <key>scope</key><string>entity.other.attribute-name</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff29d4</string></dict>
+      <dict><key>foreground</key><string>#d33682</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Markup heading</string>
       <key>scope</key><string>markup.heading, entity.name.section</string>
       <key>settings</key>
       <dict>
-        <key>foreground</key><string>#fce300</string>
+        <key>foreground</key><string>#b28600</string>
         <key>fontStyle</key><string>bold</string>
       </dict>
     </dict>
@@ -108,7 +108,7 @@
       <key>scope</key><string>markup.bold</string>
       <key>settings</key>
       <dict>
-        <key>foreground</key><string>#ff8f9c</string>
+        <key>foreground</key><string>#4fd1c5</string>
         <key>fontStyle</key><string>bold</string>
       </dict>
     </dict>
@@ -122,33 +122,33 @@
       <key>name</key><string>Markup link</string>
       <key>scope</key><string>markup.underline.link, string.other.link</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#00ffc8</string></dict>
+      <dict><key>foreground</key><string>#4fd1c5</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Diff inserted</string>
       <key>scope</key><string>markup.inserted, punctuation.definition.inserted</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#39ff88</string></dict>
+      <dict><key>foreground</key><string>#859900</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Diff deleted</string>
       <key>scope</key><string>markup.deleted, punctuation.definition.deleted</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#ff1e3c</string></dict>
+      <dict><key>foreground</key><string>#2aa298</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Diff changed</string>
       <key>scope</key><string>markup.changed</string>
       <key>settings</key>
-      <dict><key>foreground</key><string>#fce300</string></dict>
+      <dict><key>foreground</key><string>#b28600</string></dict>
     </dict>
     <dict>
       <key>name</key><string>Invalid</string>
       <key>scope</key><string>invalid, invalid.illegal</string>
       <key>settings</key>
       <dict>
-        <key>foreground</key><string>#ff8f9c</string>
-        <key>background</key><string>#ff1e3c</string>
+        <key>foreground</key><string>#4fd1c5</string>
+        <key>background</key><string>#2aa298</string>
       </dict>
     </dict>
   </array>

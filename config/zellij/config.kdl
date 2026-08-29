@@ -1,21 +1,21 @@
-// Zellij — ARASAKA UI (Cyberpunk 2077)
+// Zellij — LUCY UI (Cyberpunk 2077)
 // Same night-city palette as tmux/ghostty/kitty/wezterm/starship/nvim.
 
-theme "arasaka"
+theme "lucy"
 
 themes {
-    arasaka {
-        fg "#ff4d5e"
-        bg "#080002"
-        black "#0e0304"
-        red "#ff1e3c"
-        green "#39ff88"
-        yellow "#fce300"
-        blue "#00b4ff"
-        magenta "#ff29d4"
-        cyan "#00ffc8"
-        white "#ff4d5e"
-        orange "#ffe66b"
+    lucy {
+        fg "#839495"
+        bg "#00141a"
+        black "#002d38"
+        red "#2aa298"
+        green "#859900"
+        yellow "#b28600"
+        blue "#2f879d"
+        magenta "#d33682"
+        cyan "#4fd1c5"
+        white "#839495"
+        orange "#b28600"
     }
 }
 

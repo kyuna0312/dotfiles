@@ -1,7 +1,7 @@
-# security.zsh — ARASAKA · netrunner security toolkit
+# security.zsh — LUCY · netrunner security toolkit
 # Sourced only when security tools (nmap/burpsuite) are detected
 
-# ── Colors (ARASAKA) ─────────────────────────────────────────────────
+# ── Colors (LUCY) ─────────────────────────────────────────────────
 _S_PINK='\033[38;5;197m'
 _S_CYAN='\033[38;5;50m'
 _S_LAV='\033[38;5;200m'
@@ -41,9 +41,9 @@ b64e()          { echo "$1" | base64; }
 hexdump-clean() { xxd "$1" | less; }
 rot13()         { echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'; }
 
-# ── sectools: ARASAKA reference card ─────────────────────────────────────
+# ── sectools: LUCY reference card ─────────────────────────────────────
 sectools() {
-  printf "\n${_S_PINK}${_S_BOLD}  ✦  ARASAKA · netrunner toolkit${_S_RST}\n"
+  printf "\n${_S_PINK}${_S_BOLD}  ✦  LUCY · netrunner toolkit${_S_RST}\n"
   printf "${_S_DIM}     ──────────────────────────────────────${_S_RST}\n"
   printf "${_S_CYAN}     network   ${_S_RST}nmap, nse, nnmap, sniff, sniffport\n"
   printf "${_S_MINT}     recon     ${_S_RST}listen, myip, masscan\n"

@@ -4,7 +4,7 @@ hs.hotkey.bind({"cmd", "alt"}, "C", function()
   spoon.AClock:toggleShow()
 end)
 
--- ARASAKA app launcher (fuzzy chooser over all apps) — alt+space
+-- LUCY app launcher (fuzzy chooser over all apps) — alt+space
 local launcher = require("arasaka_launcher")
 hs.hotkey.bind({"alt"}, "space", launcher.toggle)
 

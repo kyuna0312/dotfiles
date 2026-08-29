@@ -1,15 +1,15 @@
 <div align="center">
 
-<img src="assets/logo.png" width="120" alt="ARASAKA" />
+<img src="assets/logo.png" width="120" alt="LUCY" />
 
-# ✦ ARASAKA Dotfiles
+# ✦ LUCY Dotfiles
 
-**Cyberpunk 2077-themed development environment — one palette, ten tools**  
+**Cyberpunk: Edgerunners-themed development environment — one palette, ten tools**  
 Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace · Übersicht · Zellij
 
-[![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=ff1e3c&labelColor=080002)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-00ffc8?labelColor=080002)](install.sh)
-[![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=fce300&labelColor=080002)](https://github.com/kyuna0312/dotfiles)
+[![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=2aa298&labelColor=00141a)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-4fd1c5?labelColor=00141a)](install.sh)
+[![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=b28600&labelColor=00141a)](https://github.com/kyuna0312/dotfiles)
 
 </div>
 
@@ -19,9 +19,9 @@ Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace ·
 
 <div align="center">
 
-<img src="assets/preview.png" width="820" alt="ARASAKA terminal — Starship prompt, Zsh, neon palette" />
+<img src="assets/preview.png" width="820" alt="LUCY terminal — Starship prompt, Zsh, teal palette" />
 
-<sub>ARASAKA greeting · `arasaka` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
+<sub>LUCY greeting · `arasaka` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
 
 </div>
 
@@ -53,18 +53,18 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 | Component | Config path | Description |
 |-----------|-------------|-------------|
-| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; ARASAKA greeting, fzf, zoxide, lazy NVM |
-| **Starship** | `config/starship/starship.toml` | `λ` prompt, ARASAKA ribbon on stack tokens, OS badge, git status |
-| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | tokyonight-moon re-grounded on the ARASAKA palette (git submodule) |
-| **Tmux** | `config/tmux/tmux.conf` | Red window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
-| **Ghostty** | `config/ghostty/config` | Full 16-color ARASAKA palette, red cursor, 0.8 opacity + blur |
+| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; LUCY greeting, fzf, zoxide, lazy NVM |
+| **Starship** | `config/starship/starship.toml` | `λ` prompt, LUCY ribbon on stack tokens, OS badge, git status |
+| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | solarized-osaka palette (git submodule) |
+| **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
+| **Ghostty** | `config/ghostty/config` | Full 16-color LUCY palette, teal cursor, 0.8 opacity + blur |
 | **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |
 | **Kitty** | `config/kitty/kitty.conf` | Same palette + cmd-based keybindings mirroring Ghostty |
-| **Übersicht** | `macos/ubersicht/` | Right-edge vertical ARASAKA bar — AeroSpace workspaces + clock (sketchybar is horizontal-only) |
-| **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders red focus ring |
-| **Zellij** | `config/zellij/config.kdl` | Custom `arasaka` theme |
-| **Nushell** | `config/nushell/` | Explicit-hex `arasaka_theme` color_config |
-| **Git** | `config/git/config` + `delta.gitconfig` | Shared aliases + delta pager with ARASAKA syntax colors |
+| **Übersicht** | `macos/ubersicht/` | Right-edge vertical LUCY bar — AeroSpace workspaces + clock (sketchybar is horizontal-only) |
+| **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring |
+| **Zellij** | `config/zellij/config.kdl` | Custom `lucy` theme |
+| **Nushell** | `config/nushell/` | Explicit-hex `lucy_theme` color_config |
+| **Git** | `config/git/config` + `delta.gitconfig` | Shared aliases + delta pager with LUCY syntax colors |
 | **Atuin** | `config/atuin/config.toml` | Shell history search (sync-ready) |
 | **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
 
@@ -80,21 +80,23 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 ---
 
-## Color Palette — ARASAKA
+## Color Palette — LUCY
 
 One token set across every tool — terminal, editor, prompt, bar, window borders.
+Based on [solarized-osaka](https://github.com/craftzdog/solarized-osaka.nvim) — a
+calm cool-teal cyberpunk (Edgerunners / Lucy), easy on the eyes.
 
 | Name | Hex | Role |
 |------|-----|------|
-| **Black-Red** | `#080002` | the ground everywhere — terminal, editor, bar |
-| **Surface** | `#1a060a` / `#3a0f16` | panels, floats, inactive tabs |
-| **Red** | `#ff1e3c` | active only: current tab, selected row, keywords, focus |
-| **Yellow** | `#fce300` | active tab background, warnings, breach accent |
-| **Neon Cyan** | `#00ffc8` | where attention goes: cursor mode, links, clock |
-| **Blue** | `#00b4ff` | structure: functions, flags, paths |
-| **Magenta** | `#ff29d4` | secondary accent: picker frame, dates, numbers |
-| **Mint** | `#7dffb5` | strings (matrix green `#39ff88` is accent-only) |
-| **Rose FG** | `#ff4d5e` | running text on the black-red ground |
+| **Teal-Black** | `#00141a` | the ground everywhere — terminal, editor, bar |
+| **Surface** | `#002d38` / `#0e3139` | panels, floats, inactive tabs |
+| **Cyan** | `#2aa298` | active only: current tab, selected row, keywords, focus |
+| **Yellow** | `#b28600` | active tab background, warnings, breach accent |
+| **Cyan Bright** | `#4fd1c5` | where attention goes: cursor mode, links, clock |
+| **Blue** | `#2f879d` | structure: functions, flags, paths |
+| **Magenta** | `#d33682` | secondary accent: picker frame, dates, numbers |
+| **Green** | `#859900` | strings, success |
+| **Grey-Blue FG** | `#839495` | running text on the teal-black ground |
 
 ---
 
@@ -155,7 +157,7 @@ A `shift-` variant is the second app sharing a letter.
 
 Zsh uses `ZDOTDIR=~/.config/zsh` (set by `home/.zshenv`), so all zsh config lives under `config/zsh/`. Plugins are managed by [Sheldon](https://sheldon.cli.rs/) (`config/sheldon/plugins.toml`).
 
-### ARASAKA Zsh Layer (`config/zsh/lib/arasaka.zsh`)
+### LUCY Zsh Layer (`config/zsh/lib/arasaka.zsh`)
 
 Sourced last, after syntax highlighting. Provides:
 
@@ -240,7 +242,7 @@ dotfiles/
 │   │       ├── common.zsh   # shared: aliases, fzf, nvm, zoxide
 │   │       ├── linux.zsh    # Linux: tmux auto-attach, EDITOR, security
 │   │       ├── macos.zsh    # macOS specifics
-│   │       ├── arasaka.zsh  # ARASAKA layer: greeting, themed helpers
+│   │       ├── arasaka.zsh  # LUCY layer: greeting, themed helpers
 │   │       └── security.zsh # pentest alias layer
 │   ├── sheldon/plugins.toml # zsh plugin manifest (Sheldon)
 │   ├── starship/starship.toml
@@ -279,7 +281,7 @@ dotfiles/
 
 <div align="center">
 
-**ARASAKA — Netrunner Online**  
+**LUCY — Netrunner Online**  
 <sub>built with ✦ and neon red</sub>
 
 </div>

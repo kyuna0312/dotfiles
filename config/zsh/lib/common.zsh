@@ -1,4 +1,4 @@
-# Cyberpunk (ARASAKA) zsh layer - common utilities
+# Cyberpunk (LUCY) zsh layer - common utilities
 # Style goals:
 # - Minimal and readable by default
 # - Soft visual polish without noisy output
@@ -159,7 +159,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
-  # ARASAKA: lavender dates, sakura user, mint sizes, gold units.
+  # LUCY: lavender dates, sakura user, mint sizes, gold units.
   export EZA_COLORS="${EZA_COLORS:-da=38;5;200:uu=38;5;210:un=38;5;210:sn=38;5;84:sb=38;5;220:xa=38;5;217:gm=38;5;246}"
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
@@ -174,7 +174,7 @@ if command -v bat >/dev/null 2>&1; then
     export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/config/bat/config"
   fi
   alias cat='bat --paging=never --style=plain'
-  # Custom ARASAKA theme — config/bat/themes/arasaka.tmTheme
+  # Custom LUCY theme — config/bat/themes/arasaka.tmTheme
   # (needs `bat cache --build` once after linking).
   export BAT_THEME="${BAT_THEME:-arasaka}"
 fi
@@ -223,8 +223,8 @@ fi
 
 # ---------- Optional fzf defaults ----------
 if command -v fzf >/dev/null 2>&1; then
-  # ARASAKA — sakura pink prompt, neon cyan highlights.
-  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#ff8f9c,bg:-1,hl:#00ffc8,fg+:#ff8f9c,bg+:-1,hl+:#5fffe0,info:#c25c6e,prompt:#ff6b7d,pointer:#ff6b7d,marker:#ff1e3c,spinner:#00ffc8,header:#7dffb5,border:#ff1e3c}"
+  # LUCY — sakura pink prompt, neon cyan highlights.
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#839495,bg:-1,hl:#4fd1c5,fg+:#839495,bg+:-1,hl+:#51cdc2,info:#52727a,prompt:#4fd1c5,pointer:#4fd1c5,marker:#2aa298,spinner:#4fd1c5,header:#859900,border:#2aa298}"
   if command -v bat >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"
   fi
@@ -341,7 +341,7 @@ mkcd() {
 }
 
 dp-tools() {
-  # ARASAKA-styled CLI stack reference
+  # LUCY-styled CLI stack reference
   printf "\n\033[38;5;197m\033[1m  ✦  netrunner CLI stack\033[0m\n"
   printf "\033[38;5;239m     ──────────────────────────────────\033[0m\n"
   printf "\033[38;5;50m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
@@ -366,7 +366,7 @@ if (( ${+widgets[autosuggest-execute]} )); then
   bindkey '^u' autosuggest-toggle
 fi
 
-# ---------- ARASAKA layer ----------
-# Greeting, themed helpers, syntax highlight colors, ARASAKA functions.
+# ---------- LUCY layer ----------
+# Greeting, themed helpers, syntax highlight colors, LUCY functions.
 [[ -f "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/arasaka.zsh" ]] && \
   source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/arasaka.zsh"

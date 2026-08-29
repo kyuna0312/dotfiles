@@ -1,5 +1,5 @@
--- ARASAKA app launcher — CyberArch-Dotfiles style (Cyberpunk 2077)
--- Dark chooser, red-tinted text like the terminal/tmux ARASAKA palette.
+-- LUCY app launcher — CyberArch-Dotfiles style (Cyberpunk 2077)
+-- Dark chooser, red-tinted text like the terminal/tmux LUCY palette.
 local M = {}
 
 local APP_DIRS = {
@@ -36,8 +36,8 @@ local chooser = hs.chooser.new(function(choice)
 	if choice then hs.application.open(choice.path) end
 end)
 chooser:bgDark(true)
-chooser:fgColor({ hex = "#ff4d5e" })
-chooser:subTextColor({ hex = "#c25c6e" })
+chooser:fgColor({ hex = "#839495" })
+chooser:subTextColor({ hex = "#52727a" })
 chooser:placeholderText("▸ BREACH PROTOCOL // launch")
 chooser:rows(9)
 chooser:width(24)
