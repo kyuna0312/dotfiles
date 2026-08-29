@@ -1,5 +1,5 @@
--- LUCY app launcher — CyberArch-Dotfiles style (Cyberpunk 2077)
--- Dark chooser, red-tinted text like the terminal/tmux LUCY palette.
+-- BOX UK app launcher — CyberArch-Dotfiles style (Box UK Contrast)
+-- Dark chooser, soft grey-blue text like the terminal/tmux Box UK palette.
 local M = {}
 
 local APP_DIRS = {
@@ -36,8 +36,8 @@ local chooser = hs.chooser.new(function(choice)
 	if choice then hs.application.open(choice.path) end
 end)
 chooser:bgDark(true)
-chooser:fgColor({ hex = "#839495" })
-chooser:subTextColor({ hex = "#52727a" })
+chooser:fgColor({ hex = "#b8c7cc" })
+chooser:subTextColor({ hex = "#60778c" })
 chooser:placeholderText("▸ BREACH PROTOCOL // launch")
 chooser:rows(9)
 chooser:width(24)

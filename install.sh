@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — LUCY // CyberMac dotfiles bootstrap (config-mirror layout)
+# install.sh — BOX UK // CyberMac dotfiles bootstrap (config-mirror layout)
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,7 +7,7 @@ source "${REPO_ROOT}/lib/link.sh"
 
 usage() {
   cat <<'EOF'
-install.sh — LUCY // CyberMac dotfiles bootstrap
+install.sh — BOX UK // CyberMac dotfiles bootstrap
 
 Usage:
   bash install.sh [options]
@@ -143,7 +143,7 @@ main() {
 
   local distro; distro="$(detect_distro)"
 
-  printf "${_C_PINK}\n  ✦  LUCY // CyberMac Dotfiles${_C_RST}\n"
+  printf "${_C_PINK}\n  ✦  BOX UK // CyberMac Dotfiles${_C_RST}\n"
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   _info "Distro: ${distro}"
 

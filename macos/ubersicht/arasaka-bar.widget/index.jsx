@@ -1,7 +1,7 @@
-// LUCY vertical bar — Übersicht widget (Cyberpunk: Edgerunners)
+// BOX UK vertical bar — Übersicht widget (Box UK Contrast / rainglow)
 // Right-edge vertical HUD: brand, AeroSpace workspaces, clock.
-// Palette: solarized-osaka (craftzdog/solarized-osaka.nvim) — a cool
-// teal/cyan cyberpunk that's calm on the eyes. Layout language from
+// Palette: Box UK Contrast (Material-Ocean family) — a calm deep blue-grey
+// + teal theme that's easy on the eyes. Layout language from
 // arcangel0/cyberarch: glass panels, uppercase micro-labels with wide
 // tracking, layered glow + inset shadow, glowing readouts.
 // sketchybar is horizontal-only, so the right-side bar lives here instead.
@@ -21,22 +21,22 @@ export const command =
 
 export const refreshFrequency = 1000; // 1s — aerospace query is instant
 
-// --- solarized-osaka palette (LUCY / Edgerunners), exact hex ---
-// bg #00141a · fg #839495 · cyan #2aa298 · magenta #d33682
-// green #859900 · yellow #b28600 · orange #ca4c16 · red #dc312e
+// --- Box UK Contrast palette (rainglow), exact hex ---
+// bg #161e22 · fg #b8c7cc · cyan #017c9d · teal #15b8ae
+// green #019d76 · yellow #ffcb6e · coral #f77669 · purple #b750ae
 const C = {
-  panel: "rgba(0, 20, 26, 0.62)", // #00141a teal-black glass
-  cyan: "#2aa298", // primary accent (calm teal)
-  cyanBright: "#4fd1c5",
-  cyanDim: "rgba(42, 162, 152, 0.45)",
-  cyanFill: "rgba(42, 162, 152, 0.12)",
-  cyanLine: "rgba(42, 162, 152, 0.28)",
-  magenta: "#d33682", // workspace-active secondary
-  magentaDim: "rgba(211, 54, 130, 0.45)",
-  magentaFill: "rgba(211, 54, 130, 0.14)",
-  yellow: "#b28600",
-  fg: "rgba(131, 148, 149, 0.62)", // #839495 muted grey-blue
-  muted: "#5a7375",
+  panel: "rgba(22, 30, 34, 0.66)", // #161e22 blue-grey glass
+  cyan: "#017c9d", // primary accent (Box UK cyan)
+  cyanBright: "#15b8ae", // teal
+  cyanDim: "rgba(1, 124, 157, 0.50)",
+  cyanFill: "rgba(1, 124, 157, 0.14)",
+  cyanLine: "rgba(1, 124, 157, 0.32)",
+  magenta: "#b750ae", // workspace-active secondary (purple)
+  magentaDim: "rgba(183, 80, 174, 0.45)",
+  magentaFill: "rgba(183, 80, 174, 0.14)",
+  yellow: "#ffcb6e",
+  fg: "rgba(184, 199, 204, 0.62)", // #b8c7cc soft grey-blue
+  muted: "#4f6269",
 };
 
 // Fixed to the right edge, full height, narrow vertical column.
@@ -48,7 +48,7 @@ export const className = `
   box-sizing: border-box;
   background: ${C.panel};
   border-left: 1px solid ${C.cyan};
-  box-shadow: -14px 0 26px rgba(42, 162, 152, 0.10),
+  box-shadow: -14px 0 26px rgba(1, 124, 157, 0.10),
               inset 0 0 28px rgba(0, 0, 0, 0.55);
   backdrop-filter: blur(22px) saturate(1.2);
   display: flex;
@@ -68,8 +68,8 @@ export const className = `
     pointer-events: none;
     background: repeating-linear-gradient(
       0deg,
-      rgba(42, 162, 152, 0.03) 0px,
-      rgba(42, 162, 152, 0.03) 1px,
+      rgba(1, 124, 157, 0.03) 0px,
+      rgba(1, 124, 157, 0.03) 1px,
       transparent 1px,
       transparent 3px
     );
@@ -111,7 +111,7 @@ export const className = `
     font-weight: 700;
     letter-spacing: 1px;
     color: ${C.muted};
-    background: rgba(42, 162, 152, 0.04);
+    background: rgba(1, 124, 157, 0.04);
     border: 1px solid transparent;
     border-radius: 2px;
     transition: all 130ms ease;
@@ -125,8 +125,8 @@ export const className = `
     background: ${C.magentaFill};
     border: 1px solid ${C.magentaDim};
     border-left: 2px solid ${C.magenta};
-    box-shadow: 0 0 14px rgba(211, 54, 130, 0.28),
-                inset 0 0 10px rgba(211, 54, 130, 0.08);
+    box-shadow: 0 0 14px rgba(183, 80, 174, 0.28),
+                inset 0 0 10px rgba(183, 80, 174, 0.08);
   }
 
   /* --- clock --- */
@@ -152,13 +152,13 @@ export const className = `
     font-size: 15px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px rgba(79, 209, 197, 0.40);
+    text-shadow: 0 0 8px rgba(21, 184, 174, 0.40);
   }
   .clock .sec {
     font-family: "Tektur", monospace;
     font-size: 9px;
     letter-spacing: 2px;
-    color: rgba(42, 162, 152, 0.60);
+    color: rgba(1, 124, 157, 0.60);
   }
   .clock .date {
     font-size: 8px;

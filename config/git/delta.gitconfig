@@ -4,7 +4,7 @@
 [interactive]
     diffFilter = delta --color-only
 
-# LUCY UI — same night-city palette as the rest of the stack.
+# BOX UK UI — same night-city palette as the rest of the stack.
 # syntax-theme "arasaka" comes from config/bat/themes/arasaka.tmTheme via
 # bat's theme cache (`bat cache --build` once after linking).
 [delta]

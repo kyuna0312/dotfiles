@@ -1,32 +1,32 @@
 {
   "alfredtheme": {
-    "name": "LUCY",
-    "credit": "CyberArch-Dotfiles (Cyberpunk: Edgerunners / Lucy) — teal/cyan neon, no white anywhere",
+    "name": "BOX UK",
+    "credit": "CyberArch-Dotfiles (Box UK Contrast / rainglow) — deep blue-grey / teal, softened text",
     "window": {
-      "color": "#00141AF2",
+      "color": "#161E22F2",
       "blur": 25,
       "roundness": 0,
       "borderWidth": 2,
-      "borderColor": "#2AA298FF",
+      "borderColor": "#017C9DFF",
       "borderPadding": 0,
       "paddingHorizontal": 12,
       "paddingVertical": 12,
       "width": 620
     },
     "search": {
-      "background": "#002D38FF",
-      "backgroundSelected": "#0E3139FF",
+      "background": "#1B2228FF",
+      "backgroundSelected": "#222C31FF",
       "paddingVertical": 10,
       "spacing": 12,
       "text": {
         "size": 30,
         "font": "System",
-        "color": "#839495FF",
-        "colorSelected": "#4FD1C5FF"
+        "color": "#B8C7CCFF",
+        "colorSelected": "#15B8AEFF"
       }
     },
     "result": {
-      "backgroundSelected": "#2AA298FF",
+      "backgroundSelected": "#017C9DFF",
       "iconSize": 36,
       "iconPaddingHorizontal": 8,
       "paddingVertical": 8,
@@ -34,28 +34,28 @@
       "text": {
         "size": 17,
         "font": "System",
-        "color": "#839495FF",
-        "colorSelected": "#00141AFF"
+        "color": "#B8C7CCFF",
+        "colorSelected": "#161E22FF"
       },
       "subtext": {
         "size": 11,
         "font": "System Light",
-        "color": "#52727AFF",
-        "colorSelected": "#0E3139FF"
+        "color": "#60778CFF",
+        "colorSelected": "#222C31FF"
       },
       "shortcut": {
         "size": 15,
         "font": "System",
-        "color": "#4FD1C5FF",
-        "colorSelected": "#00141AFF"
+        "color": "#15B8AEFF",
+        "colorSelected": "#161E22FF"
       }
     },
     "separator": {
-      "color": "#0E3139FF",
+      "color": "#222C31FF",
       "thickness": 1
     },
     "scrollbar": {
-      "color": "#2AA298FF",
+      "color": "#017C9DFF",
       "thickness": 2
     }
   }

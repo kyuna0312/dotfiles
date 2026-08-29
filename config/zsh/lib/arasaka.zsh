@@ -1,8 +1,8 @@
-# ── LUCY · Cyberpunk 2077 zsh layer ─────────────────────────
+# ── BOX UK · Cyberpunk 2077 zsh layer ─────────────────────────
 # Greeting, syntax highlight colors, themed helpers.
 # Sourced last in common.zsh (after zsh-syntax-highlighting).
 
-# ── Palette (ANSI 256 ≈ LUCY hex) ────────────────────────────────
+# ── Palette (ANSI 256 ≈ BOX UK hex) ────────────────────────────────
 _A_PINK='\033[38;5;197m'    # #ff6bba sakura
 _A_CYAN='\033[38;5;50m'     # #00e5ff neon cyan
 _A_LAV='\033[38;5;200m'     # #c8a5ff lavender
@@ -68,7 +68,7 @@ fi
 # ── Autosuggestion color ──────────────────────────────────────────────────────
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=239'
 
-# ── LUCY helper functions ───────────────────────────────────────────
+# ── BOX UK helper functions ───────────────────────────────────────────
 
 # jack-in: ssh with a netrunner greeting
 jack-in() {
@@ -124,7 +124,7 @@ arasaka() {
     _branch="$(git branch --show-current 2>/dev/null)"
   fi
 
-  printf "\n${_A_PINK}${_A_BOLD}  ✦  LUCY · netrunner id${_A_RST}\n"
+  printf "\n${_A_PINK}${_A_BOLD}  ✦  BOX UK · netrunner id${_A_RST}\n"
   printf "${_A_DIM}     ──────────────────────────────────${_A_RST}\n"
   printf "${_A_CYAN}     host      ${_A_RST}$(hostname)\n"
   printf "${_A_LAV}     os        ${_A_RST}${_os}\n"

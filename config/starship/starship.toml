@@ -1,8 +1,8 @@
 add_newline = false
 command_timeout = 500
-palette = "lucy"
+palette = "boxuk"
 
-# LUCY UI · Tide-style powerline prompt
+# BOX UK · Tide-style powerline prompt
 # Line 1: ribbon[ os · dir · git ] ────── runtimes · duration · time
 # Line 2: λ input marker
 format = """
@@ -133,21 +133,21 @@ style = "gold"
 format = "[$time]($style)"
 time_format = "%H:%M"
 
-# ── Palette — LUCY UI ──────────────────────────────────────────────────────
+# ── Palette — BOX UK ──────────────────────────────────────────────────────
 
-# Aligned with the LUCY stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
-# black-red #00141a ground, red #2aa298, yellow #b28600, cyan #4fd1c5.
-# Palette values are the LUCY night-city set.
-[palettes.lucy]
-text     = "#839495"
-muted    = "#52727a"
-sakura   = "#b28600"
-rose     = "#2aa298"
-lavender = "#2aa298"
-cyan     = "#4fd1c5"
-mint     = "#859900"
-gold     = "#b28600"
-peach    = "#4fd1c5"
-base     = "#00141a"
-surface  = "#002d38"
-overlay  = "#0e3139"
+# Aligned with the BOX UK stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
+# deep blue-grey #161e22 ground, cyan #017c9d, yellow #ffcb6e, teal #15b8ae.
+# Palette values are the BOX UK Contrast (rainglow) set.
+[palettes.boxuk]
+text     = "#b8c7cc"
+muted    = "#60778c"
+sakura   = "#ffcb6e"
+rose     = "#017c9d"
+lavender = "#017c9d"
+cyan     = "#15b8ae"
+mint     = "#019d76"
+gold     = "#ffcb6e"
+peach    = "#15b8ae"
+base     = "#161e22"
+surface  = "#1b2228"
+overlay  = "#222c31"

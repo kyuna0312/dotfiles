@@ -1,35 +1,35 @@
-# Ghostty — LUCY UI (Cyberpunk: Edgerunners, solarized-osaka)
-# Teal/cyan surface (#2aa298) with cyan/yellow/magenta/green neon pops.
+# Ghostty — Box UK Contrast (rainglow)
+# Cyan surface (#017c9d) with teal/yellow/purple/green pops.
 
-# ---- LUCY palette ----
-background = #00141a
-foreground = #839495
+# ---- Box UK Contrast palette ----
+background = #161e22
+foreground = #b8c7cc
 
-cursor-color = #2aa298
-cursor-text = #00141a
+cursor-color = #017c9d
+cursor-text = #161e22
 
-selection-background = #2aa298
-selection-foreground = #00141a
+selection-background = #017c9d
+selection-foreground = #161e22
 
 # normal
-palette = 0=#00141a
-palette = 1=#2aa298
-palette = 2=#859900
-palette = 3=#b28600
-palette = 4=#2f879d
-palette = 5=#d33682
-palette = 6=#4fd1c5
-palette = 7=#839495
+palette = 0=#161e22
+palette = 1=#f77669
+palette = 2=#019d76
+palette = 3=#ffcb6e
+palette = 4=#017c9d
+palette = 5=#b750ae
+palette = 6=#15b8ae
+palette = 7=#b8c7cc
 
 # bright
-palette = 8=#0e3139
-palette = 9=#4fd1c5
-palette = 10=#859900
-palette = 11=#b28600
-palette = 12=#2f879d
-palette = 13=#d33682
-palette = 14=#4fd1c5
-palette = 15=#839495
+palette = 8=#303b47
+palette = 9=#ff5370
+palette = 10=#15b8ae
+palette = 11=#ffd68a
+palette = 12=#2f9dc0
+palette = 13=#ff5370
+palette = 14=#4fd8ce
+palette = 15=#e6e6e6
 
 # ---- Window ----
 background-opacity = 0.8

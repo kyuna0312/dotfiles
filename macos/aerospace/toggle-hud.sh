@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# toggle-hud: hide/show the Übersicht LUCY bar and collapse the right
+# toggle-hud: hide/show the Übersicht BOX UK bar and collapse the right
 # gap with it. aerospace has no runtime gap API, so we rewrite outer.right
 # and reload. Übersicht has no per-widget CLI toggle, so we quit/relaunch
 # the app (only the one bar widget is loaded).

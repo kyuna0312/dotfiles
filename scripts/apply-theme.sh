@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# apply-theme.sh — reload LUCY theme across all surfaces
+# apply-theme.sh — reload BOX UK theme across all surfaces
 set -euo pipefail
 
 info()  { printf "\033[38;5;219m[theme]\033[0m %s\n" "$*"; }
@@ -25,4 +25,4 @@ fi
 # ── Shell env ─────────────────────────────────────────────────────────────────
 info "Shell (FZF/EZA/Starship): open a new terminal or run: exec zsh"
 
-printf "\n\033[38;5;219m✦ LUCY theme applied ♡\033[0m\n\n"
+printf "\n\033[38;5;219m✦ BOX UK theme applied ♡\033[0m\n\n"

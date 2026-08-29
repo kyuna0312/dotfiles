@@ -1,7 +1,7 @@
-# lazygit — LUCY UI (Cyberpunk: Edgerunners)
-# Same night-city palette as the rest of the stack.
+# lazygit — BOX UK Contrast (rainglow)
+# Same deep blue-grey / teal palette as the rest of the stack.
 
-# Route diffs through delta so they match the lucy theme used everywhere
+# Route diffs through delta so they match the boxuk theme used everywhere
 # else (git delta.gitconfig, bat). --paging=never lets lazygit own scrolling.
 git:
   paging:
@@ -12,30 +12,30 @@ gui:
   nerdFontsVersion: "3"
   theme:
     activeBorderColor:
-      - "#4fd1c5"
+      - "#15b8ae"
       - bold
     inactiveBorderColor:
-      - "#52727a"
+      - "#60778c"
     searchingActiveBorderColor:
-      - "#2aa298"
+      - "#017c9d"
       - bold
     optionsTextColor:
-      - "#2f879d"
+      - "#017c9d"
     selectedLineBgColor:
-      - "#0e3139"
+      - "#222c31"
     inactiveViewSelectedLineBgColor:
-      - "#002d38"
+      - "#1b2228"
     cherryPickedCommitFgColor:
-      - "#00141a"
+      - "#161e22"
     cherryPickedCommitBgColor:
-      - "#d33682"
+      - "#b750ae"
     markedBaseCommitFgColor:
-      - "#00141a"
+      - "#161e22"
     markedBaseCommitBgColor:
-      - "#b28600"
+      - "#ffcb6e"
     unstagedChangesColor:
-      - "#2aa298"
+      - "#017c9d"
     defaultFgColor:
-      - "#839495"
+      - "#b8c7cc"
   authorColors:
-    "*": "#d33682"
+    "*": "#b750ae"

@@ -6,70 +6,70 @@
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
-# LUCY UI (Cyberpunk: Edgerunners) — explicit hex variant of dark_theme,
+# BOX UK Contrast (rainglow) — explicit hex variant of dark_theme,
 # matching the tmux/ghostty/kitty/wezterm/starship stack.
-# Palette: bg #00141a, fg #839495, teal #2aa298, yellow #b28600,
-# cyan #4fd1c5, green #859900, magenta #d33682, muted #52727a.
-let lucy_theme = {
-    separator: "#52727a"
+# Palette: bg #161e22, fg #b8c7cc, cyan #017c9d, yellow #ffcb6e,
+# teal #15b8ae, green #019d76, purple #b750ae, muted #60778c.
+let boxuk_theme = {
+    separator: "#60778c"
     leading_trailing_space_bg: { attr: n }
-    header: { fg: "#b28600" attr: b }
-    empty: "#2f879d"
-    bool: "#4fd1c5"
-    int: "#4fd1c5"
-    filesize: "#4fd1c5"
-    duration: "#4fd1c5"
-    date: "#d33682"
-    range: "#4fd1c5"
-    float: "#4fd1c5"
-    string: "#4fd1c5"
-    nothing: "#4fd1c5"
-    binary: "#4fd1c5"
-    cell-path: "#4fd1c5"
-    row_index: { fg: "#b28600" attr: b }
-    record: "#4fd1c5"
-    list: "#4fd1c5"
-    block: "#4fd1c5"
-    hints: "#52727a"
-    search_result: { bg: "#2aa298" fg: "#00141a" }
-    shape_and: { fg: "#d33682" attr: b }
-    shape_binary: { fg: "#d33682" attr: b }
-    shape_block: { fg: "#2f879d" attr: b }
-    shape_bool: "#4fd1c5"
-    shape_closure: { fg: "#859900" attr: b }
-    shape_custom: "#859900"
-    shape_datetime: { fg: "#4fd1c5" attr: b }
-    shape_directory: "#4fd1c5"
-    shape_external: "#4fd1c5"
-    shape_externalarg: { fg: "#859900" attr: b }
-    shape_external_resolved: { fg: "#b28600" attr: b }
-    shape_filepath: "#4fd1c5"
-    shape_flag: { fg: "#2f879d" attr: b }
-    shape_float: { fg: "#d33682" attr: b }
-    shape_garbage: { fg: "#4fd1c5" bg: "#2aa298" attr: b }
-    shape_glob_interpolation: { fg: "#4fd1c5" attr: b }
-    shape_globpattern: { fg: "#4fd1c5" attr: b }
-    shape_int: { fg: "#d33682" attr: b }
-    shape_internalcall: { fg: "#4fd1c5" attr: b }
-    shape_keyword: { fg: "#2aa298" attr: b }
-    shape_list: { fg: "#4fd1c5" attr: b }
-    shape_literal: "#2f879d"
-    shape_match_pattern: "#859900"
+    header: { fg: "#ffcb6e" attr: b }
+    empty: "#017c9d"
+    bool: "#15b8ae"
+    int: "#15b8ae"
+    filesize: "#15b8ae"
+    duration: "#15b8ae"
+    date: "#b750ae"
+    range: "#15b8ae"
+    float: "#15b8ae"
+    string: "#15b8ae"
+    nothing: "#15b8ae"
+    binary: "#15b8ae"
+    cell-path: "#15b8ae"
+    row_index: { fg: "#ffcb6e" attr: b }
+    record: "#15b8ae"
+    list: "#15b8ae"
+    block: "#15b8ae"
+    hints: "#60778c"
+    search_result: { bg: "#017c9d" fg: "#161e22" }
+    shape_and: { fg: "#b750ae" attr: b }
+    shape_binary: { fg: "#b750ae" attr: b }
+    shape_block: { fg: "#017c9d" attr: b }
+    shape_bool: "#15b8ae"
+    shape_closure: { fg: "#019d76" attr: b }
+    shape_custom: "#019d76"
+    shape_datetime: { fg: "#15b8ae" attr: b }
+    shape_directory: "#15b8ae"
+    shape_external: "#15b8ae"
+    shape_externalarg: { fg: "#019d76" attr: b }
+    shape_external_resolved: { fg: "#ffcb6e" attr: b }
+    shape_filepath: "#15b8ae"
+    shape_flag: { fg: "#017c9d" attr: b }
+    shape_float: { fg: "#b750ae" attr: b }
+    shape_garbage: { fg: "#15b8ae" bg: "#017c9d" attr: b }
+    shape_glob_interpolation: { fg: "#15b8ae" attr: b }
+    shape_globpattern: { fg: "#15b8ae" attr: b }
+    shape_int: { fg: "#b750ae" attr: b }
+    shape_internalcall: { fg: "#15b8ae" attr: b }
+    shape_keyword: { fg: "#017c9d" attr: b }
+    shape_list: { fg: "#15b8ae" attr: b }
+    shape_literal: "#017c9d"
+    shape_match_pattern: "#019d76"
     shape_matching_brackets: { attr: u }
-    shape_nothing: "#4fd1c5"
-    shape_operator: "#b28600"
-    shape_or: { fg: "#d33682" attr: b }
-    shape_pipe: { fg: "#2aa298" attr: b }
-    shape_range: { fg: "#b28600" attr: b }
-    shape_record: { fg: "#4fd1c5" attr: b }
-    shape_redirection: { fg: "#d33682" attr: b }
-    shape_signature: { fg: "#859900" attr: b }
-    shape_string: "#859900"
-    shape_string_interpolation: { fg: "#4fd1c5" attr: b }
-    shape_table: { fg: "#2f879d" attr: b }
-    shape_variable: "#d33682"
-    shape_vardecl: "#d33682"
-    shape_raw_string: "#d33682"
+    shape_nothing: "#15b8ae"
+    shape_operator: "#ffcb6e"
+    shape_or: { fg: "#b750ae" attr: b }
+    shape_pipe: { fg: "#017c9d" attr: b }
+    shape_range: { fg: "#ffcb6e" attr: b }
+    shape_record: { fg: "#15b8ae" attr: b }
+    shape_redirection: { fg: "#b750ae" attr: b }
+    shape_signature: { fg: "#019d76" attr: b }
+    shape_string: "#019d76"
+    shape_string_interpolation: { fg: "#15b8ae" attr: b }
+    shape_table: { fg: "#017c9d" attr: b }
+    shape_variable: "#b750ae"
+    shape_vardecl: "#b750ae"
+    shape_raw_string: "#b750ae"
 }
 
 let dark_theme = {
@@ -283,7 +283,7 @@ $env.config = {
         vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
     }
 
-    color_config: $lucy_theme # LUCY UI; `$dark_theme` / `$light_theme` are the stock fallbacks
+    color_config: $boxuk_theme # BOX UK Contrast; `$dark_theme` / `$light_theme` are the stock fallbacks
     footer_mode: 25 # always, never, auto, or a row-count threshold
     float_precision: 2 # the precision for displaying floats in tables
     buffer_editor: "" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
