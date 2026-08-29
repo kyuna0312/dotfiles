@@ -60,7 +60,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **Ghostty** | `config/ghostty/config` | Full 16-color BOX UK palette, teal cursor, 0.8 opacity + blur |
 | **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |
 | **Kitty** | `config/kitty/kitty.conf` | Same palette + cmd-based keybindings mirroring Ghostty |
-| **Übersicht** | `macos/ubersicht/` | Right-edge vertical BOX UK bar — AeroSpace workspaces + clock (sketchybar is horizontal-only) |
+| **Übersicht** | `macos/ubersicht/` | [Aeroline](https://github.com/kyuna0312/aeroline) — right-edge vertical bar: AeroSpace workspaces + clock (sketchybar is horizontal-only) |
 | **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring |
 | **Zellij** | `config/zellij/config.kdl` | Custom `boxuk` theme |
 | **Nushell** | `config/nushell/` | Explicit-hex `boxuk_theme` color_config |
