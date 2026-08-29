@@ -15,7 +15,7 @@ _S_RST='\033[0m'
 # ── Network recon ─────────────────────────────────────────────────────────────
 alias nse='nmap -sV --script=default'
 alias nnmap='nmap -sn'
-alias listen='ss -tulnp'              # renamed: arasaka.zsh owns `ports`
+alias listen='ss -tulnp'              # renamed: boxuk.zsh owns `ports`
 alias myip='curl -s ifconfig.me'
 
 # ── Web ───────────────────────────────────────────────────────────────────────

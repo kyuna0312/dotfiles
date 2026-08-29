@@ -1,5 +1,5 @@
 # Sheldon plugin manifest. Plugins load in the order declared.
-# Loaded eagerly (not deferred) so arasaka.zsh can override ZSH_HIGHLIGHT_STYLES
+# Loaded eagerly (not deferred) so boxuk.zsh can override ZSH_HIGHLIGHT_STYLES
 # and the autosuggest keybindings can bind to live widgets.
 shell = "zsh"
 

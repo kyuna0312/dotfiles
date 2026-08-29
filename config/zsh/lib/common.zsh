@@ -368,5 +368,5 @@ fi
 
 # ---------- BOX UK layer ----------
 # Greeting, themed helpers, syntax highlight colors, BOX UK functions.
-[[ -f "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/arasaka.zsh" ]] && \
-  source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/arasaka.zsh"
+[[ -f "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/boxuk.zsh" ]] && \
+  source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/boxuk.zsh"

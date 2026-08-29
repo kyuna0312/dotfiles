@@ -3,19 +3,19 @@
 # Sourced last in common.zsh (after zsh-syntax-highlighting).
 
 # ── Palette (ANSI 256 ≈ BOX UK hex) ────────────────────────────────
-_A_PINK='\033[38;5;197m'    # #ff6bba sakura
-_A_CYAN='\033[38;5;50m'     # #00e5ff neon cyan
-_A_LAV='\033[38;5;200m'     # #c8a5ff lavender
-_A_MINT='\033[38;5;84m'    # #9dffcc mint
-_A_GOLD='\033[38;5;220m'    # #ffd97d gold
-_A_ROSE='\033[38;5;197m'    # #ff4d8d rose
-_A_DIM='\033[38;5;239m'     # muted surface
-_A_BOLD='\033[1m'
-_A_RST='\033[0m'
+_B_PINK='\033[38;5;197m'    # #ff6bba sakura
+_B_CYAN='\033[38;5;50m'     # #00e5ff neon cyan
+_B_LAV='\033[38;5;200m'     # #c8a5ff lavender
+_B_MINT='\033[38;5;84m'    # #9dffcc mint
+_B_GOLD='\033[38;5;220m'    # #ffd97d gold
+_B_ROSE='\033[38;5;197m'    # #ff4d8d rose
+_B_DIM='\033[38;5;239m'     # muted surface
+_B_BOLD='\033[1m'
+_B_RST='\033[0m'
 
 # ── Greeting ──────────────────────────────────────────────────────────────────
 # Only in interactive non-tmux shells (tmux status bar already has identity).
-_arasaka_greet() {
+_boxuk_greet() {
   [[ "${__dp_is_interactive:-0}" != "1" ]] && return
   [[ -n "${TMUX:-}" ]] && return
 
@@ -26,22 +26,22 @@ _arasaka_greet() {
   _dir="$(pwd | sed "s|$HOME|~|")"
 
   printf "\n"
-  printf "${_A_PINK}${_A_BOLD}  ✦  N E T R U N N E R  O N L I N E${_A_RST}\n"
-  printf "${_A_DIM}     ──────────────────────────────────${_A_RST}\n"
-  printf "${_A_CYAN}     operator  netrunner\n"
-  printf "${_A_LAV}     system    ${_A_RST}${_sys}\n"
-  printf "${_A_MINT}     shell     ${_A_RST}${_shell}\n"
-  printf "${_A_GOLD}     uptime    ${_A_RST}${_up}\n"
-  printf "${_A_PINK}     location  ${_A_RST}${_dir}\n"
-  printf "${_A_DIM}     ──────────────────────────────────${_A_RST}\n"
+  printf "${_B_PINK}${_B_BOLD}  ✦  N E T R U N N E R  O N L I N E${_B_RST}\n"
+  printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
+  printf "${_B_CYAN}     operator  netrunner\n"
+  printf "${_B_LAV}     system    ${_B_RST}${_sys}\n"
+  printf "${_B_MINT}     shell     ${_B_RST}${_shell}\n"
+  printf "${_B_GOLD}     uptime    ${_B_RST}${_up}\n"
+  printf "${_B_PINK}     location  ${_B_RST}${_dir}\n"
+  printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
   printf "\n"
 }
-_arasaka_greet
+_boxuk_greet
 
 # ── Override common.zsh info helpers with themed versions ────────────────────
-_dp_info()  { printf "${_A_CYAN}[✦]${_A_RST} %s\n"    "$*"; }
-_dp_warn()  { printf "${_A_GOLD}[!]${_A_RST} %s\n"    "$*"; }
-_dp_error() { printf "${_A_ROSE}[✗]${_A_RST} %s\n"    "$*" >&2; }
+_dp_info()  { printf "${_B_CYAN}[✦]${_B_RST} %s\n"    "$*"; }
+_dp_warn()  { printf "${_B_GOLD}[!]${_B_RST} %s\n"    "$*"; }
+_dp_error() { printf "${_B_ROSE}[✗]${_B_RST} %s\n"    "$*" >&2; }
 
 # ── Zsh syntax highlighting colors ───────────────────────────────────────────
 if (( ${+ZSH_HIGHLIGHT_STYLES} )); then
@@ -76,7 +76,7 @@ jack-in() {
     _dp_warn "usage: jack-in <host> [ssh args...]"
     return 2
   fi
-  printf "${_A_CYAN}  ✦ jacking in ${_A_RST}→ ${_A_PINK}${1}${_A_RST}\n"
+  printf "${_B_CYAN}  ✦ jacking in ${_B_RST}→ ${_B_PINK}${1}${_B_RST}\n"
   ssh "$@"
 }
 
@@ -87,7 +87,7 @@ flatline() {
     return 2
   fi
   if pkill -f "$1" 2>/dev/null; then
-    printf "${_A_ROSE}  ✗ flatlined  ${_A_RST}${1}\n"
+    printf "${_B_ROSE}  ✗ flatlined  ${_B_RST}${1}\n"
   else
     _dp_warn "no process matched: $1"
   fi
@@ -106,33 +106,33 @@ ghost() {
   local cmd
   cmd="$(fc -ln 1 | fzf --tac --no-sort --prompt='  ghost λ  ' --height=50%)" || return
   [[ -z "$cmd" ]] && return
-  printf "${_A_DIM}  ▸ ${cmd}${_A_RST}\n"
+  printf "${_B_DIM}  ▸ ${cmd}${_B_RST}\n"
   eval "$cmd"
 }
 
 # ports: show open listening ports
 ports() {
-  printf "${_A_CYAN}  ✦ open ports${_A_RST}\n"
+  printf "${_B_CYAN}  ✦ open ports${_B_RST}\n"
   ss -tulnp 2>/dev/null || netstat -tulnp 2>/dev/null
 }
 
-# arasaka: identity card + system info
-arasaka() {
+# boxuk: identity card + system info
+boxuk() {
   local _os _branch=""
   _os="$(grep PRETTY_NAME /etc/os-release 2>/dev/null | cut -d'"' -f2 || uname -sr)"
   if command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1; then
     _branch="$(git branch --show-current 2>/dev/null)"
   fi
 
-  printf "\n${_A_PINK}${_A_BOLD}  ✦  BOX UK · netrunner id${_A_RST}\n"
-  printf "${_A_DIM}     ──────────────────────────────────${_A_RST}\n"
-  printf "${_A_CYAN}     host      ${_A_RST}$(hostname)\n"
-  printf "${_A_LAV}     os        ${_A_RST}${_os}\n"
-  printf "${_A_MINT}     kernel    ${_A_RST}$(uname -r)\n"
-  printf "${_A_GOLD}     shell     ${_A_RST}zsh $(zsh --version 2>/dev/null | awk '{print $2}')\n"
-  printf "${_A_ROSE}     uptime    ${_A_RST}$(uptime -p 2>/dev/null | sed 's/up //')\n"
-  printf "${_A_PINK}     dir       ${_A_RST}$(pwd | sed "s|$HOME|~|")\n"
+  printf "\n${_B_PINK}${_B_BOLD}  ✦  BOX UK · netrunner id${_B_RST}\n"
+  printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
+  printf "${_B_CYAN}     host      ${_B_RST}$(hostname)\n"
+  printf "${_B_LAV}     os        ${_B_RST}${_os}\n"
+  printf "${_B_MINT}     kernel    ${_B_RST}$(uname -r)\n"
+  printf "${_B_GOLD}     shell     ${_B_RST}zsh $(zsh --version 2>/dev/null | awk '{print $2}')\n"
+  printf "${_B_ROSE}     uptime    ${_B_RST}$(uptime -p 2>/dev/null | sed 's/up //')\n"
+  printf "${_B_PINK}     dir       ${_B_RST}$(pwd | sed "s|$HOME|~|")\n"
   [[ -n "$_branch" ]] && \
-    printf "${_A_LAV}     branch    ${_A_RST}${_branch}\n"
-  printf "${_A_DIM}     ──────────────────────────────────${_A_RST}\n\n"
+    printf "${_B_LAV}     branch    ${_B_RST}${_branch}\n"
+  printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n\n"
 }

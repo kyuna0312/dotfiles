@@ -21,7 +21,7 @@ Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace ·
 
 <img src="assets/preview.png" width="820" alt="BOX UK terminal — Starship prompt, Zsh, teal palette" />
 
-<sub>BOX UK greeting · `arasaka` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
+<sub>BOX UK greeting · `boxuk` identity card · Starship `λ` prompt with git status · syntax-highlighted command line</sub>
 
 </div>
 
@@ -161,13 +161,13 @@ A `shift-` variant is the second app sharing a letter.
 
 Zsh uses `ZDOTDIR=~/.config/zsh` (set by `home/.zshenv`), so all zsh config lives under `config/zsh/`. Plugins are managed by [Sheldon](https://sheldon.cli.rs/) (`config/sheldon/plugins.toml`).
 
-### BOX UK Zsh Layer (`config/zsh/lib/arasaka.zsh`)
+### BOX UK Zsh Layer (`config/zsh/lib/boxuk.zsh`)
 
 Sourced last, after syntax highlighting. Provides:
 
 | Command | Description |
 |---------|-------------|
-| `arasaka` | Identity card with system info |
+| `boxuk` | Identity card with system info |
 | `jack-in <host>` | Styled SSH wrapper |
 | `flatline <name>` | Kill process by name (`pkill -f`) |
 | `breach [dir]` | `cd` into directory then open `$EDITOR` |
@@ -246,7 +246,7 @@ dotfiles/
 │   │       ├── common.zsh   # shared: aliases, fzf, nvm, zoxide
 │   │       ├── linux.zsh    # Linux: tmux auto-attach, EDITOR, security
 │   │       ├── macos.zsh    # macOS specifics
-│   │       ├── arasaka.zsh  # BOX UK layer: greeting, themed helpers
+│   │       ├── boxuk.zsh    # BOX UK layer: greeting, themed helpers
 │   │       └── security.zsh # pentest alias layer
 │   ├── sheldon/plugins.toml # zsh plugin manifest (Sheldon)
 │   ├── starship/starship.toml
