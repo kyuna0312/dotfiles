@@ -55,10 +55,15 @@ read_only = " 󰌾"
 read_only_style = "fg:rose bg:surface"
 
 [directory.substitutions]
+# Full-path forms (used outside a git repo) and the repo-root basenames
+# (used inside a repo, where truncate_to_repo collapses the path to the
+# repo folder name). Both are listed so the icon shows either way.
 "~/.config"  = "󱁿 cfg"
 "~/dotfiles" = "󰚩 dot"
 "~/projects" = "󰲋 proj"
 "~/Desktop"  = "󰇄 desk"
+"dotfiles"   = "󰚩 dot"
+".config"    = "󱁿 cfg"
 
 [git_branch]
 symbol = " "
