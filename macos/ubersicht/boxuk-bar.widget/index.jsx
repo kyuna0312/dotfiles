@@ -9,7 +9,7 @@
 const CONFIG = {
   brand: "KYUNA",        // vertical label at the top (set "" to hide)
   side: "right",          // "right" or "left"
-  width: 46,              // column width in px
+  width: 56,              // column width in px
 
   // Box UK Contrast palette (swap these hexes for any theme you like)
   colors: {
@@ -55,16 +55,19 @@ export const className = `
   width: ${CONFIG.width}px;
   height: 100%;
   box-sizing: border-box;
-  background: ${alpha(K.bg, 0.66)};
-  border-${CONFIG.side === "right" ? "left" : "right"}: 1px solid ${K.accent};
-  box-shadow: ${CONFIG.side === "right" ? "-14px" : "14px"} 0 26px ${alpha(K.accent, 0.1)},
-              inset 0 0 28px rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(22px) saturate(1.2);
+  background: linear-gradient(
+    ${CONFIG.side === "right" ? "270deg" : "90deg"},
+    ${alpha(K.bg, 0.78)} 0%,
+    ${alpha(K.bg, 0.62)} 100%
+  );
+  border-${CONFIG.side === "right" ? "left" : "right"}: 1px solid ${alpha(K.accent, 0.9)};
+  box-shadow: ${CONFIG.side === "right" ? "-16px" : "16px"} 0 34px ${alpha(K.accent, 0.12)},
+              inset 0 0 34px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(26px) saturate(1.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 16px 0 18px 0;
+  padding: 20px 0 22px 0;
   font-family: "Rajdhani", "Hack Nerd Font", "SF Mono", monospace;
   color: ${K.muted};
   z-index: 1;
@@ -77,14 +80,15 @@ export const className = `
     pointer-events: none;
     background: repeating-linear-gradient(
       0deg,
-      ${alpha(K.accent, 0.03)} 0px,
-      ${alpha(K.accent, 0.03)} 1px,
+      ${alpha(K.accent, 0.025)} 0px,
+      ${alpha(K.accent, 0.025)} 1px,
       transparent 1px,
       transparent 3px
     );
     z-index: 0;
   }
 
+  /* --- brand (top) --- */
   .brand {
     display: flex;
     flex-direction: column;
@@ -92,85 +96,133 @@ export const className = `
     z-index: 1;
   }
   .brand .tag {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     color: ${K.accent};
-    text-shadow: 0 0 12px ${alpha(K.accent, 0.5)};
+    text-shadow: 0 0 14px ${alpha(K.accent, 0.55)};
     writing-mode: vertical-rl;
     text-orientation: upright;
   }
+  .brand .rule {
+    width: 14px;
+    height: 2px;
+    margin-top: 12px;
+    border-radius: 2px;
+    background: ${alpha(K.accent, 0.5)};
+    box-shadow: 0 0 8px ${alpha(K.accent, 0.5)};
+  }
 
+  /* --- workspaces (centered, takes the slack) --- */
   .spaces {
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    justify-content: center;
+    gap: 9px;
     align-items: center;
     z-index: 1;
+    width: 100%;
   }
   .ws {
     position: relative;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     letter-spacing: 1px;
     color: ${K.muted};
-    background: ${alpha(K.accent, 0.04)};
-    border: 1px solid transparent;
-    border-radius: 2px;
-    transition: all 130ms ease;
+    background: ${alpha(K.accent, 0.05)};
+    border: 1px solid ${alpha(K.accent, 0.08)};
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   .ws:hover {
     color: ${K.active};
-    border-color: ${alpha(K.accent, 0.32)};
+    border-color: ${alpha(K.accent, 0.4)};
+    background: ${alpha(K.accent, 0.1)};
   }
   .ws.active {
     color: ${K.now};
-    background: ${alpha(K.now, 0.14)};
-    border: 1px solid ${alpha(K.now, 0.45)};
-    border-left: 2px solid ${K.now};
-    box-shadow: 0 0 14px ${alpha(K.now, 0.28)},
-                inset 0 0 10px ${alpha(K.now, 0.08)};
+    background: ${alpha(K.now, 0.16)};
+    border: 1px solid ${alpha(K.now, 0.5)};
+    box-shadow: 0 0 16px ${alpha(K.now, 0.32)},
+                inset 0 0 12px ${alpha(K.now, 0.1)};
+  }
+  /* the "now" tick on the active chip's inner edge */
+  .ws.active::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    ${CONFIG.side === "right" ? "left" : "right"}: -9px;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 16px;
+    border-radius: 2px;
+    background: ${K.now};
+    box-shadow: 0 0 8px ${K.now};
   }
 
+  /* --- clock (pinned to the bottom) --- */
   .clock {
+    margin-top: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
+    gap: 2px;
     z-index: 1;
-    padding: 8px 0 2px 0;
-    border-top: 1px solid ${alpha(K.accent, 0.32)};
-    width: ${CONFIG.width - 6}px;
+    padding-top: 14px;
+    position: relative;
+    width: ${CONFIG.width - 16}px;
+  }
+  /* glowing divider above the clock */
+  .clock::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      ${alpha(K.accent, 0.6)},
+      transparent
+    );
   }
   .clock .wday {
     font-size: 8px;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: ${alpha(K.muted, 0.85)};
+    letter-spacing: 3px;
+    color: ${alpha(K.muted, 0.9)};
+    margin-bottom: 1px;
   }
   .clock .time {
     font-family: "Tektur", "Hack Nerd Font", monospace;
     color: ${K.active};
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 0 8px ${alpha(K.active, 0.4)};
+    line-height: 1.1;
+    text-shadow: 0 0 10px ${alpha(K.active, 0.45)};
   }
   .clock .sec {
     font-family: "Tektur", monospace;
     font-size: 9px;
-    letter-spacing: 2px;
-    color: ${alpha(K.muted, 0.85)};
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: ${alpha(K.active, 0.55)};
+    margin-top: 1px;
   }
   .clock .date {
     font-size: 8px;
     font-weight: 700;
-    letter-spacing: 1px;
-    color: ${alpha(K.fg, 0.85)};
+    letter-spacing: 2px;
+    color: ${alpha(K.fg, 0.9)};
+    margin-top: 5px;
   }
 `;
 
@@ -184,6 +236,7 @@ export const render = ({ output }) => {
       {CONFIG.brand ? (
         <div className="brand">
           <div className="tag">{CONFIG.brand}</div>
+          <div className="rule" />
         </div>
       ) : (
         <div />
