@@ -43,6 +43,12 @@ backup_if_exists() {
 
 link_force() {
   local src="$1" dst="$2"
+  # Already linked to us: nothing to do, and don't back up our own symlink
+  # (that's what littered ~/.config with *.bak.* on every re-run).
+  if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
+    _ok "  $dst"
+    return 0
+  fi
   if [[ "$DRY_RUN" == "1" ]]; then
     printf "${_C_DIM}     [dry-run] link %s → %s${_C_RST}\n" "$dst" "$src"
     return 0

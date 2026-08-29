@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# apply-theme.sh — reload Lucy Edgerunner+ theme across all surfaces
+# apply-theme.sh — reload ARASAKA theme across all surfaces
 set -euo pipefail
 
 info()  { printf "\033[38;5;219m[theme]\033[0m %s\n" "$*"; }
@@ -25,4 +25,4 @@ fi
 # ── Shell env ─────────────────────────────────────────────────────────────────
 info "Shell (FZF/EZA/Starship): open a new terminal or run: exec zsh"
 
-printf "\n\033[38;5;219m✦ lucy edgerunner+ theme applied ♡\033[0m\n\n"
+printf "\n\033[38;5;219m✦ ARASAKA theme applied ♡\033[0m\n\n"
