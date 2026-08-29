@@ -1,6 +1,6 @@
 # Nushell Config File
 #
-# version = "0.95.0"
+# version = "0.115.0"
 
 # For more information on defining custom themes, see
 # https://www.nushell.sh/book/coloring_and_theming.html
@@ -996,7 +996,6 @@ alias ka = kubectl apply -f
 alias kg = kubectl get
 alias kd = kubectl describe
 alias kdel = kubectl delete
-alias kl = kubectl logs
 alias kgpo = kubectl get pod
 alias kgd = kubectl get deployments
 alias kc = kubectx
