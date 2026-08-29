@@ -11,14 +11,14 @@ const CONFIG = {
   side: "right",          // "right" or "left"
   width: 56,              // column width in px
 
-  // Box UK Contrast palette (swap these hexes for any theme you like)
+  // Cyberpunk: Lucy palette (swap these hexes for any theme you like)
   colors: {
-    bg:     "#161e22",    // panel ground (rendered as translucent glass)
-    accent: "#017c9d",    // primary — brand, borders, workspace hover (cyan)
-    active: "#15b8ae",    // clock time, active-hover (teal)
-    now:    "#b750ae",    // active workspace chip ("now" accent, purple)
-    fg:     "#b8c7cc",    // date / body text (grey-blue)
-    muted:  "#60778c",    // weekday, seconds
+    bg:     "#0a0e1a",    // panel ground (deep midnight navy glass)
+    accent: "#37e0ff",    // primary — brand, borders, workspace hover (neon cyan)
+    active: "#00d4d4",    // clock time, active-hover (teal)
+    now:    "#ff45d4",    // active workspace chip ("now" accent, neon magenta)
+    fg:     "#c8d6f0",    // date / body text (icy blue-white)
+    muted:  "#5a6a8c",    // weekday, seconds
   },
 
   aerospacePath: "/opt/homebrew/bin/aerospace", // `which aerospace`
