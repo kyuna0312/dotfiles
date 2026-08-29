@@ -113,26 +113,33 @@ if ($local_bin | path exists) {
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-# True when an init cache is missing or is still an empty stub, so installing
-# a tool later regenerates the real init on the next launch.
-def cache-stale [f: string] {
-    (not ($f | path exists)) or ((open --raw $f | str trim) == "")
+# True when an init cache is missing, an empty stub, or older than the tool
+# binary itself — so both installing a tool and upgrading it regenerate the
+# real init on the next launch. (mtime check is what fixes a stale cache
+# after `brew upgrade`.)
+def cache-stale [cache: string, bin: string] {
+    if (not ($cache | path exists)) or ((open --raw $cache | str trim) == "") {
+        return true
+    }
+    let bin_path = (which $bin | get path.0? )
+    if ($bin_path == null) { return false }
+    (ls -l $bin_path | get modified.0) > (ls -l $cache | get modified.0)
 }
 
 let starship_cache_dir = ($env.HOME | path join ".cache" "starship")
 let starship_cache_file = ($starship_cache_dir | path join "init.nu")
-if (which starship | is-not-empty) and (cache-stale $starship_cache_file) {
+if (which starship | is-not-empty) and (cache-stale $starship_cache_file "starship") {
     mkdir $starship_cache_dir
     starship init nu | save -f $starship_cache_file
 }
 
 let zoxide_cache_file = ($env.HOME | path join ".zoxide.nu")
-if (which zoxide | is-not-empty) and (cache-stale $zoxide_cache_file) {
+if (which zoxide | is-not-empty) and (cache-stale $zoxide_cache_file "zoxide") {
     zoxide init nushell | save -f $zoxide_cache_file
 }
 
 let atuin_cache_file = ($env.HOME | path join ".local" "share" "atuin" "init.nu")
-if (which atuin | is-not-empty) and (cache-stale $atuin_cache_file) {
+if (which atuin | is-not-empty) and (cache-stale $atuin_cache_file "atuin") {
     mkdir ($atuin_cache_file | path dirname)
     atuin init nu | save -f $atuin_cache_file
 }
@@ -143,7 +150,7 @@ $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense' # optional
 
 let carapace_cache_dir = ($env.HOME | path join ".cache" "carapace")
 let carapace_cache_file = ($carapace_cache_dir | path join "init.nu")
-if (which carapace | is-not-empty) and (cache-stale $carapace_cache_file) {
+if (which carapace | is-not-empty) and (cache-stale $carapace_cache_file "carapace") {
     mkdir $carapace_cache_dir
     carapace _carapace nushell | save --force $carapace_cache_file
 }

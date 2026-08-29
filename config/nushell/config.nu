@@ -1003,7 +1003,9 @@ alias kns = kubens
 alias kl = kubectl logs -f
 alias ke = kubectl exec -it
 
-source ~/.zoxide.nu
+# zoxide exports its `z`/`zi` commands, so it must be `use`d, not sourced —
+# `source` does not bring exported defs/aliases into scope.
+use ~/.zoxide.nu *
 source ~/.cache/carapace/init.nu
 source ~/.local/share/atuin/init.nu
 use ~/.cache/starship/init.nu
