@@ -64,10 +64,6 @@ export const className = `
   box-shadow: ${CONFIG.side === "right" ? "-16px" : "16px"} 0 34px ${alpha(K.accent, 0.12)},
               inset 0 0 34px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(26px) saturate(1.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px 0 22px 0;
   font-family: "Rajdhani", "Hack Nerd Font", "SF Mono", monospace;
   color: ${K.muted};
   z-index: 1;
@@ -235,7 +231,17 @@ export const render = ({ output }) => {
   const workspaces = all.trim().split(/\s+/).filter(Boolean);
 
   return (
-    <div>
+    <div
+      style={{
+        position: "absolute",
+        inset: 0,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "20px 0 22px 0",
+        boxSizing: "border-box",
+      }}
+    >
       {CONFIG.brand ? (
         <div className="brand">
           <div className="tag">{CONFIG.brand}</div>
