@@ -113,16 +113,19 @@ export const className = `
     box-shadow: 0 0 8px ${alpha(K.accent, 0.5)};
   }
 
-  /* --- workspaces (centered, takes the slack) --- */
+  /* --- workspaces (pinned to the true vertical center of the bar) --- */
   .spaces {
-    flex: 1 1 auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 9px;
     align-items: center;
     z-index: 1;
-    width: 100%;
   }
   .ws {
     position: relative;
