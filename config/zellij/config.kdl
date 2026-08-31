@@ -1,21 +1,21 @@
 // Zellij — BOX UK Contrast (rainglow)
 // Same palette as tmux/ghostty/kitty/wezterm/starship/nvim.
 
-theme "boxuk"
+theme "nightcity"
 
 themes {
-    boxuk {
-        fg "#b8c7cc"
-        bg "#161e22"
-        black "#1b2228"
-        red "#017c9d"
-        green "#019d76"
-        yellow "#ffcb6e"
-        blue "#017c9d"
-        magenta "#b750ae"
-        cyan "#15b8ae"
-        white "#b8c7cc"
-        orange "#ffcb6e"
+    nightcity {
+        fg "#b6c5d3"
+        bg "#101a1f"
+        black "#15242d"
+        red "#2bbcd5"
+        green "#49d575"
+        yellow "#f2c74b"
+        blue "#2bbcd5"
+        magenta "#be59d6"
+        cyan "#0cc7c2"
+        white "#b6c5d3"
+        orange "#f2c74b"
     }
 }
 

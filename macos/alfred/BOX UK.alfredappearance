@@ -3,30 +3,30 @@
     "name": "BOX UK",
     "credit": "CyberArch-Dotfiles (Box UK Contrast / rainglow) — deep blue-grey / teal, softened text",
     "window": {
-      "color": "#161E22F2",
+      "color": "#101A1FF2",
       "blur": 25,
       "roundness": 0,
       "borderWidth": 2,
-      "borderColor": "#017C9DFF",
+      "borderColor": "#2BBCD5FF",
       "borderPadding": 0,
       "paddingHorizontal": 12,
       "paddingVertical": 12,
       "width": 620
     },
     "search": {
-      "background": "#1B2228FF",
-      "backgroundSelected": "#222C31FF",
+      "background": "#15242DFF",
+      "backgroundSelected": "#1D2C36FF",
       "paddingVertical": 10,
       "spacing": 12,
       "text": {
         "size": 30,
         "font": "System",
-        "color": "#B8C7CCFF",
-        "colorSelected": "#15B8AEFF"
+        "color": "#B6C5D3FF",
+        "colorSelected": "#0CC7C2FF"
       }
     },
     "result": {
-      "backgroundSelected": "#017C9DFF",
+      "backgroundSelected": "#2BBCD5FF",
       "iconSize": 36,
       "iconPaddingHorizontal": 8,
       "paddingVertical": 8,
@@ -34,28 +34,28 @@
       "text": {
         "size": 17,
         "font": "System",
-        "color": "#B8C7CCFF",
-        "colorSelected": "#161E22FF"
+        "color": "#B6C5D3FF",
+        "colorSelected": "#101A1FFF"
       },
       "subtext": {
         "size": 11,
         "font": "System Light",
-        "color": "#60778CFF",
-        "colorSelected": "#222C31FF"
+        "color": "#5B7189FF",
+        "colorSelected": "#1D2C36FF"
       },
       "shortcut": {
         "size": 15,
         "font": "System",
-        "color": "#15B8AEFF",
-        "colorSelected": "#161E22FF"
+        "color": "#0CC7C2FF",
+        "colorSelected": "#101A1FFF"
       }
     },
     "separator": {
-      "color": "#222C31FF",
+      "color": "#1D2C36FF",
       "thickness": 1
     },
     "scrollbar": {
-      "color": "#017C9DFF",
+      "color": "#2BBCD5FF",
       "thickness": 2
     }
   }

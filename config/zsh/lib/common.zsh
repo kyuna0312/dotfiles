@@ -224,7 +224,7 @@ fi
 # ---------- Optional fzf defaults ----------
 if command -v fzf >/dev/null 2>&1; then
   # BOX UK — teal prompt, cyan highlights.
-  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#b8c7cc,bg:-1,hl:#15b8ae,fg+:#b8c7cc,bg+:-1,hl+:#4fd8ce,info:#60778c,prompt:#017c9d,pointer:#017c9d,marker:#019d76,spinner:#15b8ae,header:#019d76,border:#017c9d}"
+  export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#b6c5d3,bg:-1,hl:#0cc7c2,fg+:#b6c5d3,bg+:-1,hl+:#5bf4f1,info:#5b7189,prompt:#2bbcd5,pointer:#2bbcd5,marker:#49d575,spinner:#0cc7c2,header:#49d575,border:#2bbcd5}"
   if command -v bat >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"
   fi

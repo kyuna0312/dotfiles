@@ -56,11 +56,11 @@ config.keys = {
 config.colors = dofile(wezterm.home_dir .. "/.config/themes/extras/wezterm/night-city-mix.lua")
 
 -- dotfiles-specific tab-bar styling on top of the shared theme
-config.colors.tab_bar.background = "#161e22"
+config.colors.tab_bar.background = "#101a1f"
 config.colors.tab_bar.active_tab.intensity = "Bold"
-config.colors.tab_bar.inactive_tab = { bg_color = "#1b2228", fg_color = "#60778c" }
-config.colors.tab_bar.inactive_tab_hover = { bg_color = "#222c31", fg_color = "#b8c7cc" }
-config.colors.tab_bar.new_tab = { bg_color = "#161e22", fg_color = "#60778c" }
-config.colors.tab_bar.new_tab_hover = { bg_color = "#222c31", fg_color = "#017c9d" }
+config.colors.tab_bar.inactive_tab = { bg_color = "#15242d", fg_color = "#5b7189" }
+config.colors.tab_bar.inactive_tab_hover = { bg_color = "#1d2c36", fg_color = "#b6c5d3" }
+config.colors.tab_bar.new_tab = { bg_color = "#101a1f", fg_color = "#5b7189" }
+config.colors.tab_bar.new_tab_hover = { bg_color = "#1d2c36", fg_color = "#2bbcd5" }
 
 return config

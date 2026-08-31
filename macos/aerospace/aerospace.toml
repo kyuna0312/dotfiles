@@ -4,7 +4,7 @@
 # needed. sketchybar is horizontal-only, so it can't do the vertical bar.
 after-startup-command = [
   'exec-and-forget open -a Übersicht',
-  'exec-and-forget borders active_color=gradient(top_left=0xff017c9d,bottom_right=0xff15b8ae) inactive_color=0x441b2228 width=5.0'
+  'exec-and-forget borders active_color=gradient(top_left=0xff2bbcd5,bottom_right=0xff0cc7c2) inactive_color=0x4415242d width=5.0'
 ]
 
 # Start AeroSpace at login

@@ -7,9 +7,9 @@
 **Cyberpunk: Edgerunners-themed development environment — one palette, ten tools**  
 Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace · Übersicht · Zellij
 
-[![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=017c9d&labelColor=161e22)](LICENSE)
-[![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-15b8ae?labelColor=161e22)](install.sh)
-[![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=ffcb6e&labelColor=161e22)](https://github.com/kyuna0312/dotfiles)
+[![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=2bbcd5&labelColor=101a1f)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-0cc7c2?labelColor=101a1f)](install.sh)
+[![Stars](https://img.shields.io/github/stars/kyuna0312/dotfiles?color=f2c74b&labelColor=101a1f)](https://github.com/kyuna0312/dotfiles)
 
 </div>
 
@@ -55,16 +55,16 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 |-----------|-------------|-------------|
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; BOX UK greeting, fzf, zoxide, lazy NVM |
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, BOX UK ribbon on stack tokens, OS badge, git status |
-| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Box UK Contrast palette (git submodule) |
+| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Night City Mix via nightcity.nvim (git submodule) |
 | **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
-| **Ghostty** | `config/ghostty/config` | Full 16-color BOX UK palette, teal cursor, 0.8 opacity + blur |
+| **Ghostty** | `config/ghostty/config` | Full 16-color Night City Mix palette, teal cursor, 0.8 opacity + blur |
 | **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |
 | **Kitty** | `config/kitty/kitty.conf` | Same palette + cmd-based keybindings mirroring Ghostty |
 | **Übersicht** | `macos/ubersicht/` | [Aeroline](https://github.com/kyuna0312/aeroline) — right-edge vertical bar: AeroSpace workspaces + clock (sketchybar is horizontal-only) |
 | **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring |
-| **Zellij** | `config/zellij/config.kdl` | Custom `boxuk` theme |
-| **Nushell** | `config/nushell/` | Explicit-hex `boxuk_theme` color_config |
+| **Zellij** | `config/zellij/config.kdl` | Custom `nightcity` theme |
+| **Nushell** | `config/nushell/` | Explicit-hex `nightcity_theme` color_config |
 | **Git** | `config/git/config` + `delta.gitconfig` | Shared aliases + delta pager with BOX UK syntax colors |
 | **Atuin** | `config/atuin/config.toml` | Shell history search (sync-ready) |
 | **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
@@ -81,30 +81,29 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 ---
 
-## Color Palette — BOX UK
+## Color Palette — Night City Mix
 
 One token set across every tool — terminal, editor, prompt, bar, window borders.
-Based on **[Box UK Contrast](https://github.com/kyuna0312/night-city-palettes)**
-(rainglow, Material-Ocean family) — a calm deep blue-grey + teal palette that's
-easy on the eyes. Ported from the [vonqo](https://github.com/vonqo/vonqo)
-IntelliJ theme. It's the flagship of [kyuna0312/night-city-palettes](https://github.com/kyuna0312/night-city-palettes)
-— a four-palette collection (also Solarized Osaka, Cyberpunk Lucy, Night City
-Mix) that carries the whole design kit: drop-in terminal themes, a matching
+Based on **[Night City Mix](https://github.com/kyuna0312/night-city-palettes)**
+— a gamma-correct blend of Box UK Contrast, Solarized Osaka and Cyberpunk Lucy:
+calm blue-grey grounds with a neon pop, easy on the eyes. It's the blend
+palette of [kyuna0312/night-city-palettes](https://github.com/kyuna0312/night-city-palettes)
+— a four-palette collection that carries the whole design kit: drop-in terminal themes, a matching
 [desktop wallpaper](https://github.com/kyuna0312/night-city-palettes/tree/main/wallpapers),
 and a [teal folder icon](https://github.com/kyuna0312/night-city-palettes/tree/main/extras)
 with an apply script.
 
 | Name | Hex | Role |
 |------|-----|------|
-| **Blue-Grey** | `#161e22` | the ground everywhere — terminal, editor, bar |
-| **Surface** | `#1b2228` / `#222c31` | panels, floats, inactive tabs |
-| **Cyan** | `#017c9d` | active only: current tab, selected row, keywords, focus |
-| **Yellow** | `#ffcb6e` | active tab background, warnings, modified |
-| **Teal** | `#15b8ae` | where attention goes: cursor mode, links, clock, strings |
-| **Green** | `#019d76` | structure: functions, classes, attributes |
-| **Purple** | `#b750ae` | secondary accent: picker frame, dates, numbers |
-| **Coral** | `#f77669` | errors, deleted lines |
-| **Grey-Blue FG** | `#b8c7cc` | running text on the blue-grey ground |
+| **Blue-Grey** | `#101a1f` | the ground everywhere — terminal, editor, bar |
+| **Surface** | `#15242d` / `#1d2c36` | panels, floats, inactive tabs |
+| **Cyan** | `#2bbcd5` | active only: current tab, selected row, keywords, focus |
+| **Yellow** | `#f2c74b` | active tab background, warnings, modified |
+| **Teal** | `#0cc7c2` | where attention goes: cursor mode, links, clock, strings |
+| **Green** | `#49d575` | structure: functions, classes, attributes |
+| **Purple** | `#be59d6` | secondary accent: picker frame, dates, numbers |
+| **Coral** | `#f37c4b` | errors, deleted lines |
+| **Grey-Blue FG** | `#b6c5d3` | running text on the blue-grey ground |
 
 ---
 

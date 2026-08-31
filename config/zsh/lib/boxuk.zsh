@@ -3,12 +3,12 @@
 # Sourced last in common.zsh (after zsh-syntax-highlighting).
 
 # ── Palette (ANSI 256 ≈ BOX UK hex) ────────────────────────────────
-_B_PINK='\033[38;5;209m'    # #ff8a80 coral
-_B_CYAN='\033[38;5;37m'     # #15b8ae teal
-_B_LAV='\033[38;5;133m'     # #b750ae purple
-_B_MINT='\033[38;5;36m'     # #019d76 green
-_B_GOLD='\033[38;5;179m'    # #ffcb6e yellow
-_B_ROSE='\033[38;5;209m'    # #f77669 coral
+_B_PINK='\033[38;5;209m'    # #fa70a7 coral
+_B_CYAN='\033[38;5;37m'     # #0cc7c2 teal
+_B_LAV='\033[38;5;133m'     # #be59d6 purple
+_B_MINT='\033[38;5;36m'     # #49d575 green
+_B_GOLD='\033[38;5;179m'    # #f2c74b yellow
+_B_ROSE='\033[38;5;209m'    # #f37c4b coral
 _B_DIM='\033[38;5;243m'     # muted surface
 _B_BOLD='\033[1m'
 _B_RST='\033[0m'

@@ -17,15 +17,15 @@
     minus-style = syntax "#2a1417"
     minus-emph-style = syntax "#3d1f22"
     hunk-header-style = file line-number syntax
-    hunk-header-decoration-style = "#b750ae" box
-    file-style = bold "#017c9d"
-    file-decoration-style = "#15b8ae" ul
-    line-numbers-plus-style = "#019d76"
-    line-numbers-minus-style = "#f77669"
-    line-numbers-zero-style = "#60778c"
-    line-numbers-left-style = "#60778c"
-    line-numbers-right-style = "#60778c"
-    blame-palette = "#161e22 #1b2228 #222c31 #2a3a40"
+    hunk-header-decoration-style = "#be59d6" box
+    file-style = bold "#2bbcd5"
+    file-decoration-style = "#0cc7c2" ul
+    line-numbers-plus-style = "#49d575"
+    line-numbers-minus-style = "#f37c4b"
+    line-numbers-zero-style = "#5b7189"
+    line-numbers-left-style = "#5b7189"
+    line-numbers-right-style = "#5b7189"
+    blame-palette = "#101a1f #15242d #1d2c36 #2a3a40"
 
 [merge]
     conflictstyle = diff3
