@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — BOX UK // CyberMac dotfiles bootstrap (config-mirror layout)
+# install.sh — NIGHT CITY // CyberMac dotfiles bootstrap (config-mirror layout)
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,7 +7,7 @@ source "${REPO_ROOT}/lib/link.sh"
 
 usage() {
   cat <<'EOF'
-install.sh — BOX UK // CyberMac dotfiles bootstrap
+install.sh — NIGHT CITY // CyberMac dotfiles bootstrap
 
 Usage:
   bash install.sh [options]
@@ -117,10 +117,10 @@ link_extras() {
     [[ -d "${REPO_ROOT}/macos/alfred"      ]] && link_force "${REPO_ROOT}/macos/alfred"      "$HOME/.config/alfred"
 
     # Übersicht widgets live under Application Support, not ~/.config
-    if [[ -d "${REPO_ROOT}/macos/ubersicht/boxuk-bar.widget" ]]; then
+    if [[ -d "${REPO_ROOT}/macos/ubersicht/nightcity-bar.widget" ]]; then
       local uber_dir="$HOME/Library/Application Support/Übersicht/widgets"
       mkdir -p "$uber_dir"
-      link_force "${REPO_ROOT}/macos/ubersicht/boxuk-bar.widget" "$uber_dir/boxuk-bar.widget"
+      link_force "${REPO_ROOT}/macos/ubersicht/nightcity-bar.widget" "$uber_dir/nightcity-bar.widget"
     fi
   fi
 }
@@ -143,7 +143,7 @@ main() {
 
   local distro; distro="$(detect_distro)"
 
-  printf "${_C_PINK}\n  ✦  BOX UK // CyberMac Dotfiles${_C_RST}\n"
+  printf "${_C_PINK}\n  ✦  NIGHT CITY // CyberMac Dotfiles${_C_RST}\n"
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   _info "Distro: ${distro}"
 

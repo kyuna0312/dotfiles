@@ -1,7 +1,7 @@
-# security.zsh — BOX UK security toolkit
+# security.zsh — NIGHT CITY security toolkit
 # Sourced only when security tools (nmap/burpsuite) are detected
 
-# ── Colors (BOX UK) ─────────────────────────────────────────────────
+# ── Colors (NIGHT CITY) ─────────────────────────────────────────────────
 _S_PINK='\033[38;5;209m'
 _S_CYAN='\033[38;5;31m'
 _S_LAV='\033[38;5;133m'
@@ -15,7 +15,7 @@ _S_RST='\033[0m'
 # ── Network recon ─────────────────────────────────────────────────────────────
 alias nse='nmap -sV --script=default'
 alias nnmap='nmap -sn'
-alias listen='ss -tulnp'              # renamed: boxuk.zsh owns `ports`
+alias listen='ss -tulnp'              # renamed: nightcity.zsh owns `ports`
 alias myip='curl -s ifconfig.me'
 
 # ── Web ───────────────────────────────────────────────────────────────────────
@@ -41,9 +41,9 @@ b64e()          { echo "$1" | base64; }
 hexdump-clean() { xxd "$1" | less; }
 rot13()         { echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'; }
 
-# ── sectools: BOX UK reference card ─────────────────────────────────────
+# ── sectools: NIGHT CITY reference card ─────────────────────────────────────
 sectools() {
-  printf "\n${_S_PINK}${_S_BOLD}  ✦  BOX UK · security toolkit${_S_RST}\n"
+  printf "\n${_S_PINK}${_S_BOLD}  ✦  NIGHT CITY · security toolkit${_S_RST}\n"
   printf "${_S_DIM}     ──────────────────────────────────────${_S_RST}\n"
   printf "${_S_CYAN}     network   ${_S_RST}nmap, nse, nnmap, sniff, sniffport\n"
   printf "${_S_MINT}     recon     ${_S_RST}listen, myip, masscan\n"

@@ -1,4 +1,4 @@
-# BOX UK zsh layer - common utilities
+# NIGHT CITY zsh layer - common utilities
 # Style goals:
 # - Minimal and readable by default
 # - Soft visual polish without noisy output
@@ -159,7 +159,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 if command -v eza >/dev/null 2>&1; then
-  # BOX UK eza: purple dates, coral user, green sizes, yellow units.
+  # NIGHT CITY eza: purple dates, coral user, green sizes, yellow units.
   export EZA_COLORS="${EZA_COLORS:-da=38;5;133:uu=38;5;210:un=38;5;210:sn=38;5;36:sb=38;5;179:xa=38;5;217:gm=38;5;246}"
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
@@ -174,9 +174,9 @@ if command -v bat >/dev/null 2>&1; then
     export BAT_CONFIG_PATH="${CYBERPUNK_DOTFILES_DIR}/config/bat/config"
   fi
   alias cat='bat --paging=never --style=plain'
-  # Custom BOX UK theme — config/bat/themes/boxuk.tmTheme
+  # Custom NIGHT CITY theme — config/bat/themes/nightcity.tmTheme
   # (needs `bat cache --build` once after linking).
-  export BAT_THEME="${BAT_THEME:-boxuk}"
+  export BAT_THEME="${BAT_THEME:-nightcity}"
 fi
 
 alias la='eza -a --icons --git 2>/dev/null || ls -A'
@@ -223,7 +223,7 @@ fi
 
 # ---------- Optional fzf defaults ----------
 if command -v fzf >/dev/null 2>&1; then
-  # BOX UK — teal prompt, cyan highlights.
+  # NIGHT CITY — teal prompt, cyan highlights.
   export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:- --height=70% --layout=reverse --border=rounded --info=inline --pointer='λ' --marker='●' --prompt='  ' --color=fg:#b6c5d3,bg:-1,hl:#0cc7c2,fg+:#b6c5d3,bg+:-1,hl+:#5bf4f1,info:#5b7189,prompt:#2bbcd5,pointer:#2bbcd5,marker:#49d575,spinner:#0cc7c2,header:#49d575,border:#2bbcd5}"
   if command -v bat >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS:- --preview 'bat --color=always --style=numbers --line-range=:300 {}' --preview-window=right,60%,border-left}"
@@ -341,8 +341,8 @@ mkcd() {
 }
 
 dp-tools() {
-  # BOX UK-styled CLI stack reference
-  printf "\n\033[38;5;209m\033[1m  ✦  BOX UK CLI stack\033[0m\n"
+  # NIGHT CITY-styled CLI stack reference
+  printf "\n\033[38;5;209m\033[1m  ✦  NIGHT CITY CLI stack\033[0m\n"
   printf "\033[38;5;243m     ──────────────────────────────────\033[0m\n"
   printf "\033[38;5;31m     core    \033[0m starship bat eza fzf fd ripgrep zoxide\n"
   printf "\033[38;5;133m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
@@ -351,7 +351,7 @@ dp-tools() {
   printf "\033[38;5;243m     install \033[0m sudo pacman -S --needed <packages>\033[0m\n"
   printf "\033[38;5;243m     ──────────────────────────────────\033[0m\n\n"
 }
-alias boxuk-tools='dp-tools'
+alias nightcity-tools='dp-tools'
 alias netrunner-tools='dp-tools'   # back-compat
 
 # ---------- Plugins (Sheldon) ----------
@@ -367,7 +367,7 @@ if (( ${+widgets[autosuggest-execute]} )); then
   bindkey '^u' autosuggest-toggle
 fi
 
-# ---------- BOX UK layer ----------
-# Greeting, themed helpers, syntax highlight colors, BOX UK functions.
-[[ -f "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/boxuk.zsh" ]] && \
-  source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/boxuk.zsh"
+# ---------- NIGHT CITY layer ----------
+# Greeting, themed helpers, syntax highlight colors, NIGHT CITY functions.
+[[ -f "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/nightcity.zsh" ]] && \
+  source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/nightcity.zsh"

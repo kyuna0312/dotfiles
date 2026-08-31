@@ -1,5 +1,5 @@
--- BOX UK app launcher — CyberArch-Dotfiles style (Box UK Contrast)
--- Dark chooser, soft grey-blue text like the terminal/tmux Box UK palette.
+-- NIGHT CITY app launcher — CyberArch-Dotfiles style (Night City Mix)
+-- Dark chooser, soft grey-blue text like the terminal/tmux Night City palette.
 local M = {}
 
 local APP_DIRS = {

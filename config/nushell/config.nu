@@ -6,7 +6,7 @@
 # https://www.nushell.sh/book/coloring_and_theming.html
 # And here is the theme collection
 # https://github.com/nushell/nu_scripts/tree/main/themes
-# BOX UK Contrast (rainglow) — explicit hex variant of dark_theme,
+# Night City Mix — explicit hex variant of dark_theme,
 # matching the tmux/ghostty/kitty/wezterm/starship stack.
 # Palette: bg #101a1f, fg #b6c5d3, cyan #2bbcd5, yellow #f2c74b,
 # teal #0cc7c2, green #49d575, purple #be59d6, muted #5b7189.

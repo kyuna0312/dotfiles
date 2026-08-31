@@ -4,14 +4,14 @@
 [interactive]
     diffFilter = delta --color-only
 
-# BOX UK Contrast — same palette as the rest of the stack.
-# syntax-theme "boxuk" comes from config/bat/themes/boxuk.tmTheme via
+# Night City Mix — same palette as the rest of the stack.
+# syntax-theme "nightcity" comes from config/bat/themes/nightcity.tmTheme via
 # bat's theme cache (`bat cache --build` once after linking).
 [delta]
     navigate = true
     line-numbers = true
     side-by-side = true
-    syntax-theme = boxuk
+    syntax-theme = nightcity
     plus-style = syntax "#12271f"
     plus-emph-style = syntax "#1a3a2c"
     minus-style = syntax "#2a1417"

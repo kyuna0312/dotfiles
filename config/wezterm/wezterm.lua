@@ -1,5 +1,5 @@
--- WezTerm — Box UK Contrast (rainglow)
--- Same palette as the ghostty/kitty/tmux Box UK Contrast theming.
+-- WezTerm — Night City Mix
+-- Same palette as the ghostty/kitty/tmux Night City Mix theming.
 
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()

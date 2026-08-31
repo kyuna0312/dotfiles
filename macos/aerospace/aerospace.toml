@@ -1,6 +1,6 @@
-# BOX UK glow: cyan/teal gradient focus ring (JankyBorders), Box UK Contrast.
+# NIGHT CITY glow: cyan/teal gradient focus ring (JankyBorders), Night City Mix.
 # The right-edge status bar is an Übersicht widget (macos/ubersicht/
-# boxuk-bar.widget), which self-refreshes — no workspace-change hook
+# nightcity-bar.widget), which self-refreshes — no workspace-change hook
 # needed. sketchybar is horizontal-only, so it can't do the vertical bar.
 after-startup-command = [
   'exec-and-forget open -a Übersicht',

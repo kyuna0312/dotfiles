@@ -4,8 +4,8 @@ hs.hotkey.bind({"cmd", "alt"}, "C", function()
   spoon.AClock:toggleShow()
 end)
 
--- BOX UK app launcher (fuzzy chooser over all apps) — alt+space
-local launcher = require("boxuk_launcher")
+-- NIGHT CITY app launcher (fuzzy chooser over all apps) — alt+space
+local launcher = require("nightcity_launcher")
 hs.hotkey.bind({"alt"}, "space", launcher.toggle)
 
 -- Reload this config

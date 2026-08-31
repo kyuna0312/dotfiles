@@ -1,4 +1,4 @@
-# Linux-specific BOX UK zsh layer
+# Linux-specific NIGHT CITY zsh layer
 
 export CYBERPUNK_OS="linux"
 

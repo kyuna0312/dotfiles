@@ -2,7 +2,7 @@ add_newline = false
 command_timeout = 500
 palette = "nightcity"
 
-# BOX UK · Tide-style powerline prompt
+# NIGHT CITY · Tide-style powerline prompt
 # Line 1: ribbon[ os · dir · git ] ────── runtimes · duration · time
 # Line 2: λ input marker
 format = """
@@ -133,11 +133,11 @@ style = "yellow"
 format = "[$time]($style)"
 time_format = "%H:%M"
 
-# ── Palette — BOX UK ──────────────────────────────────────────────────────
+# ── Palette — NIGHT CITY ──────────────────────────────────────────────────────
 
-# Aligned with the BOX UK stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
+# Aligned with the NIGHT CITY stack palette (tmux/ghostty/kitty/wezterm/ubersicht):
 # deep blue-grey #101a1f ground, cyan #2bbcd5, yellow #f2c74b, teal #0cc7c2.
-# Palette values are the BOX UK Contrast (rainglow) set.
+# Palette values are the Night City Mix set.
 [palettes.nightcity]
 cyan     = "#2bbcd5"
 teal     = "#0cc7c2"

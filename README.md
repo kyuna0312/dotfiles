@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/logo.png" width="120" alt="BOX UK" />
+<img src="assets/logo.png" width="120" alt="NIGHT CITY" />
 
-# ✦ BOX UK Dotfiles
+# ✦ NIGHT CITY Dotfiles
 
 **Cyberpunk: Edgerunners-themed development environment — one palette, ten tools**  
 Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace · Übersicht · Zellij
@@ -19,9 +19,9 @@ Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace ·
 
 <div align="center">
 
-<img src="assets/preview.png" width="820" alt="BOX UK desktop — Neovim in tmux, teal palette, Aeroline bar on the right" />
+<img src="assets/preview.png" width="820" alt="NIGHT CITY desktop — Neovim in tmux, teal palette, Aeroline bar on the right" />
 
-<sub>Neovim + tmux in the teal Box UK palette · Aeroline vertical bar (right edge) with AeroSpace workspaces + clock · Starship `λ` prompt with git status</sub>
+<sub>Neovim + tmux in the teal Night City palette · Aeroline vertical bar (right edge) with AeroSpace workspaces + clock · Starship `λ` prompt with git status</sub>
 
 </div>
 
@@ -53,8 +53,8 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 | Component | Config path | Description |
 |-----------|-------------|-------------|
-| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; BOX UK greeting, fzf, zoxide, lazy NVM |
-| **Starship** | `config/starship/starship.toml` | `λ` prompt, BOX UK ribbon on stack tokens, OS badge, git status |
+| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; NIGHT CITY greeting, fzf, zoxide, lazy NVM |
+| **Starship** | `config/starship/starship.toml` | `λ` prompt, NIGHT CITY ribbon on stack tokens, OS badge, git status |
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Night City Mix via nightcity.nvim (git submodule) |
 | **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
@@ -65,7 +65,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring |
 | **Zellij** | `config/zellij/config.kdl` | Custom `nightcity` theme |
 | **Nushell** | `config/nushell/` | Explicit-hex `nightcity_theme` color_config |
-| **Git** | `config/git/config` + `delta.gitconfig` | Shared aliases + delta pager with BOX UK syntax colors |
+| **Git** | `config/git/config` + `delta.gitconfig` | Shared aliases + delta pager with NIGHT CITY syntax colors |
 | **Atuin** | `config/atuin/config.toml` | Shell history search (sync-ready) |
 | **Security** | `config/zsh/lib/security.zsh` | Pentest alias layer (`sectools` for reference) |
 
@@ -164,20 +164,20 @@ A `shift-` variant is the second app sharing a letter.
 
 Zsh uses `ZDOTDIR=~/.config/zsh` (set by `home/.zshenv`), so all zsh config lives under `config/zsh/`. Plugins are managed by [Sheldon](https://sheldon.cli.rs/) (`config/sheldon/plugins.toml`).
 
-### BOX UK Zsh Layer (`config/zsh/lib/boxuk.zsh`)
+### NIGHT CITY Zsh Layer (`config/zsh/lib/nightcity.zsh`)
 
 Sourced last, after syntax highlighting. Provides:
 
 | Command | Description |
 |---------|-------------|
-| `boxuk` | Identity card with system info |
+| `nightcity` | Identity card with system info |
 | `jack-in <host>` | Styled SSH wrapper |
 | `flatline <name>` | Kill process by name (`pkill -f`) |
 | `breach [dir]` | `cd` into directory then open `$EDITOR` |
 | `ghost` | Browse history with fzf and re-run |
 | `ports` | Open listening ports (`ss -tulnp`) |
 
-> `dp-tools` (alias `boxuk-tools`) prints the CLI stack reference card — defined in `config/zsh/lib/common.zsh`.
+> `dp-tools` (alias `nightcity-tools`) prints the CLI stack reference card — defined in `config/zsh/lib/common.zsh`.
 
 ### Security Layer (`config/zsh/lib/security.zsh`)
 
@@ -249,7 +249,7 @@ dotfiles/
 │   │       ├── common.zsh   # shared: aliases, fzf, nvm, zoxide
 │   │       ├── linux.zsh    # Linux: tmux auto-attach, EDITOR, security
 │   │       ├── macos.zsh    # macOS specifics
-│   │       ├── boxuk.zsh    # BOX UK layer: greeting, themed helpers
+│   │       ├── nightcity.zsh    # NIGHT CITY layer: greeting, themed helpers
 │   │       └── security.zsh # pentest alias layer
 │   ├── sheldon/plugins.toml # zsh plugin manifest (Sheldon)
 │   ├── starship/starship.toml
@@ -298,7 +298,7 @@ Split out of this repo so they're reusable on their own:
 
 <div align="center">
 
-**BOX UK — Netrunner Online**  
+**NIGHT CITY — Netrunner Online**  
 <sub>built with ✦ and calm teal</sub>
 
 </div>

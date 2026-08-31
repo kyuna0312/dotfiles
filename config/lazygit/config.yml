@@ -1,7 +1,7 @@
-# lazygit — BOX UK Contrast (rainglow)
+# lazygit — Night City Mix
 # Same deep blue-grey / teal palette as the rest of the stack.
 
-# Route diffs through delta so they match the boxuk theme used everywhere
+# Route diffs through delta so they match the nightcity theme used everywhere
 # else (git delta.gitconfig, bat). --paging=never lets lazygit own scrolling.
 git:
   pagers:

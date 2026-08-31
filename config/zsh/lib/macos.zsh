@@ -1,4 +1,4 @@
-# macOS-specific BOX UK zsh layer
+# macOS-specific NIGHT CITY zsh layer
 
 export CYBERPUNK_OS="macos"
 

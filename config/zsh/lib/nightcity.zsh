@@ -1,8 +1,8 @@
-# ── BOX UK · zsh layer ─────────────────────────────────────────
+# ── NIGHT CITY · zsh layer ─────────────────────────────────────────
 # Greeting, syntax highlight colors, themed helpers.
 # Sourced last in common.zsh (after zsh-syntax-highlighting).
 
-# ── Palette (ANSI 256 ≈ BOX UK hex) ────────────────────────────────
+# ── Palette (ANSI 256 ≈ NIGHT CITY hex) ────────────────────────────────
 _B_PINK='\033[38;5;209m'    # #fa70a7 coral
 _B_CYAN='\033[38;5;37m'     # #0cc7c2 teal
 _B_LAV='\033[38;5;133m'     # #be59d6 purple
@@ -15,7 +15,7 @@ _B_RST='\033[0m'
 
 # ── Greeting ──────────────────────────────────────────────────────────────────
 # Only in interactive non-tmux shells (tmux status bar already has identity).
-_boxuk_greet() {
+_nightcity_greet() {
   [[ "${__dp_is_interactive:-0}" != "1" ]] && return
   [[ -n "${TMUX:-}" ]] && return
 
@@ -36,7 +36,7 @@ _boxuk_greet() {
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
   printf "\n"
 }
-_boxuk_greet
+_nightcity_greet
 
 # ── Override common.zsh info helpers with themed versions ────────────────────
 _dp_info()  { printf "${_B_CYAN}[✦]${_B_RST} %s\n"    "$*"; }
@@ -70,7 +70,7 @@ fi
 # ── Autosuggestion color ──────────────────────────────────────────────────────
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=239'
 
-# ── BOX UK helper functions ───────────────────────────────────────────
+# ── NIGHT CITY helper functions ───────────────────────────────────────────
 
 # jack-in: ssh with a netrunner greeting
 jack-in() {
@@ -118,15 +118,15 @@ ports() {
   ss -tulnp 2>/dev/null || netstat -tulnp 2>/dev/null
 }
 
-# boxuk: identity card + system info
-boxuk() {
+# nightcity: identity card + system info
+nightcity() {
   local _os _branch=""
   _os="$(grep PRETTY_NAME /etc/os-release 2>/dev/null | cut -d'"' -f2 || uname -sr)"
   if command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1; then
     _branch="$(git branch --show-current 2>/dev/null)"
   fi
 
-  printf "\n${_B_PINK}${_B_BOLD}  ✦  BOX UK · system id${_B_RST}\n"
+  printf "\n${_B_PINK}${_B_BOLD}  ✦  NIGHT CITY · system id${_B_RST}\n"
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
   printf "${_B_CYAN}     host      ${_B_RST}$(hostname)\n"
   printf "${_B_LAV}     os        ${_B_RST}${_os}\n"
