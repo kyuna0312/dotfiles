@@ -56,6 +56,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; BOX UK greeting, fzf, zoxide, lazy NVM |
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, BOX UK ribbon on stack tokens, OS badge, git status |
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Box UK Contrast palette (git submodule) |
+| **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
 | **Ghostty** | `config/ghostty/config` | Full 16-color BOX UK palette, teal cursor, 0.8 opacity + blur |
 | **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |

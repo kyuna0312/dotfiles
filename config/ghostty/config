@@ -1,35 +1,10 @@
 # Ghostty — Box UK Contrast (rainglow)
 # Cyan surface (#017c9d) with teal/yellow/purple/green pops.
 
-# ---- Box UK Contrast palette ----
-background = #161e22
-foreground = #b8c7cc
-
-cursor-color = #017c9d
-cursor-text = #161e22
-
-selection-background = #017c9d
-selection-foreground = #161e22
-
-# normal
-palette = 0=#161e22
-palette = 1=#f77669
-palette = 2=#019d76
-palette = 3=#ffcb6e
-palette = 4=#017c9d
-palette = 5=#b750ae
-palette = 6=#15b8ae
-palette = 7=#b8c7cc
-
-# bright
-palette = 8=#303b47
-palette = 9=#ff8a80
-palette = 10=#15b8ae
-palette = 11=#ffd68a
-palette = 12=#2f9dc0
-palette = 13=#c77dbf
-palette = 14=#4fd8ce
-palette = 15=#e6e6e6
+# ---- Palette — from the night-city-palettes submodule ----
+# ~/.config/themes -> themes/night-city-palettes (linked by install.sh).
+# Swap the file name to switch palettes (e.g. night-city-mix).
+config-file = ../themes/extras/ghostty/box-uk-contrast
 
 # ---- Window ----
 background-opacity = 0.8

@@ -4,10 +4,9 @@
 # Route diffs through delta so they match the boxuk theme used everywhere
 # else (git delta.gitconfig, bat). --paging=never lets lazygit own scrolling.
 git:
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
-
+  pagers:
+    - colorArg: always
+      pager: delta --dark --paging=never
 gui:
   nerdFontsVersion: "3"
   theme:
