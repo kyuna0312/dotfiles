@@ -11,14 +11,14 @@ const CONFIG = {
   side: "right",          // "right" or "left"
   width: 56,              // column width in px
 
-  // Cyberpunk: Lucy palette (swap these hexes for any theme you like)
+  // Night City Mix palette (swap these hexes for any theme you like)
   colors: {
-    bg:     "#0a0e1a",    // panel ground (deep midnight navy glass)
-    accent: "#37e0ff",    // primary — brand, borders, workspace hover (neon cyan)
-    active: "#00d4d4",    // clock time, active-hover (teal)
+    bg:     "#101a1f",    // panel ground (blue-grey glass)
+    accent: "#2bbcd5",    // primary — brand, borders, workspace hover (cyan)
+    active: "#0cc7c2",    // clock time, active-hover (teal)
     now:    "#ff45d4",    // active workspace chip ("now" accent, neon magenta)
-    fg:     "#c8d6f0",    // date / body text (icy blue-white)
-    muted:  "#5a6a8c",    // weekday, seconds
+    fg:     "#b6c5d3",    // date / body text (grey-blue fg)
+    muted:  "#5b7189",    // weekday, seconds
   },
 
   aerospacePath: "/opt/homebrew/bin/aerospace", // `which aerospace`
