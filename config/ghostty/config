@@ -3,8 +3,8 @@
 
 # ---- Palette — from the night-city-palettes submodule ----
 # ~/.config/themes -> themes/night-city-palettes (linked by install.sh).
-# Swap the file name to switch palettes (e.g. night-city-mix).
-config-file = ../themes/extras/ghostty/box-uk-contrast
+# Swap the file name to switch palettes (e.g. box-uk-contrast).
+config-file = ../themes/extras/ghostty/night-city-mix
 
 # ---- Window ----
 background-opacity = 0.8

@@ -52,8 +52,8 @@ config.keys = {
 
 -- ---- Palette — from the night-city-palettes submodule ----
 -- ~/.config/themes -> themes/night-city-palettes (linked by install.sh).
--- Swap the file name to switch palettes (e.g. night-city-mix.lua).
-config.colors = dofile(wezterm.home_dir .. "/.config/themes/extras/wezterm/box-uk-contrast.lua")
+-- Swap the file name to switch palettes (e.g. box-uk-contrast.lua).
+config.colors = dofile(wezterm.home_dir .. "/.config/themes/extras/wezterm/night-city-mix.lua")
 
 -- dotfiles-specific tab-bar styling on top of the shared theme
 config.colors.tab_bar.background = "#161e22"
