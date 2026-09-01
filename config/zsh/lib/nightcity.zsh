@@ -36,7 +36,8 @@ _nightcity_greet() {
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
   printf "\n"
 }
-_nightcity_greet
+# Quiet startup by default (craftzdog-style); CYBERPUNK_GREETING=1 re-enables.
+[[ "${CYBERPUNK_GREETING:-0}" == "1" ]] && _nightcity_greet
 
 # ── Override common.zsh info helpers with themed versions ────────────────────
 _dp_info()  { printf "${_B_CYAN}[✦]${_B_RST} %s\n"    "$*"; }

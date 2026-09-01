@@ -181,6 +181,7 @@ fi
 
 alias la='eza -a --icons --git 2>/dev/null || ls -A'
 alias ll='eza -l --icons --git 2>/dev/null || ls -lh'
+alias lla='eza -la --icons --git 2>/dev/null || ls -lhA'
 
 # ---------- Git (developer-focused) ----------
 alias g='git'
@@ -321,6 +322,16 @@ f() {
   _dp_info "copied path: ${picked}"
 }
 
+# Ctrl-F: fzf directory jump (craftzdog-style), as a ZLE widget so the prompt redraws.
+if command -v fzf >/dev/null 2>&1; then
+  _dp_fzf_cd_widget() {
+    fcd </dev/tty
+    zle reset-prompt
+  }
+  zle -N _dp_fzf_cd_widget
+  bindkey '^f' _dp_fzf_cd_widget
+fi
+
 fv() {
   # Pick a file under $HOME and open in $EDITOR.
   _dp_require_fd_fzf || return $?
@@ -333,6 +344,7 @@ fv() {
 # ---------- Editor / AI CLI shortcuts ----------
 command -v nvim >/dev/null 2>&1 && alias vim='nvim'
 command -v claude >/dev/null 2>&1 && alias c='claude'
+command -v claude >/dev/null 2>&1 && alias claude-yolo='claude --dangerously-skip-permissions'
 
 # ---------- Quick quality-of-life helpers ----------
 mkcd() {
