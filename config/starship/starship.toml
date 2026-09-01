@@ -7,7 +7,6 @@ palette = "nightcity"
 # Line 2: λ input marker
 format = """
 [](fg:cyan)\
-$os\
 $username\
 [](fg:cyan bg:surface)\
 $directory\
@@ -34,18 +33,6 @@ error_symbol   = "[λ](bold coral)"
 vicmd_symbol   = "[❮](bold teal)"
 
 # ── Left ribbon (background segments) ────────────────────────────────────────
-
-[os]
-disabled = false
-style = "fg:base bg:cyan"
-format = "[ $symbol]($style)"
-
-[os.symbols]
-Linux   = "󰌽"
-Manjaro = "󱘊"
-Arch    = "󰣇"
-Macos   = "󰀵"
-Windows = "󰍲"
 
 # bobthefish-style user@host (craftzdog: theme_display_user yes, hostname always)
 [username]
