@@ -8,6 +8,7 @@ palette = "nightcity"
 format = """
 [](fg:cyan)\
 $os\
+$username\
 [](fg:cyan bg:surface)\
 $directory\
 [](fg:surface bg:overlay)\
@@ -46,24 +47,26 @@ Arch    = "󰣇"
 Macos   = "󰀵"
 Windows = "󰍲"
 
+# bobthefish-style user@host (craftzdog: theme_display_user yes, hostname always)
+[username]
+show_always = true
+style_user = "fg:base bg:cyan"
+style_root = "fg:coral bg:cyan"
+format = "[ $user ]($style)"
+# hostname segment skipped: machine hostname is a bare IP (192.168.1.3).
+# Fix with `sudo scutil --set HostName <name>`, then add $hostname back.
+
 [directory]
 style = "fg:text bg:surface"
 format = "[ $path ]($style)"
-truncation_length = 4
-truncate_to_repo = true
+# fish_prompt_pwd_dir_length=1 look: ~/D/d/config — parents shortened to 1 char
+truncation_length = 1
+fish_style_pwd_dir_length = 1
+truncate_to_repo = false
 read_only = " 󰌾"
 read_only_style = "fg:cyan bg:surface"
 
-[directory.substitutions]
-# Full-path forms (used outside a git repo) and the repo-root basenames
-# (used inside a repo, where truncate_to_repo collapses the path to the
-# repo folder name). Both are listed so the icon shows either way.
-"~/.config"  = "󱁿 cfg"
-"~/dotfiles" = "󰚩 dot"
-"~/projects" = "󰲋 proj"
-"~/Desktop"  = "󰇄 desk"
-"dotfiles"   = "󰚩 dot"
-".config"    = "󱁿 cfg"
+# No substitutions: starship disables fish-style abbreviation when any exist.
 
 [git_branch]
 symbol = " "
