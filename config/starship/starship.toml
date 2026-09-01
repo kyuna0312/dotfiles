@@ -40,8 +40,6 @@ show_always = true
 style_user = "fg:base bg:cyan"
 style_root = "fg:coral bg:cyan"
 format = "[ $user ]($style)"
-# hostname segment skipped: machine hostname is a bare IP (192.168.1.3).
-# Fix with `sudo scutil --set HostName <name>`, then add $hostname back.
 
 [directory]
 style = "fg:text bg:surface"
