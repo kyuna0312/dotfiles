@@ -1,14 +1,15 @@
-# Ghostty — Night City Mix
-# Cyan surface (#2bbcd5) with teal/yellow/purple/green pops.
+# Ghostty — craftzdog-style Solarized Osaka
+# Matches nvim's solarized-osaka theme; background/opacity/blur per craftzdog.
 
-# ---- Palette — from the night-city-palettes submodule ----
-# ~/.config/themes -> themes/night-city-palettes (linked by install.sh).
-# Swap the file name to switch palettes (e.g. box-uk-contrast).
-config-file = ../themes/extras/ghostty/night-city-mix
+# ---- Theme ----
+# Previous NIGHT CITY palette (switch back by re-enabling config-file):
+# config-file = ../themes/extras/ghostty/night-city-mix
+theme = "Solarized Osaka Night"
+background = #031219
 
 # ---- Window ----
-background-opacity = 0.8
-background-blur = 32
+background-opacity = 0.9
+background-blur = 20
 window-padding-x = 16
 window-padding-y = 16
 window-padding-balance = true
@@ -17,7 +18,7 @@ window-padding-balance = true
 font-family = "Hack Nerd Font"
 
 # ---- Cursor ----
-cursor-style = bar
+cursor-style = block
 cursor-style-blink = true
 
 # ---- macOS keys ----
