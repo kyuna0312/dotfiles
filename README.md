@@ -55,7 +55,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 |-----------|-------------|-------------|
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; NIGHT CITY greeting, fzf, zoxide, lazy NVM |
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, NIGHT CITY ribbon on stack tokens, OS badge, git status |
-| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) | Night City Mix via nightcity.nvim (git submodule) |
+| **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) v1.4 | ~30 ms startup, live theme switcher, `:Nyan*` menu, git-ignored `lua/user/` overrides; Night City Mix via nightcity.nvim (git submodule) · [nyanvim.vercel.app](https://nyanvim.vercel.app) |
 | **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
 | **Ghostty** | `config/ghostty/config` | Full 16-color Night City Mix palette, teal cursor, 0.8 opacity + blur |
@@ -225,11 +225,17 @@ Start tmux → prefix + I   (C-Space, then Shift-i)
 
 ### Neovim
 
-On first launch, sync all plugins:
+Plugins install themselves on the first launch, pinned to NyanVim's
+`lazy-lock.json`. Then:
 
 ```
-nvim → :Lazy sync
+:NyanHealth     " check tools, compiler, Nerd Font
+:NyanConfig     " your overrides in lua/user/ (git-ignored, survive updates)
+:NyanUpdate     " git pull + :Lazy restore
 ```
+
+Keys: `Space` then wait (which-key), `Space t h` theme picker, `Space n` NyanVim menu.
+Docs: [docs/wiki](https://github.com/kyuna0312/NyanVim/tree/main/docs/wiki) · site: [nyanvim.vercel.app](https://nyanvim.vercel.app)
 
 ---
 
@@ -285,7 +291,7 @@ Split out of this repo so they're reusable on their own:
 
 - **[night-city-palettes](https://github.com/kyuna0312/night-city-palettes)** — a four-palette collection (Box UK Contrast, Solarized Osaka, Cyberpunk Lucy, Night City Mix) as a portable design kit: drop-in terminal themes, a matching desktop wallpaper, and a teal folder icon.
 - **[aeroline](https://github.com/kyuna0312/aeroline)** — the vertical Übersicht + AeroSpace status bar (right-edge workspaces + clock), one-block themeable.
-- **[NyanVim](https://github.com/kyuna0312/NyanVim)** — the Neovim distribution linked in as `config/nvim` (git submodule).
+- **[NyanVim](https://github.com/kyuna0312/NyanVim)** — the Neovim distribution linked in as `config/nvim` (git submodule): NvChad-class startup, LunarVim-style `:Nyan*` menu and try-before-you-switch installer, doom-style user layer. Website: [nyanvim.vercel.app](https://nyanvim.vercel.app).
 
 ---
 
