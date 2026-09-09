@@ -10,3 +10,4 @@ CLAUDE.md
 config/zsh/.zcompdump*
 config/tmux/plugins/
 macos/karabiner/automatic_backups/
+config/zsh/.zsh_sessions/
