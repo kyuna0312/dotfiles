@@ -24,6 +24,8 @@ install_base() {
   local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-base.txt")
   # shellcheck disable=SC2086
   run brew install $pkgs || true
+  # Emacs.app for NyanEmacs (config/emacs)
+  run brew install --cask emacs || true
 }
 
 install_security() {
