@@ -2,3 +2,6 @@
 # This is the only zsh file zsh reads from $HOME; everything else lives in $ZDOTDIR.
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+# Unity CLI (only where it is installed)
+[ -f "$HOME/.unity/env" ] && . "$HOME/.unity/env"
