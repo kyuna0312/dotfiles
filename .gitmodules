@@ -6,4 +6,4 @@
 	url = https://github.com/kyuna0312/night-city-palettes
 [submodule "config/emacs"]
 	path = config/emacs
-	url = https://github.com/kyuna0312/NyanEmacs
+	url = https://github.com/Nyanko-labs/NyanEmacs
