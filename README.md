@@ -56,7 +56,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; NIGHT CITY greeting, fzf, zoxide, lazy NVM |
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, NIGHT CITY ribbon on stack tokens, OS badge, git status |
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/kyuna0312/NyanVim) v1.4 | ~30 ms startup, live theme switcher, `:Nyan*` menu, git-ignored `lua/user/` overrides; Night City Mix via nightcity.nvim (git submodule) · [nyanvim.vercel.app](https://nyanvim.vercel.app) |
-| **Emacs** | `config/emacs/` → NyanEmacs | NyanVim's keys (evil + `<space>` leader) and Night City Mix theme on [Centaur Emacs](https://github.com/seagle0128/.emacs.d)'s layout; eglot, vertico/consult, corfu, magit, treemacs, `M-x nyan-*` menu, git-ignored `user.el` |
+| **Emacs** | `config/emacs/` → [NyanEmacs](https://github.com/kyuna0312/NyanEmacs) | NyanVim's keys (evil + `<space>` leader) and Night City Mix theme on [Centaur Emacs](https://github.com/seagle0128/.emacs.d)'s layout; eglot, vertico/consult, corfu, magit, treemacs, `M-x nyan-*` menu, git-ignored `user.el` |
 | **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
 | **Claude Code** | `config/claude/` | Night City status line (same palette and powerline segments as tmux); `settings.json` with the plugin set, copied on first install |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
@@ -262,7 +262,7 @@ dotfiles/
 │   ├── sheldon/plugins.toml # zsh plugin manifest (Sheldon)
 │   ├── starship/starship.toml
 │   ├── nvim/               # NyanVim (git submodule)
-│   ├── emacs/              # NyanEmacs (init.el + lisp/init-*.el + themes/)
+│   ├── emacs/              # NyanEmacs (git submodule)
 │   ├── tmux/tmux.conf
 │   ├── ghostty/config
 │   ├── kitty/kitty.conf

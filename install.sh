@@ -67,7 +67,7 @@ setup_submodules() {
   # NyanVim (config/nvim) and any other submodules ship as git submodules.
   if git -C "${REPO_ROOT}" rev-parse --git-dir >/dev/null 2>&1 \
      && [[ -f "${REPO_ROOT}/.gitmodules" ]]; then
-    _info "Syncing submodules (nvim → NyanVim)..."
+    _info "Syncing submodules (nvim → NyanVim, emacs → NyanEmacs)..."
     run git -C "${REPO_ROOT}" submodule update --init --recursive || \
       _warn "submodule sync failed; nvim config may be empty."
   fi
