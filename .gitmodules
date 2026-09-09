@@ -4,3 +4,6 @@
 [submodule "themes/night-city-palettes"]
 	path = themes/night-city-palettes
 	url = https://github.com/kyuna0312/night-city-palettes
+[submodule "config/emacs"]
+	path = config/emacs
+	url = https://github.com/kyuna0312/NyanEmacs
