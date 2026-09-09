@@ -84,6 +84,7 @@ link_config() {
   _info "Linking ~/.config entries..."
   local dir name
   for dir in "${REPO_ROOT}/config/"*/; do
+    [[ "$(basename "$dir")" == claude ]] && continue  # linked file-by-file in link_claude
     name="$(basename "$dir")"
     link_force "${dir%/}" "$HOME/.config/${name}"
   done
@@ -102,6 +103,19 @@ setup_tmux_tpm() {
     _info "Cloning TPM..."
     mkdir -p "$HOME/.tmux/plugins"
     git clone --depth=1 https://github.com/tmux-plugins/tpm "$tpm_dir"
+  fi
+}
+
+# Claude Code reads ~/.claude, which is mostly state (sessions, caches). Only
+# the two config files go there: the status line as a symlink, settings.json
+# copied once so a machine's plugins and permissions stay its own.
+link_claude() {
+  _info "Linking Claude Code config..."
+  link_force "${REPO_ROOT}/config/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
+  if [[ ! -e "$HOME/.claude/settings.json" ]]; then
+    run mkdir -p "$HOME/.claude"
+    run cp "${REPO_ROOT}/config/claude/settings.json" "$HOME/.claude/settings.json"
+    _ok "  $HOME/.claude/settings.json (copied)"
   fi
 }
 
@@ -159,6 +173,7 @@ main() {
   link_home
   link_config
   setup_tmux_tpm
+  link_claude
   link_extras
 
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
