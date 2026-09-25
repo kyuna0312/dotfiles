@@ -88,8 +88,6 @@ link_config() {
     name="$(basename "$dir")"
     link_force "${dir%/}" "$HOME/.config/${name}"
   done
-
-  # Compat symlinks for tools that also read $HOME paths.
 }
 
 setup_tmux_tpm() {
