@@ -191,7 +191,7 @@ main() {
   printf "     Open a new shell. Tmux plugins: ${_C_DIM}start tmux → prefix + I${_C_RST}\n"
   if [[ "$distro" == "macos" ]]; then
     printf "\n     Still manual on macOS:\n"
-    printf "     ${_C_DIM}1.${_C_RST} Nerd Font for the prompt and status line: ${_C_DIM}brew install --cask font-jetbrains-mono-nerd-font${_C_RST}\n"
+    printf "     ${_C_DIM}1.${_C_RST} Nerd Font for the prompt and status line: ${_C_DIM}installed by packages/macos-cask.txt (font-hack-nerd-font)${_C_RST}\n"
     printf "     ${_C_DIM}2.${_C_RST} Karabiner-Elements and AeroSpace: grant Accessibility in System Settings → Privacy\n"
     printf "     ${_C_DIM}3.${_C_RST} Übersicht: enable the nightcity-bar widget from its menu\n"
     printf "     ${_C_DIM}4.${_C_RST} Terminal: pick Ghostty or kitty and set the Nerd Font there\n"

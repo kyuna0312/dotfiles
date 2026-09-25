@@ -35,18 +35,14 @@ install_security() {
   _info "[arch] Installing security tools..."
   local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/arch-security.txt")
 
-  # Try pacman first; AUR fallback for packages not in official repos.
+  # One at a time: a single unknown name would abort the whole pacman call.
   # shellcheck disable=SC2086
-  run sudo pacman -S --noconfirm --needed $pkgs 2>/dev/null || true
+  _install_each sudo pacman -S --noconfirm --needed -- $pkgs
 
   install_aur_helper
   if [[ -n "${AUR_CMD:-}" ]]; then
-    run "$AUR_CMD" -S --noconfirm --needed \
-      burpsuite \
-      pwndbg \
-      volatility3 \
-      impacket \
-      crackmapexec 2>/dev/null || true
+    _install_each "$AUR_CMD" -S --noconfirm --needed -- \
+      burpsuite pwndbg steghide foremost volatility3 impacket crackmapexec
   fi
 
   # BlackArch security repo (optional, uncomment to enable full pentest suite)

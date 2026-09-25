@@ -58,14 +58,10 @@ install_security() {
   _info "[debian] Installing security tools..."
   local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/debian-security.txt")
 
-  # Kali repo if present, else standard apt with --fix-missing fallback.
-  if grep -q "kali" /etc/apt/sources.list 2>/dev/null; then
-    # shellcheck disable=SC2086
-    run sudo apt-get install -y $pkgs
-  else
-    # shellcheck disable=SC2086
-    run sudo apt-get install -y --fix-missing $pkgs || true
-  fi
+  # One at a time: apt aborts the whole call on a single unknown package name
+  # (--fix-missing does not help with names). Kali carries every name; Debian/Ubuntu skip a few.
+  # shellcheck disable=SC2086
+  _install_each sudo apt-get install -y --no-install-recommends -- $pkgs
 
   # pwndbg (GDB enhancement for exploit development)
   local pwndbg_dir="$HOME/.local/share/pwndbg"

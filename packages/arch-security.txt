@@ -3,7 +3,7 @@
 nmap
 wireshark-qt
 tcpdump
-netcat
+openbsd-netcat
 masscan
 gobuster
 ffuf
@@ -12,15 +12,11 @@ john
 hydra
 sqlmap
 nikto
-pwndbg
 ghidra
 radare2
 binwalk
-foremost
-steghide
-exiftool
+perl-image-exiftool
 metasploit
-burpsuite
 proxychains-ng
 openvpn
 wireguard-tools

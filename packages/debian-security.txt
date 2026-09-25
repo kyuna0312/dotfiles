@@ -14,7 +14,7 @@ nikto
 binwalk
 foremost
 steghide
-exiftool
+libimage-exiftool-perl
 proxychains4
 openvpn
 wireguard

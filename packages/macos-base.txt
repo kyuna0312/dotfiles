@@ -11,7 +11,6 @@ fd
 bat
 eza
 zoxide
-direnv
 cmake
 make
 node
@@ -22,3 +21,5 @@ git-delta
 atuin
 neovim
 sheldon
+zellij
+nushell

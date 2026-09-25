@@ -33,6 +33,18 @@ _parse_pkg_list() {
   grep -v '^\s*#' "$1" | grep -v '^\s*$'
 }
 
+# _install_each: install packages one at a time so a name missing from this
+# distro's repos skips with a warning instead of aborting the whole transaction
+# (pacman and apt both abort on one unknown target). Usage: _install_each <cmd...> -- <pkgs...>
+_install_each() {
+  local cmd=() p
+  while [[ $# -gt 0 && "$1" != "--" ]]; do cmd+=("$1"); shift; done
+  shift
+  for p in "$@"; do
+    run "${cmd[@]}" "$p" || _warn "  not in repos, skipped: $p"
+  done
+}
+
 backup_if_exists() {
   local dst="$1"
   if [[ -e "$dst" || -L "$dst" ]]; then

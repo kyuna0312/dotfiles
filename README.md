@@ -4,7 +4,7 @@
 
 # ✦ NIGHT CITY Dotfiles
 
-**Cyberpunk: Edgerunners-themed development environment — one palette, ten tools**  
+**Cyberpunk: Edgerunners-themed development environment — one palette, every tool**  
 Neovim · Zsh · Tmux · Starship · Ghostty · Kitty · AeroSpace · Übersicht · Zellij
 
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=2bbcd5&labelColor=101a1f)](LICENSE)
@@ -34,8 +34,13 @@ git clone --recurse-submodules https://github.com/kyuna0312/dotfiles ~/dotfiles
 cd ~/dotfiles && bash install.sh
 ```
 
-> **Re-link only** (skip package installs): `bash install.sh --skip-packages`  
-> **With pentest tools**: `bash install.sh --security`
+> **Re-link only** (after editing configs): `bash install.sh --skip-packages`  
+> **With pentest tools**: `bash install.sh --security`  
+> **Preview**: `bash install.sh --dry-run`
+
+The installer backs up anything it replaces as `<file>.bak.<timestamp>`, links every
+`config/*` dir into `~/.config`, and ends with the short list of steps macOS still
+needs by hand (Accessibility for AeroSpace/Karabiner, the Übersicht widget).
 
 ---
 
@@ -48,12 +53,13 @@ cd ~/dotfiles && bash install.sh
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/Nyanko-labs/NyanVim) v1.4 | ~30 ms startup, live theme switcher, `:Nyan*` menu, git-ignored `lua/user/` overrides; Night City Mix via nightcity.nvim (git submodule) · [nyanvim.vercel.app](https://nyanvim.vercel.app) |
 | **Emacs** | `config/emacs/` → [NyanEmacs](https://github.com/Nyanko-labs/NyanEmacs) | NyanVim's keys (evil + `<space>` leader) and Night City Mix theme on [Centaur Emacs](https://github.com/seagle0128/.emacs.d)'s layout; eglot, vertico/consult, corfu, magit, treemacs, `M-x nyan-*` menu, git-ignored `user.el` |
 | **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty include their colors from it via `~/.config/themes` |
-| **AI tools** | `config/ai/` | One `CLAUDE.md` read by Claude Code and Codex; Claude `settings.json` (plugins, model) + Night City status line; `skills/`, `agents/`; opencode config |
+| **AI tools** | `config/ai/` | One `CLAUDE.md` read by Claude Code and Codex; Claude `settings.json` (plugins, model) + Night City status line; `clean-code` skill (git submodule) linked into every tool; opencode agent, commands and theme |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
 | **Ghostty** | `config/ghostty/config` | Full 16-color Night City Mix palette, teal cursor, 0.8 opacity + blur |
 | **Kitty** | `config/kitty/kitty.conf` | Same palette + cmd-based keybindings mirroring Ghostty |
 | **Übersicht** | `macos/ubersicht/` | [Aeroline](https://github.com/kyuna0312/aeroline) — right-edge vertical bar: AeroSpace workspaces + clock (sketchybar is horizontal-only) |
-| **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring |
+| **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring; app-launcher mode ([keymap](docs/KEYMAP.md)) |
+| **Karabiner / Alfred** | `macos/karabiner/`, `macos/alfred/` | Key remaps and launcher preferences |
 | **Zellij** | `config/zellij/config.kdl` | Custom `nightcity` theme |
 | **Nushell** | `config/nushell/` | Explicit-hex `nightcity_theme` color_config |
 | **Git** | `config/git/config` + `delta.gitconfig` | Shared aliases + delta pager with NIGHT CITY syntax colors |
@@ -66,9 +72,11 @@ cd ~/dotfiles && bash install.sh
 
 | OS | Package manager | Notes |
 |----|----------------|-------|
-| **Arch / Manjaro** | pacman + paru (AUR) | Full support |
-| **Debian / Ubuntu** | apt | `bat`→`batcat`, `fd`→`fdfind` aliased automatically |
-| **macOS** | Homebrew | AeroSpace, Übersicht, Karabiner |
+| **Arch / Manjaro** | pacman + paru (AUR) | Full support; pentest extras from the AUR |
+| **Debian / Ubuntu** | apt | `bat`→`batcat`, `fd`→`fdfind` linked; starship and eza from their release scripts; lazygit, delta, atuin, sheldon are not in apt (the shell degrades gracefully, sheldon is fetched by the installer) |
+| **macOS** | Homebrew | formulae from `packages/macos-base.txt`, apps and the Nerd Font from `packages/macos-cask.txt` |
+
+Package names missing from a distro are skipped with a warning, never fatal.
 
 ---
 
@@ -116,10 +124,10 @@ Sourced last, after syntax highlighting. Provides:
 |---------|-------------|
 | `nightcity` | Identity card with system info |
 | `jack-in <host>` | Styled SSH wrapper |
-| `flatline <name>` | Kill process by name (`pkill -f`) |
+| `flatline <name>` | Kill processes named exactly `<name>` (`pkill -x`) |
 | `breach [dir]` | `cd` into directory then open `$EDITOR` |
 | `ghost` | Browse history with fzf and re-run |
-| `ports` | Open listening ports (`ss -tulnp`) |
+| `ports` | Open listening ports (`ss` on Linux, `lsof` on macOS) |
 
 > `dp-tools` (alias `nightcity-tools`) prints the CLI stack reference card — defined in `config/zsh/lib/common.zsh`.
 
@@ -129,7 +137,7 @@ Auto-loaded when `nmap` or `burpsuite` is detected. Run `sectools` for a quick r
 
 | Category | Tools |
 |----------|-------|
-| Network | `nmap`, `nse`, `nnmap`, `sniff`, `sniffport` |
+| Network | `nse`, `nnmap`, `listen`, `myip`, `sniff`, `sniffport` |
 | Web | `bsuite`, `sqlm`, `nik` |
 | Passwords | `jtr`, `hcat` |
 | Reverse Eng | `ghidra-launch`, `r2` |
@@ -193,6 +201,7 @@ dotfiles/
 │   ├── .zshenv             # sets ZDOTDIR=~/.config/zsh
 │   └── .bashrc             # minimal bash fallback
 ├── config/                 # mirrors ~/.config, linked dir-by-dir
+│   ├── ai/                 # every AI tool: CLAUDE.md, claude/, skills/, agents/, opencode/, clean-code-skills (submodule)
 │   ├── zsh/
 │   │   ├── .zshrc          # zsh entrypoint
 │   │   └── lib/
@@ -212,14 +221,17 @@ dotfiles/
 │   ├── git/                # config (shared) + delta.gitconfig + ignore
 │   ├── bat/config
 │   ├── nushell/
-│   └── atuin/
+│   ├── atuin/
+│   └── themes -> ../themes/night-city-palettes
+├── themes/night-city-palettes  # palette source of truth (git submodule)
+├── docs/KEYMAP.md          # tmux, AeroSpace and launcher bindings
 ├── installers/             # per-distro package installers
 │   ├── arch.sh
 │   ├── debian.sh
 │   └── macos.sh
 ├── packages/               # package lists (edit to add tools)
 │   ├── arch-base.txt
-│   ├── arch-security.txt
+│   ├── macos-cask.txt      # macOS apps + Nerd Font
 │   └── ...
 ├── macos/                  # aerospace, ubersicht, karabiner, alfred
 ├── scripts/
@@ -241,8 +253,8 @@ Split out of this repo so they're reusable on their own:
 
 ## Prerequisites
 
-- `git`, `zsh`, `curl`
-- Recommended: `neovim`, `tmux`, `starship`, `fzf`, `eza`
+- `git`, `zsh`, `curl` — everything else comes from `packages/`
+- A Nerd Font in the terminal (installed on macOS by the cask list; on Linux pick one from [nerdfonts.com](https://www.nerdfonts.com/))
 
 ---
 

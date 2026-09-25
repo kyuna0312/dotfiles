@@ -10,7 +10,6 @@ fzf
 fd-find
 bat
 zoxide
-direnv
 cmake
 make
 gcc

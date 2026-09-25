@@ -24,8 +24,14 @@ install_base() {
   local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-base.txt")
   # shellcheck disable=SC2086
   run brew install $pkgs || true
-  # Emacs.app for NyanEmacs (config/emacs)
-  run brew install --cask emacs || true
+
+  # Apps whose config this repo carries (packages/macos-cask.txt).
+  run brew tap nikitabobko/tap 2>/dev/null || true     # aerospace
+  run brew tap FelixKratz/formulae 2>/dev/null || true # borders (JankyBorders focus ring)
+  run brew install borders || true
+  local casks; casks=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-cask.txt")
+  # shellcheck disable=SC2086
+  _install_each brew install --cask -- $casks   # an app installed by hand is reported, not fatal
 }
 
 install_security() {

@@ -1,0 +1,11 @@
+# packages/macos-cask.txt
+# Homebrew casks: apps whose config lives in config/ or macos/.
+# Taps (nikitabobko/tap, FelixKratz/formulae) are added by installers/macos.sh.
+ghostty
+kitty
+nikitabobko/tap/aerospace
+karabiner-elements
+ubersicht
+alfred
+emacs-app
+font-hack-nerd-font
