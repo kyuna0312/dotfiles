@@ -15,3 +15,4 @@ config/ai/opencode/node_modules/
 config/ai/opencode/*.lock
 config/ai/opencode/package-lock.json
 config/ai/opencode/*.bak
+!config/ai/CLAUDE.md
