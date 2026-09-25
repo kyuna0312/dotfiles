@@ -19,6 +19,16 @@ live in that project's CLAUDE.md / AGENTS.md and take precedence.
 - Ask before adding a dependency, entitlement or changing the stack. Check the neighbouring file and match its style.
 - Commit and push only when asked. Never push to `main` directly on a repo that uses PRs.
 
+## Clean code (summary; depth in the `clean-code` skill, `~/.claude/skills/clean-code/SKILL.md`)
+- Load the `clean-code` skill before non-trivial writing, review or refactoring. Read `.clean/*` first if the project has it; a recorded decision is settled.
+- Dependencies point inward: business rules never name the DB, web, UI or framework. SQL stays in the data layer; rows and request objects never travel inward.
+- Placement: mirror where similar files live; wire a new file completely (imports, exports, registration) or it is dead code. No `_v2` / `_new` / `_copy` siblings, no `utils`/`helpers` junk drawers.
+- One job per unit at every scale. If it needs "and" to describe, split it. Orchestrators hold no business rules.
+- Names reveal intent and side effects. Comments say why, never what. Errors are never swallowed. Never weaken, skip or delete a failing test to get green.
+- Verify every API, option and config key exists in this codebase and these versions. Never trust memory.
+- Before "done", check the diff for the agent smells: hallucinated API, unverified dependency, context loss, scope creep, duplicate implementation, wrong-file gravity, phantom success, test weakening, speculative abstraction, silent architecture drift.
+- Surgical by default: unrelated smells are reported, not fixed. Report what was verified with which command and what was not run.
+
 ## How to answer
 - Action or result first. Code, then at most three short lines.
 - One idea per sentence. No preamble, no recap, no closing offers.

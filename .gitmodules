@@ -7,3 +7,6 @@
 [submodule "config/emacs"]
 	path = config/emacs
 	url = https://github.com/Nyanko-labs/NyanEmacs
+[submodule "config/ai/clean-code-skills"]
+	path = config/ai/clean-code-skills
+	url = https://github.com/kyuna0312/clean-code-skills
