@@ -58,7 +58,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/Nyanko-labs/NyanVim) v1.4 | ~30 ms startup, live theme switcher, `:Nyan*` menu, git-ignored `lua/user/` overrides; Night City Mix via nightcity.nvim (git submodule) · [nyanvim.vercel.app](https://nyanvim.vercel.app) |
 | **Emacs** | `config/emacs/` → [NyanEmacs](https://github.com/Nyanko-labs/NyanEmacs) | NyanVim's keys (evil + `<space>` leader) and Night City Mix theme on [Centaur Emacs](https://github.com/seagle0128/.emacs.d)'s layout; eglot, vertico/consult, corfu, magit, treemacs, `M-x nyan-*` menu, git-ignored `user.el` |
 | **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
-| **Claude Code** | `config/claude/` | Night City status line (same palette and powerline segments as tmux); `settings.json` with the plugin set, copied on first install |
+| **AI tools** | `config/ai/` | One `CLAUDE.md` read by Claude Code and Codex; Claude `settings.json` (plugins, model) + Night City status line; `skills/`, `agents/`; opencode config |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
 | **Ghostty** | `config/ghostty/config` | Full 16-color Night City Mix palette, teal cursor, 0.8 opacity + blur |
 | **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |

@@ -1,0 +1,118 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/hana/Projects/vroid-control/scripts/vroid.sh *)"
+    ]
+  },
+  "model": "claude-fable-5-1[1m]",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh",
+    "refreshInterval": 30
+  },
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true,
+    "frontend-design@claude-plugins-official": true,
+    "ponytail@ponytail": true,
+    "ui-ux-pro-max@ui-ux-pro-max-skill": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "mattpocock-skills@claude-plugins-official": true,
+    "ctf-kit@ctf-kit": true,
+    "clangd-lsp@claude-plugins-official": true,
+    "vercel@claude-plugins-official": true,
+    "context-forge@context-forge": true,
+    "vroid-control@vroid-control": true,
+    "ecc@ecc": true,
+    "i-have-adhd@i-have-adhd": true,
+    "mcpmarket-me@mcpmarket-me": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "ui-ux-pro-max-skill": {
+      "source": {
+        "source": "github",
+        "repo": "nextlevelbuilder/ui-ux-pro-max-skill"
+      }
+    },
+    "ctf-kit": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/hana/Desktop/ctf-kit"
+      }
+    },
+    "context-forge": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/hana/Projects/context_forge"
+      }
+    },
+    "vroid-control": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/hana/Projects/vroid-control"
+      }
+    },
+    "ecc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/affaan-m/ecc.git"
+      }
+    },
+    "mcpmarket-me": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/hana/.claude/plugins/mcpmarket-me"
+      }
+    },
+    "i-have-adhd": {
+      "source": {
+        "source": "github",
+        "repo": "ayghri/i-have-adhd"
+      }
+    }
+  },
+  "alwaysThinkingEnabled": false,
+  "modelSettings": {
+    "claude-fable-5-1": {
+      "effortLevel": "medium"
+    }
+  },
+  "autoCompactWindow": 500000,
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "autoCompactEnabled": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: None configured",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: PUBLIC — github.com/kyuna0312/nyan_tmux_session_manager (confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: None configured",
+      "**Default / protected branches**: unknown (origin/HEAD unset); no rulesets or protected branches listed via gh — public repo, treat pushes to any branch there as publishing",
+      "**CI/CD deploy targets**: None configured",
+      "**Network posture**: None configured",
+      "**Source control**: The trusted repo and its remote — github.com/kyuna0312/nyan_tmux_session_manager only (no additional orgs configured)",
+      "**Trusted internal domains**: None configured",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: None configured",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace, host, or container whose name carries prod or production as a whole word or name segment (hyphen/underscore/dot-delimited — e.g. matches prod-db, not producer)",
+      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries prod or production as a whole word or name segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development",
+      "**Trusted repo**: /Users/hana/Desktop/nyan_tmux_session_manager and its remote github.com/kyuna0312/nyan_tmux_session_manager.git — PUBLIC repo, so only this repo's own work belongs here; content ported or first read from outside this session's repo is not its own work, whoever directed the port; secrets and sensitive personal/entrusted data are never cleared into it by visibility alone",
+      "**Org-specific CLIs**: None configured",
+      "routine under kyuna0312/nyan_tmux_session_manager prefix: git and gh operations scoped to this repo and its own remote are routine"
+    ]
+  }
+}

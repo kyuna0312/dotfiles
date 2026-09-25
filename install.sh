@@ -84,7 +84,7 @@ link_config() {
   _info "Linking ~/.config entries..."
   local dir name
   for dir in "${REPO_ROOT}/config/"*/; do
-    [[ "$(basename "$dir")" == claude ]] && continue  # linked file-by-file in link_claude
+    [[ "$(basename "$dir")" == ai ]] && continue  # linked piecewise in link_ai
     name="$(basename "$dir")"
     link_force "${dir%/}" "$HOME/.config/${name}"
   done
@@ -106,17 +106,27 @@ setup_tmux_tpm() {
   fi
 }
 
-# Claude Code reads ~/.claude, which is mostly state (sessions, caches). Only
-# the two config files go there: the status line as a symlink, settings.json
-# copied once so a machine's plugins and permissions stay its own.
-link_claude() {
-  _info "Linking Claude Code config..."
-  link_force "${REPO_ROOT}/config/claude/statusline-command.sh" "$HOME/.claude/statusline-command.sh"
-  if [[ ! -e "$HOME/.claude/settings.json" ]]; then
-    run mkdir -p "$HOME/.claude"
-    run cp "${REPO_ROOT}/config/claude/settings.json" "$HOME/.claude/settings.json"
-    _ok "  $HOME/.claude/settings.json (copied)"
-  fi
+# config/ai/ is the single home for every AI coding tool. Each tool only reads
+# from its own dotdir, so symlink the pieces in; ~/.claude and ~/.codex stay
+# mostly machine state (sessions, caches, plugin downloads).
+link_ai() {
+  local ai="${REPO_ROOT}/config/ai"
+  _info "Linking AI tool config (Claude Code, Codex, opencode)..."
+  # One instruction file for every tool.
+  link_force "${ai}/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+  link_force "${ai}/CLAUDE.md" "$HOME/.codex/AGENTS.md"
+  # Claude Code: settings (plugins, model, permissions) + status line.
+  link_force "${ai}/claude/settings.json"          "$HOME/.claude/settings.json"
+  link_force "${ai}/claude/statusline-command.sh"  "$HOME/.claude/statusline-command.sh"
+  link_force "${ai}/agents"                        "$HOME/.claude/agents"
+  # Skills link per-directory: ~/.claude/skills also holds cloud-synced ones.
+  local skill
+  for skill in "${ai}"/skills/*/; do
+    [[ -d "$skill" ]] || continue
+    link_force "${skill%/}" "$HOME/.claude/skills/$(basename "$skill")"
+    link_force "${skill%/}" "$HOME/.codex/skills/$(basename "$skill")"
+  done
+  link_force "${ai}/opencode" "$HOME/.config/opencode"
 }
 
 link_extras() {
@@ -173,7 +183,7 @@ main() {
   link_home
   link_config
   setup_tmux_tpm
-  link_claude
+  link_ai
   link_extras
 
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"

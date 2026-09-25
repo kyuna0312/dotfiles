@@ -11,3 +11,7 @@ config/zsh/.zcompdump*
 config/tmux/plugins/
 macos/karabiner/automatic_backups/
 config/zsh/.zsh_sessions/
+config/ai/opencode/node_modules/
+config/ai/opencode/*.lock
+config/ai/opencode/package-lock.json
+config/ai/opencode/*.bak
