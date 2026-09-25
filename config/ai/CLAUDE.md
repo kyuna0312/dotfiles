@@ -14,6 +14,10 @@ live in that project's CLAUDE.md / AGENTS.md and take precedence.
 - No speculative abstractions, no scaffolding for later. Delete over add.
 - Never drop input validation, error handling that prevents data loss, or security to save lines.
 - Non-trivial logic leaves one small runnable check (test or assert self-check).
+- A file write is not working code. Run the project's verify commands (from its CLAUDE.md, Makefile or package.json) before saying "done"; report failures with their output.
+- Rename = several greps: calls, types, string literals, config keys, tests. One grep is not enough.
+- Ask before adding a dependency, entitlement or changing the stack. Check the neighbouring file and match its style.
+- Commit and push only when asked. Never push to `main` directly on a repo that uses PRs.
 
 ## How to answer
 - Action or result first. Code, then at most three short lines.
