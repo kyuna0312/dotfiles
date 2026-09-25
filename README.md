@@ -29,6 +29,8 @@ Neovim · Zsh · Tmux · Starship · Ghostty · Kitty · AeroSpace · Übersicht
 
 ## Quick Install
 
+Needs `git`, `zsh` and `curl`; everything else comes from `packages/`.
+
 ```bash
 git clone --recurse-submodules https://github.com/kyuna0312/dotfiles ~/dotfiles
 cd ~/dotfiles && bash install.sh
@@ -41,6 +43,16 @@ cd ~/dotfiles && bash install.sh
 The installer backs up anything it replaces as `<file>.bak.<timestamp>`, links every
 `config/*` dir into `~/.config`, and ends with the short list of steps macOS still
 needs by hand (Accessibility for AeroSpace/Karabiner, the Übersicht widget).
+
+**Update**
+
+```bash
+cd ~/dotfiles && git pull --recurse-submodules && bash install.sh --skip-packages
+git submodule update --remote config/nvim config/emacs config/ai/clean-code-skills   # newer NyanVim / NyanEmacs / clean-code
+```
+
+**Undo**: every file the installer replaced is next to its symlink as `<name>.bak.<timestamp>`;
+remove the symlink and rename the backup. There is no uninstall script on purpose.
 
 ---
 
@@ -159,6 +171,22 @@ overrides anything shared:
     email = you@example.com
 ```
 
+### AI tools (`config/ai/`)
+
+One place for every AI coding tool, so a new machine (or a new project) starts with the same rules:
+
+| File | Linked to | Purpose |
+|------|-----------|---------|
+| `CLAUDE.md` | `~/.claude/CLAUDE.md`, `~/.codex/AGENTS.md` | global instructions, read in every project; a project's own `CLAUDE.md` adds to it |
+| `claude/settings.json` | `~/.claude/settings.json` | plugins, marketplaces, model, permissions |
+| `claude/statusline-command.sh` | `~/.claude/statusline-command.sh` | Night City status line (tmux palette) |
+| `skills/<name>/` | `~/.claude/skills/<name>`, `~/.codex/skills/<name>` | one link per skill; `clean-code` comes from the [clean-code-skills](https://github.com/kyuna0312/clean-code-skills) submodule |
+| `agents/` | `~/.claude/agents` | custom subagents |
+| `opencode/` | `~/.config/opencode` | the `nyan` agent, `nyan-*` commands, theme |
+
+Add a skill: drop a folder with a `SKILL.md` into `config/ai/skills/` and re-run `bash install.sh --skip-packages`.
+`~/.claude` and `~/.codex` otherwise stay machine state (sessions, caches); only these files are linked.
+
 ### Node
 
 `node` is the package manager's. `nvm` is a stub that loads `~/.nvm` on first call, for projects pinned to another version (`nvm use 22`); it never shadows `node`/`npm`.
@@ -251,12 +279,6 @@ Split out of this repo so they're reusable on their own:
 
 ---
 
-## Prerequisites
-
-- `git`, `zsh`, `curl` — everything else comes from `packages/`
-- A Nerd Font in the terminal (installed on macOS by the cask list; on Linux pick one from [nerdfonts.com](https://www.nerdfonts.com/))
-
----
 
 <div align="center">
 
