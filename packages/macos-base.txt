@@ -21,3 +21,4 @@ lazygit
 git-delta
 atuin
 neovim
+sheldon

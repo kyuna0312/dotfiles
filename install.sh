@@ -57,7 +57,7 @@ setup_sheldon() {
       _info "[dry-run] would lock sheldon plugins"
     else
       _info "Locking sheldon plugins..."
-      sheldon --config-dir "${REPO_ROOT}/config/sheldon" lock 2>/dev/null || true
+      sheldon lock 2>/dev/null || true   # ~/.config/sheldon is linked by then; lock lands where `sheldon source` reads it
     fi
   fi
 }
@@ -67,7 +67,7 @@ setup_submodules() {
   # NyanVim (config/nvim) and any other submodules ship as git submodules.
   if git -C "${REPO_ROOT}" rev-parse --git-dir >/dev/null 2>&1 \
      && [[ -f "${REPO_ROOT}/.gitmodules" ]]; then
-    _info "Syncing submodules (nvim → NyanVim, emacs → NyanEmacs)..."
+    _info "Syncing submodules (nvim, emacs, themes, clean-code-skills)..."
     run git -C "${REPO_ROOT}" submodule update --init --recursive || \
       _warn "submodule sync failed; nvim config may be empty."
   fi
@@ -94,14 +94,14 @@ link_config() {
 }
 
 setup_tmux_tpm() {
-  local tpm_dir="$HOME/.tmux/plugins/tpm"
+  local tpm_dir="$HOME/.config/tmux/plugins/tpm"   # tmux.conf runs this path
   if [[ -d "$tpm_dir" ]]; then
     return 0
   elif [[ "$DRY_RUN" == "1" ]]; then
     _info "[dry-run] would clone TPM → $tpm_dir"
   else
     _info "Cloning TPM..."
-    mkdir -p "$HOME/.tmux/plugins"
+    mkdir -p "${tpm_dir%/*}"
     git clone --depth=1 https://github.com/tmux-plugins/tpm "$tpm_dir"
   fi
 }
@@ -179,12 +179,14 @@ main() {
   fi
 
   setup_submodules
-  setup_sheldon
   link_home
   link_config
+  setup_sheldon   # after link_config: `sheldon lock` reads ~/.config/sheldon
   setup_tmux_tpm
   link_ai
   link_extras
+  # bat only sees config/bat/themes after its cache is rebuilt.
+  command -v bat >/dev/null 2>&1 && run bat cache --build
 
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   printf "${_C_PINK}  ✓  Done.${_C_RST}\n"

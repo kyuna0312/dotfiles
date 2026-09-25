@@ -1,11 +1,5 @@
 .DS_Store
-tmux/plugins/
-raycast
-fzf
 history.txt
-.remember/
-docs/
-config/sheldon/plugins.lock
 CLAUDE.md
 config/zsh/.zcompdump*
 config/tmux/plugins/

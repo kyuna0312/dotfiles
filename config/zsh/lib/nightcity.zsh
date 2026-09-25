@@ -116,7 +116,7 @@ ghost() {
 # ports: show open listening ports
 ports() {
   printf "${_B_CYAN}  ✦ open ports${_B_RST}\n"
-  ss -tulnp 2>/dev/null || netstat -tulnp 2>/dev/null
+  ss -tulnp 2>/dev/null || lsof -nP -iTCP -sTCP:LISTEN 2>/dev/null   # ss: Linux, lsof: macOS
 }
 
 # nightcity: identity card + system info
