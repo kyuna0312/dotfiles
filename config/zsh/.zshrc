@@ -1,6 +1,7 @@
 # NIGHT CITY dotfiles - OS-split zsh entrypoint
 #
 # This file intentionally short-circuits after sourcing the modular configs.
+typeset -U path PATH   # dedupe PATH entries
 __dp_entry="${${(%):-%N}:A}"
 __dp_repo="${__dp_entry:h:h:h}"
 export CYBERPUNK_DOTFILES_DIR="${__dp_repo}"

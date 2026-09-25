@@ -47,6 +47,8 @@ config.keys = {
 
 	-- Window / misc
 	{ key = "Enter", mods = "SUPER", action = act.ToggleFullScreen },
+	-- Shift+Enter inserts a newline in CLI apps (Claude Code) instead of submitting.
+	{ key = "Enter", mods = "SHIFT", action = act.SendString("\x1b\r") },
 	{ key = "r", mods = "SUPER|SHIFT", action = act.ReloadConfiguration },
 }
 
