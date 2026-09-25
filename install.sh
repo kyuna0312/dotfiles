@@ -90,7 +90,6 @@ link_config() {
   done
 
   # Compat symlinks for tools that also read $HOME paths.
-  link_if_exists "$HOME/.config/tmux/tmux.conf" "$HOME/.tmux.conf"
 }
 
 setup_tmux_tpm() {
