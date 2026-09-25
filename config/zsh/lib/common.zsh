@@ -83,20 +83,6 @@ _dp_copy_to_clipboard() {
   fi
 }
 
-# ---------- Lazy loading helpers ----------
-__dp_once() { eval "__dp_once_${1}=1"; }
-__dp_is_once() { [[ "${(P)__dp_once_${1}}" == 1 ]]; }
-
-_dp_lazy_source() {
-  # Usage: _dp_lazy_source <once_key> <command> <file_to_source_path>
-  local once_key="$1" cmd="$2" file="$3"
-  __dp_is_once "$once_key" && return 0
-  command -v "$cmd" >/dev/null 2>&1 || return 0
-  [[ -f "$file" ]] || return 0
-  source "$file"
-  __dp_once "$once_key"
-}
-
 # ---------- Optional completions (kubectl cache) ----------
 _dp_init_kubectl_completion() {
   # Cache kubectl completion output to avoid startup latency.
@@ -231,33 +217,19 @@ if command -v fzf >/dev/null 2>&1; then
   fi
 fi
 
-# ---------- Node (nvm) — lazy loaded ----------
-# NVM sourcing costs ~200-400ms; defer until first use of nvm/node/npm/npx.
-if [[ -z "${NVM_DIR:-}" ]]; then
-  if [[ -d "$HOME/.config/nvm" ]]; then
-    export NVM_DIR="$HOME/.config/nvm"
-  else
-    export NVM_DIR="$HOME/.nvm"
-  fi
-fi
-
-_dp_load_nvm() {
-  [[ -s "$NVM_DIR/nvm.sh" ]] || return 1
-  . "$NVM_DIR/nvm.sh"
-  [[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
-}
-
-if [[ -d "$NVM_DIR" ]]; then
-  nvm()  { unfunction nvm  2>/dev/null; _dp_load_nvm && nvm  "$@"; }
-  node() { unfunction node 2>/dev/null; _dp_load_nvm && node "$@"; }
-  npm()  { unfunction npm  2>/dev/null; _dp_load_nvm && npm  "$@"; }
-  npx()  { unfunction npx  2>/dev/null; _dp_load_nvm && npx  "$@"; }
+# ---------- Node ----------
+# Default node is the package manager's. nvm is only for projects pinned to
+# another version: `nvm use 22` loads it on first call, nothing else is shadowed.
+if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+  export NVM_DIR="$HOME/.nvm"
+  nvm() { unfunction nvm; . "$NVM_DIR/nvm.sh"; nvm "$@"; }
 fi
 
 # ---------- C++ helpers ----------
 export CXX="${CXX:-g++}"
-cc() {
+cxx() {
   # Compile a single C++ source quickly (use cpp_build for CMake projects).
+  # Named cxx, not cc: `cc` is the system C compiler and must stay untouched.
   "${CXX}" -O2 -pipe -Wall -Wextra "$@"
 }
 
@@ -360,7 +332,10 @@ dp-tools() {
   printf "\033[38;5;133m     zsh     \033[0m zsh-autosuggestions zsh-syntax-highlighting\n"
   printf "\033[38;5;36m     git     \033[0m lazygit git-delta\n"
   printf "\033[38;5;179m     history \033[0m atuin\n"
-  printf "\033[38;5;243m     install \033[0m sudo pacman -S --needed <packages>\033[0m\n"
+  case "${CYBERPUNK_OS:-}" in
+    macos) printf "\033[38;5;243m     install \033[0m brew install <packages>   (packages/macos-base.txt)\n" ;;
+    *)     printf "\033[38;5;243m     install \033[0m see packages/<distro>-base.txt\n" ;;
+  esac
   printf "\033[38;5;243m     ──────────────────────────────────\033[0m\n\n"
 }
 alias nightcity-tools='dp-tools'

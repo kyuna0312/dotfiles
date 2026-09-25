@@ -26,7 +26,7 @@ _nightcity_greet() {
   _dir="$(pwd | sed "s|$HOME|~|")"
 
   printf "\n"
-  printf "${_B_PINK}${_B_BOLD}  ✦  B O X   U K   O N L I N E${_B_RST}\n"
+  printf "${_B_PINK}${_B_BOLD}  ✦  N I G H T   C I T Y   O N L I N E${_B_RST}\n"
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
   printf "${_B_CYAN}     operator  kyuna\n"
   printf "${_B_LAV}     system    ${_B_RST}${_sys}\n"
@@ -83,13 +83,13 @@ jack-in() {
   ssh "$@"
 }
 
-# flatline: kill process by name
+# flatline: kill processes whose name is exactly $1 (not -f: "node" must not take nvim's LSPs down)
 flatline() {
   if [[ -z "${1:-}" ]]; then
     _dp_warn "usage: flatline <process-name>"
     return 2
   fi
-  if pkill -f "$1" 2>/dev/null; then
+  if pkill -x "$1" 2>/dev/null; then
     printf "${_B_ROSE}  ✗ flatlined  ${_B_RST}${1}\n"
   else
     _dp_warn "no process matched: $1"

@@ -5,7 +5,7 @@
 # ✦ NIGHT CITY Dotfiles
 
 **Cyberpunk: Edgerunners-themed development environment — one palette, ten tools**  
-Neovim · Zsh · Tmux · Starship · Ghostty · WezTerm · Kitty · AeroSpace · Übersicht · Zellij
+Neovim · Zsh · Tmux · Starship · Ghostty · Kitty · AeroSpace · Übersicht · Zellij
 
 [![License](https://img.shields.io/github/license/kyuna0312/dotfiles?color=2bbcd5&labelColor=101a1f)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-Mint%20%7C%20Debian%20%7C%20Arch%20%7C%20macOS-0cc7c2?labelColor=101a1f)](install.sh)
@@ -34,16 +34,6 @@ git clone --recurse-submodules https://github.com/kyuna0312/dotfiles ~/dotfiles
 cd ~/dotfiles && bash install.sh
 ```
 
-Or directly, without cloning:
-
-```bash
-# curl
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/kyuna0312/dotfiles/main/install.sh)"
-
-# wget
-sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/install.sh)"
-```
-
 > **Re-link only** (skip package installs): `bash install.sh --skip-packages`  
 > **With pentest tools**: `bash install.sh --security`
 
@@ -53,15 +43,14 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 
 | Component | Config path | Description |
 |-----------|-------------|-------------|
-| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; NIGHT CITY greeting, fzf, zoxide, lazy NVM |
+| **Zsh** | `home/.zshenv` → `config/zsh/.zshrc` + `lib/` | Modular OS-split shell; NIGHT CITY helpers, fzf, zoxide; nvm only on `nvm use` |
 | **Starship** | `config/starship/starship.toml` | `λ` prompt, NIGHT CITY ribbon on stack tokens, OS badge, git status |
 | **Neovim** | `config/nvim/` → [NyanVim](https://github.com/Nyanko-labs/NyanVim) v1.4 | ~30 ms startup, live theme switcher, `:Nyan*` menu, git-ignored `lua/user/` overrides; Night City Mix via nightcity.nvim (git submodule) · [nyanvim.vercel.app](https://nyanvim.vercel.app) |
 | **Emacs** | `config/emacs/` → [NyanEmacs](https://github.com/Nyanko-labs/NyanEmacs) | NyanVim's keys (evil + `<space>` leader) and Night City Mix theme on [Centaur Emacs](https://github.com/seagle0128/.emacs.d)'s layout; eglot, vertico/consult, corfu, magit, treemacs, `M-x nyan-*` menu, git-ignored `user.el` |
-| **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty/WezTerm include their colors from it via `~/.config/themes` |
+| **Themes** | `themes/night-city-palettes/` → [night-city-palettes](https://github.com/kyuna0312/night-city-palettes) | Palette source of truth (git submodule); Ghostty/Kitty include their colors from it via `~/.config/themes` |
 | **AI tools** | `config/ai/` | One `CLAUDE.md` read by Claude Code and Codex; Claude `settings.json` (plugins, model) + Night City status line; `skills/`, `agents/`; opencode config |
 | **Tmux** | `config/tmux/tmux.conf` | Teal window tabs, undercurl passthrough, sessionx/floax popups, AI-CLI popups |
 | **Ghostty** | `config/ghostty/config` | Full 16-color Night City Mix palette, teal cursor, 0.8 opacity + blur |
-| **WezTerm** | `config/wezterm/wezterm.lua` | Same palette in lua; yellow active tab bar |
 | **Kitty** | `config/kitty/kitty.conf` | Same palette + cmd-based keybindings mirroring Ghostty |
 | **Übersicht** | `macos/ubersicht/` | [Aeroline](https://github.com/kyuna0312/aeroline) — right-edge vertical bar: AeroSpace workspaces + clock (sketchybar is horizontal-only) |
 | **AeroSpace** | `macos/aerospace/aerospace.toml` | Tiling WM + JankyBorders teal focus ring |
@@ -79,7 +68,7 @@ sh -c "$(wget -qO- https://raw.githubusercontent.com/kyuna0312/dotfiles/main/ins
 |----|----------------|-------|
 | **Arch / Manjaro** | pacman + paru (AUR) | Full support |
 | **Debian / Ubuntu** | apt | `bat`→`batcat`, `fd`→`fdfind` aliased automatically |
-| **macOS** | Homebrew | Aerospace, Übersicht, Hammerspoon, Karabiner |
+| **macOS** | Homebrew | AeroSpace, Übersicht, Karabiner |
 
 ---
 
@@ -111,54 +100,7 @@ with an apply script.
 
 ## Keymap
 
-tmux prefix is **`C-Space`** (`C-b` unbound). Press the prefix, then the key.
-
-| Key | Action | Scope |
-|-----|--------|-------|
-| `prefix i` | NyanVim session manager for this directory | tmux |
-| `prefix s` | sessionx — jump / kill sessions | tmux |
-| `prefix p` | floax floating pane | tmux |
-| `prefix y` | Claude Code popup for this directory | tmux |
-| `prefix Y` | Claude Code in a split | tmux |
-| `prefix o` | opencode popup for this directory | tmux |
-| `prefix g` | lazygit popup | tmux |
-| `prefix F` | Open this directory in Finder | tmux |
-| `prefix \|` / `prefix -` | Split vertical / horizontal | tmux |
-| `prefix c` | New window in cwd | tmux |
-| `C-S-←/→` | Reorder windows | tmux |
-| `alt-hjkl` | Focus window left/down/up/right | AeroSpace |
-| `alt-shift-hjkl` | Move window left/down/up/right | AeroSpace |
-| `alt-1…9` | Jump to workspace | AeroSpace |
-| `alt-shift-1…9` | Move window to workspace | AeroSpace |
-| `alt-f` / `alt-q` | Toggle float-tiling / close window | AeroSpace |
-| `alt-s/t/o/g` | Quick-launch Safari / Telegram / Obsidian / WezTerm | AeroSpace |
-| `alt-shift-enter` | Enter the app launcher (`apps` mode) | AeroSpace |
-| `alt-shift-z` | Toggle the Übersicht bar (HUD) | AeroSpace |
-
----
-
-## App Launcher
-
-Press **`alt-shift-enter`** to enter `apps` mode, then one key to open an app
-(it drops back to the main mode afterwards). **`esc`** leaves without launching.
-A `shift-` variant is the second app sharing a letter.
-
-| Key | App | | Key | App |
-|-----|-----|-|-----|-----|
-| `b` | Brave Browser | | `a` | Claude |
-| `f` | Firefox | | `shift-a` | ChatGPT |
-| `s` | Safari | | `o` | Obsidian |
-| `z` | Zen | | `t` | Telegram |
-| `g` | Ghostty | | `shift-t` | TeamViewer |
-| `w` | WezTerm | | `i` | Discord |
-| `shift-w` | Warp | | `l` | LINE |
-| `c` | Cursor | | `shift-v` | Viber |
-| `v` | Visual Studio Code | | `m` | Spotify |
-| `x` | Xcode | | `shift-s` | Steam |
-| `d` | Docker | | `shift-b` | Blender |
-| `shift-d` | DBeaver | | `shift-u` | Audacity |
-| `p` | Postman | | `shift-p` | Burp Suite |
-| `shift-f` | FileZilla | | `h` | Hydra |
+tmux prefix is **`C-Space`**. Every tmux, AeroSpace and app-launcher binding → [docs/KEYMAP.md](docs/KEYMAP.md).
 
 ---
 
@@ -209,9 +151,9 @@ overrides anything shared:
     email = you@example.com
 ```
 
-### NVM lazy loading
+### Node
 
-`nvm`, `node`, `npm`, `npx` are stub functions — NVM loads on first call to keep shell startup fast. Run `nvm` once to initialize.
+`node` is the package manager's. `nvm` is a stub that loads `~/.nvm` on first call, for projects pinned to another version (`nvm use 22`); it never shadows `node`/`npm`.
 
 ### Kubectl completion
 
@@ -254,7 +196,7 @@ dotfiles/
 │   ├── zsh/
 │   │   ├── .zshrc          # zsh entrypoint
 │   │   └── lib/
-│   │       ├── common.zsh   # shared: aliases, fzf, nvm, zoxide
+│   │       ├── common.zsh   # shared: aliases, fzf, zoxide
 │   │       ├── linux.zsh    # Linux: tmux auto-attach, EDITOR, security
 │   │       ├── macos.zsh    # macOS specifics
 │   │       ├── nightcity.zsh    # NIGHT CITY layer: greeting, themed helpers
@@ -266,7 +208,6 @@ dotfiles/
 │   ├── tmux/tmux.conf
 │   ├── ghostty/config
 │   ├── kitty/kitty.conf
-│   ├── wezterm/wezterm.lua
 │   ├── zellij/config.kdl
 │   ├── git/                # config (shared) + delta.gitconfig + ignore
 │   ├── bat/config
@@ -280,7 +221,7 @@ dotfiles/
 │   ├── arch-base.txt
 │   ├── arch-security.txt
 │   └── ...
-├── macos/                  # aerospace, ubersicht, skhd, karabiner, hammerspoon
+├── macos/                  # aerospace, ubersicht, karabiner, alfred
 ├── scripts/
 │   └── apply-theme.sh      # hot-reload running apps
 └── assets/                 # README images (preview.png, logo.png)

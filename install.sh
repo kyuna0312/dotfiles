@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh — NIGHT CITY // CyberMac dotfiles bootstrap (config-mirror layout)
+# install.sh — NIGHT CITY dotfiles bootstrap (config-mirror layout)
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -7,7 +7,7 @@ source "${REPO_ROOT}/lib/link.sh"
 
 usage() {
   cat <<'EOF'
-install.sh — NIGHT CITY // CyberMac dotfiles bootstrap
+install.sh — NIGHT CITY dotfiles bootstrap
 
 Usage:
   bash install.sh [options]
@@ -135,8 +135,6 @@ link_extras() {
   if [[ "$uname_s" == Darwin* ]]; then
     _info "Linking macOS-specific configs..."
     [[ -d "${REPO_ROOT}/macos/aerospace"   ]] && link_force "${REPO_ROOT}/macos/aerospace"   "$HOME/.config/aerospace"
-    [[ -d "${REPO_ROOT}/macos/hammerspoon" ]] && link_force "${REPO_ROOT}/macos/hammerspoon" "$HOME/.hammerspoon"
-    [[ -d "${REPO_ROOT}/macos/skhd"        ]] && link_force "${REPO_ROOT}/macos/skhd"        "$HOME/.config/skhd"
     [[ -d "${REPO_ROOT}/macos/karabiner"   ]] && link_force "${REPO_ROOT}/macos/karabiner"   "$HOME/.config/karabiner"
     [[ -d "${REPO_ROOT}/macos/alfred"      ]] && link_force "${REPO_ROOT}/macos/alfred"      "$HOME/.config/alfred"
 
@@ -167,7 +165,7 @@ main() {
 
   local distro; distro="$(detect_distro)"
 
-  printf "${_C_PINK}\n  ✦  NIGHT CITY // CyberMac Dotfiles${_C_RST}\n"
+  printf "${_C_PINK}\n  ✦  NIGHT CITY Dotfiles${_C_RST}\n"
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   _info "Distro: ${distro}"
 
@@ -190,7 +188,15 @@ main() {
 
   printf "${_C_DIM}     ────────────────────────────${_C_RST}\n"
   printf "${_C_PINK}  ✓  Done.${_C_RST}\n"
-  printf "     Open a new shell. Tmux plugins: ${_C_DIM}start tmux → Ctrl+I${_C_RST}\n\n"
+  printf "     Open a new shell. Tmux plugins: ${_C_DIM}start tmux → prefix + I${_C_RST}\n"
+  if [[ "$distro" == "macos" ]]; then
+    printf "\n     Still manual on macOS:\n"
+    printf "     ${_C_DIM}1.${_C_RST} Nerd Font for the prompt and status line: ${_C_DIM}brew install --cask font-jetbrains-mono-nerd-font${_C_RST}\n"
+    printf "     ${_C_DIM}2.${_C_RST} Karabiner-Elements and AeroSpace: grant Accessibility in System Settings → Privacy\n"
+    printf "     ${_C_DIM}3.${_C_RST} Übersicht: enable the nightcity-bar widget from its menu\n"
+    printf "     ${_C_DIM}4.${_C_RST} Terminal: pick Ghostty or kitty and set the Nerd Font there\n"
+  fi
+  printf "\n"
 }
 
 main "$@"

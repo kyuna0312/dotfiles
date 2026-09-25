@@ -204,7 +204,7 @@ alt-shift-enter = 'mode apps'
 
 alt-t = 'exec-and-forget open -a /Applications/Telegram.app'
 alt-o = 'exec-and-forget open -a /Applications/Obsidian.app'
-alt-g = 'exec-and-forget open -a /Applications/WezTerm.app'
+alt-g = 'exec-and-forget open -a /Applications/Ghostty.app'
 alt-s = 'exec-and-forget open -a /Applications/Safari.app'
 
 
@@ -236,7 +236,6 @@ z = ['exec-and-forget open -a "Zen"', 'mode main']
 
 # --- Terminals ---
 g = ['exec-and-forget open -a "Ghostty"', 'mode main']
-w = ['exec-and-forget open -a "WezTerm"', 'mode main']
 shift-w = ['exec-and-forget open -a "Warp"', 'mode main']
 
 # --- Editors / dev ---

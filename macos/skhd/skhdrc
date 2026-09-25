@@ -1,9 +1,0 @@
-# skhd — just the AppleScript popups. Window management and app launches
-# all live in aerospace.toml (binding them here too made two hotkey
-# daemons fight over the same chords).
-
-# Show date popup
-alt - d : osascript ~/.config/skhd/applescripts/pop.scpt
-
-# Close notifications
-ralt - n : osascript ~/.config/skhd/applescripts/notifications.scpt
