@@ -21,3 +21,8 @@ proxychains-ng
 openvpn
 wireguard-tools
 aircrack-ng
+# in extra since 2025 (verified against archlinux.org 2026-09-25)
+pwndbg
+volatility3
+impacket
+foremost

@@ -10,7 +10,7 @@ hashcat
 john
 hydra
 sqlmap
-nikto
+nikto           # Kali only; Debian/Ubuntu skip it with a warning
 binwalk
 foremost
 steghide
@@ -19,4 +19,4 @@ proxychains4
 openvpn
 wireguard
 aircrack-ng
-radare2
+radare2         # Debian: unstable only; Ubuntu has it

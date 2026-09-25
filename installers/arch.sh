@@ -41,8 +41,9 @@ install_security() {
 
   install_aur_helper
   if [[ -n "${AUR_CMD:-}" ]]; then
+    # AUR-only (verified 2026-09-25): ffuf, burpsuite, steghide; netexec replaced crackmapexec.
     _install_each "$AUR_CMD" -S --noconfirm --needed -- \
-      burpsuite pwndbg steghide foremost volatility3 impacket crackmapexec
+      burpsuite steghide ffuf netexec
   fi
 
   # BlackArch security repo (optional, uncomment to enable full pentest suite)

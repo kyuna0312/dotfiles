@@ -28,9 +28,10 @@ run() {
   fi
 }
 
-# _parse_pkg_list: strip comments and blank lines from a package list file.
+# _parse_pkg_list: one package per line; drops blank lines and comments,
+# including a trailing "name   # why" note.
 _parse_pkg_list() {
-  grep -v '^\s*#' "$1" | grep -v '^\s*$'
+  sed -e 's/#.*$//' -e 's/[[:space:]]*$//' "$1" | grep -v '^$'
 }
 
 # _install_each: install packages one at a time so a name missing from this
