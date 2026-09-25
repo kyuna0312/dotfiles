@@ -18,6 +18,7 @@ live in that project's CLAUDE.md / AGENTS.md and take precedence.
 - Rename = several greps: calls, types, string literals, config keys, tests. One grep is not enough.
 - Ask before adding a dependency, entitlement or changing the stack. Check the neighbouring file and match its style.
 - Commit and push only when asked. Never push to `main` directly on a repo that uses PRs.
+- No AI attribution anywhere: no `Co-Authored-By: Claude`, no "Generated with Claude Code", no `Claude-Session` trailer, in commit messages, PR descriptions or code comments. The commit is the user's.
 
 ## Clean code (summary; depth in the `clean-code` skill, `~/.claude/skills/clean-code/SKILL.md`)
 - Load the `clean-code` skill before non-trivial writing, review or refactoring. Read `.clean/*` first if the project has it; a recorded decision is settled.
