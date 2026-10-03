@@ -8,12 +8,7 @@ export CYBERPUNK_DOTFILES_DIR="${__dp_repo}"
 
 __dp_os="${CYBERPUNK_SHELL_OS:-}"
 if [[ -z "$__dp_os" ]]; then
-  _uname="$(uname -s 2>/dev/null || echo unknown)"
-  if [[ "$_uname" == Darwin* ]]; then
-    __dp_os="macos"
-  else
-    __dp_os="linux"
-  fi
+  [[ "$OSTYPE" == darwin* ]] && __dp_os="macos" || __dp_os="linux"
 fi
 
 if [[ "$__dp_os" == "macos" ]]; then

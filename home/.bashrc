@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # ~/.bashrc — minimal fallback. zsh is the primary shell here.
 [[ $- != *i* ]] && return
 

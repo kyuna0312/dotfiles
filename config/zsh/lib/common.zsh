@@ -21,17 +21,6 @@ __dp_is_interactive=0
 # ---------- Locale ----------
 export LANG="${LANG:-en_US.UTF-8}"
 
-# File mtime epoch (cross-platform: GNU stat vs BSD stat)
-__dp_file_mtime_epoch() {
-  local f="$1"
-  [[ -e "$f" ]] || return 0
-  if stat -c %Y "$f" >/dev/null 2>&1; then
-    stat -c %Y "$f"       # GNU
-  else
-    stat -f %m "$f"       # BSD (macOS)
-  fi
-}
-
 # ---------- XDG base dirs (must come before HISTFILE and other XDG consumers) ----------
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
@@ -42,7 +31,7 @@ export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 export HISTFILE="${XDG_STATE_HOME}/zsh/history"
 export HISTSIZE=100000
 export SAVEHIST=100000
-mkdir -p "${HISTFILE:h}" 2>/dev/null || true
+mkdir -p "${HISTFILE:h}" "${XDG_CACHE_HOME}/zsh" 2>/dev/null || true
 
 # ---------- Prompt ----------
 # Use Starship as the primary prompt renderer.
@@ -86,26 +75,15 @@ _dp_copy_to_clipboard() {
 # ---------- Optional completions (kubectl cache) ----------
 _dp_init_kubectl_completion() {
   # Cache kubectl completion output to avoid startup latency.
-  local cache_dir="${XDG_CACHE_HOME}/zsh"
-  local cache_file="${cache_dir}/kubectl-completion.zsh"
-  local max_age_seconds=$((7 * 24 * 60 * 60)) # 7 days
+  local cache_file="${XDG_CACHE_HOME}/zsh/kubectl-completion.zsh"
+  [[ -s "$cache_file" ]] && source "$cache_file"
 
-  mkdir -p "$cache_dir" 2>/dev/null || return 0
-
-  if [[ -s "$cache_file" ]]; then
-    source "$cache_file" 2>/dev/null
-  fi
-
-  local now epoch_age
-  now="$(date +%s 2>/dev/null || echo 0)"
-  epoch_age="$(__dp_file_mtime_epoch "$cache_file" 2>/dev/null || echo 0)"
-  if [[ ! -s "$cache_file" || $((now - epoch_age)) -gt $max_age_seconds ]]; then
-    # Refresh in background; don't block interactive startup.
-    (
-      kubectl completion zsh > "${cache_file}.tmp" 2>/dev/null \
-        && mv "${cache_file}.tmp" "$cache_file"
-    ) &
-  fi
+  # Refresh weekly in the background; &! keeps the job notice off the prompt.
+  local -a fresh=( ${cache_file}(N.md-7) )
+  (( $#fresh )) || {
+    kubectl completion zsh > "${cache_file}.tmp" 2>/dev/null \
+      && mv "${cache_file}.tmp" "$cache_file"
+  } &!
 }
 
 # ---------- zsh basics + completion ----------
@@ -115,29 +93,26 @@ if [[ "$__dp_is_interactive" == "1" ]]; then
   zstyle ':completion:*' cache-path "${XDG_CACHE_HOME}/zsh/zcompcache"
   zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
   autoload -Uz compinit
-  # Only regenerate dump if it's older than 24h; -C skips security check on cache hit.
-  local _zcd="${XDG_CACHE_HOME}/zsh/zcompdump"
-  if [[ -n ${_zcd}(#qN.mh+24) ]]; then
-    compinit -d "$_zcd"
-  else
+  # Full compinit once a day; -C trusts the dump the rest of the time.
+  # touch: compinit only rewrites the dump when the completion set changed.
+  _zcd="${XDG_CACHE_HOME}/zsh/zcompdump"
+  _zcd_fresh=( ${_zcd}(N.mh-24) )
+  if (( $#_zcd_fresh )); then
     compinit -C -d "$_zcd"
+  else
+    compinit -d "$_zcd" && touch "$_zcd"
   fi
-  unset _zcd
+  unset _zcd _zcd_fresh
 fi
 
 if [[ "$__dp_is_interactive" == "1" ]] && command -v kubectl >/dev/null 2>&1 && [[ "${CYBERPUNK_KUBECTL_COMPLETION:-1}" == "1" ]]; then
   _dp_init_kubectl_completion
 fi
 
-# AWS completer: prefer PATH binary if present.
-if command -v aws_completer >/dev/null 2>&1; then
-  complete -C "$(command -v aws_completer)" aws 2>/dev/null || true
+if [[ "$__dp_is_interactive" == "1" ]] && command -v aws_completer >/dev/null 2>&1; then
+  autoload -Uz bashcompinit && bashcompinit   # `complete` is a bash builtin
+  complete -C aws_completer aws
 fi
-
-# ---------- Prompt accent ----------
-# Neon "pulse" divider at the end of the command line.
-# (Starship handles most visuals; this only affects a small character.)
-export STARSHIP_DIRTRIM='true'
 
 # ---------- UI helpers ----------
 alias cls='clear'
@@ -150,8 +125,14 @@ if command -v eza >/dev/null 2>&1; then
   alias ls='eza -al --icons --git'
   alias lt='eza --tree --level=2 --long --icons --git'
   alias ltree='eza --tree --level=2 --icons --git'
-elif command -v ls >/dev/null 2>&1; then
+  alias la='eza -a --icons --git'
+  alias ll='eza -l --icons --git'
+  alias lla='eza -la --icons --git'
+else
   alias ls='ls --color=auto'
+  alias la='ls -A'
+  alias ll='ls -lh'
+  alias lla='ls -lhA'
 fi
 
 if command -v bat >/dev/null 2>&1; then
@@ -164,10 +145,6 @@ if command -v bat >/dev/null 2>&1; then
   # (needs `bat cache --build` once after linking).
   export BAT_THEME="${BAT_THEME:-nightcity}"
 fi
-
-alias la='eza -a --icons --git 2>/dev/null || ls -A'
-alias ll='eza -l --icons --git 2>/dev/null || ls -lh'
-alias lla='eza -la --icons --git 2>/dev/null || ls -lhA'
 
 # ---------- Git (developer-focused) ----------
 alias g='git'
@@ -252,22 +229,9 @@ cpp_build() {
 
 alias cbuild='cpp_build'
 
-# ---------- Lazy integration for zoxide ----------
-__dp_zoxide_loaded=0
-__dp_load_zoxide() {
-  [[ "$__dp_zoxide_loaded" == "1" ]] && return 0
-  command -v zoxide >/dev/null 2>&1 || return 0
-  eval "$(zoxide init zsh)"
-  __dp_zoxide_loaded=1
-}
-
-if command -v zoxide >/dev/null 2>&1; then
-  z() {
-    __dp_load_zoxide
-    unfunction z 2>/dev/null || true
-    z "$@"
-  }
-fi
+# ---------- zoxide ----------
+# Not lazy: its chpwd hook must run from the first cd or it never learns dirs.
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init zsh)"
 
 # ---------- Fast directory/file pickers ----------
 _dp_require_fd_fzf() {

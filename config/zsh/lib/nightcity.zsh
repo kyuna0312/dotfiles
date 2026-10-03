@@ -13,32 +13,6 @@ _B_DIM='\033[38;5;243m'     # muted surface
 _B_BOLD='\033[1m'
 _B_RST='\033[0m'
 
-# ── Greeting ──────────────────────────────────────────────────────────────────
-# Only in interactive non-tmux shells (tmux status bar already has identity).
-_nightcity_greet() {
-  [[ "${__dp_is_interactive:-0}" != "1" ]] && return
-  [[ -n "${TMUX:-}" ]] && return
-
-  local _sys _shell _up _dir
-  _sys="$(uname -sr 2>/dev/null)"
-  _shell="zsh $(zsh --version 2>/dev/null | awk '{print $2}')"
-  _up="$(uptime -p 2>/dev/null | sed 's/up //' || echo 'unknown')"
-  _dir="$(pwd | sed "s|$HOME|~|")"
-
-  printf "\n"
-  printf "${_B_PINK}${_B_BOLD}  ✦  N I G H T   C I T Y   O N L I N E${_B_RST}\n"
-  printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
-  printf "${_B_CYAN}     operator  kyuna\n"
-  printf "${_B_LAV}     system    ${_B_RST}${_sys}\n"
-  printf "${_B_MINT}     shell     ${_B_RST}${_shell}\n"
-  printf "${_B_GOLD}     uptime    ${_B_RST}${_up}\n"
-  printf "${_B_PINK}     location  ${_B_RST}${_dir}\n"
-  printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n"
-  printf "\n"
-}
-# Quiet startup by default (craftzdog-style); CYBERPUNK_GREETING=1 re-enables.
-[[ "${CYBERPUNK_GREETING:-0}" == "1" ]] && _nightcity_greet
-
 # ── Override common.zsh info helpers with themed versions ────────────────────
 _dp_info()  { printf "${_B_CYAN}[✦]${_B_RST} %s\n"    "$*"; }
 _dp_warn()  { printf "${_B_GOLD}[!]${_B_RST} %s\n"    "$*"; }
@@ -109,7 +83,7 @@ ghost() {
   local cmd
   cmd="$(fc -ln 1 | fzf --tac --no-sort --prompt='  ghost λ  ' --height=50%)" || return
   [[ -z "$cmd" ]] && return
-  printf "${_B_DIM}  ▸ ${cmd}${_B_RST}\n"
+  printf "${_B_DIM}  ▸ %s${_B_RST}\n" "$cmd"   # %s: history is full of literal % (date +%s)
   eval "$cmd"
 }
 
@@ -121,8 +95,10 @@ ports() {
 
 # nightcity: identity card + system info
 nightcity() {
-  local _os _branch=""
-  _os="$(grep PRETTY_NAME /etc/os-release 2>/dev/null | cut -d'"' -f2 || uname -sr)"
+  local _os _up _branch=""
+  # Linux has os-release and `uptime -p`; macOS has neither.
+  _os="$(. /etc/os-release 2>/dev/null && print -r -- "$PRETTY_NAME")" || _os="$(uname -sr)"
+  _up="$(uptime -p 2>/dev/null)" || _up="$(uptime | sed -E 's/^.*up +//; s/, *[0-9]+ users?.*//')"
   if command -v git >/dev/null 2>&1 && git rev-parse --git-dir >/dev/null 2>&1; then
     _branch="$(git branch --show-current 2>/dev/null)"
   fi
@@ -133,9 +109,13 @@ nightcity() {
   printf "${_B_LAV}     os        ${_B_RST}${_os}\n"
   printf "${_B_MINT}     kernel    ${_B_RST}$(uname -r)\n"
   printf "${_B_GOLD}     shell     ${_B_RST}zsh $(zsh --version 2>/dev/null | awk '{print $2}')\n"
-  printf "${_B_ROSE}     uptime    ${_B_RST}$(uptime -p 2>/dev/null | sed 's/up //')\n"
-  printf "${_B_PINK}     dir       ${_B_RST}$(pwd | sed "s|$HOME|~|")\n"
+  printf "${_B_ROSE}     uptime    ${_B_RST}%s\n" "${_up#up }"
+  printf "${_B_PINK}     dir       ${_B_RST}%s\n" "${(D)PWD}"
   [[ -n "$_branch" ]] && \
-    printf "${_B_LAV}     branch    ${_B_RST}${_branch}\n"
+    printf "${_B_LAV}     branch    ${_B_RST}%s\n" "$_branch"
   printf "${_B_DIM}     ──────────────────────────────────${_B_RST}\n\n"
 }
+
+# Quiet startup by default; CYBERPUNK_GREETING=1 shows the card in non-tmux
+# shells (the tmux status bar already carries identity).
+[[ "${CYBERPUNK_GREETING:-0}" == "1" && "${__dp_is_interactive:-0}" == "1" && -z "${TMUX:-}" ]] && nightcity
