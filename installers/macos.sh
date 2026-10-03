@@ -23,7 +23,7 @@ install_base() {
   _info "[macos] Installing base packages..."
   local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-base.txt")
   # shellcheck disable=SC2086
-  run brew install $pkgs || true
+  run brew install $pkgs || _warn "[macos] some base packages failed to install (see brew output above)"
 
   # Apps whose config this repo carries (packages/macos-cask.txt).
   run brew tap nikitabobko/tap 2>/dev/null || true     # aerospace
@@ -38,7 +38,7 @@ install_security() {
   _info "[macos] Installing security tools..."
   local pkgs; pkgs=$(_parse_pkg_list "${REPO_ROOT}/packages/macos-security.txt")
   # shellcheck disable=SC2086
-  run brew install $pkgs || true
+  run brew install $pkgs || _warn "[macos] some security packages failed to install (see brew output above)"
 
   # GUI tools via cask
   run brew install --cask burp-suite ghidra || true

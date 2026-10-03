@@ -57,7 +57,8 @@ setup_sheldon() {
       _info "[dry-run] would lock sheldon plugins"
     else
       _info "Locking sheldon plugins..."
-      sheldon lock 2>/dev/null || true   # ~/.config/sheldon is linked by then; lock lands where `sheldon source` reads it
+      # ~/.config/sheldon is linked by then; lock lands where `sheldon source` reads it
+      sheldon lock || _warn "sheldon lock failed; zsh plugins will not load until it succeeds."
     fi
   fi
 }

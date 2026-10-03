@@ -34,7 +34,7 @@ install_base() {
     if [[ "$DRY_RUN" == "1" ]]; then
       _info "[dry-run] would install starship via starship.rs script"
     else
-      curl -sS https://starship.rs/install.sh | sh -s -- --yes
+      curl -fsS https://starship.rs/install.sh | sh -s -- --yes
     fi
   fi
 
@@ -46,10 +46,12 @@ install_base() {
     elif command -v cargo >/dev/null 2>&1; then
       cargo install eza
     else
-      local arch; arch="$(dpkg --print-architecture)"
-      local eza_url="https://github.com/eza-community/eza/releases/latest/download/eza_${arch}-unknown-linux-gnu.tar.gz"
+      # Assets are named by `uname -m` (x86_64, aarch64), not dpkg's amd64/arm64.
+      local eza_url
+      eza_url="https://github.com/eza-community/eza/releases/latest/download/eza_$(uname -m)-unknown-linux-gnu.tar.gz"
       mkdir -p "$HOME/.local/bin"
-      curl -sL "$eza_url" | tar xz -C "$HOME/.local/bin/"
+      curl -fsSL "$eza_url" | tar xz -C "$HOME/.local/bin/" \
+        || _warn "[debian] eza download failed: $eza_url"
     fi
   fi
 }

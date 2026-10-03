@@ -71,8 +71,3 @@ link_force() {
   ln -sf "$src" "$dst"
   _ok "  $dst"
 }
-
-link_if_exists() {
-  local src="$1" dst="$2"
-  [[ -e "$src" ]] && link_force "$src" "$dst" || true
-}
