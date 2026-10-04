@@ -15,8 +15,8 @@ _S_RST='\033[0m'
 # ── Network recon ─────────────────────────────────────────────────────────────
 alias nse='nmap -sV --script=default'
 alias nnmap='nmap -sn'
-alias listen='ss -tulnp'              # renamed: nightcity.zsh owns `ports`
-alias myip='curl -s ifconfig.me'
+alias listen='ports'                  # nightcity.zsh: ss on Linux, lsof on macOS
+alias myip='curl -s https://ifconfig.me'
 
 # ── Web ───────────────────────────────────────────────────────────────────────
 alias bsuite='burpsuite &>/dev/null &'
@@ -36,10 +36,12 @@ alias sniff='sudo tcpdump -i any -n'
 alias sniffport='sudo tcpdump -i any -n port'
 
 # ── CTF helpers ───────────────────────────────────────────────────────────────
-b64d()          { echo "$1" | base64 -d; }
-b64e()          { echo "$1" | base64; }
+# printf '%s', not echo: zsh's echo expands backslashes, eats a leading -n,
+# and its trailing newline would be encoded into the payload.
+b64d()          { printf '%s' "$1" | base64 -d; }
+b64e()          { printf '%s' "$1" | base64; }
 hexdump-clean() { xxd "$1" | less; }
-rot13()         { echo "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'; }
+rot13()         { printf '%s\n' "$1" | tr 'A-Za-z' 'N-ZA-Mn-za-m'; }
 
 # ── sectools: NIGHT CITY reference card ─────────────────────────────────────
 sectools() {

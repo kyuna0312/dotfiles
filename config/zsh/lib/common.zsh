@@ -80,9 +80,10 @@ _dp_init_kubectl_completion() {
 
   # Refresh weekly in the background; &! keeps the job notice off the prompt.
   local -a fresh=( ${cache_file}(N.md-7) )
+  # Per-shell tmp name: two shells starting together must not write one file.
   (( $#fresh )) || {
-    kubectl completion zsh > "${cache_file}.tmp" 2>/dev/null \
-      && mv "${cache_file}.tmp" "$cache_file"
+    kubectl completion zsh > "${cache_file}.$$" 2>/dev/null \
+      && mv "${cache_file}.$$" "$cache_file"
   } &!
 }
 
@@ -316,6 +317,12 @@ if (( ${+widgets[autosuggest-execute]} )); then
   bindkey '^w' autosuggest-execute
   bindkey '^e' autosuggest-accept
   bindkey '^u' autosuggest-toggle
+fi
+
+# ---------- Security toolkit ----------
+# Only when at least nmap or burpsuite is installed.
+if command -v nmap >/dev/null 2>&1 || command -v burpsuite >/dev/null 2>&1; then
+  source "${CYBERPUNK_DOTFILES_DIR}/config/zsh/lib/security.zsh"
 fi
 
 # ---------- NIGHT CITY layer ----------
