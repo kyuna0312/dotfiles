@@ -28,7 +28,7 @@ d = json.load(sys.stdin)
 w = d.get('workspace', {})
 cw = d.get('context_window', {})
 rl = d.get('rate_limits', {}).get('5h', {})
-print('\x1f'.join(str(x) for x in (
+print('\x1f'.join('' if x is None else str(x) for x in (   # JSON null must not become the string 'None'
     w.get('current_dir', d.get('cwd', '')),
     d.get('model', {}).get('display_name', ''),
     cw.get('used_percentage', ''),
