@@ -22,10 +22,11 @@
     "clangd-lsp@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
     "context-forge@context-forge": true,
-    "vroid-control@vroid-control": true,
+    "vroid-control@vroid-control": false,
     "ecc@ecc": true,
     "i-have-adhd@i-have-adhd": true,
-    "mcpmarket-me@mcpmarket-me": true
+    "mcpmarket-me@mcpmarket-me": true,
+    "gamedev@awesome-gamedev-agent-skills": false
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -74,6 +75,12 @@
       "source": {
         "source": "github",
         "repo": "ayghri/i-have-adhd"
+      }
+    },
+    "awesome-gamedev-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "gamedev-skills/awesome-gamedev-agent-skills"
       }
     }
   },
