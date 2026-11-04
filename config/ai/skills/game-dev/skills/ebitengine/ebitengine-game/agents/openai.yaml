@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ebitengine Game"
+  short_description: "Build, verify and ship 2D games in Go with Ebitengine"
+  default_prompt: "Use $ebitengine-game to build or fix this Ebitengine game in Go."

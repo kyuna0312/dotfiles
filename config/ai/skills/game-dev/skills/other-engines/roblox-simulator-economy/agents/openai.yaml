@@ -1,0 +1,4 @@
+interface:
+  display_name: "Roblox Simulator Economy"
+  short_description: "Balance and secure Roblox simulator economies"
+  default_prompt: "Use $roblox-simulator-economy to balance and implement this Roblox simulator economy."

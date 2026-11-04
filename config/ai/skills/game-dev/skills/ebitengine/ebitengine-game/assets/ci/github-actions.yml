@@ -1,0 +1,115 @@
+# Copy to .github/workflows/ci.yml in an Ebitengine project.
+# Every push / pull request: vet, unit tests, the skill's checker (if the
+# script is vendored at tools/check_ebitengine.py), a headless smoke run that
+# captures a frame, and cross-compiles. Tags v*: release archives for
+# Windows, macOS (universal .app, unsigned), Linux and the browser.
+#
+# Assumes the starter's flags (-demo, -shot FILE, -shot-tick N); adapt the
+# smoke step if your game differs. Replace "mygame" and the bundle ID.
+name: ci
+
+on:
+  push:
+    branches: ["**"]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  GAME: mygame
+  CGO_ENABLED: "0"
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Runtime libraries for the smoke run
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb libgl1 libglx-mesa0 libgl1-mesa-dri libasound2t64
+      - run: test -z "$(gofmt -l .)" || (gofmt -l . && exit 1)
+      - run: go vet ./...
+      - name: Tests (a package importing Ebitengine may initialise graphics)
+        run: |
+          printf 'pcm.!default { type null }\n' > "$RUNNER_TEMP/alsa-null.conf"
+          ALSA_CONFIG_PATH="$RUNNER_TEMP/alsa-null.conf" xvfb-run -a go test ./...
+      - name: Ebitengine checker
+        run: |
+          if [ -f tools/check_ebitengine.py ]; then python3 tools/check_ebitengine.py .; fi
+      - name: Headless smoke run (scripted input, frame capture, no sound card)
+        run: |
+          printf 'pcm.!default { type null }\n' > "$RUNNER_TEMP/alsa-null.conf"
+          go build -buildvcs=false -o smoke .
+          ALSA_CONFIG_PATH="$RUNNER_TEMP/alsa-null.conf" timeout 60 xvfb-run -a -s "-screen 0 1280x720x24" \
+            ./smoke -demo -shot shot.png -shot-tick 240
+          test -s shot.png
+      - uses: actions/upload-artifact@v4
+        with:
+          name: smoke-frame
+          path: shot.png
+      - name: Cross-compile every target
+        run: |
+          GOOS=windows GOARCH=amd64 go build -buildvcs=false -o /dev/null .
+          GOOS=darwin  GOARCH=amd64 go build -buildvcs=false -o /dev/null .
+          GOOS=darwin  GOARCH=arm64 go build -buildvcs=false -o /dev/null .
+          GOOS=linux   GOARCH=amd64 go build -buildvcs=false -o /dev/null .
+          GOOS=js      GOARCH=wasm  go build -buildvcs=false -o /dev/null .
+
+  release:
+    permissions:
+      contents: write # creating releases on tags
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - name: Build
+        run: |
+          set -eu
+          V="${GITHUB_REF_NAME#v}"
+          LD="-s -w -X main.version=$V"   # declare `var version = "dev"` in package main
+          mkdir -p dist/win dist/linux dist/mac dist/web
+          # Include the bundled font notice and project-supplied asset notices.
+          for target in win linux mac web; do cp -R licenses "dist/$target/"; done
+          # Windows: no console window. Add Steam-specific workarounds only
+          # when that distribution and the engine version require them.
+          GOOS=windows GOARCH=amd64 go build -buildvcs=false -trimpath \
+            -ldflags="$LD -H=windowsgui" -o "dist/win/$GAME.exe" .
+          GOOS=linux GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="$LD" -o "dist/linux/$GAME" .
+          GOOS=darwin GOARCH=amd64 go build -buildvcs=false -trimpath -ldflags="$LD" -o "dist/mac/${GAME}_amd64" .
+          GOOS=darwin GOARCH=arm64 go build -buildvcs=false -trimpath -ldflags="$LD" -o "dist/mac/${GAME}_arm64" .
+          GOOS=js GOARCH=wasm go build -buildvcs=false -trimpath -ldflags="$LD" -o dist/web/game.wasm .
+          cp "$(go env GOROOT)/lib/wasm/wasm_exec.js" dist/web/
+          cp web/index.html dist/web/   # your page that loads wasm_exec.js and game.wasm
+      - name: macOS app bundle (unsigned; sign and notarise on a Mac)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends llvm
+          V="${GITHUB_REF_NAME#v}"
+          # Apple bundle versions are numeric; the binary keeps the full tag.
+          APP_VERSION="${V%%[-+]*}"
+          python3 tools/package_macos_app.py --name "$GAME" --bundle-id "com.example.$GAME" \
+            --version "$APP_VERSION" --build "$GITHUB_RUN_NUMBER" \
+            --amd64 "dist/mac/${GAME}_amd64" --arm64 "dist/mac/${GAME}_arm64" --out dist/mac
+      - name: Archives
+        run: |
+          set -eu
+          V="${GITHUB_REF_NAME#v}"
+          (cd dist/win && zip -r "../${GAME}_${V}_windows_amd64.zip" .)
+          (cd dist/linux && tar czf "../${GAME}_${V}_linux_amd64.tar.gz" .)
+          (cd dist/mac && zip -r -y "../${GAME}_${V}_macos_unsigned.zip" "$GAME.app" licenses)
+          (cd dist/web && zip -r "../${GAME}_${V}_web.zip" .)   # index.html at the top level, as itch.io expects
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.zip
+            dist/*.tar.gz

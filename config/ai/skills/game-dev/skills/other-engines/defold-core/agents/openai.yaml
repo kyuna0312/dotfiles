@@ -1,0 +1,4 @@
+interface:
+  display_name: "Defold Core"
+  short_description: "Build and debug Defold games in Lua with Bob checks"
+  default_prompt: "Use $defold-core to add or fix this feature in my Defold game and verify it builds and runs."

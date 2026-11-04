@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Starter</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  #status { position: fixed; inset: 0; display: grid; place-items: center;
+            color: #ccc; font: 16px system-ui, sans-serif; }
+</style>
+</head>
+<body>
+<div id="status">Loading…</div>
+<!-- Portal SDKs (ads, analytics) go here, before wasm_exec.js. -->
+<script src="wasm_exec.js"></script>
+<script>
+  const go = new Go();
+  const status = document.getElementById("status");
+  WebAssembly.instantiateStreaming(fetch("game.wasm"), go.importObject)
+    .then(async r => { status.remove(); await go.run(r.instance); })
+    .catch(e => {
+      document.body.appendChild(status);
+      status.textContent = "Could not run the game: " + e;
+    });
+</script>
+</body>
+</html>
