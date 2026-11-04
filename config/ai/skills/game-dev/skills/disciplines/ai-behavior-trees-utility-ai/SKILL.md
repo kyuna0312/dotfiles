@@ -156,6 +156,21 @@ The full curve library (linear, quadratic, exponential, logistic/sigmoid, smooth
   so the agent commits instead of oscillating.
 - **Allocating nodes, closures, or arrays every tick** creates GC spikes. Build the tree once at
   spawn; keep per-tick work allocation-free.
+- **Applying the pattern where it buys nothing.** A one-way phase sequence (a boss's HP-threshold
+  phases) is already the right state machine; a tree adds nodes and no capability. An agent
+  with one possible target has nothing to score. Use a tree where branches compete by priority
+  and a score where there is a real choice between candidates.
+- **A score that overrules a player's order.** When the player can command an ally (mark this
+  target, focus that one), keep the order as a hard gate above the evaluator. Ask the score
+  only when nothing has been chosen for the ally.
+- **A tree that compiles and changes no decision.** A refactor can pass every old test while
+  its leaves never run or one consideration multiplies every candidate equally (a dead
+  constant). Tick each tree once on a probe and assert that a leaf ran. Then set up a case
+  where the old rule and the new score must pick different targets, and assert the new pick.
+  Reintroduce the bug once and watch the test fail.
+- **A tree rebuilt when the agent's mode changes drops the state of its `Running` node.** That
+  is right when the new mode starts fresh, such as a boss entering a duel phase. Otherwise
+  keep the tree and change the blackboard.
 
 ## References
 
